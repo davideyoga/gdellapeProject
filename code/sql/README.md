@@ -1,1 +1,1 @@
-directory for code project
+For code project
