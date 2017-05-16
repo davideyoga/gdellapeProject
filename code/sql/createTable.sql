@@ -31,14 +31,55 @@ CREATE TABLE course (
     communication_eng TEXT,
     lifelog_learning_skills_ita TEXT,
     lifelog_learning_skills_eng TEXT,
+    external_material_ita TEXT,
+    external_material_eng TEXT,
 primary key (id)
 );
+
+CREATE TABLE borrowedCourse ( /* corso mutuato*/
+    course_id INT(16) UNSIGNED NOT NULL,
+    corse_borrowed_id INT(10) UNSIGNED NOT NULL,
+    primary key (course_id, corse_borrowed_id), 
+	
+	FOREIGN KEY (course_id)
+    		REFERENCES course(id),
+	FOREIGN KEY (corse_borrowed_id)
+    		REFERENCES course(id)  
+)
+
+CREATE TABLE preparatoryCourse (
+    course_id INT(16) UNSIGNED NOT NULL,
+    corse_preparatory_id INT(10) UNSIGNED NOT NULL,
+    primary key (course_id, corse_preparatory_id), 
+	
+	FOREIGN KEY (course_id)
+    		REFERENCES course(id),
+	FOREIGN KEY (corse_preparatory_id)
+    		REFERENCES course(id)
+)
+
+CREATE TABLE moduleCourse (
+    course_id INT(16) UNSIGNED NOT NULL,
+    corse_module_id INT(10) UNSIGNED NOT NULL,
+primary key (course_id, corse_module_id), 
+	
+	FOREIGN KEY (course_id)
+    		REFERENCES course(id),
+	FOREIGN KEY (corse_module_id)
+    		REFERENCES course(id)
+
+)
 
 CREATE TABLE user (
     id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
     surname VARCHAR(32),
     name VARCHAR(32),
     email VARCHAR(64),
+    number INT(14),
+    curriculum_ita TEXT,
+    curriculum_eng TEXT,
+    receprion_hours_ita TEXT,
+    receprion_hours_eng TEXT,
 primary key (id)
 );
 
@@ -158,7 +199,8 @@ CREATE TABLE user_log (
 
 CREATE TABLE material (
     id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-    description TEXT,
+    description_ita TEXT,
+    description_eng TEXT,
     date DATETIME,
     size real NOT NULL,
     type VARCHAR(32),
@@ -174,3 +216,6 @@ CREATE TABLE course_material (
 	FOREIGN KEY (material_id)
     	REFERENCES material(id) 
 )
+
+
+
