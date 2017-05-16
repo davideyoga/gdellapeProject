@@ -23,6 +23,7 @@ primary key (code, age)
 
 CREATE TABLE user (
     id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    surname VARCHAR(32),
     name VARCHAR(32),
 primary key (id)
 );
@@ -41,7 +42,7 @@ CREATE TABLE course_user(
     		REFERENCES user(id)
 );
 
-CREATE TABLE grups (
+CREATE TABLE groups (
     id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
     name VARCHAR(32),
     description VARCHAR(300),
