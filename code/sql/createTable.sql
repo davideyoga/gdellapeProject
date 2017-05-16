@@ -53,21 +53,21 @@ CREATE TABLE course_user(
     		REFERENCES user(id)
 );
 
-CREATE TABLE group (
+CREATE TABLE groups (
     id INT(10) UNSIGNED AUTO_INCREMENT NOT NULL,
     name VARCHAR(32),
     description TEXT,
 primary key (id)
 );
 
-CREATE TABLE user_group (
+CREATE TABLE user_groups (
     user_id INT(10) UNSIGNED NOT NULL,
-    group_id INT(10) UNSIGNED NOT NULL,
+    groups_id INT(10) UNSIGNED NOT NULL,
 
     FOREIGN KEY (user_id)
     	REFERENCES user(id),
-	FOREIGN KEY (group_id)
-    	REFERENCES group(id)     
+	FOREIGN KEY (groups_id)
+    	REFERENCES groups(id)     
 )
 
 CREATE TABLE service (
@@ -77,14 +77,14 @@ CREATE TABLE service (
 primary key (id)
 );
 
-CREATE TABLE group_service (
+CREATE TABLE groups_service (
     service_id INT(10) UNSIGNED NOT NULL,
-    group_id INT(10) UNSIGNED NOT NULL,
+    groups_id INT(10) UNSIGNED NOT NULL,
 
     FOREIGN KEY (service_id)
     	REFERENCES service(id),
-	FOREIGN KEY (group_id)
-    	REFERENCES group(id) 
+	FOREIGN KEY (groups_id)
+    	REFERENCES groups(id) 
 )
 
 CREATE TABLE studyCourse (
@@ -110,6 +110,7 @@ primary key (id)
 CREATE TABLE course_studyCourse (
     course_id INT(16) UNSIGNED NOT NULL,
     studyCourse_id INT(10) UNSIGNED NOT NULL,
+    cfuType VARCHAR(8),
 
     FOREIGN KEY (course_id)
     	REFERENCES course(id),
@@ -147,10 +148,29 @@ primary key (id)
 
 CREATE TABLE user_log (
     user_id INT(16) UNSIGNED NOT NULL,
-    log INT(10) UNSIGNED NOT NULL,
+    log_id INT(10) UNSIGNED NOT NULL,
 
     FOREIGN KEY (user_id)
     	REFERENCES user(id),
 	FOREIGN KEY (log_id)
     	REFERENCES log(id) 
+)
+
+CREATE TABLE material (
+    id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    description TEXT,
+    date DATETIME,
+    size real NOT NULL,
+    type VARCHAR(32),
+primary key (id)
+)
+
+CREATE TABLE course_material (
+    course_id INT(16) UNSIGNED NOT NULL,
+    material_id INT(10) UNSIGNED NOT NULL,
+
+    FOREIGN KEY (course_id)
+    	REFERENCES course(id),
+	FOREIGN KEY (material_id)
+    	REFERENCES material(id) 
 )
