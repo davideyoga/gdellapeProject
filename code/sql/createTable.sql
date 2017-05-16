@@ -54,7 +54,7 @@ CREATE TABLE course_user(
 );
 
 CREATE TABLE group (
-    id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    id INT(10) UNSIGNED AUTO_INCREMENT NOT NULL,
     name VARCHAR(32),
     description TEXT,
 primary key (id)
@@ -108,7 +108,13 @@ primary key (id)
 );
 
 CREATE TABLE course_studyCourse (
-    course_id 
+    course_id INT(16) UNSIGNED NOT NULL,
+    studyCourse_id INT(10) UNSIGNED NOT NULL,
+
+    FOREIGN KEY (course_id)
+    	REFERENCES course(id),
+	FOREIGN KEY (studyCourse_id)
+    	REFERENCES studyCourse(id) 
 )
 
 CREATE TABLE book(
@@ -123,9 +129,28 @@ CREATE TABLE book(
 primary key (id)
 );
 
+CREATE TABLE course_book (
+    course_id INT(16) UNSIGNED NOT NULL,
+    book_id INT(10) UNSIGNED NOT NULL,
+
+    FOREIGN KEY (course_id)
+    	REFERENCES course(id),
+	FOREIGN KEY (book_id)
+    	REFERENCES book(id) 
+)
 
 CREATE TABLE log(
     id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
     description VARCHAR(256),
 primary key (id)
 );
+
+CREATE TABLE user_log (
+    user_id INT(16) UNSIGNED NOT NULL,
+    log INT(10) UNSIGNED NOT NULL,
+
+    FOREIGN KEY (user_id)
+    	REFERENCES user(id),
+	FOREIGN KEY (log_id)
+    	REFERENCES log(id) 
+)
