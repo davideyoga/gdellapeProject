@@ -1,30 +1,32 @@
 -- inserire i campi bilingua 
 
 CREATE TABLE course (
+    id INT(16) UNSIGNED AUTO_INCREMENT NOT NULL, 
     code VARCHAR(10) NOT NULL,
-    age VARCHAR(9) NOT NULL,
-    name VARCHAR(32),
+    year VARCHAR(9),
+    name VARCHAR(32) NOT NULL,
     sector VARCHAR(10),
     language VARCHAR(32),
     semester INT(2),
-    prerequisite VARCHAR(300),
-    objective VARCHAR(300),
-    exame_mode VARCHAR(32),
-    teaching_mode VARCHAR(32),
+    prerequisite TEXT,
+    goals TEXT,
+    exame_mode TEXT,
+    teaching_mode TEXT,
     syllabus TEXT,
-    note VARCHAR(300),
-    knowledge VARCHAR(300),
-    application VARCHAR(300),
-    evaluation VARCHAR(300),    
-    communication VARCHAR(300),
-    lifelog_learning_skills VARCHAR(300),
-primary key (code, age)
+    note TEXT, 		/*NOTE DEL CORSO*/
+    knowledge TEXT,
+    application TEXT,
+    evaluation TEXT,    
+    communication TEXT,
+    lifelog_learning_skills TEXT,
+primary key (id)
 );
 
 CREATE TABLE user (
     id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
     surname VARCHAR(32),
     name VARCHAR(32),
+    email VARCHAR(64),
 primary key (id)
 );
 
