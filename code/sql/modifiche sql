@@ -1,8 +1,4 @@
 DATI IN PIU' PER UN CORSO
 aggiungere corsi mutuati, propedeuticità, moduli(nel caso il corso è fatto da più moduli)
-collegamenti verso l'esterno (es. pag privata del professore, e-learning)
 
-OPZIONALI
-campi in più per professore: telefono, curriculum, orario di ricevimento, 
-(possiamo mettere un campo generale dove utente scrive quello che vuole)
-campi multilingiua dapertutto 
+ricontrollare campi multilingiua
