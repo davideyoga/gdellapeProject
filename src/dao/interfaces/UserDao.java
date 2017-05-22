@@ -6,7 +6,7 @@ import model.User;
 
 public interface UserDao extends DaoData{
 
-    public User getuser();
+    public User getUser();
 
     public User getUserById(int idUser) throws DaoException;
 

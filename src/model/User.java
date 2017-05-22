@@ -13,6 +13,7 @@ public class User{
     private String curriculum_eng;
     private String receprion_hours_ita;
     private String receprion_hours_eng;
+    private String password;
 
     public User(DaoData daoData){
 
@@ -25,6 +26,7 @@ public class User{
         this.curriculum_eng = null;
         this.receprion_hours_ita = null;
         this.receprion_hours_eng = null;
+        this.password = null;
 
     }
 
@@ -41,6 +43,7 @@ public class User{
                 ", curriculum_eng='" + curriculum_eng + '\'' +
                 ", receprion_hours_ita='" + receprion_hours_ita + '\'' +
                 ", receprion_hours_eng='" + receprion_hours_eng + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 
@@ -129,5 +132,13 @@ public class User{
 
     public void setReceprion_hours_eng(String receprion_hours_eng) {
         this.receprion_hours_eng = receprion_hours_eng;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
