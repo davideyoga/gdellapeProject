@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+	<!--JQUERY-->
+	<head>
+	
+		<meta charset="UTF-8">
+		<title>Registrati</title>
+		<script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+	
+		<script type="text/javascript" src = "form-registrazione.js"></script>
+	
+		<link rel="stylesheet" type="text/css" href="form-registrazione.css">
+	
+	</head>
+
+
+
+	
+<!--INIZIO HTML -->
+	<body>
+		<form id = "Registrazione" name = "Registrazione" action ="TemplateServlet"  method="POST">
+			<fieldset>					
+				
+				<body>
+					<div class = "Registrati"> <strong> Registrati </strong>	 </div> 
+                	<br>
+				</body>
+			
+				<body>
+					<label> <strong>  Il tuo nome </strong> </label>
+				</body>
+			
+				<body>
+					<br>
+					<input class = "name" name = "name" type = "text" size = "40" />
+					<br>
+					<br>
+				</body>
+			
+			
+				<body>
+					<label> <strong>  E-mail </strong> </label>
+					<br>
+				</body>
+			
+				<body>
+					<input class = 'mail' name = "email" type = "email" size = "40"/>
+					<br>
+					<br>
+				</body>
+			
+				<body>
+					<label> <strong>  Password </strong> </label>
+					<br>
+				</body>
+			
+				<body>
+					<input type = "password" name = "password" size = "40" placeholder = " almeno sei caratteri" />
+					<br>
+					<br>
+				</body>
+			
+				<body>
+					<label> <strong>  Ripeti password </strong>  </label>
+					<br>
+				</body>
+			
+				<body>
+					<input type = "password" size = "40" /> 
+					<br>
+					<br>
+				</body>
+
+				<input type="submit" name="invia" value="Invia i dati">
+
+			</fieldset>			
+		</form>	
+	</body>
+
+</html>
