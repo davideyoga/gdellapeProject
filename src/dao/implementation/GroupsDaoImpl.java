@@ -6,8 +6,13 @@ import dao.interfaces.GroupsDao;
 import model.Groups;
 
 import javax.sql.DataSource;
+import javax.xml.transform.Result;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import static dao.security.DaoSecurity.addSlashes;
+import static dao.security.DaoSecurity.stripSlashes;
 
 public class GroupsDaoImpl extends DaoDataMySQLImpl implements GroupsDao {
 
@@ -28,7 +33,7 @@ public class GroupsDaoImpl extends DaoDataMySQLImpl implements GroupsDao {
             super.init();
 
             //inizializzazione query
-            this.insertGroups = connection.prepareStatement("INSERT INTO user" +
+            this.insertGroups = connection.prepareStatement("INSERT INTO groups" +
                     "                                          VALUES (NULL, ?,?)");
 
             this.selectGroupsById = connection.prepareStatement("SELECT *" +
@@ -64,13 +69,19 @@ public class GroupsDaoImpl extends DaoDataMySQLImpl implements GroupsDao {
 
         try {
 
-            this.insertGroups.setInt(1, idGroups);
-            
-            this.insertGroups.executeUpdate();
+            this.selectGroupsById.setInt(1, idGroups);
 
-            /*
-            RIPRENDERE DA QUI
-             */
+            ResultSet rs = this.selectGroupsById.executeQuery();
+
+            if( rs.next()){
+
+                groups.setId(idGroups);
+                groups.setName( stripSlashes( rs.getString("name")));
+                groups.setDescription(stripSlashes( rs.getString("description")));
+
+            }else { // se il risultato della query e' vuoto torno null
+                return null;
+            }
 
         } catch (SQLException e) {
             throw new DaoException("Error getGroupsById in groups dao",e);
@@ -81,16 +92,78 @@ public class GroupsDaoImpl extends DaoDataMySQLImpl implements GroupsDao {
 
     @Override
     public Groups getGroupsByName(String name) throws DaoException{
-        return null;
+
+        Groups groups = getGroups();
+
+        try {
+
+            this.selectGroupsByName.setString(1, name);
+
+            ResultSet rs = this.selectGroupsByName.executeQuery();
+
+            if( rs.next()){
+
+                groups.setId( rs.getInt("id"));
+                groups.setName( stripSlashes( "name"));
+                groups.setDescription(stripSlashes( rs.getString("description")));
+
+            }else { // se il risultato della query e' vuoto torno null
+                return null;
+            }
+
+        } catch (SQLException e) {
+            throw new DaoException("Error getGroupsById in groups dao",e);
+        }
+
+        return groups;
     }
+
 
     @Override
     public void storeGroups(Groups groups) throws DaoException{
 
+        if( groups.getId() > 0 ){ //il gruppo ha gia' un id, quindi e' gia nel database
+
+            try {
+
+                this.updateGroups.setString(1, addSlashes( groups.getName()) );
+                this.updateGroups.setString(2, addSlashes( groups.getDescription()) );
+                this.updateGroups.setInt(3, groups.getId());
+
+                this.updateGroups.executeUpdate();
+
+            } catch (SQLException e) {
+                throw new DaoException("Error storeGroups in groups dao", e);
+            }
+
+
+        }else{ //groups non e' presente nel database
+            //eseguo una insert
+
+            try {
+
+                this.insertGroups.setString(1, addSlashes( groups.getName()));
+                this.insertGroups.setString(2, addSlashes( groups.getDescription()));
+
+                this.insertGroups.executeUpdate();
+
+            } catch (SQLException e) {
+                throw new DaoException("Error storeGroups in groups dao", e);
+            }
+
+        }
     }
 
     @Override
     public void deleteGroups(Groups groups) throws DaoException{
+        try {
 
+            this.deleteGroupsById.setInt(1, groups.getId() );
+
+            this.deleteGroupsById.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new DaoException("Error deleteGroups in groups dao", e);
+        }
     }
 }

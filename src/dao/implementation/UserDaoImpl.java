@@ -104,7 +104,7 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
             ResultSet rs = this.selectUserById.executeQuery(); // eseguo la query e mi ritorna il risultato rs
 
             if(rs.next()){
-                //riempio user con cio che mi torna dalla query toglinedo gli slash
+                //riempio user con cio che mi torna dalla query togliendo gli slash
                 user.setId( rs.getInt("id"));
                 user.setSurname( stripSlashes(rs.getString("surname") ) );
                 user.setName(stripSlashes( rs.getString("name") ) );
@@ -172,7 +172,7 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
     }
 
     /**
-     * dato un utente, se presenta un id, quindi gia' risulta salvato nel dataabse, viene effettuato un update,
+     * dato un utente, se presenta un id, quindi gia' risulta salvato nel database, viene effettuato un update,
      * altrimenti una insert
      * @param user che si vuole inserire o modificare nel database
      * @throws DaoException

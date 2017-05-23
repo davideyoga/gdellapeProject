@@ -1,9 +1,10 @@
 package dao.interfaces;
 
+import dao.data.DaoData;
 import dao.exception.DaoException;
 import model.Groups;
 
-public interface GroupsDao{
+public interface GroupsDao  extends DaoData{
 
     public Groups getGroups();
 
