@@ -57,11 +57,21 @@ public class GroupsDaoImpl extends DaoDataMySQLImpl implements GroupsDao {
         }
     }
 
+    /**
+     * Ritorna Group vuoto
+     * @return Groups vuoto
+     */
     @Override
     public Groups getGroups() {
         return new Groups(this);
     }
 
+    /**
+     * Ritorna Group con id = idGroup, null se non presente
+     * @param idGroups id del gruppo da restituire
+     * @return Group con determinato id
+     * @throws DaoException
+     */
     @Override
     public Groups getGroupsById(int idGroups) throws DaoException{
 
@@ -90,6 +100,12 @@ public class GroupsDaoImpl extends DaoDataMySQLImpl implements GroupsDao {
         return groups;
     }
 
+    /**
+     * ritorna gruppo con nome = name, null se non esiste
+     * @param name del gruppo da restituire
+     * @return Group con nome dato
+     * @throws DaoException
+     */
     @Override
     public Groups getGroupsByName(String name) throws DaoException{
 
@@ -118,7 +134,11 @@ public class GroupsDaoImpl extends DaoDataMySQLImpl implements GroupsDao {
         return groups;
     }
 
-
+    /**
+     * Insericce nel database il gruppo scelto, null se non presente nel database
+     * @param groups da inserire nel database
+     * @throws DaoException
+     */
     @Override
     public void storeGroups(Groups groups) throws DaoException{
 
@@ -154,6 +174,11 @@ public class GroupsDaoImpl extends DaoDataMySQLImpl implements GroupsDao {
         }
     }
 
+    /**
+     * Cancella dal database il gruppo uguale a groups
+     * @param groups
+     * @throws DaoException
+     */
     @Override
     public void deleteGroups(Groups groups) throws DaoException{
         try {
