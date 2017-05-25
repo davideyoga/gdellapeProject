@@ -245,4 +245,26 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
             throw new DaoException("Error deleteUser in user dao", e);
         }
     }
+
+    @Override
+    public void destroy() throws DaoException{
+        try {
+
+            //chiudo le query
+            this.updateUser.close();
+            this.insertUser.close();
+            this.deleteUserById.close();
+            this.selectUserByEmailPassword.close();
+            this.selectUserById.close();
+
+            super.destroy(); //chiudo la connessione
+
+
+        } catch (DaoException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
