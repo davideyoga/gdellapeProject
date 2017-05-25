@@ -171,7 +171,7 @@ CREATE TABLE `log` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `material`
+-- Table structure for table `Material`
 --
 
 CREATE TABLE `material` (
@@ -353,7 +353,7 @@ ALTER TABLE `log`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `material`
+-- Indexes for table `Material`
 --
 ALTER TABLE `material`
   ADD PRIMARY KEY (`id`);
@@ -429,7 +429,7 @@ ALTER TABLE `groups`
 ALTER TABLE `log`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `material`
+-- AUTO_INCREMENT for table `Material`
 --
 ALTER TABLE `material`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
