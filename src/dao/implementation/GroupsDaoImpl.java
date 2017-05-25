@@ -22,7 +22,6 @@ public class GroupsDaoImpl extends DaoDataMySQLImpl implements GroupsDao {
             updateGroups,
             deleteGroupsById;
 
-
     public GroupsDaoImpl(DataSource datasource) {
         super(datasource);
     }
