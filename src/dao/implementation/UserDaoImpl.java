@@ -1,8 +1,7 @@
 package dao.implementation;
 
-import dao.data.DaoData;
 import dao.data.DaoDataMySQLImpl;
-import dao.exception.DaoException;
+import dao.exception.*;
 import dao.interfaces.UserDao;
 import model.User;
 
@@ -73,7 +72,7 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
 
 
         } catch (SQLException e) {
-            throw new DaoException("Error initializing user dao", e);
+            throw new InitDaoException("Error initializing user dao", e);
         }
     }
 
@@ -121,7 +120,7 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
 
 
         } catch (SQLException e) {
-            throw new DaoException("Error getUserById in user dao", e);
+            throw new SelectDaoException("Error getUserById in user dao", e);
         }
 
         return user; //ritorno user
@@ -164,7 +163,7 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
             }
 
         } catch (SQLException e) {
-            throw new DaoException("Error getUserByEmailPassword in user dao", e);
+            throw new SelectDaoException("Error getUserByEmailPassword in user dao", e);
         }
 
         return user;
@@ -198,7 +197,7 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
                 this.updateUser.executeUpdate();
 
             } catch (SQLException e) {
-                throw new DaoException("Error storeUser in user dao", e);
+                throw new UpdateDaoException("Error storeUser in user dao", e);
             }
 
 
@@ -220,7 +219,7 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
                 this.insertUser.executeUpdate();
 
             } catch (SQLException e) {
-                throw new DaoException("Error storeUser in user dao", e);
+                throw new InsertDaoException("Error storeUser in user dao", e);
             }
 
         }
@@ -242,7 +241,7 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
             this.deleteUserById.executeUpdate();
 
         } catch (SQLException e) {
-            throw new DaoException("Error deleteUser in user dao", e);
+            throw new DeleteDaoException("Error deleteUser in user dao", e);
         }
     }
 
@@ -261,9 +260,9 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
 
 
         } catch (DaoException e) {
-            e.printStackTrace();
+            throw new DestroyDaoException("Error deleteUser in user dao", e);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new DestroyDaoException("Error deleteUser in user dao", e);
         }
     }
 

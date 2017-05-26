@@ -31,7 +31,8 @@ public class MaterialDaoImpl extends DaoDataMySQLImpl implements MaterialDao {
         try{
             super.init();
 
-            this.insertMaterial = connection.prepareStatement("INSERT INTO materials" + " VALUES (NULL,?,?,?,?,?)");
+            this.insertMaterial = connection.prepareStatement("INSERT INTO materials" +
+                                                                    " VALUES (NULL,?,?,?,?,?)");
 
             this.selectMaterialById = connection.prepareStatement("SELECT *" + " FROM material" + " WHERE id=?");
 
