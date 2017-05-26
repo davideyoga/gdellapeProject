@@ -2,7 +2,11 @@ package dao.interfaces;
 
 import dao.data.DaoData;
 import dao.exception.DaoException;
+import model.Groups;
 import model.GroupsService;
+import model.Service;
+
+import java.util.List;
 
 /**
  * Created by davide on 26/05/17.
@@ -13,9 +17,11 @@ public interface GroupsServiceDao extends DaoData {
 
     public void insertGroupsService(GroupsService groupsService) throws DaoException;
 
-    public void updateGroupsService(GroupsService groupsService) throws DaoException;
-
     public GroupsService selectGroupsServiceById (int idGroups, int idService ) throws DaoException;
+
+    public List<GroupsService> selectGroupsServicesByService ( Service service ) throws DaoException;
+
+    public List<GroupsService> selectGroupsServicesByGroups (Groups groups) throws DaoException;
 
     public void deleteGroupsService( GroupsService groupsService ) throws DaoException;
 
