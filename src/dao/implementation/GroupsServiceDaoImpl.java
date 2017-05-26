@@ -1,10 +1,7 @@
 package dao.implementation;
 
 import dao.data.DaoDataMySQLImpl;
-import dao.exception.DaoException;
-import dao.exception.DeleteDaoException;
-import dao.exception.InsertDaoException;
-import dao.exception.SelectDaoException;
+import dao.exception.*;
 import dao.interfaces.GroupsServiceDao;
 import model.Groups;
 import model.GroupsService;
@@ -22,11 +19,7 @@ import java.util.List;
  */
 public class GroupsServiceDaoImpl extends DaoDataMySQLImpl implements GroupsServiceDao {
 
-    PreparedStatement insertGroupsService,
-                        selectGroupsServiceById,
-                        selectGroupsServiceByServiceId,
-                        selectGroupsServiceByGroupsId,
-                        deleteGroupsService;
+    PreparedStatement insertGroupsService, selectGroupsServiceById, selectGroupsServiceByServiceId, selectGroupsServiceByGroupsId, deleteGroupsService;
 
     public GroupsServiceDaoImpl(DataSource datasource) {
         super(datasource);
@@ -34,16 +27,18 @@ public class GroupsServiceDaoImpl extends DaoDataMySQLImpl implements GroupsServ
 
     /**
      * Inizializza connessione e query
+     *
      * @throws DaoException
      */
     @Override
-    public void init() throws DaoException{
+    public void init() throws DaoException {
         try {
 
             this.insertGroupsService = connection.prepareStatement("INSERT INTO groups_serivce" +
                     "                                                        VALUES (?,?)");
 
-            this.selectGroupsServiceById = connection.prepareStatement("SELECT groups_service" +
+            this.selectGroupsServiceById = connection.prepareStatement("SELECT *" +
+                    "                                                       FROM groups_service" +
                     "                                                       WHERE groups_id=?" +
                     "                                                       AND service_id=?");
 
@@ -58,12 +53,13 @@ public class GroupsServiceDaoImpl extends DaoDataMySQLImpl implements GroupsServ
                     "                                                       AND  service_id=?");
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new InitDaoException("Error init group service", e);
         }
     }
 
     /**
      * Ritorna un GroupsService vuoto
+     *
      * @return
      */
     @Override
@@ -73,6 +69,7 @@ public class GroupsServiceDaoImpl extends DaoDataMySQLImpl implements GroupsServ
 
     /**
      * Inserisce un GroupsService
+     *
      * @param groupsService da inserire
      * @throws DaoException
      */
@@ -88,13 +85,14 @@ public class GroupsServiceDaoImpl extends DaoDataMySQLImpl implements GroupsServ
             this.insertGroupsService.executeUpdate();
 
 
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             throw new InsertDaoException("Error insertGroupsService", e);
         }
     }
 
     /**
      * Torna GroupsService con determinato id grups e id service
+     *
      * @param idGroups
      * @param idService
      * @return GroupsService con determinato idGroup e idService
@@ -112,12 +110,12 @@ public class GroupsServiceDaoImpl extends DaoDataMySQLImpl implements GroupsServ
 
             ResultSet rs = this.selectGroupsServiceById.executeQuery();
 
-            if(rs.next()){ // il risultato e' pieno
+            if (rs.next()) { // il risultato e' pieno
 
                 gs.setIdGroups(rs.getInt("groups_id"));
                 gs.setIdService(rs.getInt("service_id"));
 
-            }else{ //risultato vuoto
+            } else { //risultato vuoto
                 return null;
             }
 
@@ -131,6 +129,7 @@ public class GroupsServiceDaoImpl extends DaoDataMySQLImpl implements GroupsServ
 
     /**
      * Torna lista di GroupsSerivice collegato al service passato
+     *
      * @param service
      * @return
      * @throws DaoException
@@ -142,12 +141,12 @@ public class GroupsServiceDaoImpl extends DaoDataMySQLImpl implements GroupsServ
 
         try {
 
-            this.selectGroupsServiceByServiceId.setInt(1,service.getId());
+            this.selectGroupsServiceByServiceId.setInt(1, service.getId());
 
             ResultSet rs = this.selectGroupsServiceByServiceId.executeQuery();
 
             //ciclo il risultato della query
-            while( rs.next() ) {
+            while (rs.next()) {
 
                 GroupsService gs = this.getGroupsSerivce();//creo il GroupsService da aggiungere alla lista
 
@@ -167,6 +166,7 @@ public class GroupsServiceDaoImpl extends DaoDataMySQLImpl implements GroupsServ
 
     /**
      * Torna lista di GroupsSerivice collegato al grups passato
+     *
      * @param groups
      * @return Lista di GroupsService collegati al Grups
      * @throws DaoException
@@ -178,12 +178,12 @@ public class GroupsServiceDaoImpl extends DaoDataMySQLImpl implements GroupsServ
 
         try {
 
-            this.selectGroupsServiceByGroupsId.setInt(1,groups.getId());
+            this.selectGroupsServiceByGroupsId.setInt(1, groups.getId());
 
             ResultSet rs = this.selectGroupsServiceByGroupsId.executeQuery();
 
             //ciclo il risultato della query
-            while( rs.next() ) {
+            while (rs.next()) {
 
                 GroupsService gs = this.getGroupsSerivce(); //creo il GroupsService da aggiungere alla lista
 
@@ -204,6 +204,7 @@ public class GroupsServiceDaoImpl extends DaoDataMySQLImpl implements GroupsServ
 
     /**
      * cancella il GroupsService passato dal database
+     *
      * @param groupsService
      * @throws DaoException
      */
@@ -218,28 +219,33 @@ public class GroupsServiceDaoImpl extends DaoDataMySQLImpl implements GroupsServ
             this.deleteGroupsService.executeUpdate();
 
         } catch (SQLException e) {
-            throw new DeleteDaoException("Error deleteGroupsService");
+            throw new DeleteDaoException("Error deleteGroupsService", e);
         }
     }
 
     /**
-     * CHiude connessione e query
+     * Chiude connessione e query precompilate
+     *
      * @throws DaoException
      */
     @Override
-    public void destroy() throws DaoException{
+    public void destroy() throws DaoException {
 
 
         try {
 
             this.insertGroupsService.close();
-            //this.updateGroupsService.close();
             this.selectGroupsServiceById.close();
+            this.selectGroupsServiceByGroupsId.close();
+            this.selectGroupsServiceByServiceId.close();
             this.deleteGroupsService.close();
 
             super.destroy();
-        } catch (Exception e) {
-            e.printStackTrace();
+
+        } catch (DaoException e) {
+            throw new DestroyDaoException("Error destroyGroupsService", e);
+        } catch (SQLException e) {
+            throw new DestroyDaoException("Error destroyGroupsService", e);
         }
     }
 }
