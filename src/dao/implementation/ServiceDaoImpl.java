@@ -2,6 +2,7 @@ package dao.implementation;
 
 import dao.data.DaoDataMySQLImpl;
 import dao.exception.DaoException;
+import dao.exception.InitDaoException;
 import dao.interfaces.ServiceDao;
 import model.Service;
 
@@ -55,7 +56,7 @@ public class ServiceDaoImpl extends DaoDataMySQLImpl implements ServiceDao {
                     "                                               WHERE id=?");
 
         } catch (SQLException e) {
-            throw new DaoException("Error initializing service dao", e);
+            throw new InitDaoException("Error initializing service dao", e);
         }
     }
 
