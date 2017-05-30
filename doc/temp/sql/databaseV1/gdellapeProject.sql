@@ -197,7 +197,7 @@ CREATE TABLE `moduleCourse` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `preparatoryCourse`
+-- Table structure for table `PreparatoryCourse`
 --
 
 CREATE TABLE `preparatoryCourse` (
@@ -366,7 +366,7 @@ ALTER TABLE `moduleCourse`
   ADD KEY `corse_module_id` (`corse_module_id`);
 
 --
--- Indexes for table `preparatoryCourse`
+-- Indexes for table `PreparatoryCourse`
 --
 ALTER TABLE `preparatoryCourse`
   ADD PRIMARY KEY (`course_id`,`corse_preparatory_id`),
@@ -502,7 +502,7 @@ ALTER TABLE `moduleCourse`
   ADD CONSTRAINT `moduleCourse_ibfk_2` FOREIGN KEY (`corse_module_id`) REFERENCES `course` (`id`);
 
 --
--- Constraints for table `preparatoryCourse`
+-- Constraints for table `PreparatoryCourse`
 --
 ALTER TABLE `preparatoryCourse`
   ADD CONSTRAINT `preparatoryCourse_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`),
