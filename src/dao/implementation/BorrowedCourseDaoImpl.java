@@ -25,6 +25,9 @@ public class BorrowedCourseDaoImpl extends DaoDataMySQLImpl implements BorrowedC
 
     public void init() throws DaoException{
         try{
+
+            super.init();
+
             this.insertBorrowedCourse = connection.prepareStatement(" INSERT INTO borrowedCourse" +
                                                                        " VALUES (?,?)");
 

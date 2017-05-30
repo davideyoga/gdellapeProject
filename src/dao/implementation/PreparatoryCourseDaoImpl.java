@@ -26,6 +26,9 @@ public class PreparatoryCourseDaoImpl extends DaoDataMySQLImpl implements Prepar
     @Override
     public void init() throws DaoException {
         try{
+
+            super.init();
+
             this.insertPreparatoryCourse = connection.prepareStatement("INSERT INTO preparatoryCourse" +
                                                                           " VALUES (?,?)");
 

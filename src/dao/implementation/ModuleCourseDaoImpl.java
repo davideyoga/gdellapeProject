@@ -26,6 +26,9 @@ public class ModuleCourseDaoImpl extends DaoDataMySQLImpl implements ModuleCours
     @Override
     public void init() throws DaoException {
         try {
+
+            super.init();
+
             this.insertModuleCourse = connection.prepareStatement("INSERT INTO moduleCourse" +
                                                                      " VALUES (?,?)");
 

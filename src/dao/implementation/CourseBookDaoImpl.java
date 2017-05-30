@@ -30,6 +30,9 @@ public class CourseBookDaoImpl extends DaoDataMySQLImpl implements CourseBookDao
     @Override
     public void init() throws DaoException {
         try{
+
+            super.init();
+
             this.insertCourseBook = connection.prepareStatement("INSERT INTO course_book " +
                                                                    " VALUES (?,?)");
 
