@@ -2,6 +2,8 @@ package model;
 
 import dao.data.DaoData;
 
+import java.sql.Timestamp;
+
 /**
  * @Creator Davide Micarelli
  */
@@ -10,16 +12,18 @@ public class Log {
     private int id;
     private int idUser;
     private String description;
+    private Timestamp date;
 
     public Log(DaoData daoData) {
         this.id = 0;
         this.idUser = 0;
         this.description = null;
+        this.date = null;
     }
 
     @Override
     public String toString() {
-        return "Log{" + "id=" + id + ", idUser=" + idUser + ", description='" + description + '\'' + '}';
+        return "Log{" + "id=" + id + ", idUser=" + idUser + ", description='" + description + '\'' + ", date=" + date + '}';
     }
 
     @Override
@@ -31,7 +35,9 @@ public class Log {
 
         if (getId() != log.getId()) return false;
         if (getIdUser() != log.getIdUser()) return false;
-        return getDescription() != null ? getDescription().equals(log.getDescription()) : log.getDescription() == null;
+        if (getDescription() != null ? !getDescription().equals(log.getDescription()) : log.getDescription() != null)
+            return false;
+        return getDate() != null ? getDate().equals(log.getDate()) : log.getDate() == null;
     }
 
     @Override
@@ -39,6 +45,7 @@ public class Log {
         int result = getId();
         result = 31 * result + getIdUser();
         result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
+        result = 31 * result + (getDate() != null ? getDate().hashCode() : 0);
         return result;
     }
 
@@ -64,5 +71,13 @@ public class Log {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Timestamp getDate() {
+        return date;
+    }
+
+    public void setDate(Timestamp date) {
+        this.date = date;
     }
 }
