@@ -34,6 +34,8 @@ public class GroupsServiceDaoImpl extends DaoDataMySQLImpl implements GroupsServ
     public void init() throws DaoException {
         try {
 
+            super.init();
+
             this.insertGroupsService = connection.prepareStatement("INSERT INTO groups_serivce" +
                     "                                                        VALUES (?,?)");
 
