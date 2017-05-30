@@ -77,7 +77,7 @@ public class PreparatoryCourseDaoImpl extends DaoDataMySQLImpl implements Prepar
         try{
             this.insertPreparatoryCourse.close();
             this.updatePreparatoryCourse.close();
-            this.selectPreparatoryCourse().close;
+            this.selectPreparatoryCourse.close();
             this.deletePreparatoryCourse.close();
         } catch (SQLException e) {
             e.printStackTrace();
