@@ -17,8 +17,6 @@ public interface GroupsServiceDao extends DaoData {
 
     public void insertGroupsService(GroupsService groupsService) throws DaoException;
 
-    public GroupsService selectGroupsServiceById (int idGroups, int idService ) throws DaoException;
-
     public List<GroupsService> selectGroupsServicesByService ( Service service ) throws DaoException;
 
     public List<GroupsService> selectGroupsServicesByGroups (Groups groups) throws DaoException;

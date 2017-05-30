@@ -37,10 +37,6 @@ public class GroupsServiceDaoImpl extends DaoDataMySQLImpl implements GroupsServ
             this.insertGroupsService = connection.prepareStatement("INSERT INTO groups_serivce" +
                     "                                                        VALUES (?,?)");
 
-            this.selectGroupsServiceById = connection.prepareStatement("SELECT *" +
-                    "                                                       FROM groups_service" +
-                    "                                                       WHERE groups_id=?" +
-                    "                                                       AND service_id=?");
 
             this.selectGroupsServiceByServiceId = connection.prepareStatement("SELECT * FROM groups_serice" +
                     "                                                                   WHERE service_id=?");
@@ -90,42 +86,6 @@ public class GroupsServiceDaoImpl extends DaoDataMySQLImpl implements GroupsServ
         }
     }
 
-    /**
-     * Torna GroupsService con determinato id grups e id service
-     *
-     * @param idGroups
-     * @param idService
-     * @return GroupsService con determinato idGroup e idService
-     * @throws DaoException
-     */
-    @Override
-    public GroupsService selectGroupsServiceById(int idGroups, int idService) throws DaoException {
-
-        GroupsService gs = this.getGroupsSerivce();
-
-        try {
-            //setto la query
-            this.selectGroupsServiceById.setInt(1, idGroups);
-            this.selectGroupsServiceById.setInt(2, idService);
-
-            ResultSet rs = this.selectGroupsServiceById.executeQuery();
-
-            if (rs.next()) { // il risultato e' pieno
-
-                gs.setIdGroups(rs.getInt("groups_id"));
-                gs.setIdService(rs.getInt("service_id"));
-
-            } else { //risultato vuoto
-                return null;
-            }
-
-            //lancio la query
-        } catch (SQLException e) {
-            throw new SelectDaoException("Error selectGroupsService", e);
-        }
-
-        return gs;
-    }
 
     /**
      * Torna lista di GroupsSerivice collegato al service passato
