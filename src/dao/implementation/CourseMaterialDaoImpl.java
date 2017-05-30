@@ -9,6 +9,7 @@ import model.Material;
 
 import javax.sql.DataSource;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -29,7 +30,11 @@ public class CourseMaterialDaoImpl extends DaoDataMySQLImpl implements CourseMat
     public void init() throws DaoException{
         super.init();
 
-        this.insertCourseMaterial = connection.prepareStatement("INSERT")
+        try {
+            this.insertCourseMaterial = connection.prepareStatement("INSERT");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
