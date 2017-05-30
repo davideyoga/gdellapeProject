@@ -37,6 +37,8 @@ public class UserGroupsDaoImpl extends DaoDataMySQLImpl implements UserGroupsDao
 
         try {
 
+            super.init();
+
             this.insertUserGroups = connection.prepareStatement("INSERT INTO user_groups" +
                     "                                                        VALUES (?,?)");
 
