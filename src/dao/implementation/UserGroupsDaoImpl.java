@@ -40,10 +40,7 @@ public class UserGroupsDaoImpl extends DaoDataMySQLImpl implements UserGroupsDao
             this.insertUserGroups = connection.prepareStatement("INSERT INTO user_groups" +
                     "                                                        VALUES (?,?)");
 
-            this.selectUserGroupsById = connection.prepareStatement("SELECT *" +
-                    "                                                       FROM user_groups" +
-                    "                                                       WHERE user_id=?" +
-                    "                                                       AND groups_id=?");
+
 
             this.selectUserGroupsByUserId = connection.prepareStatement("SELECT * FROM user_groups" +
                     "                                                                   WHERE user_id=?");
@@ -93,42 +90,6 @@ public class UserGroupsDaoImpl extends DaoDataMySQLImpl implements UserGroupsDao
         }
     }
 
-
-    /**
-     * Torna Usergroups con dati id
-     * @param idUser id dell'user
-     * @param idGroups id del groups
-     * @return userGroups con dati id
-     * @throws DaoException
-     */
-    @Override
-    public UserGroups selectUserGroupsById(int idUser, int idGroups) throws DaoException {
-
-        UserGroups ug = this.getUserGroups();
-
-        try {
-            //setto la query
-            this.selectUserGroupsById.setInt(1, idUser);
-            this.selectUserGroupsById.setInt(2, idGroups);
-
-            ResultSet rs = this.selectUserGroupsById.executeQuery();
-
-            if(rs.next()){ // il risultato e' pieno
-
-                ug.setIdUser(rs.getInt("user_id"));
-                ug.setIdGroups(rs.getInt("groups_id"));
-
-            }else{ //risultato vuoto
-                return null;
-            }
-
-            //lancio la query
-        } catch (SQLException e) {
-            throw new SelectDaoException("Error selectUserGroups", e);
-        }
-
-        return ug;
-    }
 
     /**
      * Torna lista di UserGroups collegati con user

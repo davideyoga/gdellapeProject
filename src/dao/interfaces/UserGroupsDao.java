@@ -17,7 +17,6 @@ public interface UserGroupsDao extends DaoData {
 
     public void insertUserGroups( UserGroups userGroups) throws DaoException;
 
-    public UserGroups selectUserGroupsById (int idUser, int idGroups ) throws DaoException;
 
     public List<UserGroups> selectUserGroupsByUser ( User user ) throws DaoException;
 
