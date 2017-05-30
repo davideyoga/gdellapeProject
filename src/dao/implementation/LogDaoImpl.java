@@ -43,6 +43,8 @@ public class LogDaoImpl extends DaoDataMySQLImpl implements LogDao {
 
         try {
 
+            super.init();
+
             this.insertLog = connection.prepareStatement("INSERT INTO log" +
                     "                                               VALUES (NULL, ?, ?, ?)");
 
