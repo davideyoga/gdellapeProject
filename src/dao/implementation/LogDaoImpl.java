@@ -144,6 +144,11 @@ public class LogDaoImpl extends DaoDataMySQLImpl implements LogDao {
             while (rs.next()) {
 
                 logList.add(this.generateLog(rs)); // aggiungo alla lista il log della tupla di rs attuale
+
+                /*
+                    Log tempLog = this.generateLog( rs );
+                    logList.add( tempLog );
+                 */
             }
 
         } catch (SQLException e) {
@@ -210,11 +215,11 @@ public class LogDaoImpl extends DaoDataMySQLImpl implements LogDao {
     @Override
     public Log generateLog(ResultSet rs) throws DaoException {
 
-        Log log = this.getLog();
+        Log log = this.getLog(); // creo il log da restituire
 
         try {
 
-            log.setId(rs.getInt("id"));
+            log.setId(rs.getInt("id")); // inserisco
             log.setIdUser(rs.getInt("user_id"));
             log.setDate(rs.getTimestamp("date"));
             log.setDescription(stripSlashes(rs.getString("description")));

@@ -22,7 +22,7 @@ public class TemplateController {
      * @param response risposta servlet
      * @param servlet_context contesto della servlet
      */
-    public static void process(String template_name, Map data, HttpServletResponse response, ServletContext servlet_context) throws TemplateManagerException {
+    public static void process(String template_name, Map data, HttpServletResponse response, ServletContext servlet_context) {
 
         //setto il tipo del contenuto di ritorno
         response.setContentType("text/html; charset=UTF-8");
@@ -52,7 +52,6 @@ public class TemplateController {
 
             //log dei dettagli dell'eccezione
             Logger.getAnonymousLogger().log(Level.SEVERE, "Templating exception: " + ex.getMessage());
-            throw new TemplateManagerException("Template error: " + ex.getMessage(), ex);
 
         } finally {
 

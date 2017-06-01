@@ -5,8 +5,6 @@ import dao.implementation.UserDaoImpl;
 import dao.interfaces.UserDao;
 import model.User;
 import view.TemplateController;
-import view.TemplateManagerException;
-import view.TemplateResult;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -28,28 +26,6 @@ public class TemplateServlet extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) {
 
-        /*
-
-        UserDao ud = new UserDaoImpl(ds);
-
-        User user = ud.getUser();
-
-        user.setEmail("gianni@gianni.gianni");
-
-        Map<String, Object> datamodel = new HashMap<String, Object>();
-
-        datamodel.put("user", user);
-
-        TemplateResult templateResult = new TemplateResult(getServletContext());
-
-        try {
-
-            templateResult.activate( "testFreemarker.html", datamodel, response);
-
-        } catch (TemplateManagerException e) {
-            e.printStackTrace();
-        }
-        */
 
         UserDao ud = new UserDaoImpl(ds);
 
