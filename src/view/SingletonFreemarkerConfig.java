@@ -52,23 +52,6 @@ public enum SingletonFreemarkerConfig {
                 cfg.setDateTimeFormat(context.getInitParameter("view.date_format"));
             }
 
-            /*
-            //classe opzionale che permette di riempire ogni data model con dati generati dinamicamente
-            //optional class to automatically fill every data model with dynamically generated data
-            filler = null;
-            if (context.getInitParameter("view.model_filler") != null) {
-                try {
-                    filler = (DataModelFiller) Class.forName(context.getInitParameter("view.model_filler")).newInstance();
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(TemplateResult.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (InstantiationException ex) {
-                    Logger.getLogger(TemplateResult.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IllegalAccessException ex) {
-                    Logger.getLogger(TemplateResult.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            */
-
             //impostiamo il gestore degli oggetti - trasformer� in hash i Java beans
             //set the object handler that allows us to "view" Java beans as hashes
             DefaultObjectWrapperBuilder owb = new DefaultObjectWrapperBuilder(Configuration.VERSION_2_3_26);

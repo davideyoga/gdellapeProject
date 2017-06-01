@@ -63,24 +63,4 @@ public class TemplateController {
         }
 
     }
-
-
-    /**
-     * prepara l'ambiente di Freemarker e processa della template, gli viene passato un Object generico
-     * senza doverlo inserire nella mappa, solo per iniettare nel template un singolo oggetto
-     * @param template_name nome della template
-     * @param obj oggetto generico che contiene dei dati da iniettare nel template
-     * @param response risposta servlet
-     * @param servlet_context contesto della servlet
-     */
-    /*
-    public static void process(String template_name, Object obj, HttpServletResponse response, ServletContext servlet_context){
-
-        Map data = new HashMap();
-
-        data.put("generics", obj );
-
-        process( template_name, data, response, servlet_context);
-    }
-    */
 }
