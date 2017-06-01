@@ -1,17 +1,11 @@
 package view;
 
-import freemarker.core.HTMLOutputFormat;
-import freemarker.core.JSONOutputFormat;
-import freemarker.core.XMLOutputFormat;
 import freemarker.template.*;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.util.Calendar;
-import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,7 +22,7 @@ public class TemplateController {
      * @param response risposta servlet
      * @param servlet_context contesto della servlet
      */
-    public static void process(String template_name, Map data, HttpServletResponse response, ServletContext servlet_context) {
+    public static void process(String template_name, Map data, HttpServletResponse response, ServletContext servlet_context) throws TemplateManagerException {
 
         //setto il tipo del contenuto di ritorno
         response.setContentType("text/html; charset=UTF-8");
@@ -58,6 +52,7 @@ public class TemplateController {
 
             //log dei dettagli dell'eccezione
             Logger.getAnonymousLogger().log(Level.SEVERE, "Templating exception: " + ex.getMessage());
+            throw new TemplateManagerException("Template error: " + ex.getMessage(), ex);
 
         } finally {
 
@@ -70,6 +65,7 @@ public class TemplateController {
 
     }
 
+
     /**
      * prepara l'ambiente di Freemarker e processa della template, gli viene passato un Object generico
      * senza doverlo inserire nella mappa, solo per iniettare nel template un singolo oggetto
@@ -78,6 +74,7 @@ public class TemplateController {
      * @param response risposta servlet
      * @param servlet_context contesto della servlet
      */
+    /*
     public static void process(String template_name, Object obj, HttpServletResponse response, ServletContext servlet_context){
 
         Map data = new HashMap();
@@ -86,4 +83,5 @@ public class TemplateController {
 
         process( template_name, data, response, servlet_context);
     }
+    */
 }
