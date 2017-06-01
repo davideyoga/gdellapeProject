@@ -1,83 +1,72 @@
 package controller;
 
-import dao.exception.DaoException;
-import dao.implementation.GroupsDaoImpl;
-import dao.implementation.UserDaoImpl;
-import dao.interfaces.GroupsDao;
-import dao.interfaces.UserDao;
-import freemarker.core.HTMLOutputFormat;
-import freemarker.template.Configuration;
-import freemarker.template.DefaultObjectWrapperBuilder;
-import freemarker.template.Template;
-import freemarker.template.TemplateDateModel;
-import freemarker.template.TemplateException;
-import freemarker.template.TemplateExceptionHandler;
-import model.User;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import dao.implementation.UserDaoImpl;
+import dao.interfaces.UserDao;
+import model.User;
+import view.TemplateController;
+import view.TemplateManagerException;
+import view.TemplateResult;
+
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
-
-import model.Groups;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- *
- * @author IngegneriaDelWeb
+ * @Creator Davide Micarelli
  */
 public class TemplateServlet extends HttpServlet {
 
     @Resource(name = "jdbc/gdellapeProject")
     private static DataSource ds;
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    private void processRequest(HttpServletRequest request, HttpServletResponse response) {
 
-        GroupsDao gd = new GroupsDaoImpl(ds);
+        /*
 
-        Groups groups = gd.getGroups();
+        UserDao ud = new UserDaoImpl(ds);
+
+        User user = ud.getUser();
+
+        user.setEmail("gianni@gianni.gianni");
+
+        Map<String, Object> datamodel = new HashMap<String, Object>();
+
+        datamodel.put("user", user);
+
+        TemplateResult templateResult = new TemplateResult(getServletContext());
 
         try {
-            gd.init();
 
-            groups.setName("administrator");
-            groups.setDescription("administrator");
+            templateResult.activate( "testFreemarker.html", datamodel, response);
 
-            gd.storeGroups(groups);
-
-            gd.destroy();
-        } catch (DaoException e) {
+        } catch (TemplateManagerException e) {
             e.printStackTrace();
         }
+        */
+
+        UserDao ud = new UserDaoImpl(ds);
+
+        User user = ud.getUser();
+
+        user.setEmail("gianni@gianni.gianni");
+
+        Map<String, Object> datamodel = new HashMap<String, Object>();
+
+        datamodel.put("user", user);
+
+        TemplateController.process( "testFreemarker.html", datamodel ,response,getServletContext() );
+
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -86,7 +75,6 @@ public class TemplateServlet extends HttpServlet {
 
     /**
      * Handles the HTTP <code>POST</code> method.
-     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -100,11 +88,11 @@ public class TemplateServlet extends HttpServlet {
 
     /**
      * Returns a short description of the servlet.
-     *
      * @return a String containing servlet description
      */
     @Override
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }
