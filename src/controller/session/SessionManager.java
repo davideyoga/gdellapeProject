@@ -1,0 +1,262 @@
+package controller.session;
+
+import dao.exception.DaoException;
+import dao.implementation.GroupsDaoImpl;
+import dao.implementation.ServiceDaoImpl;
+import dao.interfaces.GroupsDao;
+import dao.interfaces.ServiceDao;
+import model.Groups;
+import model.Service;
+import model.User;
+import view.TemplateController;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
+/**
+ * @author Davide Micarelli
+ */
+public class SessionManager {
+
+    //durata validità sessione in minuti
+    private static final int SESSION_EXPIRE_TIME = 60*10;
+
+    /**
+     * Torna sessione con user e vari parametri
+     * @param request request per estrarre una sessione
+     * @param user user che, se non gia presente in sessione, viene inserito nella sessione
+     * @return HttpSession con sessio_start e user
+     */
+    public static HttpSession initSession(HttpServletRequest request, User user, DataSource ds ){
+
+        //creo la sessione
+        HttpSession session = request.getSession(true);
+
+        //carico i dati nella sessione
+        if(user != null){
+            session.setAttribute("user", user); //carico user
+        }
+        session.setAttribute("ip_address", request.getRemoteHost()); //carico l'ip dell'user
+        session.setAttribute("session_start", Calendar.getInstance()); //carico la data della sessione
+
+        return session;
+    }
+
+    /**
+     * Aggiunge alla sessione passata che contiene un utente e gli aggiunge i gruppi e i servizi
+     * @param session sessione
+     * @param ds datasource
+     * @return
+     */
+    public static HttpSession getSessionWithGroupsAndService( HttpSession session, DataSource ds ){
+
+        //carico in sessione i gruppi dell'utente
+        GroupsDao groupsDao = new GroupsDaoImpl(ds);
+
+        List<Groups> listGroups = null; //dichiaro la lista dei gruppi
+        try {
+
+            groupsDao.init(); // inizializzo il dao
+
+            //se non ho caricato in sessione l'utente torna null
+            if(session.getAttribute("user") == null) return null;
+
+            // estraggo tutti i gruppi a cui appartiene l'utente settato nella sessione
+            listGroups = groupsDao.getGroupsByUser((User) session.getAttribute("user") );
+
+            session.setAttribute("groups", listGroups ); // aggiungo alla sessione i gruppi a cui appartiene l'utente
+
+            groupsDao.destroy(); // chiudo groupsDao
+
+        } catch (DaoException e) {
+            e.printStackTrace();
+        }
+
+        //carico in sessione i servizi a cui ha accesso l'utente
+        ServiceDao serviceDao = new ServiceDaoImpl(ds);
+
+        List<Service> listService = new ArrayList <>();
+
+        try {
+
+            serviceDao.init(); //inizializzo il dao del service
+
+            for( Groups groups : listGroups ) { // ciclo sulla lista dei gruppi
+
+                List<Service> listService2 = new ArrayList <>();
+
+                listService2 = serviceDao.getServicesByGroup(groups);
+
+                // estraggo i servizi a cui il gruppo ha accesso e li aggiungo alla lista
+                listService.addAll(listService2);
+            }
+
+            serviceDao.destroy(); // chiudo serviceDao
+
+        } catch (DaoException e) {
+            e.printStackTrace();
+        }
+
+        // aggiungo alla sessione la lista dei servizi
+        session.setAttribute("services", listService);
+
+        return session;
+    }
+
+    /**
+     * Carica in sessione i gruppi a cui l'utente in sessione fa parte
+     * @param session sessione su cui vanno inseriti i gruppi
+     * @param ds datasource
+     * @return sessione con gruppi e servizi caricati in base all'utente in sessione
+     */
+    public static HttpSession getSessionWithGroups( HttpSession session, DataSource ds ){
+
+        //carico in sessione i gruppi dell'utente
+        GroupsDao groupsDao = new GroupsDaoImpl(ds);
+
+        List<Groups> listGroups = null; //dichiaro la lista dei gruppi
+        try {
+
+            groupsDao.init(); // inizializzo il dao
+
+            //se non ho caricato in sessione l'utente torna null
+            if(session.getAttribute("user") == null) return null;
+
+            // estraggo tutti i gruppi a cui appartiene l'utente settato nella sessione
+            listGroups = groupsDao.getGroupsByUser((User) session.getAttribute("user") );
+
+            session.setAttribute("groups", listGroups ); // aggiungo alla sessione i gruppi a cui appartiene l'utente
+
+            groupsDao.destroy(); // chiudo groupsDao
+
+        } catch (DaoException e) {
+            e.printStackTrace();
+        }
+
+        return session;
+    }
+
+    /**
+     * Carica in sessione i servizi a cui l'utente (in sessione) fa parte
+     * @param session sessione
+     * @param ds datasource
+     * @return sessione con i servizi in base ai gruppi che si trovano in sessione, null se non ci sono in sessione utente e gruppi
+     */
+    public static HttpSession getSessionWithService( HttpSession session, DataSource ds ){
+
+        //torna null se non ho caricato l'utente o i gruppi dell'utente in sessione
+        if( session.getAttribute("user") == null && session.getAttribute("groups") == null) return null;
+
+        //carico in sessione i servizi a cui ha accesso l'utente
+        ServiceDao serviceDao = new ServiceDaoImpl(ds);
+
+        List<Service> listService = null;
+
+        // estraggo un puntatore alla lista dei gruppi in sessione
+        List<Groups> listGroups = (List <Groups>) session.getAttribute("groups");
+
+        try {
+            serviceDao.init();
+
+            for( Groups groups : listGroups ) { // ciclo sulla lista dei gruppi
+
+                // estraggo i servizi a cui il gruppo ha accesso e li aggiungo alla lista
+                listService.addAll(serviceDao.getServicesByGroup(groups));
+            }
+
+            serviceDao.destroy(); // chiudo serviceDao
+
+        } catch (DaoException e) {
+            e.printStackTrace();
+        }
+
+        // aggiungo alla sessione la lista dei servizi
+        session.setAttribute("services", listService);
+
+        return session;
+    }
+
+    /**
+     * Torna true se il servizio e' nella lista dei servizi inseriti in sessione
+     * @param session sessione da cui si controlla se il servizio e' tra la lista
+     * @param service servizio da confrontare con quelli in sessione
+     * @return true se service e' tra la lista di servizi in sessione
+     */
+    public static boolean isPermissed( HttpSession session, Service service){
+
+        if( session.getAttribute("services")!= null ) { // se si e' caricata la lista dei servizi nella sessione
+
+            //estraggo la lista di servizi dalla sessione
+            List <Service> listService = (List <Service>) session.getAttribute("services");
+
+            for( Service s : listService ){
+
+                //se il serivzio nella lista e' = a quello passato al metodo torna true
+                if( s.equals(service)) return true;
+            }
+
+            return false;
+
+        }else return false; // non ho caricato i servizi in sessione
+    }
+
+
+    /**
+     * Torna true se ci sono i dati in sessione e se l'ip corrisponde a quello della richiesta, false altrimenti
+     * @param session
+     * @return
+     */
+    public static boolean isValid( HttpSession session, HttpServletRequest request){
+
+        //se i dati della sessione sono corretti
+        if( session.getAttribute("user") != null ||
+                session.getAttribute("ip_address") != null ||
+                session.getAttribute("session_start") != null||
+                session.getAttribute("ip_address").equals( request.getRemoteHost() )){
+
+            return true;
+
+        //se i dati in sessione sono scorretti
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * Torna true se ci sono i dati in sessione, se l'ip corrisponde a quello della richiesta
+     * e se la sessione non e' vecchia, false altrimenti
+     * @param session
+     * @return
+     */
+    public static boolean isHardValid(HttpSession session, HttpServletRequest request){
+
+        //se ci sono i dati  in sessione, se l'ip corrisponde a quello della richiesta
+        if( isValid(session, request) ){
+
+            // prendo la data attuale
+            Calendar now = Calendar.getInstance();
+
+            //prendo la data in sessione
+            Calendar start = (Calendar) session.getAttribute("session_start");
+
+            //estraggo la differenza tra le due date
+            long sessionAgeInMinutes = ((now.getTimeInMillis() - start.getTimeInMillis()) / 1000) / 30;
+
+            //se la sessione e' abbastanza nuova
+            if (sessionAgeInMinutes < SESSION_EXPIRE_TIME) {
+                return true;
+            }
+        }
+        //se una delle due condizioni sono false
+        return false;
+    }
+
+
+
+}
+
+

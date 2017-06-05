@@ -2,14 +2,19 @@ package dao.implementation;
 
 import dao.data.DaoDataMySQLImpl;
 import dao.exception.DaoException;
+import dao.exception.DestroyDaoException;
 import dao.exception.InitDaoException;
+import dao.exception.SelectDaoException;
 import dao.interfaces.ServiceDao;
+import model.Groups;
 import model.Service;
 
 import javax.sql.DataSource;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static dao.security.DaoSecurity.addSlashes;
 import static dao.security.DaoSecurity.stripSlashes;
@@ -19,11 +24,12 @@ import static dao.security.DaoSecurity.stripSlashes;
  */
 public class ServiceDaoImpl extends DaoDataMySQLImpl implements ServiceDao {
 
-    private PreparedStatement insertService,
-            selectServiceById,
-            selectServiceByName,
-            updateService,
-            deleteServiceById;
+    private PreparedStatement   insertService,
+                                selectServiceById,
+                                selectServiceByName,
+                                updateService,
+                                deleteServiceById,
+                                selectServicesByGroupId;
 
 
     public ServiceDaoImpl(DataSource datasource) {
@@ -55,6 +61,14 @@ public class ServiceDaoImpl extends DaoDataMySQLImpl implements ServiceDao {
             this.deleteServiceById = connection.prepareStatement("DELETE FROM service" +
                     "                                               WHERE id=?");
 
+            //Query che restituisce i servizi a cui può accedere un dato gruppo
+            this.selectServicesByGroupId=connection.prepareStatement("SELECT service.id," +
+                    "														      service.name," +
+                    "														      service.description" +
+                    "													  FROM service " +
+                    "													  LEFT JOIN groups_service ON service.id = groups_service.service_id" +
+                    "													  WHERE groups_service.groups_id=?");
+
         } catch (SQLException e) {
             throw new InitDaoException("Error initializing service dao", e);
         }
@@ -68,7 +82,7 @@ public class ServiceDaoImpl extends DaoDataMySQLImpl implements ServiceDao {
     @Override
     public Service getServiceById(int idService) throws DaoException{
 
-        Service service = getService();
+        Service service = null;
 
         try {
 
@@ -78,9 +92,7 @@ public class ServiceDaoImpl extends DaoDataMySQLImpl implements ServiceDao {
 
             if( rs.next() ){
 
-                service.setId(idService);
-                service.setName( stripSlashes( rs.getString("name")));
-                service.setDescription(stripSlashes( rs.getString("description")));
+                service = this.generateService(rs);
 
             }else { // se il risultato della query e' vuoto torno null
                 return null;
@@ -96,7 +108,7 @@ public class ServiceDaoImpl extends DaoDataMySQLImpl implements ServiceDao {
     @Override
     public Service getServiceByName(String name) throws DaoException{
 
-        Service service = getService();
+        Service service = null;
 
         try {
 
@@ -106,9 +118,7 @@ public class ServiceDaoImpl extends DaoDataMySQLImpl implements ServiceDao {
 
             if( rs.next()){
 
-                service.setId( rs.getInt("id"));
-                service.setName( stripSlashes( "name"));
-                service.setDescription(stripSlashes( rs.getString("description")));
+                service = this.generateService(rs);
 
             }else { // se il risultato della query e' vuoto torno null
                 return null;
@@ -157,6 +167,39 @@ public class ServiceDaoImpl extends DaoDataMySQLImpl implements ServiceDao {
         }
     }
 
+    /**
+     * Metodo che ritorna la lista di servizi a cui può accedervi un dato gruppo
+     * @param groups gruppo di cui si vogliono i servizi a cui puo accedere
+     * @return lista di servizi
+     * @throws DaoException lancia eccezione in caso di errore
+     */
+    @Override
+    public List<Service> getServicesByGroup(Groups groups) throws DaoException {
+
+        List<Service> list = new ArrayList<>();
+
+        try{
+
+            this.selectServicesByGroupId.setInt( 1, groups.getId());
+
+            ResultSet rs = this.selectServicesByGroupId.executeQuery();
+
+            //rs ritorna un insieme di tuple rappresentanti i gruppi acuoi appartiene l'utente
+            //scorro rs ed aggiungo alla lista il gruppo
+            while( rs.next() ){
+
+                Service s = this.generateService(rs);
+
+                list.add(s);
+            }
+
+        }catch (Exception e) {
+            throw new DaoException("Error query getServiceByGroupId", e);
+        }
+
+        return list;
+    }
+
     @Override
     public void deleteService(Service service) throws DaoException{
         try {
@@ -167,6 +210,41 @@ public class ServiceDaoImpl extends DaoDataMySQLImpl implements ServiceDao {
 
         } catch (SQLException e) {
             throw new DaoException("Error deleteService in service dao", e);
+        }
+    }
+
+    @Override
+    public Service generateService(ResultSet resultSet) throws DaoException {
+
+        Service s = this.getService();
+
+        try {
+
+            s.setId(resultSet.getInt("id"));
+            s.setName(stripSlashes(resultSet.getString("name")));
+            s.setDescription(stripSlashes(resultSet.getString("description")));
+
+        } catch (SQLException e) {
+            throw new SelectDaoException("Error generateServoce", e );
+        }
+        return s;
+    }
+
+    @Override
+    public void destroy() throws DaoException{
+
+        try {
+            this.insertService.close();
+            this.selectServiceById.close();
+            this.selectServiceByName.close();
+            this.updateService.close();
+            this.deleteServiceById.close();
+            this.selectServicesByGroupId.close();
+
+            super.destroy();
+
+        } catch (SQLException e) {
+            throw new DestroyDaoException("Error destroy in ServiceDao", e);
         }
     }
 

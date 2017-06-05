@@ -3,6 +3,7 @@ package dao.implementation;
 import dao.data.DaoDataMySQLImpl;
 import dao.exception.*;
 import dao.interfaces.UserDao;
+import model.Groups;
 import model.User;
 
 
@@ -10,6 +11,8 @@ import javax.sql.DataSource;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static dao.security.DaoSecurity.addSlashes;
 import static dao.security.DaoSecurity.stripSlashes;
@@ -19,11 +22,12 @@ import static dao.security.DaoSecurity.stripSlashes;
  */
 public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
 
-    private PreparedStatement insertUser,
-                              selectUserById,
-                              selectUserByEmailPassword,
-                              updateUser,
-                              deleteUserById;
+    private PreparedStatement   insertUser,
+                                selectUserById,
+                                selectUserByEmailPassword,
+                                updateUser,
+                                deleteUserById,
+                                selectUserByGroupsId;
 
 
     /**
@@ -70,6 +74,20 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
             this.deleteUserById = connection.prepareStatement("DELETE FROM user" +
                     "                                               WHERE id=?");
 
+            this.selectUserByGroupsId = connection.prepareStatement("SELECT user.id," +
+                    "														      user.name," +
+                    "														      user.surname" +
+                    "                                                             user.email" +
+                    "                                                             user.number" +
+                    "                                                             user.curriculum_ita" +
+                    "                                                             user.curriculum_eng" +
+                    "                                                             user.receprion_hours_ita" +
+                    "                                                             user.receprion_hours_eng" +
+                    "                                                             user.password" +
+                    "													  FROM user " +
+                    "													  LEFT JOIN user_groups ON groups.id = user_groups.groups_id" +
+                    "													  WHERE user_groups.groups_id=?");
+
 
         } catch (SQLException e) {
             throw new InitDaoException("Error initializing user dao", e);
@@ -92,9 +110,9 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
      * @throws DaoException
      */
     @Override
-    public User getUserById(int idUser) throws DaoException {
+    public User getUserById( int idUser) throws DaoException {
 
-        User user = this.getUser();
+        User user = null;
 
         try {
 
@@ -102,22 +120,7 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
 
             ResultSet rs = this.selectUserById.executeQuery(); // eseguo la query e mi ritorna il risultato rs
 
-            if(rs.next()){
-                //riempio user con cio che mi torna dalla query togliendo gli slash
-                user.setId( rs.getInt("id"));
-                user.setSurname( stripSlashes(rs.getString("surname") ) );
-                user.setName(stripSlashes( rs.getString("name") ) );
-                user.setEmail( stripSlashes( rs.getString("email") ) );
-                user.setNumber( rs.getInt("number") );
-                user.setCurriculum_ita( stripSlashes( rs.getString("curriculum_ita") ) );
-                user.setCurriculum_eng( stripSlashes( rs.getString("curriculum_eng") ) );
-                user.setReceprion_hours_ita( stripSlashes( rs.getString("receprion_hours_ita") ) );
-                user.setReceprion_hours_eng( stripSlashes( rs.getString("receprion_hours_eng") ) );
-                user.setPassword(stripSlashes(rs.getString("password")));
-            }else{
-                return null;
-            }
-
+            user = this.generateUser(rs);
 
         } catch (SQLException e) {
             throw new SelectDaoException("Error getUserById in user dao", e);
@@ -145,29 +148,17 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
 
             ResultSet rs = this.selectUserByEmailPassword.executeQuery();
 
-            if (rs.next()) {
-                user.setId(rs.getInt("id"));
-                user.setSurname(stripSlashes(rs.getString("surname")));
-                user.setName(stripSlashes(rs.getString("name")));
-                user.setEmail(stripSlashes(rs.getString("email")));
-                user.setNumber(rs.getInt("number"));
-                user.setCurriculum_ita(stripSlashes(rs.getString("curriculum_ita")));
-                user.setCurriculum_eng(stripSlashes(rs.getString("curriculum_eng")));
-                user.setReceprion_hours_ita(stripSlashes(rs.getString("receprion_hours_ita")));
-                user.setReceprion_hours_eng(stripSlashes(rs.getString("receprion_hours_eng")));
-                user.setPassword(rs.getString("password"));
+            //se e' presente una tupla nel riultato della query
+            if( rs.next()) {
 
+                user = this.generateUser(rs);
 
-            }else{
-                return null;
-            }
+            }else return null;
 
         } catch (SQLException e) {
             throw new SelectDaoException("Error getUserByEmailPassword in user dao", e);
         }
-
         return user;
-
     }
 
     /**
@@ -246,6 +237,57 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
     }
 
     @Override
+    public User generateUser(ResultSet rs) throws DaoException {
+
+        User user = this.getUser();
+
+        try {
+            if (rs.next()) {
+                user.setId(rs.getInt("id"));
+                user.setSurname(stripSlashes(rs.getString("surname")));
+                user.setName(stripSlashes(rs.getString("name")));
+                user.setEmail(stripSlashes(rs.getString("email")));
+                user.setNumber(rs.getInt("number"));
+                user.setCurriculum_ita(stripSlashes(rs.getString("curriculum_ita")));
+                user.setCurriculum_eng(stripSlashes(rs.getString("curriculum_eng")));
+                user.setReceprion_hours_ita(stripSlashes(rs.getString("receprion_hours_ita")));
+                user.setReceprion_hours_eng(stripSlashes(rs.getString("receprion_hours_eng")));
+                user.setPassword(rs.getString("password"));
+            }
+        } catch (SQLException e) {
+            throw new DaoException("Error getUserByEmailPassword in user dao", e);
+        }
+        return user;
+    }
+
+    @Override
+    public List<User> getUserByGroups(Groups groups) throws DaoException {
+
+        List<User> list = new ArrayList<>();
+
+        try{
+
+            this.selectUserByGroupsId.setInt( 1, groups.getId());
+
+            ResultSet rs = this.selectUserByGroupsId.executeQuery();
+
+            //rs ritorna un insieme di tuple rappresentanti i gruppi acuoi appartiene l'utente
+            //scorro rs ed aggiungo alla lista il gruppo
+            while( rs.next() ){
+
+                User u = this.generateUser(rs);
+
+                list.add(u);
+            }
+
+        }catch (Exception e) {
+            throw new DaoException("Error query getUserByGroups", e);
+        }
+
+        return list;
+    }
+
+    @Override
     public void destroy() throws DaoException{
         try {
 
@@ -255,6 +297,7 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
             this.deleteUserById.close();
             this.selectUserByEmailPassword.close();
             this.selectUserById.close();
+            this.selectUserByGroupsId.close();
 
             super.destroy(); //chiudo la connessione
 

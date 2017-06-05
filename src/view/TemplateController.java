@@ -37,13 +37,21 @@ public class TemplateController {
 
         try {
 
+            System.out.println("passo 1");
+
             template = cfg.getTemplate(template_name);
+
+            System.out.println("passo 2");
 
             //ottengo lo stream della risposta
             out = response.getWriter();
 
+            System.out.println("passo 3");
+
             //processo la template con la Map
             template.process(data, out);
+
+            System.out.println("passo 4");
 
             //esplicito pulizia da garbage collection
             data=null;

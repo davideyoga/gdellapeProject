@@ -1,8 +1,15 @@
 package controller;
 
 
+import dao.exception.DaoException;
+import dao.implementation.GroupsDaoImpl;
+import dao.implementation.ServiceDaoImpl;
 import dao.implementation.UserDaoImpl;
+import dao.interfaces.GroupsDao;
+import dao.interfaces.ServiceDao;
 import dao.interfaces.UserDao;
+import model.Groups;
+import model.Service;
 import model.User;
 import view.TemplateController;
 
@@ -13,7 +20,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,19 +35,34 @@ public class TemplateServlet extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) {
 
+        /*
 
-        UserDao ud = new UserDaoImpl(ds);
+        UserDao userDao = new UserDaoImpl(ds);
 
-        User user = ud.getUser();
+        GroupsDao groupsDao = new GroupsDaoImpl(ds);
+        ServiceDao serviceDao = new ServiceDaoImpl(ds);
 
-        user.setEmail("gianni@gianni.gianni");
+        try {
+            userDao.init();
+            groupsDao.init();
+            serviceDao.init();
 
-        Map<String, Object> datamodel = new HashMap<String, Object>();
+            User user = userDao.getUserById(1);
+            System.out.println(user);
 
-        datamodel.put("user", user);
+            List<Groups> listGroups = new ArrayList <>();
 
-        TemplateController.process( "testFreemarker.html", datamodel ,response,getServletContext() );
+            listGroups = groupsDao.getGroupsByUser(user);
+            System.out.println("lista gruppi:" + listGroups);
 
+            for(Groups groups : listGroups ){
+                System.out.println("servizi:" + serviceDao.getServicesByGroup(groups));
+            }
+
+        } catch (DaoException e) {
+            e.printStackTrace();
+        }
+        */
     }
 
 

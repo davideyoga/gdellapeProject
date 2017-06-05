@@ -2,7 +2,11 @@ package dao.interfaces;
 
 import dao.data.DaoData;
 import dao.exception.DaoException;
+import model.Groups;
 import model.User;
+
+import java.sql.ResultSet;
+import java.util.List;
 
 public interface UserDao extends DaoData{
 
@@ -15,5 +19,9 @@ public interface UserDao extends DaoData{
     public void storeUser( User user) throws DaoException;
 
     public void deleteUser(User user) throws DaoException;
+
+    public User generateUser(ResultSet rs) throws DaoException;
+
+    List<User> getUserByGroups(Groups groups) throws DaoException;
 
 }

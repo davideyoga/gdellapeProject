@@ -17,6 +17,25 @@ public class Service {
         this.description = null;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Service service = (Service) o;
+
+        if (getId() != service.getId()) return false;
+        if (getName() != null ? !getName().equals(service.getName()) : service.getName() != null) return false;
+        return getDescription() != null ? getDescription().equals(service.getDescription()) : service.getDescription() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId();
+        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
+        result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
+        return result;
+    }
 
     @Override
     public String toString() {

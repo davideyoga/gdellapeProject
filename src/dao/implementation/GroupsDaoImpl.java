@@ -2,30 +2,40 @@ package dao.implementation;
 
 import dao.data.DaoDataMySQLImpl;
 import dao.exception.DaoException;
+import dao.exception.DestroyDaoException;
+import dao.exception.InitDaoException;
+import dao.exception.SelectDaoException;
 import dao.interfaces.GroupsDao;
 import model.Groups;
+import model.Service;
+import model.User;
 
 import javax.sql.DataSource;
 import javax.xml.transform.Result;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static dao.security.DaoSecurity.addSlashes;
 import static dao.security.DaoSecurity.stripSlashes;
 
 public class GroupsDaoImpl extends DaoDataMySQLImpl implements GroupsDao {
 
-    private PreparedStatement insertGroups,
-            selectGroupsById,
-            selectGroupsByName,
-            updateGroups,
-            deleteGroupsById;
+    private PreparedStatement   insertGroups,
+                                selectGroupsById,
+                                selectGroupsByName,
+                                updateGroups,
+                                deleteGroupsById,
+                                selectGroupsByServiceId,
+                                selectGroupsByUserId;
 
     public GroupsDaoImpl(DataSource datasource) {
         super(datasource);
     }
 
+    @Override
     public void init() throws DaoException{
 
         try {
@@ -51,8 +61,22 @@ public class GroupsDaoImpl extends DaoDataMySQLImpl implements GroupsDao {
             this.deleteGroupsById = connection.prepareStatement("DELETE FROM groups" +
                     "                                               WHERE id=?");
 
+            this.selectGroupsByServiceId = connection.prepareStatement("SELECT groups.id," +
+                    "														      groups.name," +
+                    "														      groups.description" +
+                    "													  FROM groups " +
+                    "													  LEFT JOIN groups_service ON groups.id = groups_service.groups_id" +
+                    "													  WHERE groups_service.service_id=?");
+
+            this.selectGroupsByUserId = connection.prepareStatement("SELECT groups.id," +
+                    "														      groups.name," +
+                    "														      groups.description" +
+                    "													  FROM groups " +
+                    "													  LEFT JOIN user_groups ON groups.id = user_groups.groups_id" +
+                    "													  WHERE user_groups.user_id=?");
+
         } catch (SQLException e) {
-            throw new DaoException("Error initializing groups dao", e);
+            throw new InitDaoException("Error initializing groups dao", e);
         }
     }
 
@@ -74,7 +98,7 @@ public class GroupsDaoImpl extends DaoDataMySQLImpl implements GroupsDao {
     @Override
     public Groups getGroupsById(int idGroups) throws DaoException{
 
-        Groups groups = getGroups();
+        Groups groups = null;
 
         try {
 
@@ -84,9 +108,7 @@ public class GroupsDaoImpl extends DaoDataMySQLImpl implements GroupsDao {
 
             if( rs.next()){
 
-                groups.setId(idGroups);
-                groups.setName( stripSlashes( rs.getString("name")));
-                groups.setDescription(stripSlashes( rs.getString("description")));
+                groups = this.generateGroups(rs);
 
             }else { // se il risultato della query e' vuoto torno null
                 return null;
@@ -108,7 +130,7 @@ public class GroupsDaoImpl extends DaoDataMySQLImpl implements GroupsDao {
     @Override
     public Groups getGroupsByName(String name) throws DaoException{
 
-        Groups groups = getGroups();
+        Groups groups = null;
 
         try {
 
@@ -118,9 +140,7 @@ public class GroupsDaoImpl extends DaoDataMySQLImpl implements GroupsDao {
 
             if( rs.next()){
 
-                groups.setId( rs.getInt("id"));
-                groups.setName( stripSlashes( "name"));
-                groups.setDescription(stripSlashes( rs.getString("description")));
+                groups = this.generateGroups(rs);
 
             }else { // se il risultato della query e' vuoto torno null
                 return null;
@@ -190,4 +210,96 @@ public class GroupsDaoImpl extends DaoDataMySQLImpl implements GroupsDao {
             throw new DaoException("Error deleteGroups in groups dao", e);
         }
     }
+
+    @Override
+    public List<Groups> getGroupsByService(Service service) throws DaoException {
+
+        List<Groups> list = new ArrayList<>();
+
+        try{
+
+            this.selectGroupsByServiceId.setInt( 1, service.getId());
+
+            ResultSet rs = this.selectGroupsByServiceId.executeQuery();
+
+            //rs ritorna un insieme di tuple rappresentanti i gruppi acuoi appartiene l'utente
+            //scorro rs ed aggiungo alla lista il gruppo
+            while( rs.next() ){
+
+                Groups g = this.generateGroups(rs);
+
+                list.add(g);
+            }
+
+        }catch (Exception e) {
+            throw new DaoException("Error query getGroupsByService", e);
+        }
+
+        return list;
+    }
+
+    @Override
+    public List<Groups> getGroupsByUser(User user) throws DaoException {
+
+        List<Groups> list = new ArrayList<>();
+
+        try{
+
+            this.selectGroupsByUserId.setInt( 1, user.getId());
+
+            ResultSet rs = this.selectGroupsByUserId.executeQuery();
+
+            //rs ritorna un insieme di tuple rappresentanti i gruppi a cui appartiene l'utente
+            //scorro rs ed aggiungo alla lista il gruppo
+            while( rs.next() ){
+
+                Groups g = this.generateGroups(rs);
+
+                list.add(g);
+            }
+
+        }catch (Exception e) {
+            throw new DaoException("Error query getGroupsByUser", e);
+        }
+
+        return list;
+    }
+
+    @Override
+    public Groups generateGroups(ResultSet rs) throws DaoException {
+
+        Groups g = this.getGroups();
+
+        try {
+
+            g.setId(rs.getInt("id"));
+            g.setName(stripSlashes(rs.getString("name")));
+            g.setDescription(stripSlashes(rs.getString("description")));
+
+        } catch (SQLException e) {
+            throw new SelectDaoException("Error generateServoce", e );
+        }
+        return g;
+    }
+
+    @Override
+    public void destroy() throws DaoException{
+
+        try {
+            this.insertGroups.close();
+            this.selectGroupsById.close();
+            this.selectGroupsByName.close();
+            this.updateGroups.close();
+            this.deleteGroupsById.close();
+            this.selectGroupsByServiceId.close();
+            this.selectGroupsByUserId.close();
+
+            super.destroy();
+
+        } catch (SQLException e) {
+            throw new DestroyDaoException("Error destroy in GroupsDao", e);
+        }
+
+    }
+
 }
