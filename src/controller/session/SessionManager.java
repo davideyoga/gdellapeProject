@@ -58,35 +58,60 @@ public class SessionManager {
         //estraggo la sessione dalla richiesta
         HttpSession session = request.getSession(false);
 
+        System.out.println("passo 1a");
+
         //se la sessione non e' attiva
         if( session == null ) return null;
+
+        System.out.println("passo 2a");
 
         //carico in sessione i gruppi dell'utente
         GroupsDao groupsDao = new GroupsDaoImpl(ds);
 
+        System.out.println("passo 3a");
+
         List<Groups> listGroups = null; //dichiaro la lista dei gruppi
         try {
 
+            System.out.println("passo 4a");
+
             groupsDao.init(); // inizializzo il dao
+
+            System.out.println("passo 5a");
 
             //se non ho caricato in sessione l'utente torna null
             if(session.getAttribute("user") == null) return null;
 
+            System.out.println("passo 6a");
+
             // estraggo tutti i gruppi a cui appartiene l'utente settato nella sessione
             listGroups = groupsDao.getGroupsByUser((User) session.getAttribute("user") );
 
+
+            System.out.println("passo 7a");
+
             session.setAttribute("groups", listGroups ); // aggiungo alla sessione i gruppi a cui appartiene l'utente
 
+            System.out.println("passo 8a");
+
             groupsDao.destroy(); // chiudo groupsDao
+
+            System.out.println("passo 9a");
 
         } catch (DaoException e) {
             e.printStackTrace();
         }
 
+        System.out.println("passo 10a");
+
         //carico in sessione i servizi a cui ha accesso l'utente
         ServiceDao serviceDao = new ServiceDaoImpl(ds);
 
+        System.out.println("passo 11a");
+
         List<Service> listService = new ArrayList <>();
+
+        System.out.println("passo 12a");
 
         try {
 

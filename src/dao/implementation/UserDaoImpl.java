@@ -299,9 +299,9 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
 
 
         } catch (DaoException e) {
-            throw new DestroyDaoException("Error deleteUser in user dao", e);
+            throw new DestroyDaoException("Error destroy in user dao", e);
         } catch (SQLException e) {
-            throw new DestroyDaoException("Error deleteUser in user dao", e);
+            throw new DestroyDaoException("Error destroy in user dao", e);
         }
     }
 }

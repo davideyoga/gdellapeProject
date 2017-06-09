@@ -230,4 +230,22 @@ public class LogDaoImpl extends DaoDataMySQLImpl implements LogDao {
 
         return log;
     }
+
+    public void destroy() throws DaoException {
+
+        super.destroy();
+
+        try {
+
+            this.insertLog.close();
+            this.selectLogById.close();
+            this.selectLogByUserId.close();
+            this.selectLogByDate.close();
+            this.deleteLogById.close();
+
+        } catch (SQLException e) {
+            throw new DestroyDaoException("Error sestroy in log dao", e);
+        }
+
+    }
 }

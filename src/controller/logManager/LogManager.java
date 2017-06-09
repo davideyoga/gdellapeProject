@@ -39,6 +39,8 @@ public class LogManager {
             //inserisco il log nel database
             logDao.insertLog( log );
 
+            logDao.destroy();
+
         } catch (DaoException e) {
 
             throw new LogException("Error addLog", e);

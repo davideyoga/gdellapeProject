@@ -1,8 +1,12 @@
 package controller;
 
+import controller.logManager.LogException;
+import controller.logManager.LogManager;
 import controller.session.SessionManager;
+import dao.exception.DaoException;
 import dao.implementation.UserDaoImpl;
 import dao.interfaces.UserDao;
+import model.User;
 import view.TemplateController;
 
 import javax.annotation.Resource;
@@ -36,12 +40,53 @@ public class ProfileManagement extends HttpServlet {
         //se la sessione e' valida e abbastanza nuova
         if(SessionManager.isHardValid( request )){
 
-            //prendo i dati dalla form e modifico l'utente
+            UserDao userDao = new UserDaoImpl(ds);
+            try {
+                userDao.init();
 
 
-            //creo un nuovo log con i dati modificati
+                //creo un user da riempire con i dati provenienti dalla form
+                User userDaForm = userDao.getUser();
 
-        }else{
+                //estraggo l'utente dalla sessione
+                User user = (User) request.getSession().getAttribute("user");
+
+                //creo un utente con i dati della form
+                userDaForm.setSurname(request.getParameter("surname"));
+                userDaForm.setName(request.getParameter("name"));
+                userDaForm.setEmail(request.getParameter("email"));
+                userDaForm.setNumber(Integer.parseInt(request.getParameter("number")));
+                userDaForm.setCurriculum_ita(request.getParameter("curriculum_ita"));
+                userDaForm.setCurriculum_eng(request.getParameter("curriculum_eng"));
+                userDaForm.setReceprion_hours_ita(request.getParameter("receprion_hours_ita"));
+                userDaForm.setReceprion_hours_eng(request.getParameter("receprion_hours_eng"));
+                userDaForm.setPassword(request.getParameter("password"));
+
+                //controllo se i dati sono diversi da quelli in sessione (quindi quelli vecchi)
+                if (!userDaForm.equals(user)) {
+
+                    //inserisco l'id dell'utente
+                    userDaForm.setId(user.getId());
+
+                    //eseguo l'update dell'utente
+                    userDao.storeUser(userDaForm);
+
+                    //inserisco un log nel db descrivendo cio' che e' successo
+                    LogManager.addLog(userDaForm, "User with id: " + userDaForm.getId() + " has change your personal date", ds);
+
+                }
+
+                //chiudo il dao
+                userDao.destroy();
+
+            } catch (DaoException e) {
+                e.printStackTrace();
+            } catch (LogException e) {
+                e.printStackTrace();
+            }
+
+
+        }else{//se la sessione non  e' valida e abbastanza nuova
 
             //non serve distruggere la sessione,
             //SessionManager.destroySession(request);

@@ -40,7 +40,7 @@ public class Login extends HttpServlet {
         this.datamodel.put( "message", "email and password not match" );
 
         //lancio la pagina di login
-        TemplateController.process( "login.html", this.datamodel ,response, getServletContext() );
+        TemplateController.process( "login.ftl", this.datamodel ,response, getServletContext() );
     }
 
     /**
@@ -112,6 +112,10 @@ public class Login extends HttpServlet {
             }
         }else{
             //rilancio la pagina di login con message di errore "parametri errati"
+            this.datamodel.put("message","incorrect parameters");
+
+            //lancio il template di login
+            TemplateController.process( "login.ftl", datamodel ,response, getServletContext() );
         }
     }
 
@@ -119,6 +123,6 @@ public class Login extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //se richiesta get lancio il template di login
-        TemplateController.process( "login_content.html", datamodel ,response, getServletContext() );
+        TemplateController.process( "login.ftl", datamodel ,response, getServletContext() );
     }
 }
