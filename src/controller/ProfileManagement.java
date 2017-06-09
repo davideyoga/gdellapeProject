@@ -86,7 +86,7 @@ public class ProfileManagement extends HttpServlet {
             }
 
 
-        }else{//se la sessione non  e' valida e abbastanza nuova
+        }else{//se la sessione non  e' valida e non abbastanza nuova
 
             //non serve distruggere la sessione,
             //SessionManager.destroySession(request);

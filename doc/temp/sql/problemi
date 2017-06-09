@@ -1,0 +1,5 @@
+- QUANDO PROVO A FARE IL LOGIN ESSENDO GIA LOGGATO, groupsDao.init() non va a buon fine, non riesce ad estrarre la connessione dentro DaoDAtaMysSmqlImpl
+    connection = this.datasource.getConnection();
+- SPESSO MI TIRA FUORI UN ERRORE IN (TemplateController.java:52)
+
+- DENTRO ProfileManager devo vedere se e' possibile strarre direttamente l'utente dal template invece di prendre i dati da tutti i campi della form
