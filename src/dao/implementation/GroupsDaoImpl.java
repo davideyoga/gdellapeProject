@@ -226,9 +226,13 @@ public class GroupsDaoImpl extends DaoDataMySQLImpl implements GroupsDao {
             //scorro rs ed aggiungo alla lista il gruppo
             while( rs.next() ){
 
-                Groups g = this.generateGroups(rs);
+                Groups groups = this.generateGroups(rs);
 
-                list.add(g);
+                groups.setId(rs.getInt("id"));
+                groups.setName(stripSlashes(rs.getString("name")));
+                groups.setDescription(stripSlashes(rs.getString("description")));
+
+                list.add(groups);
             }
 
         }catch (Exception e) {
@@ -253,9 +257,9 @@ public class GroupsDaoImpl extends DaoDataMySQLImpl implements GroupsDao {
             //scorro rs ed aggiungo alla lista il gruppo
             while( rs.next() ){
 
-                Groups g = this.generateGroups(rs);
+                Groups groups = this.generateGroups(rs);
 
-                list.add(g);
+                list.add(groups);
             }
 
         }catch (Exception e) {
@@ -268,18 +272,18 @@ public class GroupsDaoImpl extends DaoDataMySQLImpl implements GroupsDao {
     @Override
     public Groups generateGroups(ResultSet rs) throws DaoException {
 
-        Groups g = this.getGroups();
+        Groups groups = this.getGroups();
 
         try {
 
-            g.setId(rs.getInt("id"));
-            g.setName(stripSlashes(rs.getString("name")));
-            g.setDescription(stripSlashes(rs.getString("description")));
+            groups.setId(rs.getInt("id"));
+            groups.setName(stripSlashes(rs.getString("name")));
+            groups.setDescription(stripSlashes(rs.getString("description")));
 
         } catch (SQLException e) {
             throw new SelectDaoException("Error generateServoce", e );
         }
-        return g;
+        return groups;
     }
 
     @Override

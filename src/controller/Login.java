@@ -27,6 +27,7 @@ public class Login extends HttpServlet {
     private static DataSource ds;
 
     private Map<String, Object> datamodel = new HashMap<>();
+    private String previusPage = null;
 
     /**
      * processo nel caso in email e password non corrispondano ad un utente nel database
@@ -35,6 +36,7 @@ public class Login extends HttpServlet {
      */
     protected  void processUnknown(HttpServletRequest request, HttpServletResponse response){
 
+        //inserisco il messaggio di errore nel datamodel
         this.datamodel.put( "message", "email and password not match" );
 
         //lancio la pagina di login
@@ -70,18 +72,36 @@ public class Login extends HttpServlet {
                 //se l'utente e' nel database con tali email e password
                 if( user != null){
 
-                    HttpSession session = request.getSession();
+                    /*
+                        estraggo dalla sessione la pagina precedente al reindirizzamento
+                        in modo da poter reindirizzare l'utente alla pagina precedente (se esiste),
+                        utile nel caso in cui possiedo una sessione vecchia e voglio accedere
+                        a servizi di grande importanza (ad esempio cambio passwrod ecc...)
+                    */
+                    this.previusPage = (String) request.getSession().getAttribute("previus_page");
 
+                    //distruggo l'attuale sessione
+                    SessionManager.destroySession(request);
+
+                    //inizializzo una nuova sessione
+                    HttpSession session = request.getSession(true);
+
+                    //insericso nella sessione i parametri base
                     SessionManager.initSession(request, user, ds);
 
-                    SessionManager.getSessionWithGroupsAndService( session, ds);
+                    //inserisco nella sessione gruppi e servizi appartenenti all'utente
+                    SessionManager.getSessionWithGroupsAndService( request, ds);
 
-                    //inizializzo la mappa da passare al template
-                    this.datamodel = new HashMap();
                     //inserisco nel datamodel l'utente
                     this.datamodel.put("user", user);
 
-                    //lancio il template passandogli il datamodel contenente l'utente
+                    //se esiste reinderizzo alla pagina precedente
+                    if(this.previusPage != null){
+
+                        response.sendRedirect(previusPage);
+                    }
+
+                    //lancio il template passandogli il datamodel contenente l'utente, reindirizzo alla home del back-office
                     TemplateController.process( "index_back_office.html", this.datamodel ,response, getServletContext() );
 
                 // se l'utente non e' nel database
@@ -90,6 +110,8 @@ public class Login extends HttpServlet {
             } catch (DaoException e) {
                 e.printStackTrace();
             }
+        }else{
+            //rilancio la pagina di login con message di errore "parametri errati"
         }
     }
 
@@ -97,6 +119,6 @@ public class Login extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //se richiesta get lancio il template di login
-        TemplateController.process( "login.html", datamodel ,response, getServletContext() );
+        TemplateController.process( "login_content.html", datamodel ,response, getServletContext() );
     }
 }

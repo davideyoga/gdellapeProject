@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.security.acl.Group;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -35,34 +36,27 @@ public class TemplateServlet extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) {
 
-        /*
+
 
         UserDao userDao = new UserDaoImpl(ds);
-
         GroupsDao groupsDao = new GroupsDaoImpl(ds);
-        ServiceDao serviceDao = new ServiceDaoImpl(ds);
+
 
         try {
+
             userDao.init();
             groupsDao.init();
-            serviceDao.init();
 
-            User user = userDao.getUserById(1);
-            System.out.println(user);
+            Groups groups = groupsDao.getGroupsById(1);
 
-            List<Groups> listGroups = new ArrayList <>();
+            System.out.print(userDao.getUserByGroups(groups));
 
-            listGroups = groupsDao.getGroupsByUser(user);
-            System.out.println("lista gruppi:" + listGroups);
+            System.out.print("numero di elementi nella lista: " + userDao.getUserByGroups(groups).size() );
 
-            for(Groups groups : listGroups ){
-                System.out.println("servizi:" + serviceDao.getServicesByGroup(groups));
-            }
 
         } catch (DaoException e) {
             e.printStackTrace();
         }
-        */
     }
 
 

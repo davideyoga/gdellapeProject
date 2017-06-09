@@ -33,7 +33,7 @@ public class SessionManager {
      */
     public static HttpSession initSession(HttpServletRequest request, User user, DataSource ds ){
 
-        //creo la sessione
+        //creo la sessione o la prendo da quella gia presente
         HttpSession session = request.getSession(true);
 
         //carico i dati nella sessione
@@ -47,12 +47,19 @@ public class SessionManager {
     }
 
     /**
-     * Aggiunge alla sessione passata che contiene un utente e gli aggiunge i gruppi e i servizi
-     * @param session sessione
+     * Aggiunge alla sessione passata che contiene un utente e gli aggiunge i gruppi e i servizi,
+     * se la sessione non esiste ed i dati non sono corretti torna null
+     * @param request
      * @param ds datasource
      * @return
      */
-    public static HttpSession getSessionWithGroupsAndService( HttpSession session, DataSource ds ){
+    public static HttpSession getSessionWithGroupsAndService( HttpServletRequest request, DataSource ds ){
+
+        //estraggo la sessione dalla richiesta
+        HttpSession session = request.getSession(false);
+
+        //se la sessione non e' attiva
+        if( session == null ) return null;
 
         //carico in sessione i gruppi dell'utente
         GroupsDao groupsDao = new GroupsDaoImpl(ds);
@@ -108,12 +115,19 @@ public class SessionManager {
     }
 
     /**
-     * Carica in sessione i gruppi a cui l'utente in sessione fa parte
-     * @param session sessione su cui vanno inseriti i gruppi
+     * Carica in sessione i gruppi a cui l'utente in sessione fa parte,
+     * se non esiste o i dati sono scorretti torna null
+     * @param request
      * @param ds datasource
      * @return sessione con gruppi e servizi caricati in base all'utente in sessione
      */
-    public static HttpSession getSessionWithGroups( HttpSession session, DataSource ds ){
+    public static HttpSession getSessionWithGroups( HttpServletRequest request, DataSource ds ){
+
+        //estraggo la sessione dalla richiesta
+        HttpSession session = request.getSession(false);
+
+        //se la sessione non e' attiva
+        if( session == null ) return null;
 
         //carico in sessione i gruppi dell'utente
         GroupsDao groupsDao = new GroupsDaoImpl(ds);
@@ -141,12 +155,19 @@ public class SessionManager {
     }
 
     /**
-     * Carica in sessione i servizi a cui l'utente (in sessione) fa parte
-     * @param session sessione
+     * Carica in sessione i servizi a cui l'utente (in sessione) fa parte,
+     * se non esiste o i dati sono scorretti torna null
+     * @param request
      * @param ds datasource
      * @return sessione con i servizi in base ai gruppi che si trovano in sessione, null se non ci sono in sessione utente e gruppi
      */
-    public static HttpSession getSessionWithService( HttpSession session, DataSource ds ){
+    public static HttpSession getSessionWithService( HttpServletRequest request, DataSource ds ){
+
+        //estraggo la sessione dalla richiesta
+        HttpSession session = request.getSession(false);
+
+        //se la sessione non e' attiva
+        if( session == null ) return null;
 
         //torna null se non ho caricato l'utente o i gruppi dell'utente in sessione
         if( session.getAttribute("user") == null && session.getAttribute("groups") == null) return null;
@@ -181,12 +202,19 @@ public class SessionManager {
     }
 
     /**
-     * Torna true se il servizio e' nella lista dei servizi inseriti in sessione
-     * @param session sessione da cui si controlla se il servizio e' tra la lista
+     * Torna true se il servizio e' nella lista dei servizi inseriti in sessione,
+     * se la sessione non esiste o i dati sono scorretti torna false
+     * @param request
      * @param service servizio da confrontare con quelli in sessione
      * @return true se service e' tra la lista di servizi in sessione
      */
-    public static boolean isPermissed( HttpSession session, Service service){
+    public static boolean isPermissed( HttpServletRequest request, Service service){
+
+        //estraggo la sessione dalla richiesta
+        HttpSession session = request.getSession(false);
+
+        //se la sessione non e' attiva
+        if( session == null ) return false;
 
         if( session.getAttribute("services")!= null ) { // se si e' caricata la lista dei servizi nella sessione
 
@@ -206,22 +234,33 @@ public class SessionManager {
 
 
     /**
-     * Torna true se ci sono i dati in sessione e se l'ip corrisponde a quello della richiesta, false altrimenti
-     * @param session
+     * Torna true se ci sono i dati in sessione e se l'ip corrisponde a quello della richiesta e la sessione esiste
+     * false altrimenti,
+     * @param request
      * @return
      */
-    public static boolean isValid( HttpSession session, HttpServletRequest request){
+    public static boolean isValid(  HttpServletRequest request){
+
+        System.out.println("lanciato metodo isValid");
+
+        //estraggo la sessione dalla richiesta
+        HttpSession session = request.getSession(false);
 
         //se i dati della sessione sono corretti
-        if( session.getAttribute("user") != null ||
-                session.getAttribute("ip_address") != null ||
-                session.getAttribute("session_start") != null||
-                session.getAttribute("ip_address").equals( request.getRemoteHost() )){
+        if(     session != null &&
+                session.getAttribute("user") != null &&
+                session.getAttribute("ip_address") != null &&
+                session.getAttribute("session_start") != null &&
+                session.getAttribute("ip_address").equals( request.getRemoteHost()  )){
+
+            System.out.println("isValid torna true");
 
             return true;
 
         //se i dati in sessione sono scorretti
         }else{
+
+            System.out.println("isValid torna false");
             return false;
         }
     }
@@ -229,13 +268,18 @@ public class SessionManager {
     /**
      * Torna true se ci sono i dati in sessione, se l'ip corrisponde a quello della richiesta
      * e se la sessione non e' vecchia, false altrimenti
-     * @param session
      * @return
      */
-    public static boolean isHardValid(HttpSession session, HttpServletRequest request){
+    public static boolean isHardValid(HttpServletRequest request){
+
+        //estraggo la sessione dalla richiesta
+        HttpSession session = request.getSession(false);
+
+        //se la sessione non e' attiva
+        if( session == null ) return false;
 
         //se ci sono i dati  in sessione, se l'ip corrisponde a quello della richiesta
-        if( isValid(session, request) ){
+        if( isValid(request) ){
 
             // prendo la data attuale
             Calendar now = Calendar.getInstance();
@@ -255,7 +299,19 @@ public class SessionManager {
         return false;
     }
 
+    /**
+     * distrugge la sessione se esiste
+     *
+     * @param request richiesta servlet
+     */
+    public static void destroySession(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
 
+        //se la sessione esiste la elimino
+        if (session != null) {
+            session.invalidate();
+        }
+    }
 
 }
 

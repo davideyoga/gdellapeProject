@@ -51,4 +51,16 @@
     </servlet-mapping>
     <!-- Fine Servlet di login -->
 
+    <!-- Servlet di login -->
+    <servlet>
+        <servlet-name>ProfileManagement</servlet-name>
+        <servlet-class>controller.ProfileManagement</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProfileManagement</servlet-name>
+        <url-pattern>/ProfileManagement</url-pattern>
+        <url-pattern>/profileManagement</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di login -->
+
 </web-app>

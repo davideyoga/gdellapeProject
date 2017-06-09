@@ -17,12 +17,12 @@ public class TemplateController {
 
     /**
      * prepara l'ambiente di Freemarker e processa della template
-     * @param template_name nome della template
+     * @param templateName nome della template
      * @param data Map contenente i dati da iniettare nella template
      * @param response risposta servlet
      * @param servlet_context contesto della servlet
      */
-    public static void process(String template_name, Map data, HttpServletResponse response, ServletContext servlet_context) {
+    public static void process(String templateName, Map data, HttpServletResponse response, ServletContext servlet_context) {
 
         //setto il tipo del contenuto di ritorno
         response.setContentType("text/html; charset=UTF-8");
@@ -39,9 +39,9 @@ public class TemplateController {
 
             System.out.println("passo 1");
 
-            template = cfg.getTemplate(template_name);
+            template = cfg.getTemplate(templateName);
 
-            System.out.println("passo 2");
+            System.out.println("passo 2: tameplate caricato");
 
             //ottengo lo stream della risposta
             out = response.getWriter();
