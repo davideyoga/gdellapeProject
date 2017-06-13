@@ -28,7 +28,7 @@ public class Material {
     @Override
     public String toString() {
         return "Material{" +
-                "id=" + id +
+                "idCourse=" + id +
                 ", description_ita='" + description_ita + '\'' +
                 ", description_eng='" + description_eng + '\'' +
                 ", data=" + data +

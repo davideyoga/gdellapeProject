@@ -9,15 +9,15 @@ import model.Groups;
  */
 public interface CourseDao extends DaoData{
 
-    public Course getCourse();
-    public Course getCourseById(int Id) throws DaoException;
-    public Course getCourseByName(String name) throws DaoException;
-    public Course getCourseByCode(int code) throws DaoException;
-    public Course getCourseByYear(String year) throws DaoException;
-    public Course getCourseByCfu(int cfu) throws DaoException;
-    public Course getCourseBySector(String sector) throws DaoException;
-    public Course getCourseByLanguage(String language) throws DaoException;
-    public Course getCourseBySemester(int semester) throws DaoException;
-    public Course storeCourse (Course course) throws DaoException;
-    public Course deleteCourse (Course course) throws DaoException;
+    Course getCourse();
+    Course getCourseById(int Id) throws DaoException;
+    Course getCourseByName(String name) throws DaoException;
+    Course getCourseByCode(int code) throws DaoException;
+    Course getCourseByYear(String year) throws DaoException;
+    Course getCourseByCfu(int cfu) throws DaoException;
+    Course getCourseBySector(String sector) throws DaoException;
+    Course getCourseByLanguage(String language) throws DaoException;
+    Course getCourseBySemester(int semester) throws DaoException;
+    Course storeCourse(Course course) throws DaoException;
+    Course deleteCourse(Course course) throws DaoException;
 }

@@ -5,7 +5,7 @@ import dao.data.DaoData;
  * Created by antonello on 25/05/17.
  */
 public class Course {
-    int id;
+    int idCourse;
     String code;
     String name;
     String year;
@@ -39,7 +39,7 @@ public class Course {
     String external_material_eng;
 
     public Course(DaoData daoData) {
-        this.id = 0;
+        this.idCourse = 0;
         this.code = null;
         this.name = null;
         this.year = null;
@@ -73,12 +73,12 @@ public class Course {
         this.external_material_eng = null;
     }
 
-    public int getId() {
-        return id;
+    public int getIdCourse() {
+        return idCourse;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdCourse(int idCourse) {
+        this.idCourse = idCourse;
     }
 
     public String getCode() {
