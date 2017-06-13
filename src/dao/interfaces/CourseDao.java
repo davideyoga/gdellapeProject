@@ -12,7 +12,7 @@ public interface CourseDao extends DaoData{
     Course getCourse();
     Course getCourseById(int Id) throws DaoException;
     Course getCourseByName(String name) throws DaoException;
-    Course getCourseByCode(int code) throws DaoException;
+    Course getCourseByCode(String code) throws DaoException;
     Course getCourseByYear(String year) throws DaoException;
     Course getCourseByCfu(int cfu) throws DaoException;
     Course getCourseBySector(String sector) throws DaoException;
