@@ -107,6 +107,7 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
                     "external_material_ita"+
                     "external_material_eng");
 
+
             this.deleteCourseById = connection.prepareStatement("DELETE FROM course" +
                     "                                               WHERE id=?");
 
