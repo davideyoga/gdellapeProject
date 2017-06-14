@@ -3,7 +3,7 @@ package dao.interfaces;
 import dao.data.DaoData;
 import dao.exception.DaoException;
 import model.Course;
-import model.Groups;
+
 /**
  * Created by antonello on 25/05/17.
  */
@@ -19,5 +19,5 @@ public interface CourseDao extends DaoData{
     Course getCourseByLanguage(String language) throws DaoException;
     Course getCourseBySemester(int semester) throws DaoException;
     Course storeCourse(Course course) throws DaoException;
-    Course deleteCourse(Course course) throws DaoException;
+    void deleteCourse(Course course) throws DaoException;
 }
