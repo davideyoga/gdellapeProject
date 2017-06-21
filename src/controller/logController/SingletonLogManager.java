@@ -1,5 +1,6 @@
-package controller.logManager;
+package controller.logController;
 
+import controller.sessionController.SingletonSessionManager;
 import dao.exception.DaoException;
 import dao.implementation.LogDaoImpl;
 import dao.interfaces.LogDao;
@@ -11,7 +12,19 @@ import javax.sql.DataSource;
 /**
  * @author  Davide Micarelli
  */
-public class LogManager {
+public class SingletonLogManager {
+
+    private static SingletonLogManager logManager;
+
+    private SingletonLogManager(){}
+
+    public static SingletonLogManager getLogManager(){
+
+        if(logManager == null) logManager = new SingletonLogManager();
+
+        return logManager;
+    }
+
 
     /**
      * Inserisce il log con l'id dell'utente passato ed la descrizione del log
@@ -20,7 +33,7 @@ public class LogManager {
      * @param ds datasource per inizializzare il dao
      * @throws LogException
      */
-    public static void addLog(User user, String description, DataSource ds) throws LogException {
+    public void addLog(User user, String description, DataSource ds) throws LogException {
 
         //creo il dao
         LogDao logDao = new LogDaoImpl(ds);

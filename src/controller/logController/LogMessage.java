@@ -1,4 +1,4 @@
-package controller.logManager;
+package controller.logController;
 
 /**
  * @Creator Davide Micarelli

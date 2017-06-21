@@ -228,10 +228,6 @@ public class GroupsDaoImpl extends DaoDataMySQLImpl implements GroupsDao {
 
                 Groups groups = this.generateGroups(rs);
 
-                groups.setId(rs.getInt("id"));
-                groups.setName(stripSlashes(rs.getString("name")));
-                groups.setDescription(stripSlashes(rs.getString("description")));
-
                 list.add(groups);
             }
 

@@ -102,7 +102,7 @@ public class LogDaoImpl extends DaoDataMySQLImpl implements LogDao {
     }
 
     /**
-     * torna il Log nel db con id = idLog
+     * torna il Log nel db con id = idLog, null se non presente nel db
      * @param idLog id del Log
      * @return Log con id = idLog
      * @throws DaoException
@@ -116,8 +116,14 @@ public class LogDaoImpl extends DaoDataMySQLImpl implements LogDao {
 
             ResultSet rs = this.selectLogById.executeQuery();
 
-            return this.generateLog( rs );
+            if(rs.next()) {
+                //torna il log generato con la rupla di rs passata a generateLog
+                return this.generateLog(rs);
 
+            }else{
+                // se rs e' vuoto torna null
+                return null;
+            }
         } catch (SQLException e) {
             throw new SelectDaoException("Error getLogById", e);
         }
@@ -145,10 +151,6 @@ public class LogDaoImpl extends DaoDataMySQLImpl implements LogDao {
 
                 logList.add(this.generateLog(rs)); // aggiungo alla lista il log della tupla di rs attuale
 
-                /*
-                    Log tempLog = this.generateLog( rs );
-                    logList.add( tempLog );
-                 */
             }
 
         } catch (SQLException e) {

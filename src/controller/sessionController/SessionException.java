@@ -1,4 +1,4 @@
-package controller.session;
+package controller.sessionController;
 
 /**
  * @Creator Davide Micarelli

@@ -36,8 +36,6 @@ public class TemplateServlet extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) {
 
-
-
         UserDao userDao = new UserDaoImpl(ds);
         GroupsDao groupsDao = new GroupsDaoImpl(ds);
 

@@ -1,8 +1,7 @@
 package controller;
 
-import controller.logManager.LogException;
-import controller.logManager.LogManager;
-import controller.session.SessionManager;
+import controller.logController.LogException;
+import controller.sessionController.SessionException;
 import dao.exception.DaoException;
 import dao.implementation.UserDaoImpl;
 import dao.interfaces.UserDao;
@@ -10,9 +9,7 @@ import model.User;
 import view.TemplateController;
 
 import javax.annotation.Resource;
-import javax.net.ssl.SSLContext;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -25,12 +22,28 @@ import java.util.Map;
  * @Creator Davide Micarelli
  */
 
-public class ProfileManagement extends HttpServlet {
+public class ProfileManagement extends BaseController {
 
     @Resource(name = "jdbc/gdellapeProject")
     private static DataSource ds;
 
     private Map<String, Object> datamodel = new HashMap<>();
+
+    /**
+     * carica nel datamodel l'utente in sessione e lancia il template
+     * @param request
+     * @param response
+     */
+    private void processTemplate(HttpServletRequest request, HttpServletResponse response){
+
+
+        //inserisco l'user estratto dalla sessione da passate al template
+        this.datamodel.put("user", request.getSession().getAttribute("user"));
+
+        //se richiesta get lancio il template di profilo con i dati dell'utente in sessione
+        TemplateController.process("profile.ftl", datamodel, response, getServletContext());
+
+    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -38,7 +51,7 @@ public class ProfileManagement extends HttpServlet {
         //HttpSession session = request.getSession(false);
 
         //se la sessione e' valida e abbastanza nuova
-        if(SessionManager.isHardValid( request )){
+        if(sessionManager.isHardValid( request )){
 
             UserDao userDao = new UserDaoImpl(ds);
             try {
@@ -72,12 +85,21 @@ public class ProfileManagement extends HttpServlet {
                     userDao.storeUser(userDaForm);
 
                     //inserisco un log nel db descrivendo cio' che e' successo
-                    LogManager.addLog(userDaForm, "User with id: " + userDaForm.getId() + " has change your personal date", ds);
+                    logManager.addLog(userDaForm, "User with id: " + userDaForm.getId() + " has change your personal date", ds);
+
+                    //rimuovo il precedente user dalla sessione
+                    request.getSession().removeAttribute("user");
+
+                    //carico il nuovo utente in sessione
+                    request.getSession().setAttribute("user", userDaForm);
 
                 }
 
                 //chiudo il dao
                 userDao.destroy();
+
+                //lancio il template(con i nuovi dati de sono cambiati, altrimenti con quelli vecchi)
+                processTemplate(request, response);
 
             } catch (DaoException e) {
                 e.printStackTrace();
@@ -97,36 +119,41 @@ public class ProfileManagement extends HttpServlet {
             newSession.setAttribute("previus_page", "ProfileManagement");
 
             //lancio il template di login
-            TemplateController.process( "profile.html", datamodel ,response, getServletContext() );
+            TemplateController.process( "profile.ftl", datamodel ,response, getServletContext() );
         }
+
+
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //se sessione non valida
-        if(!SessionManager.isValid(request)){;
+        if(!sessionManager.isValid(request)){;
 
-            //ditruggo la sessione
-            SessionManager.destroySession(request);
+            try {
 
-            //creo la sessione e carico la pagina in cui si trovava l'utente prima di essere reindirizzato al login
-            //in modo di poterlo reindirizzare dopo aver rieffettuato il login
-            HttpSession newSession = request.getSession(true);
-            newSession.setAttribute("previus_page", "ProfileManagement");
+                //ditruggo la sessione
+                sessionManager.destroySession(request);
+
+                //creo la sessione e carico la pagina in cui si trovava l'utente prima di essere reindirizzato al login
+                //in modo di poterlo reindirizzare dopo aver rieffettuato il login
+                HttpSession newSession = request.getSession(true);
+
+
+                sessionManager.setPreviusPage(request, "ProfileManagement");
+
 
             //reindirizzo verso pagina di login
             response.sendRedirect("Login");
+
+            } catch (SessionException e) {
+                e.printStackTrace();
+            }
+
+        }else {//se la sessione e' valida...
+
+            processTemplate(request, response);
         }
-
-        //estraggo la sessione se esiste
-        HttpSession session = request.getSession();
-
-        //inserisco l'user estratto dalla sessione da passate al template
-        this.datamodel.put("user", session.getAttribute("user"));
-
-        //se richiesta get lancio il template di profilo con i dati dell'utente in sessione
-        TemplateController.process( "profile.html", datamodel ,response, getServletContext() );
-
     }
 }

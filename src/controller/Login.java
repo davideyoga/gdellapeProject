@@ -1,6 +1,6 @@
 package controller;
 
-import controller.session.SessionManager;
+import controller.sessionController.SessionException;
 import dao.exception.DaoException;
 import dao.implementation.UserDaoImpl;
 import dao.interfaces.UserDao;
@@ -9,10 +9,8 @@ import view.TemplateController;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.HashMap;
@@ -21,7 +19,7 @@ import java.util.Map;
 /**
  * @author  Davide Micarelli
  */
-public class Login extends HttpServlet {
+public class Login extends BaseController {
 
     @Resource(name = "jdbc/gdellapeProject")
     private static DataSource ds;
@@ -81,33 +79,37 @@ public class Login extends HttpServlet {
                     this.previusPage = (String) request.getSession().getAttribute("previus_page");
 
                     //distruggo l'attuale sessione
-                    SessionManager.destroySession(request);
+                    sessionManager.destroySession(request);
 
                     //inizializzo una nuova sessione
-                    HttpSession session = request.getSession(true);
-
-                    //insericso nella sessione i parametri base
-                    SessionManager.initSession(request, user, ds);
+                    sessionManager.initSession(request, user, ds);
 
                     //inserisco nella sessione gruppi e servizi appartenenti all'utente
-                    SessionManager.getSessionWithGroupsAndService( request, ds);
+                    sessionManager.getSessionWithGroupsAndService( request, ds);
 
                     //inserisco nel datamodel l'utente
                     this.datamodel.put("user", user);
 
-                    //se esiste reinderizzo alla pagina precedente
-                    if(this.previusPage != null){
+                    String previousPage = sessionManager.getPreviusPage(request);
 
-                        response.sendRedirect(previusPage);
+                    //se esiste reinderizzo alla pagina precedente
+                    if(previousPage != null && previousPage != ""){
+
+                        //rendo null la pagina precedente prima di reindirizzare
+                        sessionManager.setPreviusPage(request, null);
+
+                        response.sendRedirect(sessionManager.getPreviusPage(request));
                     }
 
                     //lancio il template passandogli il datamodel contenente l'utente, reindirizzo alla home del back-office
-                    TemplateController.process( "index_back_office.html", this.datamodel ,response, getServletContext() );
+                    TemplateController.process( "home_back_office.ftl", this.datamodel ,response, getServletContext() );
 
                 // se l'utente non e' nel database
                 }else processUnknown( request, response);
 
             } catch (DaoException e) {
+                e.printStackTrace();
+            } catch (SessionException e) {
                 e.printStackTrace();
             }
         }else{
