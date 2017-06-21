@@ -1,7 +1,7 @@
 -- inserire i campi bilingua 
 
 CREATE TABLE course (
-    id INT(16) UNSIGNED AUTO_INCREMENT NOT NULL, 
+    idCourse INT(16) UNSIGNED AUTO_INCREMENT NOT NULL,
     code VARCHAR(8) NOT NULL,
     name VARCHAR(32) NOT NULL,
     year VARCHAR(9),
@@ -33,7 +33,7 @@ CREATE TABLE course (
     lifelog_learning_skills_eng TEXT,
     external_material_ita TEXT,
     external_material_eng TEXT,
-primary key (id)
+primary key (idCourse)
 );
 
 CREATE TABLE borrowedCourse ( /* corso mutuato*/
@@ -42,9 +42,9 @@ CREATE TABLE borrowedCourse ( /* corso mutuato*/
     primary key (course_id, corse_borrowed_id), 
 	
 	FOREIGN KEY (course_id)
-    		REFERENCES course(id),
+    		REFERENCES course(idCourse),
 	FOREIGN KEY (corse_borrowed_id)
-    		REFERENCES course(id)  
+    		REFERENCES course(idCourse)
 )
 
 CREATE TABLE preparatoryCourse (
@@ -53,9 +53,9 @@ CREATE TABLE preparatoryCourse (
     primary key (course_id, corse_preparatory_id), 
 	
 	FOREIGN KEY (course_id)
-    		REFERENCES course(id),
+    		REFERENCES course(idCourse),
 	FOREIGN KEY (corse_preparatory_id)
-    		REFERENCES course(id)
+    		REFERENCES course(idCourse)
 )
 
 CREATE TABLE moduleCourse (
@@ -64,14 +64,14 @@ CREATE TABLE moduleCourse (
 primary key (course_id, corse_module_id), 
 	
 	FOREIGN KEY (course_id)
-    		REFERENCES course(id),
+    		REFERENCES course(idCourse),
 	FOREIGN KEY (corse_module_id)
-    		REFERENCES course(id)
+    		REFERENCES course(idCourse)
 
 )
 
 CREATE TABLE user (
-    id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    idCourse INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
     surname VARCHAR(32),
     name VARCHAR(32),
     email VARCHAR(64),
@@ -80,7 +80,7 @@ CREATE TABLE user (
     curriculum_eng TEXT,
     receprion_hours_ita TEXT,
     receprion_hours_eng TEXT,
-primary key (id)
+primary key (idCourse)
 );
 
 CREATE TABLE course_user(
@@ -89,16 +89,16 @@ CREATE TABLE course_user(
     primary key (course_id, user_id), 
 	
 	FOREIGN KEY (course_id)
-    		REFERENCES course(id),
+    		REFERENCES course(idCourse),
 	FOREIGN KEY (user_id)
-    		REFERENCES user(id)
+    		REFERENCES user(idCourse)
 );
 
 CREATE TABLE groups (
-    id INT(10) UNSIGNED AUTO_INCREMENT NOT NULL,
+    idCourse INT(10) UNSIGNED AUTO_INCREMENT NOT NULL,
     name VARCHAR(32),
     description TEXT,
-primary key (id)
+primary key (idCourse)
 );
 
 CREATE TABLE user_groups (
@@ -106,16 +106,16 @@ CREATE TABLE user_groups (
     groups_id INT(10) UNSIGNED NOT NULL,
 
     FOREIGN KEY (user_id)
-    	REFERENCES user(id),
+    	REFERENCES user(idCourse),
 	FOREIGN KEY (groups_id)
-    	REFERENCES groups(id)     
+    	REFERENCES groups(idCourse)
 )
 
 CREATE TABLE service (
-    id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    idCourse INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
     name VARCHAR(32),
     description TEXT,
-primary key (id)
+primary key (idCourse)
 );
 
 CREATE TABLE groups_service (
@@ -123,13 +123,13 @@ CREATE TABLE groups_service (
     groups_id INT(10) UNSIGNED NOT NULL,
 
     FOREIGN KEY (service_id)
-    	REFERENCES service(id),
+    	REFERENCES service(idCourse),
 	FOREIGN KEY (groups_id)
-    	REFERENCES groups(id) 
+    	REFERENCES groups(idCourse)
 )
 
 CREATE TABLE studyCourse (
-    id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    idCourse INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
     code VARCHAR(8) NOT NULL,
     name VARCHAR(32) NOT NULL,
     description_ita TEXT,
@@ -145,7 +145,7 @@ CREATE TABLE studyCourse (
     accessType_eng VARCHAR(32),
     language_ita VARCHAR(32),
     language_eng VARCHAR(32),
-primary key (id)
+primary key (idCourse)
 );
 
 CREATE TABLE course_studyCourse (
@@ -154,13 +154,13 @@ CREATE TABLE course_studyCourse (
     cfuType VARCHAR(8),
 
     FOREIGN KEY (course_id)
-    	REFERENCES course(id),
+    	REFERENCES course(idCourse),
 	FOREIGN KEY (studyCourse_id)
-    	REFERENCES studyCourse(id) 
+    	REFERENCES studyCourse(idCourse)
 )
 
 CREATE TABLE book(
-    id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    idCourse INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
     code VARCHAR(32),
     author VARCHAR(64), 
     title VARCHAR(32),
@@ -168,7 +168,7 @@ CREATE TABLE book(
     age INT(10),
     editor VARCHAR(32),
     link VARCHAR(64),
-primary key (id)
+primary key (idCourse)
 );
 
 CREATE TABLE course_book (
@@ -176,15 +176,15 @@ CREATE TABLE course_book (
     book_id INT(10) UNSIGNED NOT NULL,
 
     FOREIGN KEY (course_id)
-    	REFERENCES course(id),
+    	REFERENCES course(idCourse),
 	FOREIGN KEY (book_id)
-    	REFERENCES book(id) 
+    	REFERENCES book(idCourse)
 )
 
 CREATE TABLE log(
-    id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    idCourse INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
     description VARCHAR(256),
-primary key (id)
+primary key (idCourse)
 );
 
 CREATE TABLE user_log (
@@ -192,19 +192,19 @@ CREATE TABLE user_log (
     log_id INT(10) UNSIGNED NOT NULL,
 
     FOREIGN KEY (user_id)
-    	REFERENCES user(id),
+    	REFERENCES user(idCourse),
 	FOREIGN KEY (log_id)
-    	REFERENCES log(id) 
+    	REFERENCES log(idCourse)
 )
 
 CREATE TABLE material (
-    id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    idCourse INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
     description_ita TEXT,
     description_eng TEXT,
     date DATETIME,
     size real NOT NULL,
     type VARCHAR(32),
-primary key (id)
+primary key (idCourse)
 )
 
 CREATE TABLE course_material (
@@ -212,9 +212,9 @@ CREATE TABLE course_material (
     material_id INT(10) UNSIGNED NOT NULL,
 
     FOREIGN KEY (course_id)
-    	REFERENCES course(id),
+    	REFERENCES course(idCourse),
 	FOREIGN KEY (material_id)
-    	REFERENCES material(id) 
+    	REFERENCES material(idCourse)
 )
 
 

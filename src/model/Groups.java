@@ -17,7 +17,7 @@ public class Groups{
     @Override
     public String toString() {
         return "Groups{" +
-                "id=" + id +
+                "idCourse=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 '}';

@@ -39,7 +39,7 @@ public class Service {
 
     @Override
     public String toString() {
-        return "Service{" + "id=" + id + ", name='" + name + '\'' + ", description='" + description + '\'' + '}';
+        return "Service{" + "idCourse=" + id + ", name='" + name + '\'' + ", description='" + description + '\'' + '}';
     }
 
     public int getId() {

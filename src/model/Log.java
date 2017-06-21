@@ -23,7 +23,7 @@ public class Log {
 
     @Override
     public String toString() {
-        return "Log{" + "id=" + id + ", idUser=" + idUser + ", description='" + description + '\'' + ", date=" + date + '}';
+        return "Log{" + "idCourse=" + id + ", idUser=" + idUser + ", description='" + description + '\'' + ", date=" + date + '}';
     }
 
     @Override

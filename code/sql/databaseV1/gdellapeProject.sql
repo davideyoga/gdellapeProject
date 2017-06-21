@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `book` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `idCourse` int(10) UNSIGNED NOT NULL,
   `code` varchar(32) DEFAULT NULL,
   `author` varchar(64) DEFAULT NULL,
   `title` varchar(32) DEFAULT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE `borrowedCourse` (
 --
 
 CREATE TABLE `course` (
-  `id` int(16) UNSIGNED NOT NULL,
+  `idCourse` int(16) UNSIGNED NOT NULL,
   `code` varchar(8) NOT NULL,
   `name` varchar(32) NOT NULL,
   `year` varchar(9) DEFAULT NULL,
@@ -141,7 +141,7 @@ CREATE TABLE `course_user` (
 --
 
 CREATE TABLE `groups` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `idCourse` int(10) UNSIGNED NOT NULL,
   `name` varchar(32) DEFAULT NULL,
   `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -164,7 +164,7 @@ CREATE TABLE `groups_service` (
 --
 
 CREATE TABLE `log` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `idCourse` int(10) UNSIGNED NOT NULL,
   `description` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -175,7 +175,7 @@ CREATE TABLE `log` (
 --
 
 CREATE TABLE `material` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `idCourse` int(10) UNSIGNED NOT NULL,
   `description_ita` text,
   `description_eng` text,
   `date` datetime DEFAULT NULL,
@@ -212,7 +212,7 @@ CREATE TABLE `preparatoryCourse` (
 --
 
 CREATE TABLE `service` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `idCourse` int(10) UNSIGNED NOT NULL,
   `name` varchar(32) DEFAULT NULL,
   `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -224,7 +224,7 @@ CREATE TABLE `service` (
 --
 
 CREATE TABLE `studyCourse` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `idCourse` int(10) UNSIGNED NOT NULL,
   `code` varchar(8) NOT NULL,
   `name` varchar(32) NOT NULL,
   `description_ita` text,
@@ -249,7 +249,7 @@ CREATE TABLE `studyCourse` (
 --
 
 CREATE TABLE `user` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `idCourse` int(10) UNSIGNED NOT NULL,
   `surname` varchar(32) DEFAULT NULL,
   `name` varchar(32) DEFAULT NULL,
   `email` varchar(64) DEFAULT NULL,
@@ -290,7 +290,7 @@ CREATE TABLE `user_log` (
 -- Indexes for table `book`
 --
 ALTER TABLE `book`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`idCourse`);
 
 --
 -- Indexes for table `borrowedCourse`
@@ -303,7 +303,7 @@ ALTER TABLE `borrowedCourse`
 -- Indexes for table `course`
 --
 ALTER TABLE `course`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`idCourse`);
 
 --
 -- Indexes for table `course_book`
@@ -337,7 +337,7 @@ ALTER TABLE `course_user`
 -- Indexes for table `groups`
 --
 ALTER TABLE `groups`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`idCourse`);
 
 --
 -- Indexes for table `groups_service`
@@ -350,13 +350,13 @@ ALTER TABLE `groups_service`
 -- Indexes for table `log`
 --
 ALTER TABLE `log`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`idCourse`);
 
 --
 -- Indexes for table `Material`
 --
 ALTER TABLE `material`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`idCourse`);
 
 --
 -- Indexes for table `moduleCourse`
@@ -376,19 +376,19 @@ ALTER TABLE `preparatoryCourse`
 -- Indexes for table `service`
 --
 ALTER TABLE `service`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`idCourse`);
 
 --
 -- Indexes for table `studyCourse`
 --
 ALTER TABLE `studyCourse`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`idCourse`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`idCourse`);
 
 --
 -- Indexes for table `user_groups`
@@ -412,42 +412,42 @@ ALTER TABLE `user_log`
 -- AUTO_INCREMENT for table `book`
 --
 ALTER TABLE `book`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idCourse` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `id` int(16) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idCourse` int(16) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idCourse` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `log`
 --
 ALTER TABLE `log`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idCourse` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `Material`
 --
 ALTER TABLE `material`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idCourse` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idCourse` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `studyCourse`
 --
 ALTER TABLE `studyCourse`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idCourse` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idCourse` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
@@ -456,71 +456,71 @@ ALTER TABLE `user`
 -- Constraints for table `borrowedCourse`
 --
 ALTER TABLE `borrowedCourse`
-  ADD CONSTRAINT `borrowedCourse_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`),
-  ADD CONSTRAINT `borrowedCourse_ibfk_2` FOREIGN KEY (`corse_borrowed_id`) REFERENCES `course` (`id`);
+  ADD CONSTRAINT `borrowedCourse_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`idCourse`),
+  ADD CONSTRAINT `borrowedCourse_ibfk_2` FOREIGN KEY (`corse_borrowed_id`) REFERENCES `course` (`idCourse`);
 
 --
 -- Constraints for table `course_book`
 --
 ALTER TABLE `course_book`
-  ADD CONSTRAINT `course_book_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`),
-  ADD CONSTRAINT `course_book_ibfk_2` FOREIGN KEY (`book_id`) REFERENCES `book` (`id`);
+  ADD CONSTRAINT `course_book_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`idCourse`),
+  ADD CONSTRAINT `course_book_ibfk_2` FOREIGN KEY (`book_id`) REFERENCES `book` (`idCourse`);
 
 --
 -- Constraints for table `course_material`
 --
 ALTER TABLE `course_material`
-  ADD CONSTRAINT `course_material_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`),
-  ADD CONSTRAINT `course_material_ibfk_2` FOREIGN KEY (`material_id`) REFERENCES `material` (`id`);
+  ADD CONSTRAINT `course_material_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`idCourse`),
+  ADD CONSTRAINT `course_material_ibfk_2` FOREIGN KEY (`material_id`) REFERENCES `material` (`idCourse`);
 
 --
 -- Constraints for table `course_studyCourse`
 --
 ALTER TABLE `course_studyCourse`
-  ADD CONSTRAINT `course_studyCourse_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`),
-  ADD CONSTRAINT `course_studyCourse_ibfk_2` FOREIGN KEY (`studyCourse_id`) REFERENCES `studyCourse` (`id`);
+  ADD CONSTRAINT `course_studyCourse_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`idCourse`),
+  ADD CONSTRAINT `course_studyCourse_ibfk_2` FOREIGN KEY (`studyCourse_id`) REFERENCES `studyCourse` (`idCourse`);
 
 --
 -- Constraints for table `course_user`
 --
 ALTER TABLE `course_user`
-  ADD CONSTRAINT `course_user_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`),
-  ADD CONSTRAINT `course_user_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `course_user_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`idCourse`),
+  ADD CONSTRAINT `course_user_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`idCourse`);
 
 --
 -- Constraints for table `groups_service`
 --
 ALTER TABLE `groups_service`
-  ADD CONSTRAINT `groups_service_ibfk_1` FOREIGN KEY (`service_id`) REFERENCES `service` (`id`),
-  ADD CONSTRAINT `groups_service_ibfk_2` FOREIGN KEY (`groups_id`) REFERENCES `groups` (`id`);
+  ADD CONSTRAINT `groups_service_ibfk_1` FOREIGN KEY (`service_id`) REFERENCES `service` (`idCourse`),
+  ADD CONSTRAINT `groups_service_ibfk_2` FOREIGN KEY (`groups_id`) REFERENCES `groups` (`idCourse`);
 
 --
 -- Constraints for table `moduleCourse`
 --
 ALTER TABLE `moduleCourse`
-  ADD CONSTRAINT `moduleCourse_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`),
-  ADD CONSTRAINT `moduleCourse_ibfk_2` FOREIGN KEY (`corse_module_id`) REFERENCES `course` (`id`);
+  ADD CONSTRAINT `moduleCourse_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`idCourse`),
+  ADD CONSTRAINT `moduleCourse_ibfk_2` FOREIGN KEY (`corse_module_id`) REFERENCES `course` (`idCourse`);
 
 --
 -- Constraints for table `PreparatoryCourse`
 --
 ALTER TABLE `preparatoryCourse`
-  ADD CONSTRAINT `preparatoryCourse_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`),
-  ADD CONSTRAINT `preparatoryCourse_ibfk_2` FOREIGN KEY (`corse_preparatory_id`) REFERENCES `course` (`id`);
+  ADD CONSTRAINT `preparatoryCourse_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`idCourse`),
+  ADD CONSTRAINT `preparatoryCourse_ibfk_2` FOREIGN KEY (`corse_preparatory_id`) REFERENCES `course` (`idCourse`);
 
 --
 -- Constraints for table `user_groups`
 --
 ALTER TABLE `user_groups`
-  ADD CONSTRAINT `user_groups_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `user_groups_ibfk_2` FOREIGN KEY (`groups_id`) REFERENCES `groups` (`id`);
+  ADD CONSTRAINT `user_groups_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`idCourse`),
+  ADD CONSTRAINT `user_groups_ibfk_2` FOREIGN KEY (`groups_id`) REFERENCES `groups` (`idCourse`);
 
 --
 -- Constraints for table `user_log`
 --
 ALTER TABLE `user_log`
-  ADD CONSTRAINT `user_log_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `user_log_ibfk_2` FOREIGN KEY (`log_id`) REFERENCES `log` (`id`);
+  ADD CONSTRAINT `user_log_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`idCourse`),
+  ADD CONSTRAINT `user_log_ibfk_2` FOREIGN KEY (`log_id`) REFERENCES `log` (`idCourse`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -5,7 +5,7 @@ import dao.data.DaoData;
  * Created by antonello on 25/05/17.
  */
 public class Course {
-    int id;
+    int idCourse;
     String code;
     String name;
     String year;
@@ -39,7 +39,7 @@ public class Course {
     String external_material_eng;
 
     public Course(DaoData daoData) {
-        this.id = 0;
+        this.idCourse = 0;
         this.code = null;
         this.name = null;
         this.year = null;
@@ -73,12 +73,12 @@ public class Course {
         this.external_material_eng = null;
     }
 
-    public int getId() {
-        return id;
+    public int getIdCourse() {
+        return idCourse;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdCourse(int idCourse) {
+        this.idCourse = idCourse;
     }
 
     public String getCode() {
@@ -329,5 +329,119 @@ public class Course {
         this.external_material_eng = external_material_eng;
     }
 
+    @Override
+    public String toString() {
+        return "Course{" +
+                "idCourse=" + idCourse +
+                ", code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                ", year='" + year + '\'' +
+                ", cfu=" + cfu +
+                ", sector='" + sector + '\'' +
+                ", language='" + language + '\'' +
+                ", semester=" + semester +
+                ", prerequisite_ita='" + prerequisite_ita + '\'' +
+                ", prerequisite_eng='" + prerequisite_eng + '\'' +
+                ", goals_ita='" + goals_ita + '\'' +
+                ", goals_eng='" + goals_eng + '\'' +
+                ", exame_mode_ita='" + exame_mode_ita + '\'' +
+                ", exame_mode_eng='" + exame_mode_eng + '\'' +
+                ", teaching_mode_ita='" + teaching_mode_ita + '\'' +
+                ", teaching_mode_eng='" + teaching_mode_eng + '\'' +
+                ", syllabus_ita='" + syllabus_ita + '\'' +
+                ", syllabus_eng='" + syllabus_eng + '\'' +
+                ", note_ita='" + note_ita + '\'' +
+                ", note_eng='" + note_eng + '\'' +
+                ", knowledge_ita='" + knowledge_ita + '\'' +
+                ", knowledge_eng='" + knowledge_eng + '\'' +
+                ", application_ita='" + application_ita + '\'' +
+                ", application_eng='" + application_eng + '\'' +
+                ", evaluation_ita='" + evaluation_ita + '\'' +
+                ", evaluation_eng='" + evaluation_eng + '\'' +
+                ", communication_ita='" + communication_ita + '\'' +
+                ", communication_eng='" + communication_eng + '\'' +
+                ", lifelog_learning_skills_ita='" + lifelog_learning_skills_ita + '\'' +
+                ", lifelog_learning_skills_eng='" + lifelog_learning_skills_eng + '\'' +
+                ", external_material_ita='" + external_material_ita + '\'' +
+                ", external_material_eng='" + external_material_eng + '\'' +
+                '}';
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Course course = (Course) o;
+
+        if (idCourse != course.idCourse) return false;
+        if (cfu != course.cfu) return false;
+        if (semester != course.semester) return false;
+        if (!code.equals(course.code)) return false;
+        if (!name.equals(course.name)) return false;
+        if (!year.equals(course.year)) return false;
+        if (!sector.equals(course.sector)) return false;
+        if (!language.equals(course.language)) return false;
+        if (!prerequisite_ita.equals(course.prerequisite_ita)) return false;
+        if (!prerequisite_eng.equals(course.prerequisite_eng)) return false;
+        if (!goals_ita.equals(course.goals_ita)) return false;
+        if (!goals_eng.equals(course.goals_eng)) return false;
+        if (!exame_mode_ita.equals(course.exame_mode_ita)) return false;
+        if (!exame_mode_eng.equals(course.exame_mode_eng)) return false;
+        if (!teaching_mode_ita.equals(course.teaching_mode_ita)) return false;
+        if (!teaching_mode_eng.equals(course.teaching_mode_eng)) return false;
+        if (!syllabus_ita.equals(course.syllabus_ita)) return false;
+        if (!syllabus_eng.equals(course.syllabus_eng)) return false;
+        if (!note_ita.equals(course.note_ita)) return false;
+        if (!note_eng.equals(course.note_eng)) return false;
+        if (!knowledge_ita.equals(course.knowledge_ita)) return false;
+        if (!knowledge_eng.equals(course.knowledge_eng)) return false;
+        if (!application_ita.equals(course.application_ita)) return false;
+        if (!application_eng.equals(course.application_eng)) return false;
+        if (!evaluation_ita.equals(course.evaluation_ita)) return false;
+        if (!evaluation_eng.equals(course.evaluation_eng)) return false;
+        if (!communication_ita.equals(course.communication_ita)) return false;
+        if (!communication_eng.equals(course.communication_eng)) return false;
+        if (!lifelog_learning_skills_ita.equals(course.lifelog_learning_skills_ita)) return false;
+        if (!lifelog_learning_skills_eng.equals(course.lifelog_learning_skills_eng)) return false;
+        if (!external_material_ita.equals(course.external_material_ita)) return false;
+        return external_material_eng.equals(course.external_material_eng);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = idCourse;
+        result = 31 * result + code.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + year.hashCode();
+        result = 31 * result + cfu;
+        result = 31 * result + sector.hashCode();
+        result = 31 * result + language.hashCode();
+        result = 31 * result + semester;
+        result = 31 * result + prerequisite_ita.hashCode();
+        result = 31 * result + prerequisite_eng.hashCode();
+        result = 31 * result + goals_ita.hashCode();
+        result = 31 * result + goals_eng.hashCode();
+        result = 31 * result + exame_mode_ita.hashCode();
+        result = 31 * result + exame_mode_eng.hashCode();
+        result = 31 * result + teaching_mode_ita.hashCode();
+        result = 31 * result + teaching_mode_eng.hashCode();
+        result = 31 * result + syllabus_ita.hashCode();
+        result = 31 * result + syllabus_eng.hashCode();
+        result = 31 * result + note_ita.hashCode();
+        result = 31 * result + note_eng.hashCode();
+        result = 31 * result + knowledge_ita.hashCode();
+        result = 31 * result + knowledge_eng.hashCode();
+        result = 31 * result + application_ita.hashCode();
+        result = 31 * result + application_eng.hashCode();
+        result = 31 * result + evaluation_ita.hashCode();
+        result = 31 * result + evaluation_eng.hashCode();
+        result = 31 * result + communication_ita.hashCode();
+        result = 31 * result + communication_eng.hashCode();
+        result = 31 * result + lifelog_learning_skills_ita.hashCode();
+        result = 31 * result + lifelog_learning_skills_eng.hashCode();
+        result = 31 * result + external_material_ita.hashCode();
+        result = 31 * result + external_material_eng.hashCode();
+        return result;
+    }
 }
