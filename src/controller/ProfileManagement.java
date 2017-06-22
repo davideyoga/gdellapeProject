@@ -116,7 +116,14 @@ public class ProfileManagement extends BaseController {
             //creo la sessione e carico la pagina in cui si trovava l'utente prima di essere reindirizzato al login
             //in modo di poterlo reindirizzare dopo aver rieffettuato il login
             HttpSession newSession = request.getSession(true);
-            newSession.setAttribute("previus_page", "ProfileManagement");
+
+            try {
+
+                sessionManager.setPreviusPage(request, "ProfileManagement");
+
+            } catch (SessionException e) {
+                e.printStackTrace();
+            }
 
             //lancio il template di login
             TemplateController.process( "profile.ftl", datamodel ,response, getServletContext() );
