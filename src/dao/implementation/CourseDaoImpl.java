@@ -2,6 +2,7 @@ package dao.implementation;
 
 import dao.data.DaoDataMySQLImpl;
 import dao.exception.DaoException;
+import dao.exception.SelectDaoException;
 import dao.interfaces.CourseDao;
 import model.Course;
 
@@ -133,38 +134,7 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
 
             if (rs.next()){
 
-                course.setIdCourse(idCourse);
-                course.setCode(stripSlashes(rs.getString("code")));
-                course.setName(stripSlashes(rs.getString("name")));
-                course.setYear(stripSlashes(rs.getString("year")));
-                course.setCfu(rs.getInt("cfu"));
-                course.setSector(stripSlashes(rs.getString("sector")));
-                course.setLanguage(stripSlashes(rs.getString("language")));
-                course.setSemester(rs.getInt("semester"));
-                course.setPrerequisite_ita(stripSlashes(rs.getString("prerequiste_ita")));
-                course.setPrerequisite_eng(stripSlashes(rs.getString("prerequiste_eng")));
-                course.setGoals_ita(stripSlashes(rs.getString("goals_ita")));
-                course.setGoals_eng(stripSlashes(rs.getString("goals_eng")));
-                course.setExame_mode_ita(stripSlashes(rs.getString("exame_mode_ita")));
-                course.setExame_mode_eng(stripSlashes(rs.getString("exame_mode_eng")));
-                course.setTeaching_mode_ita(stripSlashes(rs.getString("teaching_mode_ita")));
-                course.setTeaching_mode_eng(stripSlashes(rs.getString("teaching_mode_eng")));
-                course.setSyllabus_ita(stripSlashes(rs.getString("syllabus_ita")));
-                course.setSyllabus_eng(stripSlashes(rs.getString("syllabus_eng")));
-                course.setNote_ita(stripSlashes(rs.getString("note_ita")));
-                course.setNote_eng(stripSlashes(rs.getString("note_eng")));
-                course.setKnowledge_ita(stripSlashes(rs.getString("knowledge_ita")));
-                course.setKnowledge_eng(stripSlashes(rs.getString("knowledge_eng")));
-                course.setApplication_ita(stripSlashes(rs.getString("application_ita")));
-                course.setApplication_eng(stripSlashes(rs.getString("application_eng")));
-                course.setEvaluation_ita(stripSlashes(rs.getString("evaluation_ita")));
-                course.setEvaluation_eng(stripSlashes(rs.getString("evaluation_eng")));
-                course.setCommunication_ita(stripSlashes(rs.getString("communication_ita")));
-                course.setCommunication_eng(stripSlashes(rs.getString("communication_eng")));
-                course.setLifelog_learning_skills_ita(stripSlashes(rs.getString("lifelog_learning_skills_ita")));
-                course.setLifelog_learning_skills_eng(stripSlashes(rs.getString("lifelog_learning_skills_eng")));
-                course.setExternal_material_ita(stripSlashes(rs.getString("external_material_ita")));
-                course.setExternal_material_ita(stripSlashes(rs.getString("external_material_eng")));
+                course = generateCourse(rs);
             }
             else {//se risultato nullo ritorno null
                 return null;
@@ -188,38 +158,7 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
 
             if (rs.next()){
 
-                course.setIdCourse(rs.getInt("idCourse"));
-                course.setCode(stripSlashes(rs.getString("code")));
-                course.setName(name);
-                course.setYear(stripSlashes(rs.getString("year")));
-                course.setCfu(rs.getInt("cfu"));
-                course.setSector(stripSlashes(rs.getString("sector")));
-                course.setLanguage(stripSlashes(rs.getString("language")));
-                course.setSemester(rs.getInt("semester"));
-                course.setPrerequisite_ita(stripSlashes(rs.getString("prerequiste_ita")));
-                course.setPrerequisite_eng(stripSlashes(rs.getString("prerequiste_eng")));
-                course.setGoals_ita(stripSlashes(rs.getString("goals_ita")));
-                course.setGoals_eng(stripSlashes(rs.getString("goals_eng")));
-                course.setExame_mode_ita(stripSlashes(rs.getString("exame_mode_ita")));
-                course.setExame_mode_eng(stripSlashes(rs.getString("exame_mode_eng")));
-                course.setTeaching_mode_ita(stripSlashes(rs.getString("teaching_mode_ita")));
-                course.setTeaching_mode_eng(stripSlashes(rs.getString("teaching_mode_eng")));
-                course.setSyllabus_ita(stripSlashes(rs.getString("syllabus_ita")));
-                course.setSyllabus_eng(stripSlashes(rs.getString("syllabus_eng")));
-                course.setNote_ita(stripSlashes(rs.getString("note_ita")));
-                course.setNote_eng(stripSlashes(rs.getString("note_eng")));
-                course.setKnowledge_ita(stripSlashes(rs.getString("knowledge_ita")));
-                course.setKnowledge_eng(stripSlashes(rs.getString("knowledge_eng")));
-                course.setApplication_ita(stripSlashes(rs.getString("application_ita")));
-                course.setApplication_eng(stripSlashes(rs.getString("application_eng")));
-                course.setEvaluation_ita(stripSlashes(rs.getString("evaluation_ita")));
-                course.setEvaluation_eng(stripSlashes(rs.getString("evaluation_eng")));
-                course.setCommunication_ita(stripSlashes(rs.getString("communication_ita")));
-                course.setCommunication_eng(stripSlashes(rs.getString("communication_eng")));
-                course.setLifelog_learning_skills_ita(stripSlashes(rs.getString("lifelog_learning_skills_ita")));
-                course.setLifelog_learning_skills_eng(stripSlashes(rs.getString("lifelog_learning_skills_eng")));
-                course.setExternal_material_ita(stripSlashes(rs.getString("external_material_ita")));
-                course.setExternal_material_ita(stripSlashes(rs.getString("external_material_eng")));
+                course = generateCourse(rs);
             }
             else {//se risultato nullo ritorno null
                 return null;
@@ -243,38 +182,7 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
 
             if (rs.next()){
 
-                course.setIdCourse(rs.getInt("idCourse"));
-                course.setCode(code);
-                course.setName(stripSlashes(rs.getString("name")));
-                course.setYear(stripSlashes(rs.getString("year")));
-                course.setCfu(rs.getInt("cfu"));
-                course.setSector(stripSlashes(rs.getString("sector")));
-                course.setLanguage(stripSlashes(rs.getString("language")));
-                course.setSemester(rs.getInt("semester"));
-                course.setPrerequisite_ita(stripSlashes(rs.getString("prerequiste_ita")));
-                course.setPrerequisite_eng(stripSlashes(rs.getString("prerequiste_eng")));
-                course.setGoals_ita(stripSlashes(rs.getString("goals_ita")));
-                course.setGoals_eng(stripSlashes(rs.getString("goals_eng")));
-                course.setExame_mode_ita(stripSlashes(rs.getString("exame_mode_ita")));
-                course.setExame_mode_eng(stripSlashes(rs.getString("exame_mode_eng")));
-                course.setTeaching_mode_ita(stripSlashes(rs.getString("teaching_mode_ita")));
-                course.setTeaching_mode_eng(stripSlashes(rs.getString("teaching_mode_eng")));
-                course.setSyllabus_ita(stripSlashes(rs.getString("syllabus_ita")));
-                course.setSyllabus_eng(stripSlashes(rs.getString("syllabus_eng")));
-                course.setNote_ita(stripSlashes(rs.getString("note_ita")));
-                course.setNote_eng(stripSlashes(rs.getString("note_eng")));
-                course.setKnowledge_ita(stripSlashes(rs.getString("knowledge_ita")));
-                course.setKnowledge_eng(stripSlashes(rs.getString("knowledge_eng")));
-                course.setApplication_ita(stripSlashes(rs.getString("application_ita")));
-                course.setApplication_eng(stripSlashes(rs.getString("application_eng")));
-                course.setEvaluation_ita(stripSlashes(rs.getString("evaluation_ita")));
-                course.setEvaluation_eng(stripSlashes(rs.getString("evaluation_eng")));
-                course.setCommunication_ita(stripSlashes(rs.getString("communication_ita")));
-                course.setCommunication_eng(stripSlashes(rs.getString("communication_eng")));
-                course.setLifelog_learning_skills_ita(stripSlashes(rs.getString("lifelog_learning_skills_ita")));
-                course.setLifelog_learning_skills_eng(stripSlashes(rs.getString("lifelog_learning_skills_eng")));
-                course.setExternal_material_ita(stripSlashes(rs.getString("external_material_ita")));
-                course.setExternal_material_ita(stripSlashes(rs.getString("external_material_eng")));
+                course = generateCourse(rs);
             }
             else {//se risultato nullo ritorno null
                 return null;
@@ -286,6 +194,9 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
         return course;
     }
 
+    /*
+        DEVE TORNARE UNA LISTA DI CORSI
+     */
     @Override
     public Course getCourseByYear(String year) throws DaoException {
         Course course = null;
@@ -298,38 +209,7 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
 
             if (rs.next()){
 
-                course.setIdCourse(rs.getInt("idCourse"));
-                course.setCode(stripSlashes(rs.getString("code")));
-                course.setName(stripSlashes(rs.getString("name")));
-                course.setYear(year);
-                course.setCfu(rs.getInt("cfu"));
-                course.setSector(stripSlashes(rs.getString("sector")));
-                course.setLanguage(stripSlashes(rs.getString("language")));
-                course.setSemester(rs.getInt("semester"));
-                course.setPrerequisite_ita(stripSlashes(rs.getString("prerequiste_ita")));
-                course.setPrerequisite_eng(stripSlashes(rs.getString("prerequiste_eng")));
-                course.setGoals_ita(stripSlashes(rs.getString("goals_ita")));
-                course.setGoals_eng(stripSlashes(rs.getString("goals_eng")));
-                course.setExame_mode_ita(stripSlashes(rs.getString("exame_mode_ita")));
-                course.setExame_mode_eng(stripSlashes(rs.getString("exame_mode_eng")));
-                course.setTeaching_mode_ita(stripSlashes(rs.getString("teaching_mode_ita")));
-                course.setTeaching_mode_eng(stripSlashes(rs.getString("teaching_mode_eng")));
-                course.setSyllabus_ita(stripSlashes(rs.getString("syllabus_ita")));
-                course.setSyllabus_eng(stripSlashes(rs.getString("syllabus_eng")));
-                course.setNote_ita(stripSlashes(rs.getString("note_ita")));
-                course.setNote_eng(stripSlashes(rs.getString("note_eng")));
-                course.setKnowledge_ita(stripSlashes(rs.getString("knowledge_ita")));
-                course.setKnowledge_eng(stripSlashes(rs.getString("knowledge_eng")));
-                course.setApplication_ita(stripSlashes(rs.getString("application_ita")));
-                course.setApplication_eng(stripSlashes(rs.getString("application_eng")));
-                course.setEvaluation_ita(stripSlashes(rs.getString("evaluation_ita")));
-                course.setEvaluation_eng(stripSlashes(rs.getString("evaluation_eng")));
-                course.setCommunication_ita(stripSlashes(rs.getString("communication_ita")));
-                course.setCommunication_eng(stripSlashes(rs.getString("communication_eng")));
-                course.setLifelog_learning_skills_ita(stripSlashes(rs.getString("lifelog_learning_skills_ita")));
-                course.setLifelog_learning_skills_eng(stripSlashes(rs.getString("lifelog_learning_skills_eng")));
-                course.setExternal_material_ita(stripSlashes(rs.getString("external_material_ita")));
-                course.setExternal_material_ita(stripSlashes(rs.getString("external_material_eng")));
+                course = generateCourse(rs);
             }
             else {//se risultato nullo ritorno null
                 return null;
@@ -340,7 +220,9 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
 
         return course;
     }
-
+    /*
+        DEVE TORNARE UNA LISTA DI CORSI
+     */
     @Override
     public Course getCourseByCfu(int cfu) throws DaoException {
         Course course = null;
@@ -353,38 +235,7 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
 
             if (rs.next()){
 
-                course.setIdCourse(rs.getInt("idCourse"));
-                course.setCode(stripSlashes(rs.getString("code")));
-                course.setName(stripSlashes(rs.getString("name")));
-                course.setYear(stripSlashes(rs.getString("year")));
-                course.setCfu(cfu);
-                course.setSector(stripSlashes(rs.getString("sector")));
-                course.setLanguage(stripSlashes(rs.getString("language")));
-                course.setSemester(rs.getInt("semester"));
-                course.setPrerequisite_ita(stripSlashes(rs.getString("prerequiste_ita")));
-                course.setPrerequisite_eng(stripSlashes(rs.getString("prerequiste_eng")));
-                course.setGoals_ita(stripSlashes(rs.getString("goals_ita")));
-                course.setGoals_eng(stripSlashes(rs.getString("goals_eng")));
-                course.setExame_mode_ita(stripSlashes(rs.getString("exame_mode_ita")));
-                course.setExame_mode_eng(stripSlashes(rs.getString("exame_mode_eng")));
-                course.setTeaching_mode_ita(stripSlashes(rs.getString("teaching_mode_ita")));
-                course.setTeaching_mode_eng(stripSlashes(rs.getString("teaching_mode_eng")));
-                course.setSyllabus_ita(stripSlashes(rs.getString("syllabus_ita")));
-                course.setSyllabus_eng(stripSlashes(rs.getString("syllabus_eng")));
-                course.setNote_ita(stripSlashes(rs.getString("note_ita")));
-                course.setNote_eng(stripSlashes(rs.getString("note_eng")));
-                course.setKnowledge_ita(stripSlashes(rs.getString("knowledge_ita")));
-                course.setKnowledge_eng(stripSlashes(rs.getString("knowledge_eng")));
-                course.setApplication_ita(stripSlashes(rs.getString("application_ita")));
-                course.setApplication_eng(stripSlashes(rs.getString("application_eng")));
-                course.setEvaluation_ita(stripSlashes(rs.getString("evaluation_ita")));
-                course.setEvaluation_eng(stripSlashes(rs.getString("evaluation_eng")));
-                course.setCommunication_ita(stripSlashes(rs.getString("communication_ita")));
-                course.setCommunication_eng(stripSlashes(rs.getString("communication_eng")));
-                course.setLifelog_learning_skills_ita(stripSlashes(rs.getString("lifelog_learning_skills_ita")));
-                course.setLifelog_learning_skills_eng(stripSlashes(rs.getString("lifelog_learning_skills_eng")));
-                course.setExternal_material_ita(stripSlashes(rs.getString("external_material_ita")));
-                course.setExternal_material_ita(stripSlashes(rs.getString("external_material_eng")));
+                course = generateCourse(rs);
             }
             else {//se risultato nullo ritorno null
                 return null;
@@ -396,6 +247,9 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
         return course;
     }
 
+    /*
+        DEVE TORNARE UNA LISTA DI CORSI
+     */
     @Override
     public Course getCourseBySector(String sector) throws DaoException {
         Course course = null;
@@ -408,38 +262,7 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
 
             if (rs.next()){
 
-                course.setIdCourse(rs.getInt("idCourse"));
-                course.setCode(stripSlashes(rs.getString("code")));
-                course.setName(stripSlashes(rs.getString("name")));
-                course.setYear(stripSlashes(rs.getString("year")));
-                course.setCfu(rs.getInt("cfu"));
-                course.setSector(sector);
-                course.setLanguage(stripSlashes(rs.getString("language")));
-                course.setSemester(rs.getInt("semester"));
-                course.setPrerequisite_ita(stripSlashes(rs.getString("prerequiste_ita")));
-                course.setPrerequisite_eng(stripSlashes(rs.getString("prerequiste_eng")));
-                course.setGoals_ita(stripSlashes(rs.getString("goals_ita")));
-                course.setGoals_eng(stripSlashes(rs.getString("goals_eng")));
-                course.setExame_mode_ita(stripSlashes(rs.getString("exame_mode_ita")));
-                course.setExame_mode_eng(stripSlashes(rs.getString("exame_mode_eng")));
-                course.setTeaching_mode_ita(stripSlashes(rs.getString("teaching_mode_ita")));
-                course.setTeaching_mode_eng(stripSlashes(rs.getString("teaching_mode_eng")));
-                course.setSyllabus_ita(stripSlashes(rs.getString("syllabus_ita")));
-                course.setSyllabus_eng(stripSlashes(rs.getString("syllabus_eng")));
-                course.setNote_ita(stripSlashes(rs.getString("note_ita")));
-                course.setNote_eng(stripSlashes(rs.getString("note_eng")));
-                course.setKnowledge_ita(stripSlashes(rs.getString("knowledge_ita")));
-                course.setKnowledge_eng(stripSlashes(rs.getString("knowledge_eng")));
-                course.setApplication_ita(stripSlashes(rs.getString("application_ita")));
-                course.setApplication_eng(stripSlashes(rs.getString("application_eng")));
-                course.setEvaluation_ita(stripSlashes(rs.getString("evaluation_ita")));
-                course.setEvaluation_eng(stripSlashes(rs.getString("evaluation_eng")));
-                course.setCommunication_ita(stripSlashes(rs.getString("communication_ita")));
-                course.setCommunication_eng(stripSlashes(rs.getString("communication_eng")));
-                course.setLifelog_learning_skills_ita(stripSlashes(rs.getString("lifelog_learning_skills_ita")));
-                course.setLifelog_learning_skills_eng(stripSlashes(rs.getString("lifelog_learning_skills_eng")));
-                course.setExternal_material_ita(stripSlashes(rs.getString("external_material_ita")));
-                course.setExternal_material_ita(stripSlashes(rs.getString("external_material_eng")));
+                course = generateCourse(rs);
             }
             else {//se risultato nullo ritorno null
                 return null;
@@ -451,6 +274,9 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
         return course;
     }
 
+    /*
+        DEVE TORNARE UNA LISTA DI CORSI
+     */
     @Override
     public Course getCourseByLanguage(String language) throws DaoException {
         Course course = null;
@@ -463,38 +289,7 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
 
             if (rs.next()){
 
-                course.setIdCourse(rs.getInt("idCourse"));
-                course.setCode(stripSlashes(rs.getString("code")));
-                course.setName(stripSlashes(rs.getString("name")));
-                course.setYear(stripSlashes(rs.getString("year")));
-                course.setCfu(rs.getInt("cfu"));
-                course.setSector(stripSlashes((rs.getString("sector"))));
-                course.setLanguage(language);
-                course.setSemester(rs.getInt("semester"));
-                course.setPrerequisite_ita(stripSlashes(rs.getString("prerequiste_ita")));
-                course.setPrerequisite_eng(stripSlashes(rs.getString("prerequiste_eng")));
-                course.setGoals_ita(stripSlashes(rs.getString("goals_ita")));
-                course.setGoals_eng(stripSlashes(rs.getString("goals_eng")));
-                course.setExame_mode_ita(stripSlashes(rs.getString("exame_mode_ita")));
-                course.setExame_mode_eng(stripSlashes(rs.getString("exame_mode_eng")));
-                course.setTeaching_mode_ita(stripSlashes(rs.getString("teaching_mode_ita")));
-                course.setTeaching_mode_eng(stripSlashes(rs.getString("teaching_mode_eng")));
-                course.setSyllabus_ita(stripSlashes(rs.getString("syllabus_ita")));
-                course.setSyllabus_eng(stripSlashes(rs.getString("syllabus_eng")));
-                course.setNote_ita(stripSlashes(rs.getString("note_ita")));
-                course.setNote_eng(stripSlashes(rs.getString("note_eng")));
-                course.setKnowledge_ita(stripSlashes(rs.getString("knowledge_ita")));
-                course.setKnowledge_eng(stripSlashes(rs.getString("knowledge_eng")));
-                course.setApplication_ita(stripSlashes(rs.getString("application_ita")));
-                course.setApplication_eng(stripSlashes(rs.getString("application_eng")));
-                course.setEvaluation_ita(stripSlashes(rs.getString("evaluation_ita")));
-                course.setEvaluation_eng(stripSlashes(rs.getString("evaluation_eng")));
-                course.setCommunication_ita(stripSlashes(rs.getString("communication_ita")));
-                course.setCommunication_eng(stripSlashes(rs.getString("communication_eng")));
-                course.setLifelog_learning_skills_ita(stripSlashes(rs.getString("lifelog_learning_skills_ita")));
-                course.setLifelog_learning_skills_eng(stripSlashes(rs.getString("lifelog_learning_skills_eng")));
-                course.setExternal_material_ita(stripSlashes(rs.getString("external_material_ita")));
-                course.setExternal_material_ita(stripSlashes(rs.getString("external_material_eng")));
+                course = generateCourse(rs);
             }
             else {//se risultato nullo ritorno null
                 return null;
@@ -506,6 +301,9 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
         return course;
     }
 
+    /*
+        DEVE TORNARE UNA LISTA DI CORSI
+     */
     @Override
     public Course getCourseBySemester(int semester) throws DaoException {
         Course course = null;
@@ -518,38 +316,7 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
 
             if (rs.next()){
 
-                course.setIdCourse(rs.getInt("idCourse"));
-                course.setCode(stripSlashes(rs.getString("code")));
-                course.setName(stripSlashes(rs.getString("name")));
-                course.setYear(stripSlashes(rs.getString("year")));
-                course.setCfu(rs.getInt("cfu"));
-                course.setSector(stripSlashes((rs.getString("sector"))));
-                course.setLanguage(stripSlashes(rs.getString("language")));
-                course.setSemester(semester);
-                course.setPrerequisite_ita(stripSlashes(rs.getString("prerequiste_ita")));
-                course.setPrerequisite_eng(stripSlashes(rs.getString("prerequiste_eng")));
-                course.setGoals_ita(stripSlashes(rs.getString("goals_ita")));
-                course.setGoals_eng(stripSlashes(rs.getString("goals_eng")));
-                course.setExame_mode_ita(stripSlashes(rs.getString("exame_mode_ita")));
-                course.setExame_mode_eng(stripSlashes(rs.getString("exame_mode_eng")));
-                course.setTeaching_mode_ita(stripSlashes(rs.getString("teaching_mode_ita")));
-                course.setTeaching_mode_eng(stripSlashes(rs.getString("teaching_mode_eng")));
-                course.setSyllabus_ita(stripSlashes(rs.getString("syllabus_ita")));
-                course.setSyllabus_eng(stripSlashes(rs.getString("syllabus_eng")));
-                course.setNote_ita(stripSlashes(rs.getString("note_ita")));
-                course.setNote_eng(stripSlashes(rs.getString("note_eng")));
-                course.setKnowledge_ita(stripSlashes(rs.getString("knowledge_ita")));
-                course.setKnowledge_eng(stripSlashes(rs.getString("knowledge_eng")));
-                course.setApplication_ita(stripSlashes(rs.getString("application_ita")));
-                course.setApplication_eng(stripSlashes(rs.getString("application_eng")));
-                course.setEvaluation_ita(stripSlashes(rs.getString("evaluation_ita")));
-                course.setEvaluation_eng(stripSlashes(rs.getString("evaluation_eng")));
-                course.setCommunication_ita(stripSlashes(rs.getString("communication_ita")));
-                course.setCommunication_eng(stripSlashes(rs.getString("communication_eng")));
-                course.setLifelog_learning_skills_ita(stripSlashes(rs.getString("lifelog_learning_skills_ita")));
-                course.setLifelog_learning_skills_eng(stripSlashes(rs.getString("lifelog_learning_skills_eng")));
-                course.setExternal_material_ita(stripSlashes(rs.getString("external_material_ita")));
-                course.setExternal_material_ita(stripSlashes(rs.getString("external_material_eng")));
+                course = generateCourse(rs);
             }
             else {//se risultato nullo ritorno null
                 return null;
@@ -561,6 +328,9 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
         return course;
     }
 
+    //lo store puo' essere il metodo che integra sia l'update che lo store,
+    //si effettua lo store se nell'oggetto course creato non e' presente l'id, quindi si presuppone che sia nuovo,
+    //update altrimenti
     @Override
     public Course storeCourse(Course course) throws DaoException {
         //non ho capito a che serve
@@ -577,18 +347,50 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
         }
     }
 
-/*    public Course generateCourse(ResultSet rs) throws DaoException {
+    public Course generateCourse(ResultSet rs) throws DaoException {
+
         Course course = this.getCourse();
 
         try {
 
-            course.setIdCourse(rs.getInt("id"));
+            course.setIdCourse(rs.getInt("idCourse"));
+            course.setCode(stripSlashes(rs.getString("code")));
             course.setName(stripSlashes(rs.getString("name")));
-            course.setDescription(stripSlashes(rs.getString("description")));
+            course.setYear(stripSlashes(rs.getString("year")));
+            course.setCfu(rs.getInt("cfu"));
+            course.setSector(stripSlashes((rs.getString("sector"))));
+            course.setLanguage(stripSlashes(rs.getString("language")));
+            course.setSemester(Integer.parseInt("semester"));
+            course.setPrerequisite_ita(stripSlashes(rs.getString("prerequiste_ita")));
+            course.setPrerequisite_eng(stripSlashes(rs.getString("prerequiste_eng")));
+            course.setGoals_ita(stripSlashes(rs.getString("goals_ita")));
+            course.setGoals_eng(stripSlashes(rs.getString("goals_eng")));
+            course.setExame_mode_ita(stripSlashes(rs.getString("exame_mode_ita")));
+            course.setExame_mode_eng(stripSlashes(rs.getString("exame_mode_eng")));
+            course.setTeaching_mode_ita(stripSlashes(rs.getString("teaching_mode_ita")));
+            course.setTeaching_mode_eng(stripSlashes(rs.getString("teaching_mode_eng")));
+            course.setSyllabus_ita(stripSlashes(rs.getString("syllabus_ita")));
+            course.setSyllabus_eng(stripSlashes(rs.getString("syllabus_eng")));
+            course.setNote_ita(stripSlashes(rs.getString("note_ita")));
+            course.setNote_eng(stripSlashes(rs.getString("note_eng")));
+            course.setKnowledge_ita(stripSlashes(rs.getString("knowledge_ita")));
+            course.setKnowledge_eng(stripSlashes(rs.getString("knowledge_eng")));
+            course.setApplication_ita(stripSlashes(rs.getString("application_ita")));
+            course.setApplication_eng(stripSlashes(rs.getString("application_eng")));
+            course.setEvaluation_ita(stripSlashes(rs.getString("evaluation_ita")));
+            course.setEvaluation_eng(stripSlashes(rs.getString("evaluation_eng")));
+            course.setCommunication_ita(stripSlashes(rs.getString("communication_ita")));
+            course.setCommunication_eng(stripSlashes(rs.getString("communication_eng")));
+            course.setLifelog_learning_skills_ita(stripSlashes(rs.getString("lifelog_learning_skills_ita")));
+            course.setLifelog_learning_skills_eng(stripSlashes(rs.getString("lifelog_learning_skills_eng")));
+            course.setExternal_material_ita(stripSlashes(rs.getString("external_material_ita")));
+            course.setExternal_material_ita(stripSlashes(rs.getString("external_material_eng")));
 
         } catch (SQLException e) {
-            throw new SelectDaoException("Error generateServoce", e );
+            throw new SelectDaoException("Error generateService", e );
         }
-        return groups;
-    }*/
+        return course;
+    }
+
+
 }
