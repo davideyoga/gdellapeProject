@@ -250,7 +250,7 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
                 user.setPassword(rs.getString("password"));
 
         } catch (SQLException e) {
-            throw new DaoException("Error getUserByEmailPassword in user dao", e);
+            throw new DaoException("Error generateUser", e);
         }
 
         return user;
