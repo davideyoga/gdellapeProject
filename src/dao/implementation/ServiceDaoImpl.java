@@ -54,7 +54,7 @@ public class ServiceDaoImpl extends DaoDataMySQLImpl implements ServiceDao {
                     "                                                WHERE name=?");
 
             this.updateService = connection.prepareStatement("UPDATE service" +
-                    "                                           SET name=?" +
+                    "                                           SET name=?," +
                     "                                               description=?" +
                     "                                           WHERE id=?");
 

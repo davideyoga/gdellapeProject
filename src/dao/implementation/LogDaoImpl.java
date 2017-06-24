@@ -19,7 +19,7 @@ import static dao.security.DaoSecurity.stripSlashes;
 
 
 /**
- * @Creator Davide Micarelli
+ * @author Davide Micarelli
  */
 public class LogDaoImpl extends DaoDataMySQLImpl implements LogDao {
 

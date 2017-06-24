@@ -60,14 +60,14 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
                     "                                                          WHERE email=? AND password=?");
 
             this.updateUser = connection.prepareStatement("UPDATE user" +
-                    "                                           SET surname=?" +
-                    "                                               name=?" +
-                    "                                               email=?" +
-                    "                                               number=?" +
-                    "                                               curriculum_ita=?" +
-                    "                                               curriculum_eng=?" +
-                    "                                               receprion_hours_ita=?" +
-                    "                                               receprion_hour_eng=?" +
+                    "                                           SET surname=?," +
+                    "                                               name=?," +
+                    "                                               email=?," +
+                    "                                               number=?," +
+                    "                                               curriculum_ita=?," +
+                    "                                               curriculum_eng=?," +
+                    "                                               receprion_hours_ita=?," +
+                    "                                               receprion_hours_eng=?," +
                     "                                               password=?" +
                     "                                           WHERE id=?");
 
@@ -166,7 +166,7 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
                 this.updateUser.setString(1, addSlashes(user.getSurname()));
                 this.updateUser.setString(2, addSlashes(user.getName()));
                 this.updateUser.setString(3, addSlashes(user.getEmail()));
-                this.updateUser.setInt(4, user.getNumber());
+                this.updateUser.setLong(4, user.getNumber());
                 this.updateUser.setString(5, addSlashes(user.getCurriculum_ita()));
                 this.updateUser.setString(6, addSlashes(user.getCurriculum_eng()));
                 this.updateUser.setString(7, addSlashes(user.getReceprion_hours_ita()));
@@ -189,7 +189,7 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
                 this.insertUser.setString(1, addSlashes(user.getSurname()));
                 this.insertUser.setString(2, addSlashes(user.getName()));
                 this.insertUser.setString(3, addSlashes(user.getEmail()));
-                this.insertUser.setInt(4, user.getNumber());
+                this.insertUser.setLong(4, user.getNumber());
                 this.insertUser.setString(5, addSlashes(user.getCurriculum_ita()));
                 this.insertUser.setString(6, addSlashes(user.getCurriculum_eng()));
                 this.insertUser.setString(7, addSlashes(user.getReceprion_hours_ita()));

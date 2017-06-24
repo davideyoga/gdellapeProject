@@ -336,16 +336,16 @@ public class SingletonSessionManager {
      */
     public HttpSession setPreviusPage(HttpServletRequest request, String previusPage) throws SessionException {
 
-        if(!isValid(request)){
+        //se non esiste la sessione la creo
+        request.getSession(true);
 
-            //potrebbe risolvermi il problema senza chiedere previusPage
-            //String serveltPath = request.getServletPath();
+        //potrebbe risolvermi il problema senza chiedere previusPage
+        //String serveltPath = request.getServletPath();
 
-            request.getSession().setAttribute("previusPage", previusPage);
+        //setto la oagina precedentemente visitata
+        request.getSession().setAttribute("previusPage", previusPage);
 
-            return request.getSession();
-        }
-        else throw new SessionException("Not valid session");
+        return request.getSession();
     }
 
     /**
@@ -355,7 +355,7 @@ public class SingletonSessionManager {
      */
     public String getPreviusPage(HttpServletRequest request){
 
-        return (String) request.getSession().getAttribute("previusPage");
+        return (String) request.getSession(true).getAttribute("previusPage");
     }
 
     /**

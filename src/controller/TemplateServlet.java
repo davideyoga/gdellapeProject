@@ -4,12 +4,15 @@ package controller;
 import dao.exception.DaoException;
 import dao.implementation.GroupsDaoImpl;
 import dao.implementation.ServiceDaoImpl;
+import dao.implementation.StudyCourseDaoImpl;
 import dao.implementation.UserDaoImpl;
 import dao.interfaces.GroupsDao;
 import dao.interfaces.ServiceDao;
+import dao.interfaces.StudyCourseDao;
 import dao.interfaces.UserDao;
 import model.Groups;
 import model.Service;
+import model.StudyCourse;
 import model.User;
 import view.TemplateController;
 
@@ -27,7 +30,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @Creator Davide Micarelli
+ * @author Davide Micarelli
  */
 public class TemplateServlet extends HttpServlet {
 
@@ -36,21 +39,19 @@ public class TemplateServlet extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) {
 
-        UserDao userDao = new UserDaoImpl(ds);
-        GroupsDao groupsDao = new GroupsDaoImpl(ds);
-
+        StudyCourseDao studyCourseDao = new StudyCourseDaoImpl(ds);
 
         try {
 
-            userDao.init();
-            groupsDao.init();
+            studyCourseDao.init();
 
-            Groups groups = groupsDao.getGroupsById(1);
+            StudyCourse studyCourse = studyCourseDao.getStudyCouse();
 
-            System.out.print(userDao.getUserByGroups(groups));
+            studyCourse.setId(1);
+            studyCourse.setCode("000002");
+            studyCourse.setName("Informatica");
 
-            System.out.print("numero di elementi nella lista: " + userDao.getUserByGroups(groups).size() );
-
+            studyCourseDao.storeStudyCourse(studyCourse);
 
         } catch (DaoException e) {
             e.printStackTrace();
@@ -75,7 +76,7 @@ public class TemplateServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
     }
 
     /**

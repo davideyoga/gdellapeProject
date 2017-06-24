@@ -19,9 +19,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @Creator Davide Micarelli
+ * @author Davide Micarelli
  */
-
 public class ProfileManagement extends BaseController {
 
     @Resource(name = "jdbc/gdellapeProject")
@@ -37,7 +36,7 @@ public class ProfileManagement extends BaseController {
     private void processTemplate(HttpServletRequest request, HttpServletResponse response){
 
 
-        //inserisco l'user estratto dalla sessione da passate al template
+        //inserisco l'user estratto dalla sessione da passare al template
         this.datamodel.put("user", request.getSession().getAttribute("user"));
 
         //se richiesta get lancio il template di profilo con i dati dell'utente in sessione
@@ -47,16 +46,12 @@ public class ProfileManagement extends BaseController {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //non serve estrarre la sessione in quanto si trova nella request
-        //HttpSession session = request.getSession(false);
-
         //se la sessione e' valida e abbastanza nuova
         if(sessionManager.isHardValid( request )){
 
             UserDao userDao = new UserDaoImpl(ds);
             try {
                 userDao.init();
-
 
                 //creo un user da riempire con i dati provenienti dalla form
                 User userDaForm = userDao.getUser();
@@ -68,7 +63,20 @@ public class ProfileManagement extends BaseController {
                 userDaForm.setSurname(request.getParameter("surname"));
                 userDaForm.setName(request.getParameter("name"));
                 userDaForm.setEmail(request.getParameter("email"));
-                userDaForm.setNumber(Integer.parseInt(request.getParameter("number")));
+
+                String numberDaForm = request.getParameter("number");
+
+                if(numberDaForm!=null && numberDaForm!="") {
+
+                    System.out.println("numberDaForm: " + numberDaForm);
+
+                    long number = Long.parseLong(numberDaForm);
+
+                    userDaForm.setNumber(number);
+                }else{
+                    userDaForm.setNumber(user.getNumber());
+                }
+
                 userDaForm.setCurriculum_ita(request.getParameter("curriculum_ita"));
                 userDaForm.setCurriculum_eng(request.getParameter("curriculum_eng"));
                 userDaForm.setReceprion_hours_ita(request.getParameter("receprion_hours_ita"));
@@ -85,7 +93,7 @@ public class ProfileManagement extends BaseController {
                     userDao.storeUser(userDaForm);
 
                     //inserisco un log nel db descrivendo cio' che e' successo
-                    logManager.addLog(userDaForm, "User with id: " + userDaForm.getId() + " has change your personal date", ds);
+                    logManager.addLog(userDaForm, "User with id: " + userDaForm.getId() + " has change your personal data", ds);
 
                     //rimuovo il precedente user dalla sessione
                     request.getSession().removeAttribute("user");
@@ -98,7 +106,7 @@ public class ProfileManagement extends BaseController {
                 //chiudo il dao
                 userDao.destroy();
 
-                //lancio il template(con i nuovi dati de sono cambiati, altrimenti con quelli vecchi)
+                //lancio il template(con i nuovi dati se sono cambiati, altrimenti con quelli vecchi)
                 processTemplate(request, response);
 
             } catch (DaoException e) {
@@ -108,16 +116,20 @@ public class ProfileManagement extends BaseController {
             }
 
 
-        }else{//se la sessione non  e' valida e non abbastanza nuova
+        }else{//se la sessione non  e' valida o non abbastanza nuova
+
+            System.out.println("la sessione non e' abbastaza nuova");
 
             //non serve distruggere la sessione,
             //SessionManager.destroySession(request);
 
-            //creo la sessione e carico la pagina in cui si trovava l'utente prima di essere reindirizzato al login
+            //creo o prendo la sessione eistente e carico la pagina in cui si trovava l'utente prima di essere reindirizzato al login
             //in modo di poterlo reindirizzare dopo aver rieffettuato il login
             HttpSession newSession = request.getSession(true);
 
             try {
+
+                System.out.println("carico nella sessione la pagina precedente");
 
                 sessionManager.setPreviusPage(request, "ProfileManagement");
 
@@ -140,19 +152,20 @@ public class ProfileManagement extends BaseController {
 
             try {
 
-                //ditruggo la sessione
+                //ditruggo la sessione se esiste
                 sessionManager.destroySession(request);
 
                 //creo la sessione e carico la pagina in cui si trovava l'utente prima di essere reindirizzato al login
                 //in modo di poterlo reindirizzare dopo aver rieffettuato il login
                 HttpSession newSession = request.getSession(true);
 
+                System.out.println("carico la pagina precedente in ProfileManager.doGet()");
 
+                //inserisco nella sessione la pagina precedentemente visitata
                 sessionManager.setPreviusPage(request, "ProfileManagement");
 
-
-            //reindirizzo verso pagina di login
-            response.sendRedirect("Login");
+                //reindirizzo verso servlet di login
+                response.sendRedirect("Login");
 
             } catch (SessionException e) {
                 e.printStackTrace();
@@ -160,6 +173,7 @@ public class ProfileManagement extends BaseController {
 
         }else {//se la sessione e' valida...
 
+            //carico l'utente nel temaplete e lancio il template
             processTemplate(request, response);
         }
     }

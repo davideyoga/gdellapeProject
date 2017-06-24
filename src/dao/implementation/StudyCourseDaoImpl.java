@@ -42,6 +42,8 @@ public class StudyCourseDaoImpl extends DaoDataMySQLImpl implements StudyCourseD
     public void init() throws DaoException {
         try {
 
+            super.init();
+
             this.insertStudyCourse = connection.prepareStatement("INSERT INTO studyCourse" +
                     "                                          VALUES (NULL, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
@@ -58,21 +60,24 @@ public class StudyCourseDaoImpl extends DaoDataMySQLImpl implements StudyCourseD
                     "                                                     FROM studyCourse" +
                     "                                                     WHERE code=?");
 
+            //UPDATE `studyCourse` SET `code`="000003",`nameStudyCourse`="Informatica" WHERE id = "1"
+            //"UPDATE issue SET date=?,number=? WHERE ID=?"
+
             this.updateStudyCourse = connection.prepareStatement("UPDATE studyCourse" +
-                    "                                           SET code=?" +
-                    "                                               name=?" +
-                    "                                               description_ita=?" +
-                    "                                               description_eng=?" +
-                    "                                               department_ita=?" +
-                    "                                               department_eng=?" +
-                    "                                               level_ita=?" +
-                    "                                               level_eng=?" +
-                    "                                               duration=?" +
-                    "                                               class=?" +
-                    "                                               seat=?" +
-                    "                                               accessType_ita=?" +
-                    "                                               accessType_eng=?" +
-                    "                                               language_ita=?" +
+                    "                                           SET code=?," +
+                    "                                               name=?," +
+                    "                                               description_ita=?," +
+                    "                                               description_eng=?," +
+                    "                                               department_ita=?," +
+                    "                                               department_eng=?," +
+                    "                                               level_ita=?," +
+                    "                                               level_eng=?," +
+                    "                                               duration=?," +
+                    "                                               class=?," +
+                    "                                               seat=?," +
+                    "                                               accessType_ita=?," +
+                    "                                               accessType_eng=?," +
+                    "                                               language_ita=?," +
                     "                                               language_eng=?" +
                     "                                           WHERE id=?");
 
@@ -197,7 +202,7 @@ public class StudyCourseDaoImpl extends DaoDataMySQLImpl implements StudyCourseD
     @Override
     public void storeStudyCourse(StudyCourse studyCourse) throws DaoException {
 
-        if( studyCourse.getId() > 0 ){ //lo studyCourse ha gia' un id, quindi e' gia nel database
+        if( studyCourse.getId() > 0 ){ //lo studyCourse ha gia' un id, quindi e' gia nel database, eseguo un update
 
             try {
 
@@ -216,6 +221,7 @@ public class StudyCourseDaoImpl extends DaoDataMySQLImpl implements StudyCourseD
                 this.updateStudyCourse.setString(13, addSlashes(studyCourse.getAccessType_eng()));
                 this.updateStudyCourse.setString(14, addSlashes(studyCourse.getLanguage_ita()));
                 this.updateStudyCourse.setString(15, addSlashes(studyCourse.getLanguage_eng()));
+                this.updateStudyCourse.setInt(16, studyCourse.getId());
 
                 this.updateStudyCourse.executeUpdate();
 

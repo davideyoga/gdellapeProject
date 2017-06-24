@@ -8,7 +8,7 @@ public class User{
     private String surname;
     private String name;
     private String email;
-    private int number;
+    private long number;
     private String curriculum_ita;
     private String curriculum_eng;
     private String receprion_hours_ita;
@@ -94,11 +94,11 @@ public class User{
         this.email = email;
     }
 
-    public int getNumber() {
+    public long getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(long number) {
         this.number = number;
     }
 

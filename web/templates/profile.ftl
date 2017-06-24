@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<p>This text comes from an included template:${user.email?cap_first}</p>
+    <#include "profile_form.ftl">
 
 </body>
 </html>

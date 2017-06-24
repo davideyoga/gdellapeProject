@@ -21,6 +21,9 @@ import java.util.List;
 import static dao.security.DaoSecurity.addSlashes;
 import static dao.security.DaoSecurity.stripSlashes;
 
+/**
+ * @author Davide Micarelli
+ */
 public class GroupsDaoImpl extends DaoDataMySQLImpl implements GroupsDao {
 
     private PreparedStatement   insertGroups,
@@ -54,7 +57,7 @@ public class GroupsDaoImpl extends DaoDataMySQLImpl implements GroupsDao {
                     "                                                WHERE name=?");
 
             this.updateGroups = connection.prepareStatement("UPDATE groups" +
-                    "                                           SET name=?" +
+                    "                                           SET name=?," +
                     "                                               description=?" +
                     "                                           WHERE id=?");
 
