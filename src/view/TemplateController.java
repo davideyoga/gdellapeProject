@@ -1,6 +1,7 @@
 package view;
 
 import freemarker.template.*;
+import model.User;
 
 import javax.servlet.ServletContext;
 
@@ -41,20 +42,14 @@ public class TemplateController {
 
             template = cfg.getTemplate(templateName);
 
-            System.out.println("passo 2: tameplate caricato");
-
             //ottengo lo stream della risposta
             out = response.getWriter();
-
-            System.out.println("passo 3");
 
             //processo la template con la Map
             template.process(data, out);
 
-            System.out.println("passo 4");
-
             //esplicito pulizia da garbage collection
-            data=null;
+            data = null;
 
         } catch (TemplateException | IOException ex) {
 

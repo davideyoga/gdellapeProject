@@ -90,8 +90,8 @@ public class LogDaoImpl extends DaoDataMySQLImpl implements LogDao {
         try {
 
             this.insertLog.setInt(1, log.getIdUser());
-            this.insertLog.setTimestamp(2, log.getDate());
-            this.insertLog.setString(3, addSlashes(log.getDescription()));
+            this.insertLog.setString(2, addSlashes(log.getDescription()));
+            this.insertLog.setTimestamp(3, log.getDate());
 
             this.insertLog.executeUpdate();
 

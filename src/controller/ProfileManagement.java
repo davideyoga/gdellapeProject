@@ -35,7 +35,6 @@ public class ProfileManagement extends BaseController {
      */
     private void processTemplate(HttpServletRequest request, HttpServletResponse response){
 
-
         //inserisco l'user estratto dalla sessione da passare al template
         this.datamodel.put("user", request.getSession().getAttribute("user"));
 
@@ -49,6 +48,7 @@ public class ProfileManagement extends BaseController {
         //se la sessione e' valida e abbastanza nuova
         if(sessionManager.isHardValid( request )){
 
+            //inizializzo il dao
             UserDao userDao = new UserDaoImpl(ds);
             try {
                 userDao.init();
@@ -60,19 +60,22 @@ public class ProfileManagement extends BaseController {
                 User user = (User) request.getSession().getAttribute("user");
 
                 //creo un utente con i dati della form
+                userDaForm.setId(user.getId());
                 userDaForm.setSurname(request.getParameter("surname"));
                 userDaForm.setName(request.getParameter("name"));
                 userDaForm.setEmail(request.getParameter("email"));
 
+                //per castare la stringa in int
                 String numberDaForm = request.getParameter("number");
 
-                if(numberDaForm!=null && numberDaForm!="") {
-
-                    System.out.println("numberDaForm: " + numberDaForm);
+                //se il numero estratto dalla form e' diverso da 0 e divero da ""
+                if(numberDaForm != null && numberDaForm!="") {
 
                     long number = Long.parseLong(numberDaForm);
 
                     userDaForm.setNumber(number);
+
+
                 }else{
                     userDaForm.setNumber(user.getNumber());
                 }
@@ -118,8 +121,6 @@ public class ProfileManagement extends BaseController {
 
         }else{//se la sessione non  e' valida o non abbastanza nuova
 
-            System.out.println("la sessione non e' abbastaza nuova");
-
             //non serve distruggere la sessione,
             //SessionManager.destroySession(request);
 
@@ -128,8 +129,6 @@ public class ProfileManagement extends BaseController {
             HttpSession newSession = request.getSession(true);
 
             try {
-
-                System.out.println("carico nella sessione la pagina precedente");
 
                 sessionManager.setPreviusPage(request, "ProfileManagement");
 
@@ -148,7 +147,7 @@ public class ProfileManagement extends BaseController {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //se sessione non valida
-        if(!sessionManager.isValid(request)){;
+        if(!sessionManager.isHardValid(request)){
 
             try {
 
@@ -158,8 +157,6 @@ public class ProfileManagement extends BaseController {
                 //creo la sessione e carico la pagina in cui si trovava l'utente prima di essere reindirizzato al login
                 //in modo di poterlo reindirizzare dopo aver rieffettuato il login
                 HttpSession newSession = request.getSession(true);
-
-                System.out.println("carico la pagina precedente in ProfileManager.doGet()");
 
                 //inserisco nella sessione la pagina precedentemente visitata
                 sessionManager.setPreviusPage(request, "ProfileManagement");

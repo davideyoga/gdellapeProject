@@ -39,6 +39,7 @@ public class TemplateServlet extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) {
 
+        /*
         StudyCourseDao studyCourseDao = new StudyCourseDaoImpl(ds);
 
         try {
@@ -56,6 +57,7 @@ public class TemplateServlet extends HttpServlet {
         } catch (DaoException e) {
             e.printStackTrace();
         }
+        */
     }
 
 

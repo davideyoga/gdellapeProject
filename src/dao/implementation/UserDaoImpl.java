@@ -242,7 +242,7 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
                 user.setSurname(stripSlashes(rs.getString("surname")));
                 user.setName(stripSlashes(rs.getString("name")));
                 user.setEmail(stripSlashes(rs.getString("email")));
-                user.setNumber(rs.getInt("number"));
+                user.setNumber(rs.getLong("number"));
                 user.setCurriculum_ita(stripSlashes(rs.getString("curriculum_ita")));
                 user.setCurriculum_eng(stripSlashes(rs.getString("curriculum_eng")));
                 user.setReceprion_hours_ita(stripSlashes(rs.getString("receprion_hours_ita")));

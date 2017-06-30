@@ -1,6 +1,5 @@
 package controller.logController;
 
-import controller.sessionController.SingletonSessionManager;
 import dao.exception.DaoException;
 import dao.implementation.LogDaoImpl;
 import dao.interfaces.LogDao;
@@ -8,6 +7,7 @@ import model.Log;
 import model.User;
 
 import javax.sql.DataSource;
+import java.sql.Timestamp;
 
 /**
  * @author  Davide Micarelli
@@ -48,6 +48,9 @@ public class SingletonLogManager {
             //setto i parametri del log
             log.setIdUser( user.getId() );
             log.setDescription( description );
+            log.setDate(new Timestamp(System.currentTimeMillis()));
+
+            //Timestamp.valueOf(request.getParameter("date")
 
             //inserisco il log nel database
             logDao.insertLog( log );

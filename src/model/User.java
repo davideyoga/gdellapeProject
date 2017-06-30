@@ -18,15 +18,15 @@ public class User{
     public User(DaoData daoData){
 
         this.id = 0;
-        this.surname = null;
-        this.name = null;
-        this.email = null;
+        this.surname = "";
+        this.name = "";
+        this.email = "";
         this.number = 0;
-        this.curriculum_ita = null;
-        this.curriculum_eng = null;
-        this.receprion_hours_ita = null;
-        this.receprion_hours_eng = null;
-        this.password = null;
+        this.curriculum_ita = "";
+        this.curriculum_eng = "";
+        this.receprion_hours_ita = "";
+        this.receprion_hours_eng = "";
+        this.password = "";
 
     }
 
@@ -34,7 +34,7 @@ public class User{
     @Override
     public String toString() {
         return "User{" +
-                "idCourse=" + id +
+                "id=" + id +
                 ", surname='" + surname + '\'' +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
