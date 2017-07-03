@@ -20,7 +20,7 @@ import java.util.List;
  * @author Davide Micarelli
  * MODIFICARE CIO' CHE SUCCEDE IN CASO DI DaoException
  */
-public class SingletonSessionManager {
+public class SingletonSessionManager implements SessionManager {
 
     //durata validità sessione in minuti
     private static final int SESSION_EXPIRE_TIME = 60*10;

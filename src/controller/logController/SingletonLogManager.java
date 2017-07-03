@@ -9,10 +9,12 @@ import model.User;
 import javax.sql.DataSource;
 import java.sql.Timestamp;
 
+
+
 /**
  * @author  Davide Micarelli
  */
-public class SingletonLogManager {
+public class SingletonLogManager implements controller.logController.LogManager {
 
     private static SingletonLogManager logManager;
 

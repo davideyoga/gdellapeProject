@@ -1,6 +1,8 @@
 package controller;
 
+import controller.logController.LogManager;
 import controller.logController.SingletonLogManager;
+import controller.sessionController.SessionManager;
 import controller.sessionController.SingletonSessionManager;
 
 import javax.servlet.ServletException;
@@ -12,9 +14,9 @@ import javax.servlet.http.HttpServlet;
  */
 public class BaseController extends HttpServlet {
 
-    SingletonSessionManager sessionManager;
+    SessionManager sessionManager;
 
-    SingletonLogManager logManager;
+    LogManager logManager;
 
     @Override
     public void init() throws ServletException {
