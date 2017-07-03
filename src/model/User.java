@@ -54,7 +54,20 @@ public class User{
 
         User user = (User) o;
 
-        return getId() == user.getId();
+        if (getId() != user.getId()) return false;
+        if (getNumber() != user.getNumber()) return false;
+        if (getSurname() != null ? !getSurname().equals(user.getSurname()) : user.getSurname() != null) return false;
+        if (getName() != null ? !getName().equals(user.getName()) : user.getName() != null) return false;
+        if (getEmail() != null ? !getEmail().equals(user.getEmail()) : user.getEmail() != null) return false;
+        if (getCurriculum_ita() != null ? !getCurriculum_ita().equals(user.getCurriculum_ita()) : user.getCurriculum_ita() != null)
+            return false;
+        if (getCurriculum_eng() != null ? !getCurriculum_eng().equals(user.getCurriculum_eng()) : user.getCurriculum_eng() != null)
+            return false;
+        if (getReceprion_hours_ita() != null ? !getReceprion_hours_ita().equals(user.getReceprion_hours_ita()) : user.getReceprion_hours_ita() != null)
+            return false;
+        if (getReceprion_hours_eng() != null ? !getReceprion_hours_eng().equals(user.getReceprion_hours_eng()) : user.getReceprion_hours_eng() != null)
+            return false;
+        return getPassword() != null ? getPassword().equals(user.getPassword()) : user.getPassword() == null;
     }
 
     @Override

@@ -64,7 +64,7 @@ public class ProfileManagement extends BaseController {
                 userDaForm.setId(user.getId());
                 userDaForm.setSurname(request.getParameter("surname"));
                 userDaForm.setName(request.getParameter("name"));
-                userDaForm.setEmail(request.getParameter("email"));
+                userDaForm.setEmail(user.getEmail());
 
                 //per castare la stringa in int
                 String numberDaForm = request.getParameter("number");
@@ -105,6 +105,14 @@ public class ProfileManagement extends BaseController {
                     //carico il nuovo utente in sessione
                     request.getSession().setAttribute("user", userDaForm);
 
+                //se i dati sono uguali
+                }else{
+                    //lancio il template con messaggio
+
+                    this.datamodel.put("message", "dati uguali ai precedenti");
+
+                    //se richiesta get lancio il template di profilo con i dati dell'utente in sessione
+                    TemplateController.process("profile.ftl", datamodel, response, getServletContext());
                 }
 
                 //chiudo il dao

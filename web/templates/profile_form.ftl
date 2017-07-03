@@ -9,12 +9,6 @@
         <form method="POST" action="ProfileManagement">
             <div class="col-md-6">
 
-                <div class="profile-form-email">
-                    Email
-                    <input type="email" value= "<#if user.email??>${user.email}<#else></#if>" name="email" >
-                    <i class="fa fa-lock"></i>
-                </div>
-
                 <div class="profile-form-password">
                     Password
                     <input type="password" value= "<#if user.password??>${user.password}<#else></#if>" name="password" >
