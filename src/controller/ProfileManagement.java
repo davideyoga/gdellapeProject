@@ -151,24 +151,8 @@ public class ProfileManagement extends BaseController {
         //se sessione non valida, uso hardValid perche la modifica del profilo implica un controllo di sicurezza
         if(!sessionManager.isHardValid(request)){
 
-            try {
-
-                //ditruggo la sessione se esiste in quanto non e' valida
-                //sessionManager.destroySession(request);
-
-                //creo la sessione e carico la pagina in cui si trovava l'utente prima di essere reindirizzato al login
-                //in modo di poterlo reindirizzare dopo aver rieffettuato il login
-                request.getSession(true);
-
-                //inserisco nella sessione la pagina precedentemente visitata
-                sessionManager.setPreviusPage(request, "ProfileManagement");
-
-                //reindirizzo verso servlet di login
-                response.sendRedirect("Login");
-
-            } catch (SessionException e) {
-                e.printStackTrace();
-            }
+            //setto la pagina precedentemente visualizzata e reindirizzo al login
+            createPreviousPageAndRedirectToLogin(request,response,"ProfileManagement");
 
         }else {//se la sessione e' valida...
 

@@ -27,7 +27,8 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
                                 selectUserByEmailPassword,
                                 updateUser,
                                 deleteUserById,
-                                selectUserByGroupsId;
+                                selectUserByGroupsId,
+                                selectUserByEmail;
 
 
     /**
@@ -81,6 +82,9 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
                     "                                                       WHERE user_groups.groups_id=? ");
 
 
+            this.selectUserByEmail = connection.prepareStatement("SELECT *" +
+                    "                                                   FROM user" +
+                    "                                                   WHERE email=?");
         } catch (SQLException e) {
             throw new InitDaoException("Error initializing user dao", e);
         }
@@ -119,6 +123,35 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
         }
 
         return user; //ritorno user
+    }
+
+    /**
+     * Torna dal db l'user con la mail passata, se non esiste torna null
+     * @param email
+     * @return
+     */
+    @Override
+    public User getUserByEmail(String email) throws DaoException {
+
+        User user = this.getUser();
+
+        try {
+            this.selectUserByEmail.setString(1,email);
+
+            ResultSet rs = this.selectUserByEmail.executeQuery();
+
+            if(rs.next()){
+                user = this.generateUser(rs);
+            }else{
+                return null;
+            }
+
+        } catch (SQLException e) {
+            throw new SelectDaoException("Error in getUserByEmail", e);
+        }
+
+        return user;
+
     }
 
     /**
@@ -294,6 +327,7 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
             this.selectUserByEmailPassword.close();
             this.selectUserById.close();
             this.selectUserByGroupsId.close();
+            this.selectUserByEmail.close();
 
             super.destroy(); //chiudo la connessione
 

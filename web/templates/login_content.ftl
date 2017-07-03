@@ -2,7 +2,12 @@
     <h1><a href="index">PortaleDell'Universita' </a></h1>
     <div class="login-bottom">
 
-        <p>${message?cap_first}</p>
+    <#if message??>
+        ${message}
+    <#else>
+        <!--Not Message-->
+    </#if>
+
 
         <h2>Login</h2>
         <form method="POST" action="login">

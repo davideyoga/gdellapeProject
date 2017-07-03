@@ -14,6 +14,8 @@ public interface UserDao extends DaoData{
 
     public User getUserById(int idUser) throws DaoException;
 
+    User getUserByEmail(String email) throws DaoException;
+
     public User getUserByEmailPassword( String email, String password) throws DaoException;
 
     public void storeUser( User user) throws DaoException;

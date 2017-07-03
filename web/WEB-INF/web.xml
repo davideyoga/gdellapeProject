@@ -75,4 +75,16 @@
     </servlet-mapping>
     <!-- Fine Servlet di ProfileManager -->
 
+    <!-- Servlet di CreateUser -->
+    <servlet>
+        <servlet-name>CreateUser</servlet-name>
+        <servlet-class>controller.CreateUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateUser</servlet-name>
+        <url-pattern>/CreateUser</url-pattern>
+        <url-pattern>/createUser</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di CreateUser -->
+
 </web-app>

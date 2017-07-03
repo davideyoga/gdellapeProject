@@ -3,16 +3,17 @@ package controller;
 import controller.sessionController.SessionException;
 import dao.exception.DaoException;
 import dao.implementation.ServiceDaoImpl;
+import dao.implementation.UserDaoImpl;
 import dao.interfaces.ServiceDao;
+import dao.interfaces.UserDao;
 import model.Service;
+import model.User;
 import view.TemplateController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,36 +34,55 @@ public class CreateUser extends BaseController {
     }
 
 
+    private Service getCreateUserService(HttpServletRequest request){
+
+        //inizializzo il dao per estrarre il servizio createUser
+        ServiceDao serviceDao = new ServiceDaoImpl(ds);
+
+        Service createUser = null;
+
+        try {
+
+            //inizializzo query ecc...
+            serviceDao.init();
+
+            //estraggo il servizio createUser
+            createUser = serviceDao.getServiceByName("createUser");
+
+            //se il servizio non e' presente nel database o non ha un id valido lo creo
+            if (createUser == null || createUser.getId() <= 0) {
+
+                //faccio puntare createUser ad un servizio vuoto da riempire
+                createUser = serviceDao.getService();
+
+                //setto il servizio
+                createUser.setName("createUser");
+                createUser.setDescription("Service for create new user");
+
+                //inserisco il servizio nel database
+                serviceDao.storeService(createUser);
+            }
+
+        } catch (DaoException e) {
+
+            //reindirizzo alla pagina di errore
+
+            e.printStackTrace();
+        }
+
+        return createUser;
+
+    }
+
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response){
 
-        //se sessione non valida, uso hardValid perche questo processo implica un controllo di sicurezza
-        if(!sessionManager.isHardValid(request)) {
+        //se sessione valida, uso hardValid perche questo processo implica un controllo di sicurezza
+        if(sessionManager.isHardValid(request)) {
 
-            //inizializzo il dao per estrarre il servizio createUser
-            ServiceDao serviceDao = new ServiceDaoImpl(ds);
-
-            try {
-
-                //inizializzo query ecc...
-                serviceDao.init();
-
-                //estraggo il servizio createUser
-                Service createUser = serviceDao.getServiceByName("createUser");
-
-                //se il servizio non e' presente nel database o non ha un id valido lo creo
-                if (createUser == null && createUser.getId() <= 0) {
-
-                    //faccio puntare createUser ad un servizio vuoto da riempire
-                    createUser = serviceDao.getService();
-
-                    //setto il servizio
-                    createUser.setName("createUser");
-                    createUser.setDescription("Service for create new user");
-
-                    //inserisco il servizio nel database
-                    serviceDao.storeService(createUser);
-                }
+            //estraggo il servizio di creazione degli utenti
+            Service createUser = getCreateUserService(request);
 
                 //se l'utente in sessione possiede il servizio createUser...
                 if (((List <Service>) request.getSession().getAttribute("services")).contains(createUser)) {
@@ -78,33 +98,11 @@ public class CreateUser extends BaseController {
                 }
 
 
-            } catch (DaoException e) {
-
-                //reindirizzo alla pagina di errore
-
-                e.printStackTrace();
-            }
-
-
         //se la sessione non e' valida
         }else{
 
-            //creo la sessione se non esiste e carico la pagina in cui si trovava l'utente prima di essere reindirizzato al login
-            //in modo di poterlo reindirizzare dopo aver rieffettuato il login
-            request.getSession(true);
-
-            //inserisco nella sessione la pagina precedentemente visitata
-            try {
-                sessionManager.setPreviusPage(request, "CreateUser");
-
-                //reindirizzo verso servlet di login
-                response.sendRedirect("Login");
-
-            } catch (SessionException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            //setto la previous page e reindirizzo alla login
+            createPreviousPageAndRedirectToLogin(request, response, "CreateUser");
 
         }
 
@@ -114,15 +112,92 @@ public class CreateUser extends BaseController {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response){
 
-        //controllo sulla sessione
+        try {
 
-        //raccolgo i dati dalla form
+            //se sessione valida, uso hardValid perche questo processo implica un controllo di sicurezza
+            if (sessionManager.isHardValid(request)) {
 
-        //se i dati della form sono corretti effetto la insert
+                //prendo il servizio createUser
+                Service createUserService = this.getCreateUserService(request);
 
-        //se i dati non sono corretti rimando un messaggio di errore
+                //se all'utente e' permesso aggiungere utenti
+                if (sessionManager.isPermissed(request, createUserService)) {
+
+                    //raccolgo i dati dalla form
+                    String emailForm = request.getParameter("email");
+
+                    String passwordForm = request.getParameter("password");
+
+                    //se i dati sono corretti
+                    if( emailForm != null && emailForm != "" && utilityManager.isCorrectEmail(emailForm) &&
+                            passwordForm != null && passwordForm != "" && passwordForm.length()>= utilityManager.getPasswordLength()) {
+
+                        //inizializzo un UserDao
+                        UserDao userDao = new UserDaoImpl(ds);
+                        userDao.init();
+
+                        //estraggo l'utente con tale email
+                        User user = userDao.getUserByEmail(emailForm);
+
+                        //se l'utente non e' gia presente nel database:
+                        if (user == null || user.getId() <= 0) {
+
+                            //faccio puntare user ad un utente che non sia null
+                            user = userDao.getUser();
+
+                            //setto l'user da inserire
+                            user.setEmail(emailForm);
+                            user.setPassword(passwordForm);
+
+                            //inserisco l'utente
+                            userDao.storeUser(user);
+
+                        //se la mail e' gia presente nel database
+                        } else {
+
+                            //inserisco il messaggio di email gia' presente nel database
+                            datamodel.put("message", "email gia' presente nel database");
+
+                            //lancio la pagina di creazione dell'utente
+                            TemplateController.process("create_user.ftl", datamodel, response, getServletContext());
+
+                        }
+
+                    //se i dati passati dalla form non sono corretti:
+                    }else{
+                        //inserisco il messaggio di dati non corretti
+                        datamodel.put("message", "dati passati non corretti");
+
+                        //lancio la pagina di creazione dell'utente
+                        TemplateController.process("create_user.ftl", datamodel, response, getServletContext());
+                    }
+
+                //se all'utente non e' permesso aggiungere utenti
+                } else {
+
+                    //lancio il template della pagina not_permissed
+                    TemplateController.process( "not_permissed.ftl", datamodel ,response, getServletContext() );
+                }
+
+            //se la sessione non e' valida
+            }else{
+
+                //setto la previous page e reindirizzo alla login
+                createPreviousPageAndRedirectToLogin(request, response, "CreateUser");
+
+            }
+
+            //se va tutto a buon fine lancio la pagina di creazione dell'utente con il messaggio di avvenuta creazioen dell'utente
+
+            //inserisco il messaggio utente creato
+            datamodel.put("message", "utente creato");
+
+            //lancio la pagina di creazione dell'utente
+            TemplateController.process("create_user.ftl", datamodel, response, getServletContext());
+
+        }catch (SessionException | DaoException  e) {
+            e.printStackTrace();
+        }
 
     }
-
-
 }
