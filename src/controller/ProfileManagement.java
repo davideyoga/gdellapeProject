@@ -49,13 +49,16 @@ public class ProfileManagement extends BaseController {
         //se la sessione e' valida e abbastanza nuova
         if(sessionManager.isHardValid( request )){
 
+            //inizializzo l'user da form per renderlo visibile nel blocco catch
+            User userDaForm = null;
+
             //inizializzo il dao
             UserDao userDao = new UserDaoImpl(ds);
             try {
                 userDao.init();
 
                 //creo un user da riempire con i dati provenienti dalla form
-                User userDaForm = userDao.getUser();
+                userDaForm = userDao.getUser();
 
                 //estraggo l'utente dalla sessione
                 User user = (User) request.getSession().getAttribute("user");
@@ -97,7 +100,9 @@ public class ProfileManagement extends BaseController {
                     userDao.storeUser(userDaForm);
 
                     //inserisco un log nel db descrivendo cio' che e' successo
-                    logManager.addLog(userDaForm, "User with id: " + userDaForm.getId() + " has change your personal data", ds);
+                    logManager.addLog(userDaForm, "User with id: " + userDaForm.getId() + " has change your personal data." + "\n" +
+                                                            "previous User: " + sessionManager.getUser(request) + "\n" +
+                                                            "New User: " + userDaForm, ds);
 
                     //rimuovo il precedente user dalla sessione
                     request.getSession().removeAttribute("user");
@@ -122,34 +127,42 @@ public class ProfileManagement extends BaseController {
                 processTemplate(request, response);
 
             } catch (DaoException e) {
-                e.printStackTrace();
+
+                //in caso di dao exception lancio il template di errore
+                TemplateController.process("error.ftl", datamodel,response,getServletContext());
+
             } catch (LogException e) {
-                e.printStackTrace();
+
+                //rimuovo il precedente user dalla sessione
+                request.getSession().removeAttribute("user");
+
+                //carico il nuovo utente in sessione
+                request.getSession().setAttribute("user", userDaForm);
+
+                //chiudo il dao
+                try {
+
+                    userDao.destroy();
+
+                } catch (DaoException e1) {
+                    //in caso di dao exception lancio il template di errore
+                    TemplateController.process("error.ftl", datamodel,response,getServletContext());
+                }
+
+                datamodel.put("message", "Error, not insert log");
+
+                //lancio il template di profilo con i dati dell'utente in sessione ed il messaggio di errore del log
+                TemplateController.process("profile.ftl", datamodel, response, getServletContext());
+
             }
 
 
         }else{//se la sessione non  e' valida o non abbastanza nuova
 
-            //non serve distruggere la sessione,
-            //SessionManager.destroySession(request);
+            //setto la redirect e lancio il template di login
+            createPreviousPageAndRedirectToLogin(request,response,"ProfileManagement");
 
-            //creo o prendo la sessione eistente e carico la pagina in cui si trovava l'utente prima di essere reindirizzato al login
-            //in modo di poterlo reindirizzare dopo aver rieffettuato il login
-            HttpSession newSession = request.getSession(true);
-
-            try {
-
-                sessionManager.setPreviusPage(request, "ProfileManagement");
-
-            } catch (SessionException e) {
-                e.printStackTrace();
-            }
-
-            //lancio il template di login
-            TemplateController.process( "profile.ftl", datamodel ,response, getServletContext() );
         }
-
-
 
     }
 

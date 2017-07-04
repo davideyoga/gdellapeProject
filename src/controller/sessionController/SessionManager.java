@@ -32,5 +32,11 @@ public interface SessionManager {
 
     void destroySession(HttpServletRequest request);
 
+    /**
+     * Torna utente in sessione
+     * @return
+     */
+    User getUser(HttpServletRequest request);
+
 
 }

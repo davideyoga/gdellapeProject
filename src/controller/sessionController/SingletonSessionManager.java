@@ -373,6 +373,10 @@ public class SingletonSessionManager implements SessionManager {
         }
     }
 
+    @Override
+    public User getUser(HttpServletRequest request){
+        return (User) request.getSession().getAttribute("user");
+    }
 }
 
 

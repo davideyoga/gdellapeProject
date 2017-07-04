@@ -20,11 +20,11 @@ import java.io.IOException;
  */
 public class BaseController extends HttpServlet {
 
-    SessionManager sessionManager;
+    public SessionManager sessionManager;
 
-    LogManager logManager;
+    public LogManager logManager;
 
-    UtilityManager utilityManager;
+    public UtilityManager utilityManager;
 
     @Override
     public void init() throws ServletException {

@@ -1,5 +1,6 @@
 package controller;
 
+import controller.logController.LogException;
 import controller.sessionController.SessionException;
 import dao.exception.DaoException;
 import dao.implementation.ServiceDaoImpl;
@@ -29,12 +30,7 @@ public class CreateUser extends BaseController {
     private Map<String, Object> datamodel = new HashMap<>();
 
 
-    private void processTemplate(HttpServletRequest request, HttpServletResponse response){
-
-    }
-
-
-    private Service getCreateUserService(HttpServletRequest request){
+    private Service getCreateUserService(HttpServletRequest request , HttpServletResponse response){
 
         //inizializzo il dao per estrarre il servizio createUser
         ServiceDao serviceDao = new ServiceDaoImpl(ds);
@@ -65,9 +61,10 @@ public class CreateUser extends BaseController {
 
         } catch (DaoException e) {
 
-            //reindirizzo alla pagina di errore
+            datamodel.put("message", "internal error");
 
-            e.printStackTrace();
+            //reindirizzo alla pagina di errore
+            TemplateController.process("error.ftl", datamodel, response, getServletContext());
         }
 
         return createUser;
@@ -82,7 +79,7 @@ public class CreateUser extends BaseController {
         if(sessionManager.isHardValid(request)) {
 
             //estraggo il servizio di creazione degli utenti
-            Service createUser = getCreateUserService(request);
+            Service createUser = getCreateUserService(request,response);
 
                 //se l'utente in sessione possiede il servizio createUser...
                 if (((List <Service>) request.getSession().getAttribute("services")).contains(createUser)) {
@@ -118,7 +115,7 @@ public class CreateUser extends BaseController {
             if (sessionManager.isHardValid(request)) {
 
                 //prendo il servizio createUser
-                Service createUserService = this.getCreateUserService(request);
+                Service createUserService = this.getCreateUserService(request,response);
 
                 //se all'utente e' permesso aggiungere utenti
                 if (sessionManager.isPermissed(request, createUserService)) {
@@ -152,6 +149,9 @@ public class CreateUser extends BaseController {
                             //inserisco l'utente
                             userDao.storeUser(user);
 
+                            //aggiungo un log di avvenuta creazioendi un utente
+                            logManager.addLog(sessionManager.getUser(request),"User created: " + user, ds);
+
                         //se la mail e' gia presente nel database
                         } else {
 
@@ -162,6 +162,9 @@ public class CreateUser extends BaseController {
                             TemplateController.process("create_user.ftl", datamodel, response, getServletContext());
 
                         }
+
+                        userDao.destroy();
+                        userDao = null;
 
                     //se i dati passati dalla form non sono corretti:
                     }else{
@@ -197,7 +200,8 @@ public class CreateUser extends BaseController {
 
         }catch (SessionException | DaoException  e) {
             e.printStackTrace();
+        } catch (LogException e) {
+            e.printStackTrace();
         }
-
     }
 }
