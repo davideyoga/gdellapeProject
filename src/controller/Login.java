@@ -98,8 +98,6 @@ public class Login extends BaseController {
                     //se esiste reinderizzo alla pagina precedente
                     if(previousPage != null && previousPage != ""){
 
-                        System.out.println("entrato nell if con previousPage:" + previousPage);
-
                         //rendo null la pagina precedente prima di reindirizzare
                         sessionManager.setPreviusPage(request, null);
 
@@ -107,8 +105,6 @@ public class Login extends BaseController {
                         response.sendRedirect(previousPage);
 
                     }else {
-
-                        System.out.println("non entrato enn'if con previous page");
 
                         //lancio il template passandogli il datamodel contenente l'utente, reindirizzo alla home del back-office
                         TemplateController.process("home_back_office.ftl", this.datamodel, response, getServletContext());

@@ -28,7 +28,8 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
                                 updateUser,
                                 deleteUserById,
                                 selectUserByGroupsId,
-                                selectUserByEmail;
+                                selectUserByEmail,
+                                selectUsers;
 
 
     /**
@@ -85,6 +86,10 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
             this.selectUserByEmail = connection.prepareStatement("SELECT *" +
                     "                                                   FROM user" +
                     "                                                   WHERE email=?");
+
+            this.selectUsers = connection.prepareStatement("SELECT *" +
+                    "                                           FROM user");
+
         } catch (SQLException e) {
             throw new InitDaoException("Error initializing user dao", e);
         }
@@ -317,6 +322,27 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
     }
 
     @Override
+    public List <User> getUsers() throws DaoException {
+
+        try {
+
+            List<User> userList = new ArrayList<>();
+
+            ResultSet rs =this.selectUsers.executeQuery();
+
+            while (rs.next()){
+
+                userList.add(this.generateUser(rs));
+            }
+
+            return userList;
+
+        } catch (SQLException e) {
+            throw new SelectDaoException("Error in getUsers",e);
+        }
+    }
+
+    @Override
     public void destroy() throws DaoException{
         try {
 
@@ -328,6 +354,7 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
             this.selectUserById.close();
             this.selectUserByGroupsId.close();
             this.selectUserByEmail.close();
+            this.selectUsers.close();
 
             super.destroy(); //chiudo la connessione
 

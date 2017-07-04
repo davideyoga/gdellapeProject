@@ -87,4 +87,28 @@
     </servlet-mapping>
     <!-- Fine Servlet di CreateUser -->
 
+    <!-- Servlet di AdmGetListUser -->
+    <servlet>
+        <servlet-name>AdmGetListUser</servlet-name>
+        <servlet-class>controller.adm.AdmGetListUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdmGetListUser</servlet-name>
+        <url-pattern>/AdmGetListUser</url-pattern>
+        <url-pattern>/admGetListUser</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di CreateUser -->
+
+    <!-- Servlet di AdmGetListUser -->
+    <servlet>
+        <servlet-name>AdmModUser</servlet-name>
+        <servlet-class>controller.adm.AdmModUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdmModUser</servlet-name>
+        <url-pattern>/AdmModUser</url-pattern>
+        <url-pattern>/admModUser</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di CreateUser -->
+
 </web-app>

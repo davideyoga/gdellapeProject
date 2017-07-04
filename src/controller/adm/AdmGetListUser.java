@@ -3,8 +3,11 @@ package controller.adm;
 import controller.BaseController;
 import dao.exception.DaoException;
 import dao.implementation.ServiceDaoImpl;
+import dao.implementation.UserDaoImpl;
 import dao.interfaces.ServiceDao;
+import dao.interfaces.UserDao;
 import model.Service;
+import model.User;
 import view.TemplateController;
 
 import javax.annotation.Resource;
@@ -15,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +37,8 @@ public class AdmGetListUser extends BaseController {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        this.doGet(request, response);
+
     }
 
     /**
@@ -47,8 +53,6 @@ public class AdmGetListUser extends BaseController {
         //se sessione valida
         if(this.sessionManager.isValid(request)){
 
-            //controllo permessi
-
             //estraggo il servizio di creazione degli utenti
             Service modUser = utilityManager.getServiceAndCreate(request,response,ds,"modUser","Permissed for modification User",
                                                                     datamodel, getServletContext());
@@ -56,9 +60,31 @@ public class AdmGetListUser extends BaseController {
             //se l'utente in sessione possiede il servizio modUser...
             if (((List<Service>) request.getSession().getAttribute("services")).contains(modUser)) {
 
-                //estraggo tutti gli utenti
+                //inizializzo la lista di tutti gli utenti
+                List<User> userList = new ArrayList <>();
 
-                //lancio il template con la lista di tutti gli utenti
+                try {
+
+                    //inizializzo il dao degli utenti
+                    UserDao userDao = new UserDaoImpl(ds);
+                    userDao.init();
+
+                    //estraggo tutti gli utenti
+                    userList = userDao.getUsers();
+
+                    //chiudo il dao
+                    userDao.close();
+                    userDao = null;
+
+                } catch (Exception e) {
+                    //in caso di dao exception ecc. lancio il template di errore
+                    TemplateController.process("error.ftl", datamodel,response,getServletContext());
+                }
+
+                //lancio il template con gli utenti caricati
+                datamodel.put("users", userList);
+                TemplateController.process( "user_list.ftl", datamodel ,response, getServletContext() );
+
 
             } else {
 
@@ -73,7 +99,5 @@ public class AdmGetListUser extends BaseController {
             createPreviousPageAndRedirectToLogin(request, response, "AdmGetListUser");
 
         }
-
-
     }
 }

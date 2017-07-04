@@ -109,6 +109,9 @@ public class CreateUser extends BaseController {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response){
 
+        //rendo visibile il dao nel blocco catch
+        UserDao userDao = null;
+
         try {
 
             //se sessione valida, uso hardValid perche questo processo implica un controllo di sicurezza
@@ -130,7 +133,7 @@ public class CreateUser extends BaseController {
                             passwordForm != null && passwordForm != "" && passwordForm.length()>= utilityManager.getPasswordLength()) {
 
                         //inizializzo un UserDao
-                        UserDao userDao = new UserDaoImpl(ds);
+                        userDao = new UserDaoImpl(ds);
                         userDao.init();
 
                         //estraggo l'utente con tale email
@@ -199,9 +202,19 @@ public class CreateUser extends BaseController {
             TemplateController.process("create_user.ftl", datamodel, response, getServletContext());
 
         }catch (SessionException | DaoException  e) {
-            e.printStackTrace();
+            //in caso di dao exception ecc. lancio il template di errore
+            TemplateController.process("error.ftl", datamodel,response,getServletContext());
+
         } catch (LogException e) {
-            e.printStackTrace();
+
+            //rendo piu' facile il lavoro del garbage collector
+            userDao = null;
+
+            //inserisco il messaggio utente creato con messaggio di errore del log
+            datamodel.put("message", "utente creato, ma errore nell' inserimento del log");
+
+            //lancio la pagina di creazione dell'utente
+            TemplateController.process("create_user.ftl", datamodel, response, getServletContext());
         }
     }
 }

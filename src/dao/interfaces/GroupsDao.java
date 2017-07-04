@@ -27,4 +27,6 @@ public interface GroupsDao  extends DaoData{
 
     Groups generateGroups(ResultSet rs) throws DaoException;
 
+    List<Groups> getAllGroups() throws DaoException;
+
 }

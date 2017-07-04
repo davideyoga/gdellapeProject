@@ -32,7 +32,8 @@ public class GroupsDaoImpl extends DaoDataMySQLImpl implements GroupsDao {
                                 updateGroups,
                                 deleteGroupsById,
                                 selectGroupsByServiceId,
-                                selectGroupsByUserId;
+                                selectGroupsByUserId,
+                                selectAllGroups;
 
     public GroupsDaoImpl(DataSource datasource) {
         super(datasource);
@@ -77,6 +78,9 @@ public class GroupsDaoImpl extends DaoDataMySQLImpl implements GroupsDao {
                     "													  FROM groups " +
                     "													  LEFT JOIN user_groups ON groups.id = user_groups.groups_id" +
                     "													  WHERE user_groups.user_id=?");
+
+            this.selectAllGroups = connection.prepareStatement("SELECT *" +
+                    "                                               FROM groups");
 
         } catch (SQLException e) {
             throw new InitDaoException("Error initializing groups dao", e);
@@ -286,6 +290,28 @@ public class GroupsDaoImpl extends DaoDataMySQLImpl implements GroupsDao {
     }
 
     @Override
+    public List <Groups> getAllGroups() throws DaoException {
+
+        try {
+
+            List<Groups> groupsList = new ArrayList <>();
+
+            ResultSet rs = this.selectAllGroups.executeQuery();
+
+            while (rs.next()){
+
+                groupsList.add(this.generateGroups(rs));
+
+            }
+
+            return groupsList;
+
+        } catch (SQLException e) {
+            throw new SelectDaoException("Error in getAllGroups",e);
+        }
+    }
+
+    @Override
     public void destroy() throws DaoException{
 
         try {
@@ -296,6 +322,7 @@ public class GroupsDaoImpl extends DaoDataMySQLImpl implements GroupsDao {
             this.deleteGroupsById.close();
             this.selectGroupsByServiceId.close();
             this.selectGroupsByUserId.close();
+            this.selectAllGroups.close();
 
             super.destroy();
 

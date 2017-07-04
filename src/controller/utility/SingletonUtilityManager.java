@@ -89,6 +89,9 @@ public class SingletonUtilityManager implements UtilityManager {
                 serviceDao.storeService(service);
             }
 
+            serviceDao.destroy();
+            serviceDao = null;
+
         } catch (DaoException e) {
 
             datamodel.put("message", "internal error");

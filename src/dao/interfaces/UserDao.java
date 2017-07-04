@@ -26,4 +26,6 @@ public interface UserDao extends DaoData{
 
     List<User> getUserByGroups(Groups groups) throws DaoException;
 
+    List<User> getUsers() throws DaoException;
+
 }
