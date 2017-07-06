@@ -28,4 +28,6 @@ public interface ServiceDao extends DaoData {
 
         Service generateService(ResultSet resultSet) throws DaoException;
 
+        List<Service> getAllService() throws DaoException;
+
 }

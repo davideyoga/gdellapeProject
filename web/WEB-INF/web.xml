@@ -97,7 +97,7 @@
         <url-pattern>/AdmGetListUser</url-pattern>
         <url-pattern>/admGetListUser</url-pattern>
     </servlet-mapping>
-    <!-- Fine Servlet di CreateUser -->
+    <!-- Fine Servlet di AdmGetListUser -->
 
     <!-- Servlet di AdmGetListUser -->
     <servlet>
@@ -109,6 +109,31 @@
         <url-pattern>/AdmModUser</url-pattern>
         <url-pattern>/admModUser</url-pattern>
     </servlet-mapping>
-    <!-- Fine Servlet di CreateUser -->
+    <!-- Fine Servlet di AdmGetListUser -->
+
+    <!-- Servlet di AdmGetListGroups -->
+    <servlet>
+        <servlet-name>AdmGetListGroups</servlet-name>
+        <servlet-class>controller.adm.AdmGetListGroups</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdmGetListGroups</servlet-name>
+        <url-pattern>/AdmGetListGroups</url-pattern>
+        <url-pattern>/admGetListGroups</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di AdmGetListGroups -->
+
+
+    <!-- Servlet di AdmModGroups -->
+    <servlet>
+        <servlet-name>AdmModGroups</servlet-name>
+        <servlet-class>controller.adm.AdmModGroups</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdmModGroups</servlet-name>
+        <url-pattern>/AdmModGroups</url-pattern>
+        <url-pattern>/admModGroups</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di AdmModGroups -->
 
 </web-app>

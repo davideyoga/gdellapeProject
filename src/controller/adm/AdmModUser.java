@@ -303,10 +303,6 @@ public class AdmModUser extends BaseController {
             //se l'utente ha il permesso (potrebbe essere ridondante in quanto viene controllato anche per accedere alla lista ma nn si sa mai)
             if (((List<Service>) request.getSession().getAttribute("services")).contains(modUser)) {
 
-                /*
-                 *carico l'utente richiesto nel datamodel e lancio il template
-                 */
-
 
                 try {
                     //inizializzo i dao

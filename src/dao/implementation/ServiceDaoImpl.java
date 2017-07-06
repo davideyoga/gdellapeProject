@@ -29,7 +29,8 @@ public class ServiceDaoImpl extends DaoDataMySQLImpl implements ServiceDao {
                                 selectServiceByName,
                                 updateService,
                                 deleteServiceById,
-                                selectServicesByGroupId;
+                                selectServicesByGroupId,
+                                selectAllservice;
 
 
     public ServiceDaoImpl(DataSource datasource) {
@@ -68,6 +69,9 @@ public class ServiceDaoImpl extends DaoDataMySQLImpl implements ServiceDao {
                     "													  FROM service " +
                     "													  LEFT JOIN groups_service ON service.id = groups_service.service_id" +
                     "													  WHERE groups_service.groups_id=?");
+
+            this.selectAllservice = connection.prepareStatement("SELECT *" +
+                    "                                                   FROM service");
 
         } catch (SQLException e) {
             throw new InitDaoException("Error initializing service dao", e);
@@ -231,6 +235,29 @@ public class ServiceDaoImpl extends DaoDataMySQLImpl implements ServiceDao {
     }
 
     @Override
+    public List <Service> getAllService() throws DaoException {
+
+        try {
+
+            List<Service> serviceList = new ArrayList <>();
+
+            ResultSet rs = this.selectAllservice.executeQuery();
+
+            while (rs.next()){
+
+                serviceList.add(this.generateService(rs));
+
+            }
+
+            return serviceList;
+
+        } catch (SQLException e) {
+            throw new SelectDaoException("Error in getAllService",e);
+        }
+
+    }
+
+    @Override
     public void destroy() throws DaoException{
 
         try {
@@ -240,6 +267,7 @@ public class ServiceDaoImpl extends DaoDataMySQLImpl implements ServiceDao {
             this.updateService.close();
             this.deleteServiceById.close();
             this.selectServicesByGroupId.close();
+            this.selectAllservice.close();
 
             super.destroy();
 
