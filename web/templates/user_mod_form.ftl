@@ -10,8 +10,8 @@
             <div class="col-md-6">
 
                 <div class="profile-form-email">
-                    Password
-                    <input type="email" value= "<#if user.email??>${user.email}<#else></#if>" name="password" >
+                    email
+                    <input type="email" value= "<#if user.email??>${user.email}<#else></#if>" name="email" >
                     <i class="fa fa-lock"></i>
                 </div>
 
@@ -71,15 +71,7 @@
 
             <#list listGroups as groups>
 
-                <!--listUserGroups e' la lista dei gruppi che ha l'utente-->
-
-                <#assign x = ["red", 16, "blue", "cyan"]>
-                "blue": ${x?seq_contains("blue")?string("yes", "no")}
-                "yellow": ${x?seq_contains("yellow")?string("yes", "no")}
-                16: ${x?seq_contains(16)?string("yes", "no")}
-                "16": ${x?seq_contains("16")?string("yes", "no")
-
-                <input type="checkbox" name="vehicle" value="Bike" <#if ${listUserGroups?seq_contains(groups)?>checked<#else></#if>> I have a bike<br>
+                <input type="checkbox" name="${groups.name}" value="${groups.name}" <#if listUserGroups?seq_contains(groups) >checked<#else></#if> > ${groups.name} <br>
 
             </#list>
 

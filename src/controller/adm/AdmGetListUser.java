@@ -34,7 +34,7 @@ public class AdmGetListUser extends BaseController {
 
     private Map<String, Object> datamodel = new HashMap<>();
 
-
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         this.doGet(request, response);
@@ -48,6 +48,7 @@ public class AdmGetListUser extends BaseController {
      * @throws ServletException
      * @throws IOException
      */
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //se sessione valida

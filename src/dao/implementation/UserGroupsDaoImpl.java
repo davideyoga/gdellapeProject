@@ -21,7 +21,7 @@ import java.util.List;
 public class UserGroupsDaoImpl extends DaoDataMySQLImpl implements UserGroupsDao {
 
     PreparedStatement insertUserGroups,
-            selectUserGroupsById,
+            //selectUserGroupsById,
             selectUserGroupsByUserId,
             selectUserGroupsByGroupsId,
             deleteUserGroups;
@@ -191,7 +191,7 @@ public class UserGroupsDaoImpl extends DaoDataMySQLImpl implements UserGroupsDao
 
             //chiudo le query precompilate
             this.insertUserGroups.close();
-            this.selectUserGroupsById.close();
+            //this.selectUserGroupsById.close();
             this.selectUserGroupsByUserId.close();
             this.selectUserGroupsByGroupsId.close();
             this.deleteUserGroups.close();
