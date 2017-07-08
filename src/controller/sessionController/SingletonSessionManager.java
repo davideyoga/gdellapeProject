@@ -65,6 +65,8 @@ public class SingletonSessionManager implements SessionManager {
         session.setAttribute("ip_address", request.getRemoteHost()); //carico l'ip dell'user
         session.setAttribute("session_start", Calendar.getInstance()); //carico la data della sessione
 
+        //carico la lingua predefinita
+        session.setAttribute("language", "IT" );
 
         return session;
     }
@@ -377,6 +379,38 @@ public class SingletonSessionManager implements SessionManager {
     public User getUser(HttpServletRequest request){
         return (User) request.getSession().getAttribute("user");
     }
+
+    /**
+     * Cambia la lingua e lo restituisce
+     * @param request
+     * @return
+     */
+    @Override
+    public String changeLanguage(HttpServletRequest request) {
+
+        //se la lingua attuale e' IT trasforma in EN
+        if(request.getSession().getAttribute("language").equals("IT")){
+
+            request.getSession().setAttribute("language", "EN");
+
+            //se la lingua attuale e' EN trasforma in It
+        }else{
+            request.getSession().setAttribute("language", "IT");
+
+        }
+        return this.getLanguage(request);
+    }
+
+    /**
+     * Restituisce la lingua corrente
+     * @param request
+     * @return
+     */
+    @Override
+    public String getLanguage(HttpServletRequest request){
+        return (String) request.getSession().getAttribute("language");
+    }
+
 }
 
 
