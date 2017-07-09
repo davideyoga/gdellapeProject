@@ -71,7 +71,16 @@ public class AdmModUser extends BaseController {
                     groupsDao.init();
 
                     //estraggo l'utente prima della modifica
+                    //nota: l'id dell'utente che si intende modificare viene inserito nel metodo doGet, quindi sara' sempre presente,
                     userPrimaDelleModifiche = userDao.getUserById((int) request.getSession().getAttribute("idUserToModify"));
+
+                    //se l'utente estratto non e' valido
+                    if(userPrimaDelleModifiche == null || userPrimaDelleModifiche.getId() == 0){
+
+                        //lancio servlet di errore
+                        response.sendRedirect("Error");
+
+                    }
 
                     //estraggo i gruppi a cui appartiene l'utente prima della modifica
                     List<Groups> groupsListPrima = groupsDao.getGroupsByUser(userPrimaDelleModifiche);
@@ -87,9 +96,6 @@ public class AdmModUser extends BaseController {
                     userDaForm = userDao.getUser();
 
                     userDaForm.setPassword(request.getParameter("password"));
-
-                    System.out.println("Password 1: " + request.getParameter("password"));
-                    System.out.println("Password 1: " + request.getParameter("ripetere-password"));
 
                     //se la password inserita e' uguale in entrambi i campi
                     if (userDaForm.getPassword().equals(request.getParameter("ripetere-password"))) {

@@ -4,10 +4,13 @@ package controller.adm;
 import controller.BaseController;
 import dao.exception.DaoException;
 import dao.implementation.GroupsDaoImpl;
+import dao.implementation.GroupsServiceDaoImpl;
 import dao.implementation.ServiceDaoImpl;
 import dao.interfaces.GroupsDao;
+import dao.interfaces.GroupsServiceDao;
 import dao.interfaces.ServiceDao;
 import model.Groups;
+import model.GroupsService;
 import model.Service;
 import view.TemplateController;
 
@@ -17,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,8 +36,199 @@ public class AdmModGroups extends BaseController {
 
     private Map<String, Object> datamodel = new HashMap<>();
 
+    /**
+     * Raccoglie i parametri post, tratta separatamente la modifica dei dati degli utenti con la modifica
+     * delle associazioni con i gruppi degli utenti
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        //se la session ee' valida e abbastanza nuova
+        if(sessionManager.isHardValid(request)) {
+
+            //estraggo il servizio di creazione degli utenti
+            Service modGroups = utilityManager.getServiceAndCreate(request,response,ds,"modGroups","Permissed for modification Groups",
+                    datamodel, getServletContext());
+
+            //se l'utente in sessione possiede il servizio modGroups...
+            if (((List<Service>) request.getSession().getAttribute("services")).contains(modGroups)) {
+
+                //inizializzo il gruppo per renderli visibili nel blocco catch
+                Groups groupsDaForm = null;
+                Groups groupsPrimaDelleModifiche = null;
+
+                try {
+
+                    //inizializzo il dao
+                    ServiceDao serviceDao = new ServiceDaoImpl(ds);
+                    GroupsDao groupsDao = new GroupsDaoImpl(ds);
+                    serviceDao.init();
+                    groupsDao.init();
+
+                    //estraggo il gruppo prima della modifica
+                    //nota: l'id del gruppo che si intende modificare viene inserito nel metodo doGet, quindi sara' sempre presente,
+                    groupsPrimaDelleModifiche = groupsDao.getGroupsById((int) request.getSession().getAttribute("idGroupsToModify"));
+
+                    //controllo sulla corretta estrazione del gruppo
+                    if(groupsPrimaDelleModifiche == null || groupsPrimaDelleModifiche.getId() == 0){
+
+                        //lancio servlet di errore
+                        response.sendRedirect("Error");
+
+                    }
+
+                    //estraggo i servizi di propieta' del gruppo prima della modifica
+                    List<Service> serviceListPrima = serviceDao.getServicesByGroup(groupsPrimaDelleModifiche);
+
+                    //estraggo tutti i servizi
+                    List<Service> serviceListAll = serviceDao.getAllService();
+
+                    /*
+                     * INIZIO MOD PROFILO GRUPPO
+                     */
+
+                    //creo un GRUPPO da riempire con i dati provenienti dalla form
+                    groupsDaForm = groupsDao.getGroups();
+
+                        /*
+                         * SETTO USER DA FORM CON I DATI DALLA FORM
+                         */
+                    groupsDaForm.setId(groupsPrimaDelleModifiche.getId());
+                    groupsDaForm.setName(request.getParameter("name"));
+                    groupsDaForm.setDescription(request.getParameter("description"));
+
+                    //se il gruppo e' cambiato rispetto a prima
+                    if(!groupsDaForm.equals(groupsPrimaDelleModifiche)){
+
+                            //effettuo l'update
+                            groupsDao.storeGroups(groupsDaForm);
+                    }
+                    //se non e' cambiato non faccio nulla
+
+                    /*
+                     * FINE MOD PROFILO GRUPPO
+                     */
 
 
+                    /*
+                     * INIZIO RACCOLTA GRUPPI
+                     */
+
+                    //inizializzo il dao degli userGroups
+                    GroupsServiceDao groupsServiceDao = new GroupsServiceDaoImpl(ds);
+                    groupsServiceDao.init();
+
+                    //inizializzo un UserGroups per effettuare le operazioni
+                    GroupsService groupsService = groupsServiceDao.getGroupsSerivce();
+
+                    //creo una lista con i nomi dei servizi che mi arrivano dalla form
+                    List<String> nameServiceListDopo = new ArrayList<>();
+
+                    //ciclo sulla lista di tutti i servizi per estrarre i servizi dalla form
+                    for( Service service:serviceListAll){
+
+                        //se l'admin ha ceckato sul ceckbox del servizio service
+                        if(request.getParameter(service.getName()) != null){
+
+                            //aggiungo il nome del servizio alla lista dei nomi dei servizi dalla ceckati dalla form
+                            nameServiceListDopo.add( request.getParameter(service.getName()));
+                        }
+                    }
+
+                    //per chiarimenti maggiori di quello fatto sotto andare nella servlet AdmModUser, e' lo stesso principio
+
+                    //ciclo la lista dei gruppi, SI PUO' OTTIMIZZARE
+                    for (Service service:serviceListAll){
+
+                            //caso 3, se il servizio e' presente in serviceListPrima ma non in nameServiceList
+                            if( serviceListPrima.contains(service) && !nameServiceListDopo.contains(service.getName()) ){
+
+                                //tolgo il servizio service al gruppo
+
+                                //setto il groupsService
+                                groupsService.setIdGroups(groupsPrimaDelleModifiche.getId());
+                                groupsService.setIdService(service.getId());
+
+                                //elimino la connessione tra groups e service
+                                groupsServiceDao.deleteGroupsService(groupsService);
+
+                            }
+
+                            //caso 2, se groups non e' contenuto in groupsListPrima ed ora e' contenuto in nameGroupsListDopo
+                            if(!serviceListPrima.contains(service) && nameServiceListDopo.contains(service.getName())){
+
+                                //aggiungo il servizio al gruppo
+
+                                //setto il groupsUser
+                                groupsService.setIdGroups(groupsPrimaDelleModifiche.getId());
+                                groupsService.setIdService(service.getId());
+
+                                System.out.println("groupsService: " + groupsService);
+
+                                //creo la connessione tra groups e service
+                                groupsServiceDao.insertGroupsService(groupsService);
+
+                            }
+
+                            //se non sono veri nessuno dei due ci troviamo nel caso 1, quindi non faccio nulla
+
+                    }
+
+
+                    /*
+                     * FINE RACCOLTA GRUPPI
+                     */
+
+
+                    //FINITO, LANCIO IL TEMPLATE CON I DATI CARICATI
+
+                    //mi prendo i nuovi servizi per ricaricarli nel template, SI PUO' OTTIMIZZARE
+                    List<Service> newListService = serviceDao.getServicesByGroup(groupsDaForm);
+
+                    //carico i servizi a cui ha accesso il gruppo
+                    //per farlo ho bisogno dei nuovi servizi
+                    datamodel.put("listGroupsService", newListService);
+
+                    //carico tutti i servizi presenti nel sistema
+                    datamodel.put("listService", serviceListAll);
+
+                    //carico il nuovo gruppo nel template
+                    datamodel.put("groups", groupsDaForm);
+
+                    //chiudo tutto
+                    groupsService = null;
+                    groupsServiceDao.destroy();
+                    groupsServiceDao = null;
+                    groupsDao.destroy();
+                    groupsDao=null;
+                    serviceDao.destroy();
+                    serviceDao = null;
+
+                    //lancio il template di modifica dell'utente
+                    TemplateController.process("groups_mod.ftl", datamodel,response,getServletContext());
+
+                } catch (DaoException e) {
+                    e.printStackTrace();
+                }
+
+                //se non ha il permesso
+            } else {
+
+                //lancio il messaggio di servizio non permesso
+                TemplateController.process( "not_permissed.ftl", datamodel ,response, getServletContext() );
+            }
+            //se isHardValid = false
+        }else {
+            //setto la pagina precedente e reindirizzo al login
+            createPreviousPageAndRedirectToLogin(request, response, "AdmGetListGroups");
+        }
+
+    }
 
 
     /**

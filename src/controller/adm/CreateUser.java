@@ -1,5 +1,6 @@
-package controller;
+package controller.adm;
 
+import controller.BaseController;
 import controller.logController.LogException;
 import controller.sessionController.SessionException;
 import dao.exception.DaoException;

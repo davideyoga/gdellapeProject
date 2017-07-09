@@ -5,23 +5,23 @@
         <p><#if message??>${message}<#else></#if></p>
 
 
-        <h2>Mod ${groups.email}</h2>
+        <h2>Mod ${groups.name}</h2>
         <form method="POST" action="AdmModGroups">
             <div class="col-md-6">
 
                 <div class="groups-form-name">
-                    email
+                    name
                     <input type="text" value= "<#if groups.name??>${groups.name}<#else></#if>" name="name" >
                     <i class="fa fa-lock"></i>
                 </div>
 
                 <div class="groups-form-description">
-                    Password
+                    description
                     <input type="text" value= "<#if groups.description??>${groups.description}<#else></#if>" name="description" >
                     <i class="fa fa-lock"></i>
                 </div>
 
-
+                <p>Service List</p>
             <#list listService as service>
 
                 <input type="checkbox" name="${service.name}" value="${service.name}" <#if listGroupsService?seq_contains(service) >checked<#else></#if> > ${service.name} <br>

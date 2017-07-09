@@ -46,7 +46,7 @@ public class AdmGetListGroups extends BaseController {
             Service modGroups = utilityManager.getServiceAndCreate(request,response,ds,"modGroups","Permissed for modification Groups",
                     datamodel, getServletContext());
 
-            //se l'utente in sessione possiede il servizio modUser...
+            //se l'utente in sessione possiede il servizio modGroups...
             if (((List<Service>) request.getSession().getAttribute("services")).contains(modGroups)) {
 
                 //inizializzo la lista di tutti gli utenti

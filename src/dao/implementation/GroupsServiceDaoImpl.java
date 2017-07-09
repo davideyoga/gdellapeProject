@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class GroupsServiceDaoImpl extends DaoDataMySQLImpl implements GroupsServiceDao {
 
-    PreparedStatement insertGroupsService, selectGroupsServiceById, selectGroupsServiceByServiceId, selectGroupsServiceByGroupsId, deleteGroupsService;
+    PreparedStatement insertGroupsService,  selectGroupsServiceByServiceId, selectGroupsServiceByGroupsId, deleteGroupsService;
 
     public GroupsServiceDaoImpl(DataSource datasource) {
         super(datasource);
@@ -36,17 +36,17 @@ public class GroupsServiceDaoImpl extends DaoDataMySQLImpl implements GroupsServ
 
             super.init();
 
-            this.insertGroupsService = connection.prepareStatement("INSERT INTO groups_serivce" +
+            this.insertGroupsService = connection.prepareStatement("INSERT INTO groups_service" +
                     "                                                        VALUES (?,?)");
 
 
-            this.selectGroupsServiceByServiceId = connection.prepareStatement("SELECT * FROM groups_serice" +
+            this.selectGroupsServiceByServiceId = connection.prepareStatement("SELECT * FROM groups_service" +
                     "                                                                   WHERE service_id=?");
 
-            this.selectGroupsServiceByGroupsId = connection.prepareStatement("SELECT * FROM groups_serice" +
+            this.selectGroupsServiceByGroupsId = connection.prepareStatement("SELECT * FROM groups_service" +
                     "                                                                   WHERE groups_id=?");
 
-            this.deleteGroupsService = connection.prepareStatement("DELETE FROM geoups_service" +
+            this.deleteGroupsService = connection.prepareStatement("DELETE FROM groups_service" +
                     "                                                       WHERE groups_id=?" +
                     "                                                       AND  service_id=?");
 
@@ -77,8 +77,8 @@ public class GroupsServiceDaoImpl extends DaoDataMySQLImpl implements GroupsServ
         try {
 
             //setto i parametri della query
-            this.insertGroupsService.setInt(1, groupsService.getIdGroups());
-            this.insertGroupsService.setInt(2, groupsService.getIdService());
+            this.insertGroupsService.setInt(2, groupsService.getIdGroups());
+            this.insertGroupsService.setInt(1, groupsService.getIdService());
             //lancio la query
             this.insertGroupsService.executeUpdate();
 
@@ -197,7 +197,6 @@ public class GroupsServiceDaoImpl extends DaoDataMySQLImpl implements GroupsServ
         try {
 
             this.insertGroupsService.close();
-            this.selectGroupsServiceById.close();
             this.selectGroupsServiceByGroupsId.close();
             this.selectGroupsServiceByServiceId.close();
             this.deleteGroupsService.close();

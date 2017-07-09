@@ -78,7 +78,7 @@
     <!-- Servlet di CreateUser -->
     <servlet>
         <servlet-name>CreateUser</servlet-name>
-        <servlet-class>controller.CreateUser</servlet-class>
+        <servlet-class>controller.adm.CreateUser</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CreateUser</servlet-name>
@@ -135,5 +135,17 @@
         <url-pattern>/admModGroups</url-pattern>
     </servlet-mapping>
     <!-- Fine Servlet di AdmModGroups -->
+
+    <!-- Servlet di Error -->
+    <servlet>
+        <servlet-name>Error</servlet-name>
+        <servlet-class>controller.Error</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Error</servlet-name>
+        <url-pattern>/Error</url-pattern>
+        <url-pattern>/error</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di Error -->
 
 </web-app>
