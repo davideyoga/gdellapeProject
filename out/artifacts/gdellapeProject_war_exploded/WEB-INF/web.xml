@@ -148,4 +148,52 @@
     </servlet-mapping>
     <!-- Fine Servlet di Error -->
 
+    <!-- Servlet di CreateGroups -->
+    <servlet>
+        <servlet-name>CreateGroups</servlet-name>
+        <servlet-class>controller.adm.CreateGroups</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateGroups</servlet-name>
+        <url-pattern>/CreateGroups</url-pattern>
+        <url-pattern>/createGroups</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di CreateGroups -->
+
+    <!-- Servlet di DeleteGroups -->
+    <servlet>
+        <servlet-name>DeleteGroups</servlet-name>
+        <servlet-class>controller.adm.DeleteGroups</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteGroups</servlet-name>
+        <url-pattern>/DeleteGroups</url-pattern>
+        <url-pattern>/deleteGroups</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di DeleteGroups -->
+
+    <!-- Servlet di DeleteUser -->
+    <servlet>
+        <servlet-name>DeleteUser</servlet-name>
+        <servlet-class>controller.adm.DeleteUser</servlet-class>
+        </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteUser</servlet-name>
+        <url-pattern>/DeleteUser</url-pattern>
+        <url-pattern>/deleteUser</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di DeleteUser -->
+
+    <!-- Servlet di GetAllLog -->
+    <servlet>
+        <servlet-name>GetAllLog</servlet-name>
+        <servlet-class>controller.adm.GetAllLog</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetAllLog</servlet-name>
+        <url-pattern>/GetAllLog</url-pattern>
+        <url-pattern>/getAllLog</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di DeleteUser -->
+
 </web-app>
