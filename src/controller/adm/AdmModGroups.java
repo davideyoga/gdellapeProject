@@ -2,6 +2,7 @@ package controller.adm;
 
 
 import controller.BaseController;
+import controller.logController.LogException;
 import dao.exception.DaoException;
 import dao.implementation.GroupsDaoImpl;
 import dao.implementation.GroupsServiceDaoImpl;
@@ -105,8 +106,11 @@ public class AdmModGroups extends BaseController {
                     //se il gruppo e' cambiato rispetto a prima
                     if(!groupsDaForm.equals(groupsPrimaDelleModifiche)){
 
-                            //effettuo l'update
-                            groupsDao.storeGroups(groupsDaForm);
+                        //effettuo l'update
+                        groupsDao.storeGroups(groupsDaForm);
+
+                        logManager.addLog(sessionManager.getUser(request),"Gruppo " + groupsPrimaDelleModifiche + " ha subito modifiche in: "+ groupsPrimaDelleModifiche,ds);
+
                     }
                     //se non e' cambiato non faccio nulla
 
@@ -116,7 +120,7 @@ public class AdmModGroups extends BaseController {
 
 
                     /*
-                     * INIZIO RACCOLTA GRUPPI
+                     * INIZIO RACCOLTA SERVIZI
                      */
 
                     //inizializzo il dao degli userGroups
@@ -140,6 +144,9 @@ public class AdmModGroups extends BaseController {
                         }
                     }
 
+                    //inizializzo un booleano per capire se devo aggiungere un log
+                    boolean serviziCambiati = false;
+
                     //per chiarimenti maggiori di quello fatto sotto andare nella servlet AdmModUser, e' lo stesso principio
 
                     //ciclo la lista dei gruppi, SI PUO' OTTIMIZZARE
@@ -157,6 +164,8 @@ public class AdmModGroups extends BaseController {
                                 //elimino la connessione tra groups e service
                                 groupsServiceDao.deleteGroupsService(groupsService);
 
+                                serviziCambiati = true;
+
                             }
 
                             //caso 2, se groups non e' contenuto in groupsListPrima ed ora e' contenuto in nameGroupsListDopo
@@ -173,15 +182,24 @@ public class AdmModGroups extends BaseController {
                                 //creo la connessione tra groups e service
                                 groupsServiceDao.insertGroupsService(groupsService);
 
+                                serviziCambiati = true;
+
                             }
 
                             //se non sono veri nessuno dei due ci troviamo nel caso 1, quindi non faccio nulla
 
                     }
 
+                    if(serviziCambiati == true){
+
+                        //aggiungo log di modifica associazioni con i servizi
+                        logManager.addLog(sessionManager.getUser(request), "Gruppo: " + groupsDaForm + " ha subito modifiche alle associazioni sui servizi", ds);
+
+                    }
+
 
                     /*
-                     * FINE RACCOLTA GRUPPI
+                     * FINE RACCOLTA SERVIZI
                      */
 
 
@@ -212,8 +230,9 @@ public class AdmModGroups extends BaseController {
                     //lancio il template di modifica dell'utente
                     TemplateController.process("groups_mod.ftl", datamodel,response,getServletContext());
 
-                } catch (DaoException e) {
-                    e.printStackTrace();
+                } catch (DaoException | LogException e) {
+                    //lancio servlet di errore
+                    response.sendRedirect("Error");
                 }
 
                 //se non ha il permesso

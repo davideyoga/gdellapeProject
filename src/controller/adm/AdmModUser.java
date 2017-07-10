@@ -2,6 +2,7 @@ package controller.adm;
 
 import com.sun.xml.internal.bind.v2.model.core.ID;
 import controller.BaseController;
+import controller.logController.LogException;
 import dao.exception.DaoException;
 import dao.implementation.GroupsDaoImpl;
 import dao.implementation.UserDaoImpl;
@@ -138,6 +139,9 @@ public class AdmModUser extends BaseController {
 
                             //effettuo l'update
                             userDao.storeUser(userDaForm);
+
+                            logManager.addLog(sessionManager.getUser(request),"Utente " + userPrimaDelleModifiche + " ha subito modifiche in: "+ userDaForm,ds);
+
                         }
                         //se non e' cambiato non faccio nulla
 
@@ -171,6 +175,9 @@ public class AdmModUser extends BaseController {
                             }
                         }
 
+                        //inizializzo un booleano per capire se devo aggiungere un log
+                        boolean gruppiCambiati = false;
+
                         //groupsListAll: tutti i gruppi estratti dopo aver premuto sul pulsante della form
                         //groupsListPrima: gruppi a cui era collegato l'utente prima
                         //nameGroupsListDopo: nomi dei gruppi ceckati nella form
@@ -197,6 +204,8 @@ public class AdmModUser extends BaseController {
                                 //elimino la connessione tra user e groups
                                 userGroupsDao.deleteUserGroups(userGroups);
 
+                                gruppiCambiati = true;
+
                             }
 
                             //caso 2, se groups non e' contenuto in groupsListPrima ed ora e' contenuto in nameGroupsListDopo
@@ -211,9 +220,17 @@ public class AdmModUser extends BaseController {
                                 //creo la connessione tra user e groups
                                 userGroupsDao.insertUserGroups(userGroups);
 
+                                gruppiCambiati = true;
                             }
 
                             //se non sono veri nessuno dei due ci troviamo nel caso 1, quindi non faccio nulla
+
+                        }
+
+                        if(gruppiCambiati == true){
+
+                            //aggiungo log di modifica associazioni con i gruppi
+                            logManager.addLog(sessionManager.getUser(request), "Utente: " + userDaForm + " ha subito modifiche alle associazioni sui gruppi", ds);
 
                         }
 
@@ -268,8 +285,9 @@ public class AdmModUser extends BaseController {
                         TemplateController.process("user_mod.ftl", datamodel,response,getServletContext());
                     }
 
-                } catch (DaoException e) {
-                    e.printStackTrace();
+                } catch (DaoException | LogException e) {
+                    //lancio servlet di errore
+                    response.sendRedirect("Error");
                 }
 
                 //se non ha il permesso

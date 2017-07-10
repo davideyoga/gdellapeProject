@@ -148,4 +148,16 @@
     </servlet-mapping>
     <!-- Fine Servlet di Error -->
 
+    <!-- Servlet di CreateGroups -->
+    <servlet>
+        <servlet-name>CreateGroups</servlet-name>
+        <servlet-class>controller.adm.CreateGroups</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateGroups</servlet-name>
+        <url-pattern>/CreateGroups</url-pattern>
+        <url-pattern>/createGroups</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di CreateGroups -->
+
 </web-app>
