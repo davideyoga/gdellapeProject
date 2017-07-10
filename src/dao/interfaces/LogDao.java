@@ -28,4 +28,6 @@ public interface LogDao extends DaoData {
     public void deleteLog( Log log) throws DaoException;
 
     public Log generateLog(ResultSet rs) throws DaoException;
+
+    List<Log> getAllLog() throws DaoException;
 }

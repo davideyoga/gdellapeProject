@@ -10,6 +10,8 @@
             <p>email user: ${user.email}</p>
             <a href="AdmModUser?id=${user.id}">Mod User</a>
 
+            <a href="DeleteUser?id=${user.id}">Delete User</a>
+
         </#list>
 
     </div>

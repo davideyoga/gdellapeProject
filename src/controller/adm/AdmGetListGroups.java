@@ -49,7 +49,7 @@ public class AdmGetListGroups extends BaseController {
             //se l'utente in sessione possiede il servizio modGroups...
             if (((List<Service>) request.getSession().getAttribute("services")).contains(modGroups)) {
 
-                //inizializzo la lista di tutti gli utenti
+                //inizializzo la lista di tutti i gruppi
                 List<Groups> groupsList = new ArrayList<>();
 
                 try {

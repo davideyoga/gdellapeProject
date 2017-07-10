@@ -367,11 +367,13 @@ public class SingletonSessionManager implements SessionManager {
      */
     public void destroySession(HttpServletRequest request) {
 
-        HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession(true);
 
         //se la sessione esiste la elimino
         if (session != null) {
             session.invalidate();
+        }else{
+            session = null;
         }
     }
 

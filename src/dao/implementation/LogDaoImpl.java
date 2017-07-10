@@ -27,7 +27,8 @@ public class LogDaoImpl extends DaoDataMySQLImpl implements LogDao {
                         selectLogById,
                         selectLogByUserId,
                         selectLogByDate,
-                        deleteLogById;
+                        deleteLogById,
+                        selectAllLog;
 
 
     public LogDaoImpl(DataSource datasource) {
@@ -62,6 +63,9 @@ public class LogDaoImpl extends DaoDataMySQLImpl implements LogDao {
 
             this.deleteLogById = connection.prepareStatement("DELETE FROM log" +
                     "                                               WHERE id=?");
+
+            this.selectAllLog = connection.prepareStatement("SELECT *" +
+                    "                                               FROM log");
 
 
         } catch (SQLException e) {
@@ -233,6 +237,27 @@ public class LogDaoImpl extends DaoDataMySQLImpl implements LogDao {
         return log;
     }
 
+    @Override
+    public List <Log> getAllLog() throws DaoException {
+        List<Log> logList = new ArrayList <>();
+
+        try {
+
+            ResultSet rs = this.selectAllLog.executeQuery();
+
+            while (rs.next()){
+
+                logList.add(this.generateLog(rs));
+
+            }
+
+        } catch (SQLException e) {
+            throw new DaoException("Error getAllLog",e);
+        }
+
+        return logList;
+    }
+
     public void destroy() throws DaoException {
 
         super.destroy();
@@ -244,6 +269,7 @@ public class LogDaoImpl extends DaoDataMySQLImpl implements LogDao {
             this.selectLogByUserId.close();
             this.selectLogByDate.close();
             this.deleteLogById.close();
+            this.selectAllLog.close();
 
         } catch (SQLException e) {
             throw new DestroyDaoException("Error sestroy in log dao", e);
