@@ -10,13 +10,13 @@
             <div class="col-md-6">
 
                 <div class="groups-form-name">
-                    name
+                    Name
                     <input type="text" value= "<#if groups.name??>${groups.name}<#else></#if>" name="name" >
                     <i class="fa fa-lock"></i>
                 </div>
 
                 <div class="groups-form-description">
-                    description
+                    Description
                     <input type="text" value= "<#if groups.description??>${groups.description}<#else></#if>" name="description" >
                     <i class="fa fa-lock"></i>
                 </div>
@@ -25,13 +25,13 @@
             <#list listService as service>
 
                 <input type="checkbox" name="${service.name}" value="${service.name}" <#if listGroupsService?seq_contains(service) >checked<#else></#if> > ${service.name} <br>
-
+                <p><#if service.description??>${service.description}<#else> </#if></p>
             </#list>
 
             </div>
             <div class="col-md-6 login-do">
                 <label class="hvr-shutter-in-horizontal login-sub">
-                    <input type="submit" value="Aggiorna Gruppo">
+                    <input type="submit" value="Update">
                 </label>
             </div>
 

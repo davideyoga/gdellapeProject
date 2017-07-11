@@ -37,6 +37,7 @@ public class AdmModUser extends BaseController {
 
     private Map<String, Object> datamodel = new HashMap<>();
 
+
     /**
      * Raccoglie i parametri post, tratta separatamente la modifica dei dati degli utenti con la modifica
      * delle associazioni con i gruppi degli utenti
@@ -48,6 +49,9 @@ public class AdmModUser extends BaseController {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        //pulisco messaggio
+        datamodel.put("message",null);
 
         //se la session ee' valida e abbastanza nuova
         if(sessionManager.isHardValid(request)) {
@@ -70,6 +74,7 @@ public class AdmModUser extends BaseController {
                     GroupsDao groupsDao = new GroupsDaoImpl(ds);
                     userDao.init();
                     groupsDao.init();
+
 
                     //estraggo l'utente prima della modifica
                     //nota: l'id dell'utente che si intende modificare viene inserito nel metodo doGet, quindi sara' sempre presente,
@@ -101,49 +106,52 @@ public class AdmModUser extends BaseController {
                     //se la password inserita e' uguale in entrambi i campi
                     if (userDaForm.getPassword().equals(request.getParameter("ripetere-password"))) {
 
+                        //se la mail non e' presente nel sistema oppure e' uguale alla mail precedente
+                        if(!isExistEmail(userDao, request.getParameter("email")) || request.getParameter("email").equals(userPrimaDelleModifiche.getEmail()) ) {
+
                         /*
                          * SETTO USER DA FORM CON I DATI DALLA FORM
                          */
-                        userDaForm.setId(userPrimaDelleModifiche.getId());
-                        userDaForm.setEmail(request.getParameter("email"));
-                        userDaForm.setSurname(request.getParameter("surname"));
-                        userDaForm.setName(request.getParameter("name"));
-                        userDaForm.setEmail(request.getParameter("email"));
+                            userDaForm.setId(userPrimaDelleModifiche.getId());
+                            userDaForm.setEmail(request.getParameter("email"));
+                            userDaForm.setSurname(request.getParameter("surname"));
+                            userDaForm.setName(request.getParameter("name"));
+                            userDaForm.setEmail(request.getParameter("email"));
 
-                        //per castare la stringa in int
-                        String numberDaForm = request.getParameter("number");
+                            //per castare la stringa in int
+                            String numberDaForm = request.getParameter("number");
 
-                        //se il numero estratto dalla form e' diverso da 0 e divero da ""
-                        if (numberDaForm != null && numberDaForm != "") {
+                            //se il numero estratto dalla form e' diverso da 0 e divero da ""
+                            if (numberDaForm != null && numberDaForm != "") {
 
-                            long number = Long.parseLong(numberDaForm);
+                                long number = Long.parseLong(numberDaForm);
 
-                            userDaForm.setNumber(number);
-
-
-                        } else {
-                            userDaForm.setNumber(userPrimaDelleModifiche.getNumber());
-                        }
-
-                        userDaForm.setCurriculum_ita(request.getParameter("curriculum_ita"));
-                        userDaForm.setCurriculum_eng(request.getParameter("curriculum_eng"));
-                        userDaForm.setReceprion_hours_ita(request.getParameter("receprion_hours_ita"));
-                        userDaForm.setReceprion_hours_eng(request.getParameter("receprion_hours_eng"));
+                                userDaForm.setNumber(number);
 
 
-                        System.out.println("user prima: " + userPrimaDelleModifiche);
-                        System.out.println("user dopo:"+ userDaForm);
+                            } else {
+                                userDaForm.setNumber(userPrimaDelleModifiche.getNumber());
+                            }
 
-                        //se l'utente e' cambiato rispetto a prima
-                        if(!userDaForm.equals(userPrimaDelleModifiche)){
+                            userDaForm.setCurriculum_ita(request.getParameter("curriculum_ita"));
+                            userDaForm.setCurriculum_eng(request.getParameter("curriculum_eng"));
+                            userDaForm.setReceprion_hours_ita(request.getParameter("receprion_hours_ita"));
+                            userDaForm.setReceprion_hours_eng(request.getParameter("receprion_hours_eng"));
 
-                            //effettuo l'update
-                            userDao.storeUser(userDaForm);
 
-                            logManager.addLog(sessionManager.getUser(request),"Utente " + userPrimaDelleModifiche + " ha subito modifiche in: "+ userDaForm,ds);
+                            System.out.println("user prima: " + userPrimaDelleModifiche);
+                            System.out.println("user dopo:" + userDaForm);
 
-                        }
-                        //se non e' cambiato non faccio nulla
+                            //se l'utente e' cambiato rispetto a prima
+                            if (!userDaForm.equals(userPrimaDelleModifiche)) {
+
+                                //effettuo l'update
+                                userDao.storeUser(userDaForm);
+
+                                logManager.addLog(sessionManager.getUser(request), "USER " + userPrimaDelleModifiche + " IT'S CHANGE: " + userDaForm, ds);
+
+                            }
+                            //se non e' cambiato non faccio nulla
 
                         /*
                         * FINE MOD PROFILO
@@ -154,85 +162,85 @@ public class AdmModUser extends BaseController {
                          * INIZIO RACCOLTA GRUPPI
                          */
 
-                        //inizializzo il dao degli userGroups
-                        UserGroupsDao userGroupsDao = new UserGroupsDaoImpl(ds);
-                        userGroupsDao.init();
+                            //inizializzo il dao degli userGroups
+                            UserGroupsDao userGroupsDao = new UserGroupsDaoImpl(ds);
+                            userGroupsDao.init();
 
-                        //inizializzo un UserGroups per effettuare le operazioni
-                        UserGroups userGroups = userGroupsDao.getUserGroups();
+                            //inizializzo un UserGroups per effettuare le operazioni
+                            UserGroups userGroups = userGroupsDao.getUserGroups();
 
-                        //creo una lista con i nomi dei gruppi che mi arrivano dalla form
-                        List<String> nameGroupsListDopo = new ArrayList <>();
+                            //creo una lista con i nomi dei gruppi che mi arrivano dalla form
+                            List <String> nameGroupsListDopo = new ArrayList <>();
 
-                        //ciclo sulla lista di tutti i gruppi per estrarre i gruppi dalla form
-                        for( Groups groups:groupsListAll){
+                            //ciclo sulla lista di tutti i gruppi per estrarre i gruppi dalla form
+                            for (Groups groups : groupsListAll) {
 
-                            //se l'admin ha ceckato sul ceckbox del gruppo groups
-                            if(request.getParameter(groups.getName()) != null){
+                                //se l'admin ha ceckato sul ceckbox del gruppo groups
+                                if (request.getParameter(groups.getName()) != null) {
 
-                                //aggiungo il nome del gruppo alla lista dei nomi dei gruppi dalla ceckati dalla form
-                                nameGroupsListDopo.add( request.getParameter(groups.getName()));
+                                    //aggiungo il nome del gruppo alla lista dei nomi dei gruppi dalla ceckati dalla form
+                                    nameGroupsListDopo.add(request.getParameter(groups.getName()));
+                                }
                             }
-                        }
 
-                        //inizializzo un booleano per capire se devo aggiungere un log
-                        boolean gruppiCambiati = false;
+                            //inizializzo un booleano per capire se devo aggiungere un log
+                            boolean gruppiCambiati = false;
 
-                        //groupsListAll: tutti i gruppi estratti dopo aver premuto sul pulsante della form
-                        //groupsListPrima: gruppi a cui era collegato l'utente prima
-                        //nameGroupsListDopo: nomi dei gruppi ceckati nella form
+                            //groupsListAll: tutti i gruppi estratti dopo aver premuto sul pulsante della form
+                            //groupsListPrima: gruppi a cui era collegato l'utente prima
+                            //nameGroupsListDopo: nomi dei gruppi ceckati nella form
 
-                        //devo confrontare i nomi dei gruppi di groupsListPrima con nameGroupsListDopo
+                            //devo confrontare i nomi dei gruppi di groupsListPrima con nameGroupsListDopo
 
-                        //3 possibilita':
+                            //3 possibilita':
                             //CASO 1: il gruppo e' presente sia in groupsListPrima che in nameGroupsListDopo: non faccio nulla
                             //CASO2: il gruppo e' stato aggiunto, quindi non e' contenuto in groupsListPrima ed ora e' contenuto in nameGroupsListDopo: aggiungo il gruppo all'utente
                             //CASO3: il gruppo e' stato tolto, quindi e' presente in groupsListPrima ma non in nameGroupsList: tolgo il gruppo all'utente
 
-                        //ciclo la lista dei gruppi, SI PUO' OTTIMIZZARE
-                        for (Groups groups:groupsListAll){
+                            //ciclo la lista dei gruppi, SI PUO' OTTIMIZZARE
+                            for (Groups groups : groupsListAll) {
 
-                            //caso 3, se il gruppo e' presente in groupsListPrima ma non in nameGroupsList
-                            if( groupsListPrima.contains(groups) && !nameGroupsListDopo.contains(groups.getName()) ){
+                                //caso 3, se il gruppo e' presente in groupsListPrima ma non in nameGroupsList
+                                if (groupsListPrima.contains(groups) && !nameGroupsListDopo.contains(groups.getName())) {
 
-                                //tolgo il gruppo groups all'utente
+                                    //tolgo il gruppo groups all'utente
 
-                                //setto l'userGroups
-                                userGroups.setIdUser(userPrimaDelleModifiche.getId());
-                                userGroups.setIdGroups(groups.getId());
+                                    //setto l'userGroups
+                                    userGroups.setIdUser(userPrimaDelleModifiche.getId());
+                                    userGroups.setIdGroups(groups.getId());
 
-                                //elimino la connessione tra user e groups
-                                userGroupsDao.deleteUserGroups(userGroups);
+                                    //elimino la connessione tra user e groups
+                                    userGroupsDao.deleteUserGroups(userGroups);
 
-                                gruppiCambiati = true;
+                                    gruppiCambiati = true;
+
+                                }
+
+                                //caso 2, se groups non e' contenuto in groupsListPrima ed ora e' contenuto in nameGroupsListDopo
+                                if (!groupsListPrima.contains(groups) && nameGroupsListDopo.contains(groups.getName())) {
+
+                                    //aggiungo il gruppo all'utente
+
+                                    //setto l'userGroups
+                                    userGroups.setIdUser(userPrimaDelleModifiche.getId());
+                                    userGroups.setIdGroups(groups.getId());
+
+                                    //creo la connessione tra user e groups
+                                    userGroupsDao.insertUserGroups(userGroups);
+
+                                    gruppiCambiati = true;
+                                }
+
+                                //se non sono veri nessuno dei due ci troviamo nel caso 1, quindi non faccio nulla
 
                             }
 
-                            //caso 2, se groups non e' contenuto in groupsListPrima ed ora e' contenuto in nameGroupsListDopo
-                            if(!groupsListPrima.contains(groups) && nameGroupsListDopo.contains(groups.getName())){
+                            if (gruppiCambiati == true) {
 
-                                //aggiungo il gruppo all'utente
+                                //aggiungo log di modifica associazioni con i gruppi
+                                logManager.addLog(sessionManager.getUser(request), "USER: " + userDaForm + " HAS SUBMITTED CHANGES TO ASSOCIATED GROUPS", ds);
 
-                                //setto l'userGroups
-                                userGroups.setIdUser(userPrimaDelleModifiche.getId());
-                                userGroups.setIdGroups(groups.getId());
-
-                                //creo la connessione tra user e groups
-                                userGroupsDao.insertUserGroups(userGroups);
-
-                                gruppiCambiati = true;
                             }
-
-                            //se non sono veri nessuno dei due ci troviamo nel caso 1, quindi non faccio nulla
-
-                        }
-
-                        if(gruppiCambiati == true){
-
-                            //aggiungo log di modifica associazioni con i gruppi
-                            logManager.addLog(sessionManager.getUser(request), "Utente: " + userDaForm + " ha subito modifiche alle associazioni sui gruppi", ds);
-
-                        }
 
 
                         /*
@@ -240,34 +248,49 @@ public class AdmModUser extends BaseController {
                          */
 
 
-                        //FINITO, LANCIO IL TEMPLATE CON I DATI CARICATI
+                            //FINITO, LANCIO IL TEMPLATE CON I DATI CARICATI
 
-                        //mi prendo i nuovi gruppi per ricaricarli nel template, SI PUO' OTTIMIZZARE
-                        List<Groups> newListGroups = groupsDao.getGroupsByUser(userDaForm);
+                            //mi prendo i nuovi gruppi per ricaricarli nel template, SI PUO' OTTIMIZZARE
+                            List <Groups> newListGroups = groupsDao.getGroupsByUser(userDaForm);
 
-                        //carico i gruppi a cui appartiene l'utente
-                        //per farlo ho bisogno dei nuovi gruppi
-                        datamodel.put("listUserGroups", newListGroups);
+                            //carico i gruppi a cui appartiene l'utente
+                            //per farlo ho bisogno dei nuovi gruppi
+                            datamodel.put("listUserGroups", newListGroups);
 
-                        //carico tutti i gruppi presenti nel sistema
-                        datamodel.put("listGroups", groupsListAll);
+                            //carico tutti i gruppi presenti nel sistema
+                            datamodel.put("listGroups", groupsListAll);
 
-                        //carico il nuovo utente nel template
-                        datamodel.put("user", userDaForm);
+                            //carico il nuovo utente nel template
+                            datamodel.put("user", userDaForm);
 
-                        //chiudo tutto
-                        userGroups = null;
-                        userGroupsDao.destroy();
-                        userGroupsDao = null;
-                        userDao.destroy();
-                        userDao=null;
-                        groupsDao.destroy();
-                        groupsDao = null;
+                            //chiudo tutto
+                            userGroups = null;
+                            userGroupsDao.destroy();
+                            userGroupsDao = null;
+                            userDao.destroy();
+                            userDao = null;
+                            groupsDao.destroy();
+                            groupsDao = null;
 
-                        //lancio il template di modifica dell'utente
-                        TemplateController.process("user_mod.ftl", datamodel,response,getServletContext());
+                            //lancio il template di modifica dell'utente
+                            TemplateController.process("user_mod.ftl", datamodel, response, getServletContext());
 
 
+                        }else{//se la mail esiste gia' nel db
+
+                            //chiudo tutto
+                            userDao.destroy();
+                            userDao=null;
+                            groupsDao.destroy();
+                            groupsDao = null;
+
+                            //carico un messaggio di errore
+                            datamodel.put("message", "Error, Email already exists in the system, No changes have been made");
+                            datamodel.put("user", userPrimaDelleModifiche);
+
+                            //lancio il template di modifica dell'utente
+                            TemplateController.process("user_mod.ftl", datamodel,response,getServletContext());
+                        }
                     //se le password non sono uguali
                     }else{
 
@@ -278,7 +301,7 @@ public class AdmModUser extends BaseController {
                         groupsDao = null;
 
                         //carico un messaggio di errore
-                        datamodel.put("message", "Errore, le password non sono uguali, non e' stata effettuata alcuna modifica");
+                        datamodel.put("message", "Error, The entered passwords are different, No changes have been made");
                         datamodel.put("user", userPrimaDelleModifiche);
 
                         //lancio il template di modifica dell'utente
@@ -316,6 +339,9 @@ public class AdmModUser extends BaseController {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        //pulisco messaggio
+        datamodel.put("message",null);
 
         //se la sessione e' valida
         if(sessionManager.isValid(request)){

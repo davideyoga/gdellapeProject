@@ -36,7 +36,7 @@
 
                 <div class="profile-form-number">
                     Numero di telefono
-                    <input type="number" value= "<#if user.number??>${user.number}<#else>666</#if>" name="number">
+                    <input type="text" value= "<#if user.number??>${user.number}<#else></#if>" name="number">
                     <i class="fa fa-lock"></i>
                 </div>
 
@@ -59,7 +59,7 @@
 
                 <div class="profile-form-receprion_hours_eng">
                     Orario ricevimento in inglese
-                    <input type="text" value=   "<#if user.receprion_hours_ita??>${user.receprion_hours_ita}<#else></#if>" name="receprion_hours_eng">
+                    <input type="text" value=   "<#if user.receprion_hours_eng??>${user.receprion_hours_eng}<#else></#if>" name="receprion_hours_eng">
                     <i class="fa fa-lock"></i>
                 </div>
 

@@ -6,8 +6,8 @@
 
     <#list groups as group>
 
-        <p>id group: ${group.id}</p>
-        <p>name group: ${group.name}</p>
+        <p>Id Group: ${group.id}</p>
+        <p>Name Group: ${group.name}</p>
         <a href="AdmModGroups?id=${group.id}">Mod Group</a>
 
         <a href="DeleteGroups?id=${group.id}">Delete Group</a>

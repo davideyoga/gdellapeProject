@@ -52,4 +52,6 @@ public interface SessionManager {
      */
     String getLanguage(HttpServletRequest request);
 
+    void setUser(HttpServletRequest request, User user);
+
 }

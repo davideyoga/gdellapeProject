@@ -71,7 +71,7 @@ public class DeleteUser extends BaseController {
                     userDao = null;
 
                     //inserisco un log
-                    logManager.addLog(sessionManager.getUser(request),"User: " + user + " Has been deleted",ds );
+                    logManager.addLog(sessionManager.getUser(request),"USER: " + user + " HAS BEEN DELETED BY:" + sessionManager.getUser(request),ds );
 
                     //reindirizzo verso la servlet che si occupa di restituire la lista degli utenti
                     response.sendRedirect("AdmGetListUser");

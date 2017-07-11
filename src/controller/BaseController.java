@@ -7,6 +7,9 @@ import controller.sessionController.SessionManager;
 import controller.sessionController.SingletonSessionManager;
 import controller.utility.SingletonUtilityManager;
 import controller.utility.UtilityManager;
+import dao.exception.DaoException;
+import dao.interfaces.UserDao;
+import model.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -55,5 +58,22 @@ public class BaseController extends HttpServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Torna true se esiste nel sistema un utente con la stessa mail, false altrimenti.
+     * Il dao passato deve essere gia inizializzato con la init
+     * @param userDao
+     * @param email
+     * @return
+     * @throws DaoException
+     */
+    public boolean isExistEmail(UserDao userDao, String email) throws DaoException {
+
+        User user = userDao.getUserByEmail(email);
+
+        if(user == null || user.getId()<= 0) return false;
+        else return true;
+
     }
 }

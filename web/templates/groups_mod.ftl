@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<#include "groups_mod_form.ftl">
+<#include "groups_mod_adm_form.ftl">
 
 </body>
 </html>

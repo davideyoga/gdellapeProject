@@ -49,6 +49,9 @@ public class AdmModGroups extends BaseController {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        //pulisco messaggio
+        datamodel.put("message",null);
+
         //se la session ee' valida e abbastanza nuova
         if(sessionManager.isHardValid(request)) {
 
@@ -109,7 +112,7 @@ public class AdmModGroups extends BaseController {
                         //effettuo l'update
                         groupsDao.storeGroups(groupsDaForm);
 
-                        logManager.addLog(sessionManager.getUser(request),"Gruppo " + groupsPrimaDelleModifiche + " ha subito modifiche in: "+ groupsPrimaDelleModifiche,ds);
+                        logManager.addLog(sessionManager.getUser(request),"GROUPS: " + groupsPrimaDelleModifiche + " IT'S CHANGE: "+ groupsDaForm,ds);
 
                     }
                     //se non e' cambiato non faccio nulla
@@ -193,7 +196,7 @@ public class AdmModGroups extends BaseController {
                     if(serviziCambiati == true){
 
                         //aggiungo log di modifica associazioni con i servizi
-                        logManager.addLog(sessionManager.getUser(request), "Gruppo: " + groupsDaForm + " ha subito modifiche alle associazioni sui servizi", ds);
+                        logManager.addLog(sessionManager.getUser(request), "GROUPS: " + groupsDaForm + " HAS SUBMITTED CHANGES TO ASSOCIATED SERVICE", ds);
 
                     }
 
@@ -228,7 +231,7 @@ public class AdmModGroups extends BaseController {
                     serviceDao = null;
 
                     //lancio il template di modifica dell'utente
-                    TemplateController.process("groups_mod.ftl", datamodel,response,getServletContext());
+                    TemplateController.process("groups_mod_adm.ftl", datamodel,response,getServletContext());
 
                 } catch (DaoException | LogException e) {
                     //lancio servlet di errore

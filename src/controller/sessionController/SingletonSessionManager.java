@@ -413,6 +413,14 @@ public class SingletonSessionManager implements SessionManager {
         return (String) request.getSession().getAttribute("language");
     }
 
+    @Override
+    public void setUser(HttpServletRequest request, User user) {
+
+        request.getSession().setAttribute("user", user);
+
+    }
+
+
 }
 
 

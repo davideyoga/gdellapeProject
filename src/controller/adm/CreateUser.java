@@ -110,6 +110,9 @@ public class CreateUser extends BaseController {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response){
 
+        //pulisco messaggio
+        datamodel.put("message",null);
+
         //rendo visibile il dao nel blocco catch
         UserDao userDao = null;
 
@@ -154,7 +157,7 @@ public class CreateUser extends BaseController {
                             userDao.storeUser(user);
 
                             //aggiungo un log di avvenuta creazioendi un utente
-                            logManager.addLog(sessionManager.getUser(request),"User created: " + user, ds);
+                            logManager.addLog(sessionManager.getUser(request),"USER CREATED: " + user + "BY" + sessionManager.getUser(request), ds);
 
                         //se la mail e' gia presente nel database
                         } else {

@@ -36,7 +36,7 @@ public class ProfileManagement extends BaseController {
     private void processTemplate(HttpServletRequest request, HttpServletResponse response){
 
         //inserisco l'user estratto dalla sessione da passare al template
-        this.datamodel.put("user", request.getSession().getAttribute("user"));
+        this.datamodel.put("user", sessionManager.getUser(request));
 
         //se richiesta get lancio il template di profilo con i dati dell'utente in sessione
         TemplateController.process("profile.ftl", datamodel, response, getServletContext());
@@ -45,6 +45,9 @@ public class ProfileManagement extends BaseController {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        //pulisco il messaggio
+        datamodel.put("message",null);
 
         //se la sessione e' valida e abbastanza nuova
         if(sessionManager.isHardValid( request )){
@@ -61,14 +64,15 @@ public class ProfileManagement extends BaseController {
                 userDaForm = userDao.getUser();
 
                 //estraggo l'utente dalla sessione
-                User user = (User) request.getSession().getAttribute("user");
+                User userInSessione = (User) request.getSession().getAttribute("user");
 
-                //creo un utente con i dati della form
-                userDaForm.setId(user.getId());
+                /*
+                    INIZIO ESTRAZIONE DATI DA RICHIESTA POST
+                 */
+                userDaForm.setId(userInSessione.getId());
                 userDaForm.setSurname(request.getParameter("surname"));
                 userDaForm.setName(request.getParameter("name"));
-                userDaForm.setEmail(user.getEmail());
-
+                userDaForm.setEmail(userInSessione.getEmail());
                 //per castare la stringa in int
                 String numberDaForm = request.getParameter("number");
 
@@ -81,51 +85,75 @@ public class ProfileManagement extends BaseController {
 
 
                 }else{
-                    userDaForm.setNumber(user.getNumber());
+                    userDaForm.setNumber(userInSessione.getNumber());
                 }
-
                 userDaForm.setCurriculum_ita(request.getParameter("curriculum_ita"));
                 userDaForm.setCurriculum_eng(request.getParameter("curriculum_eng"));
                 userDaForm.setReceprion_hours_ita(request.getParameter("receprion_hours_ita"));
                 userDaForm.setReceprion_hours_eng(request.getParameter("receprion_hours_eng"));
                 userDaForm.setPassword(request.getParameter("password"));
 
-                //controllo se i dati sono diversi da quelli in sessione (quindi quelli vecchi)
-                if (!userDaForm.equals(user)) {
+                /*
+                    FINE ESTRAZIONE DATI DA RICHIESTA POST
+                 */
 
-                    //inserisco l'id dell'utente
-                    userDaForm.setId(user.getId());
+                //se le password inserite sono diverse
+                if(!userDaForm.getPassword().equals(request.getParameter("ripetere-password"))){
 
-                    //eseguo l'update dell'utente
-                    userDao.storeUser(userDaForm);
-
-                    //inserisco un log nel db descrivendo cio' che e' successo
-                    logManager.addLog(userDaForm, "User with id: " + userDaForm.getId() + " has change your personal data." + "\n" +
-                                                            "previous User: " + sessionManager.getUser(request) + "\n" +
-                                                            "New User: " + userDaForm, ds);
-
-                    //rimuovo il precedente user dalla sessione
-                    request.getSession().removeAttribute("user");
-
-                    //carico il nuovo utente in sessione
-                    request.getSession().setAttribute("user", userDaForm);
-
-                //se i dati sono uguali
-                }else{
-                    //lancio il template con messaggio
-
-                    this.datamodel.put("message", "dati uguali ai precedenti");
-
-                    //se richiesta get lancio il template di profilo con i dati dell'utente in sessione
+                    //lancio il template con messaggio di errore inerente
+                    datamodel.put("message","Error, different password");
+                    datamodel.put("user",userInSessione);
                     TemplateController.process("profile.ftl", datamodel, response, getServletContext());
+
+
+                }else {//se le password inserite sono corrette:
+
+                    //se le password sono < di 6 caratteri
+                    if (userDaForm.getPassword().length() < 6) {
+
+                        //lancio il template con messaggio di errore inerente
+                        datamodel.put("message", "Error, The password is smaller than 6 characters");
+                        datamodel.put("user", userInSessione);
+                        TemplateController.process("profile.ftl", datamodel, response, getServletContext());
+
+
+                        /*
+                            SE I CONTROLLI SUI DATI DA RICHIESTA POST SONO ANDATI A BUON FINE
+                         */
+                    } else {
+
+                        //controllo se i dati sono diversi da quelli in sessione (quindi quelli vecchi)
+                        if (!userDaForm.equals(userInSessione)) {
+
+                            //eseguo l'update dell'utente
+                            userDao.storeUser(userDaForm);
+
+                            //inserisco un log nel db descrivendo cio' che e' successo
+                            logManager.addLog(userDaForm, "USER WITH ID: " + userDaForm.getId() + " HAS CHANGE YOUR PERSONAL DATA.        " +
+                                    "PREVIOUS USER: " + sessionManager.getUser(request) + "\n" +
+                                    "NEW USER: " + userDaForm, ds);
+
+
+                        }
+
+                        //chiudo il dao
+                        userDao.destroy();
+
+                        //carico in sessione il nuovo utente (inserisco userDaForm, che sia uguale a prima o cambiato e' lui che vogliamo!!)
+                        sessionManager.setUser(request, userDaForm);
+
+                        //inserisco il nuovo utente nel datamodel
+                        datamodel.put("user", sessionManager.getUser(request));
+
+                        //lancio tameplate
+                        TemplateController.process("profile.ftl", datamodel, response, getServletContext());
+                    }
                 }
 
-                //chiudo il dao
-                userDao.destroy();
 
-                //lancio il template(con i nuovi dati se sono cambiati, altrimenti con quelli vecchi)
-                processTemplate(request, response);
-
+            /*
+                BLOCCO CATCH
+             */
             } catch (DaoException e) {
 
                 //in caso di dao exception lancio il template di errore
@@ -140,6 +168,7 @@ public class ProfileManagement extends BaseController {
                 request.getSession().setAttribute("user", userDaForm);
 
                 //chiudo il dao
+
                 try {
 
                     userDao.destroy();
@@ -155,13 +184,14 @@ public class ProfileManagement extends BaseController {
                 TemplateController.process("profile.ftl", datamodel, response, getServletContext());
 
             }
-
+            /*
+                FINE BLOCCO CATCH
+             */
 
         }else{//se la sessione non  e' valida o non abbastanza nuova
 
             //setto la redirect e lancio il template di login
             createPreviousPageAndRedirectToLogin(request,response,"ProfileManagement");
-
         }
 
     }

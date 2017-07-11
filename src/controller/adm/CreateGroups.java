@@ -75,6 +75,9 @@ public class CreateGroups extends BaseController {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response){
 
+        //pulisco messaggio
+        datamodel.put("message",null);
+
         //rendo visibile il dao nel blocco catch
         GroupsDao groupsDao = null;
 
@@ -118,7 +121,7 @@ public class CreateGroups extends BaseController {
                             groupsDao.storeGroups(groups);
 
                             //aggiungo un log di avvenuta creazioendi un gruppo
-                            logManager.addLog(sessionManager.getUser(request),"Gruppo creato: " + groups + " da: " + sessionManager.getUser(request), ds);
+                            logManager.addLog(sessionManager.getUser(request),"GROUP CREATED: " + groups + " BY: " + sessionManager.getUser(request), ds);
 
                             //se la mail e' gia presente nel database
                         } else {

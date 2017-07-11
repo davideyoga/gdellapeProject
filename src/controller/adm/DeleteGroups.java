@@ -69,7 +69,7 @@ public class DeleteGroups extends BaseController {
                     groupsDao = null;
 
                     //inserisco un log
-                    logManager.addLog(sessionManager.getUser(request),"Groups: " + groups + " Has been deleted",ds );
+                    logManager.addLog(sessionManager.getUser(request),"GROUPS: " + groups + " HAS BEEN DELETED BY:" + sessionManager.getUser(request),ds );
 
                     //reindirizzo verso la servlet che si occupa di restituire la lista dei gruppi
                     response.sendRedirect("AdmGetListGroups");

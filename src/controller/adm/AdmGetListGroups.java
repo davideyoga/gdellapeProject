@@ -70,9 +70,9 @@ public class AdmGetListGroups extends BaseController {
                     TemplateController.process("error.ftl", datamodel,response,getServletContext());
                 }
 
-                //lancio il template con gli utenti caricati
+                //lancio il template con i gruppi caricati
                 datamodel.put("groups", groupsList);
-                TemplateController.process( "groups_list.ftl", datamodel ,response, getServletContext() );
+                TemplateController.process( "groups_list_adm.ftl", datamodel ,response, getServletContext() );
 
 
             } else {

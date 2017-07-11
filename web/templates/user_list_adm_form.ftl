@@ -6,8 +6,8 @@
 
         <#list users as user>
 
-            <p>id user: ${user.id}</p>
-            <p>email user: ${user.email}</p>
+            <p>Id User: ${user.id}</p>
+            <p>Email User: ${user.email}</p>
             <a href="AdmModUser?id=${user.id}">Mod User</a>
 
             <a href="DeleteUser?id=${user.id}">Delete User</a>

@@ -72,7 +72,17 @@ public class User{
 
     @Override
     public int hashCode() {
-        return getId();
+        int result = getId();
+        result = 31 * result + (getSurname() != null ? getSurname().hashCode() : 0);
+        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
+        result = 31 * result + (getEmail() != null ? getEmail().hashCode() : 0);
+        result = 31 * result + (int) (getNumber() ^ (getNumber() >>> 32));
+        result = 31 * result + (getCurriculum_ita() != null ? getCurriculum_ita().hashCode() : 0);
+        result = 31 * result + (getCurriculum_eng() != null ? getCurriculum_eng().hashCode() : 0);
+        result = 31 * result + (getReceprion_hours_ita() != null ? getReceprion_hours_ita().hashCode() : 0);
+        result = 31 * result + (getReceprion_hours_eng() != null ? getReceprion_hours_eng().hashCode() : 0);
+        result = 31 * result + (getPassword() != null ? getPassword().hashCode() : 0);
+        return result;
     }
 
     public int getId() {
