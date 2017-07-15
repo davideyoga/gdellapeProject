@@ -38,8 +38,6 @@ public class TemplateController {
 
         try {
 
-            System.out.println("passo 1");
-
             template = cfg.getTemplate(templateName);
 
             //ottengo lo stream della risposta

@@ -1,5 +1,6 @@
 package controller;
 
+import controller.sessionController.SessionException;
 import dao.exception.DaoException;
 import dao.implementation.UserDaoImpl;
 import dao.interfaces.UserDao;
@@ -44,18 +45,24 @@ public class UserProfile extends BaseController {
             User user = userDao.getUserByEmail(request.getParameter("email"));
 
             //se l'utente esiste nel sistema
-            if(!(user == null) || user.getId()>=0){
+            if(!(user == null) && user.getId()>=0){
 
                 //carico l'user nel datamodel e lancio il template
                 datamodel.put("user", user);
-                TemplateController.process("user_profile.ftl", datamodel, response, getServletContext());
+
+                //carico la lingua nel datamodel
+                this.setLng(request, datamodel);
+
+                //lancia il template appropriato alla lingua selezionata dall'utente
+                this.processTemplate(request, response, "user_profile", datamodel);
 
             }else{//se l'utente non esiste nel sistema
-
+                //lancio template di errore
+                TemplateController.process("error.ftl", datamodel, response, getServletContext());
             }
 
         } catch (DaoException e) {
-            //lancio messaggio di errore
+            //lancio template di errore
             TemplateController.process("error.ftl", datamodel, response, getServletContext());
         }
     }

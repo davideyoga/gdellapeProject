@@ -1,5 +1,6 @@
 package controller;
 
+import controller.sessionController.SessionException;
 import dao.exception.DaoException;
 import dao.implementation.UserDaoImpl;
 import dao.interfaces.UserDao;
@@ -35,7 +36,6 @@ public class ListUser extends BaseController {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
         try {
 
             UserDao userDao = new UserDaoImpl(ds);
@@ -43,10 +43,14 @@ public class ListUser extends BaseController {
 
             List<User> userList = userDao.getUsers();
 
-            //carico l'user nel datamodel e lancio il template
+            //carico la lista dei professori nel datamodel
             datamodel.put("users", userList);
-            TemplateController.process("user_list.ftl", datamodel, response, getServletContext());
 
+            //carico la lingua nel datamodel
+            this.setLng(request, datamodel);
+
+            //lancia il template appropriato alla lingua selezionata dall'utente
+            this.processTemplate(request, response, "user_list", datamodel);
 
         } catch (DaoException e) {
             //lancio messaggio di errore

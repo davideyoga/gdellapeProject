@@ -14,23 +14,24 @@
 
     <display-name>gdellapeProject</display-name>
 
+    <!-- Servlet di login -->
+    <servlet>
+        <servlet-name>Home</servlet-name>
+        <servlet-class>controller.Home</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Home</servlet-name>
+        <url-pattern>/Home</url-pattern>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di login -->
+
     <!-- Init Servlet -->
     <welcome-file-list>
-        <welcome-file>TemplateServlet</welcome-file>
+        <welcome-file>Home</welcome-file>
     </welcome-file-list>
     <!-- Fine Init Servlet -->
 
-
-    <!-- Servlet di esempio -->
-    <servlet>
-        <servlet-name>TemplateServlet</servlet-name>
-        <servlet-class>controller.TemplateServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>TemplateServlet</servlet-name>
-        <url-pattern>/TemplateServlet</url-pattern>
-    </servlet-mapping>
-    <!-- Fine Servlet di esempio -->
 
     <session-config>
         <session-timeout>
@@ -193,6 +194,42 @@
         <servlet-name>GetAllLog</servlet-name>
         <url-pattern>/GetAllLog</url-pattern>
         <url-pattern>/getAllLog</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di DeleteUser -->
+
+    <!-- Servlet di ListUser -->
+    <servlet>
+        <servlet-name>ListUser</servlet-name>
+        <servlet-class>controller.ListUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListUser</servlet-name>
+        <url-pattern>/ListUser</url-pattern>
+        <url-pattern>/listUser</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di DeleteUser -->
+
+    <!-- Servlet di ListUser -->
+    <servlet>
+        <servlet-name>UserProfile</servlet-name>
+        <servlet-class>controller.UserProfile</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserProfile</servlet-name>
+        <url-pattern>/UserProfile</url-pattern>
+        <url-pattern>/userProfile</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di DeleteUser -->
+
+    <!-- Servlet di ListUser -->
+    <servlet>
+        <servlet-name>ChangeLanguage</servlet-name>
+        <servlet-class>controller.ChangeLanguage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChangeLanguage</servlet-name>
+        <url-pattern>/ChangeLanguage</url-pattern>
+        <url-pattern>/changeLanguage</url-pattern>
     </servlet-mapping>
     <!-- Fine Servlet di DeleteUser -->
 

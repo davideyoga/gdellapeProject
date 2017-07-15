@@ -72,6 +72,29 @@ public class SingletonSessionManager implements SessionManager {
     }
 
     /**
+     * Data una request, si prende la sessione, se non esiste si crea, gli viene assegnata la lingua base
+     * @param request
+     * @param ds
+     * @return
+     */
+    @Override
+    public HttpSession initLanguageSession(HttpServletRequest request, DataSource ds) {
+
+        //creo la sessione
+        HttpSession session = this.getSession(request);
+
+        //carico la lingua predefinita
+        session.setAttribute("language", "IT" );
+
+        return session;
+    }
+
+    @Override
+    public HttpSession getSession(HttpServletRequest request) {
+        return request.getSession(true);
+    }
+
+    /**
      * Aggiungo alla sessione nella HttpServletRequest passata
      * i gruppi e i servizi dell'utente nella sessione.
      * Se la HTTPServletRequest passata non e' valita lancia un'eccezzione.
@@ -341,10 +364,7 @@ public class SingletonSessionManager implements SessionManager {
         //se non esiste la sessione la creo
         request.getSession(true);
 
-        //potrebbe risolvermi il problema senza chiedere previusPage
-        //String serveltPath = request.getServletPath();
-
-        //setto la oagina precedentemente visitata
+        //setto la pagina precedentemente visitata
         request.getSession().setAttribute("previusPage", previusPage);
 
         return request.getSession();
@@ -390,8 +410,11 @@ public class SingletonSessionManager implements SessionManager {
     @Override
     public String changeLanguage(HttpServletRequest request) {
 
-        //se la lingua attuale e' IT trasforma in EN
-        if(request.getSession().getAttribute("language").equals("IT")){
+        //se la sessione non esiste la creo
+        request.getSession(true);
+
+        //se non esiste una lingua caricata, oppure se la lingua attuale e' IT trasforma in EN
+        if( this.getLanguage(request) == null ||request.getSession().getAttribute("language").equals("IT")){
 
             request.getSession().setAttribute("language", "EN");
 

@@ -14,6 +14,21 @@ public interface SessionManager {
 
     HttpSession initSession(HttpServletRequest request, User user, DataSource ds );
 
+    /**
+     * Sessione per utenti base, non vengono caricati dati se non la lingua scelta e poco altro
+     * @param request
+     * @param ds
+     * @return
+     */
+    HttpSession initLanguageSession(HttpServletRequest request, DataSource ds );
+
+    /**
+     * Trona sessione, se non esiste la crea
+     * @param request
+     * @return
+     */
+    HttpSession getSession(HttpServletRequest request);
+
     HttpSession getSessionWithGroupsAndService( HttpServletRequest request, DataSource ds ) throws SessionException;
 
     HttpSession getSessionWithGroups( HttpServletRequest request, DataSource ds ) throws SessionException;

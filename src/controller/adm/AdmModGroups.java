@@ -52,7 +52,7 @@ public class AdmModGroups extends BaseController {
         //pulisco messaggio
         datamodel.put("message",null);
 
-        //se la session ee' valida e abbastanza nuova
+        //se la session e' valida e abbastanza nuova
         if(sessionManager.isHardValid(request)) {
 
             //estraggo il servizio di creazione degli utenti

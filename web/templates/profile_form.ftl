@@ -36,7 +36,7 @@
 
                 <div class="profile-form-number">
                     Numero di telefono
-                    <input type="text" value= "<#if user.number??>${user.number}<#else></#if>" name="number">
+                    <input type="number" value= "<#if user.number??>${user.number}<#else></#if>" name="number">
                     <i class="fa fa-lock"></i>
                 </div>
 

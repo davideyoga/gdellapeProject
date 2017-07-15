@@ -1,15 +1,18 @@
 package controller;
 
+import java.util.Map;
+
+import com.sun.javafx.collections.MappingChange;
 import controller.logController.LogManager;
 import controller.logController.SingletonLogManager;
 import controller.sessionController.SessionException;
 import controller.sessionController.SessionManager;
 import controller.sessionController.SingletonSessionManager;
-import controller.utility.SingletonUtilityManager;
 import controller.utility.UtilityManager;
 import dao.exception.DaoException;
 import dao.interfaces.UserDao;
 import model.User;
+import view.TemplateController;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -75,5 +78,54 @@ public class BaseController extends HttpServlet {
         if(user == null || user.getId()<= 0) return false;
         else return true;
 
+    }
+
+    /**
+     * Si occupa di lanciare il template template name nella giusta lingua caricata in sessione
+     * @param request
+     * @param response
+     * @param templateName
+     */
+    public void processTemplate(HttpServletRequest request, HttpServletResponse response, String templateName, Map<String, Object> datamodel){
+
+        //se non e' settato nessun parametro della lingua:
+        if( request.getParameter("lng") == null ){
+
+            templateName = templateName+".ftl";
+            TemplateController.process(templateName, datamodel, response, getServletContext());
+        }else {
+            if (request.getParameter("lng").equals("IT")) {
+                templateName = templateName + ".ftl";
+                TemplateController.process(templateName, datamodel, response, getServletContext());
+            } else {
+
+                templateName = templateName + "_en.ftl";
+                TemplateController.process(templateName, datamodel, response, getServletContext());
+            }
+        }
+    }
+
+    /**
+     * Setta nel datamodel passato la lingua a seconda della lingua in cui si trova attualmente il sito
+     * @param request
+     * @param datamodel
+     */
+    public void setLng(HttpServletRequest request, Map<String, Object> datamodel){
+
+        //se non e' settato nessun parametro della lingua:
+        if( request.getParameter("lng") == null ){
+
+            datamodel.put("lng","IT");
+
+        }else {
+            //se ho la lingua settata in ita
+            if (request.getParameter("lng").equals("IT")) {
+                datamodel.put("lng", "IT");
+
+                //ho la lingua settata in inglese
+            } else {
+                datamodel.put("lng", "EN");
+            }
+        }
     }
 }
