@@ -5,44 +5,50 @@
         <p><#if message??>${message}<#else></#if></p>
 
 
-        <h2>Mod ${user.email}</h2>
+        <h2>Mod ${studyCourse.name}</h2>
         <form method="POST" action="AdmModStudyCourse">
             <div class="col-md-6">
 
                 <div class="profile-form-email">
                     Email
-                    <input type="text" value= "<#if studyCourse.code??>${studyCourse.code}<#else></#if>" name="code" >
+                    <input type="email" value= "<#if user.email??>${user.email}<#else></#if>" name="email" >
                     <i class="fa fa-lock"></i>
                 </div>
 
                 <div class="profile-form-password">
                     Password
-                    <input type="text" value= "<#if studyCourse.name??>${studyCourse.name}<#else></#if>" name="name" >
+                    <input type="password" value= "<#if user.password??>${user.password}<#else></#if>" name="password" >
+                    <i class="fa fa-lock"></i>
+                </div>
+
+                <div class="profile-form-ripetere-password">
+                    Repeat Password
+                    <input type="password" value= "<#if user.password??>${user.password}<#else></#if>" name="ripetere-password">
                     <i class="fa fa-lock"></i>
                 </div>
 
                 <div class="profile-form-surname">
                     Surname
-                    <input type="text" value="<#if studyCourse.description_ita??>${studyCourse.description_ita}<#else></#if>" name="description_ita">
+                    <input type="text" value="<#if user.surname??>${user.surname}<#else></#if>" name="surname">
                     <i class="fa fa-envelope"></i>
                 </div>
 
                 <div class="profile-form-name">
                     Name
-                    <input type="text" value= "<#if studyCourse.description_eng??>${studyCourse.description_eng}<#else></#if>" name="description_eng">
+                    <input type="text" value= "<#if user.name??>${user.name}<#else></#if>" name="name">
                     <i class="fa fa-lock"></i>
                 </div>
 
 
                 <div class="profile-form-number">
                     Telephone Number
-                    <input type="number" value= "<#if studyCourse.department_ita??>${studyCourse.department_ita}<#else></#if>" name="department_ita">
+                    <input type="number" value= "<#if user.number??>${user.number}<#else>666</#if>" name="number">
                     <i class="fa fa-lock"></i>
                 </div>
 
                 <div class="profile-form-curriculum_ita">
                     Italian Curriculum
-                    <input type="text" value= "<#if studyCourse.department_eng??>${studyCourse.department_eng}<#else></#if>" name="department_eng">
+                    <input type="text" value= "<#if user.curriculum_ita??>${user.curriculum_ita}<#else></#if>" name="curriculum_ita">
                 </div>
 
                 <div class="profile-form-curriculum_eng">
@@ -63,9 +69,11 @@
                     <i class="fa fa-lock"></i>
                 </div>
 
-                <!--RESTO DEI CAMPI-->
+            <#list listGroups as groups>
 
-                <!--CICLO SULLA LISTA DEI CORSI PER FARE I CECKBOX (VEDERE USER CON GROUPS, OPPURE GROUPS CON SERVICE)-->
+                <input type="checkbox" name="${groups.name}" value="${groups.name}" <#if listUserGroups?seq_contains(groups) >checked<#else></#if> > ${groups.name} <br>
+
+            </#list>
 
             </div>
             <div class="col-md-6 login-do">

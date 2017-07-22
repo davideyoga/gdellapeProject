@@ -402,39 +402,6 @@ public class SingletonSessionManager implements SessionManager {
         return (User) request.getSession().getAttribute("user");
     }
 
-    /**
-     * Cambia la lingua e lo restituisce
-     * @param request
-     * @return
-     */
-    @Override
-    public String changeLanguage(HttpServletRequest request) {
-
-        //se la sessione non esiste la creo
-        request.getSession(true);
-
-        //se non esiste una lingua caricata, oppure se la lingua attuale e' IT trasforma in EN
-        if( this.getLanguage(request) == null ||request.getSession().getAttribute("language").equals("IT")){
-
-            request.getSession().setAttribute("language", "EN");
-
-            //se la lingua attuale e' EN trasforma in It
-        }else{
-            request.getSession().setAttribute("language", "IT");
-
-        }
-        return this.getLanguage(request);
-    }
-
-    /**
-     * Restituisce la lingua corrente
-     * @param request
-     * @return
-     */
-    @Override
-    public String getLanguage(HttpServletRequest request){
-        return (String) request.getSession().getAttribute("language");
-    }
 
     @Override
     public void setUser(HttpServletRequest request, User user) {

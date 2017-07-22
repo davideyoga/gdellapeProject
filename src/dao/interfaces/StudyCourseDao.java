@@ -30,5 +30,7 @@ public interface StudyCourseDao {
 
     List<StudyCourse> getStudyCourseByCourse(Course course)throws DaoException;
 
+    List<StudyCourse> getAllStudyCourses() throws  DaoException;
+
     void destroy() throws DaoException;
 }

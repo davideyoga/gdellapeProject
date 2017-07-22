@@ -14,7 +14,7 @@
 
     <display-name>gdellapeProject</display-name>
 
-    <!-- Servlet di login -->
+    <!-- Servlet di home -->
     <servlet>
         <servlet-name>Home</servlet-name>
         <servlet-class>controller.Home</servlet-class>
@@ -24,7 +24,7 @@
         <url-pattern>/Home</url-pattern>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
-    <!-- Fine Servlet di login -->
+    <!-- Fine Servlet di home -->
 
     <!-- Init Servlet -->
     <welcome-file-list>
@@ -221,16 +221,28 @@
     </servlet-mapping>
     <!-- Fine Servlet di DeleteUser -->
 
-    <!-- Servlet di ListUser -->
+    <!-- Servlet di ListStudyCourses -->
     <servlet>
-        <servlet-name>ChangeLanguage</servlet-name>
-        <servlet-class>controller.ChangeLanguage</servlet-class>
+        <servlet-name>ListStudyCourses</servlet-name>
+        <servlet-class>controller.ListStudyCourses</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ChangeLanguage</servlet-name>
-        <url-pattern>/ChangeLanguage</url-pattern>
-        <url-pattern>/changeLanguage</url-pattern>
+        <servlet-name>ListStudyCourses</servlet-name>
+        <url-pattern>/ListStudyCourses</url-pattern>
+        <url-pattern>/listStudyCourses</url-pattern>
     </servlet-mapping>
-    <!-- Fine Servlet di DeleteUser -->
+    <!-- Fine Servlet di ListStudyCourses -->
+
+    <!-- Servlet di StudyCourseProfile -->
+    <servlet>
+        <servlet-name>StudyCourseProfile</servlet-name>
+        <servlet-class>controller.StudyCourseProfile</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudyCourseProfile</servlet-name>
+        <url-pattern>/StudyCourseProfile</url-pattern>
+        <url-pattern>/studyCourseProfile</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di StudyCourseProfile -->
 
 </web-app>

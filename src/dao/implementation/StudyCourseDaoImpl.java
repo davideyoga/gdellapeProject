@@ -27,7 +27,8 @@ public class StudyCourseDaoImpl extends DaoDataMySQLImpl implements StudyCourseD
                                 selectStudyCourseByCode,
                                 updateStudyCourse,
                                 deleteStudyCourse,
-                                selectStudyCourseByCourse;
+                                selectStudyCourseByCourse,
+                                selectStudyCourses;
 
 
     public StudyCourseDaoImpl(DataSource datasource) {
@@ -60,9 +61,6 @@ public class StudyCourseDaoImpl extends DaoDataMySQLImpl implements StudyCourseD
                     "                                                     FROM studyCourse" +
                     "                                                     WHERE code=?");
 
-            //UPDATE `studyCourse` SET `code`="000003",`nameStudyCourse`="Informatica" WHERE id = "1"
-            //"UPDATE issue SET date=?,number=? WHERE ID=?"
-
             this.updateStudyCourse = connection.prepareStatement("UPDATE studyCourse" +
                     "                                           SET code=?," +
                     "                                               name=?," +
@@ -90,6 +88,9 @@ public class StudyCourseDaoImpl extends DaoDataMySQLImpl implements StudyCourseD
                     "                                                       ON studyCourse.id = course_studyCourse.studyCourse_id " +
                     "                                                       WHERE course_studyCourse.course_id=? ");
 
+            this.selectStudyCourses = connection.prepareStatement("SELECT * " +
+                    "                                                       FROM studyCourse");
+
         } catch (SQLException e) {
             throw new InitDaoException( "Error Init in StudyCourseDaoImpl", e);
         }
@@ -114,7 +115,7 @@ public class StudyCourseDaoImpl extends DaoDataMySQLImpl implements StudyCourseD
     @Override
     public StudyCourse getStudyCourseById(int id) throws DaoException {
 
-        StudyCourse studyCourse = null;
+        StudyCourse studyCourse = this.getStudyCouse();
 
         try {
 
@@ -143,15 +144,16 @@ public class StudyCourseDaoImpl extends DaoDataMySQLImpl implements StudyCourseD
     @Override
     public StudyCourse getStudyCourseByCode(String code) throws DaoException {
 
-        StudyCourse studyCourse = null;
+        StudyCourse studyCourse = this.getStudyCouse();
 
         try {
 
             this.selectStudyCourseByCode.setString(1, code);
 
-            ResultSet rs = this.selectStudyCourseById.executeQuery();
+            ResultSet rs = this.selectStudyCourseByCode.executeQuery();
 
             if(rs.next()){
+
                 studyCourse = generateStudyCourse(rs);
 
             }else return null;
@@ -172,7 +174,7 @@ public class StudyCourseDaoImpl extends DaoDataMySQLImpl implements StudyCourseD
     @Override
     public StudyCourse getStudyCourseByName(String name) throws DaoException {
 
-        StudyCourse studyCourse = null;
+        StudyCourse studyCourse = this.getStudyCouse();
 
         try {
 
@@ -347,6 +349,26 @@ public class StudyCourseDaoImpl extends DaoDataMySQLImpl implements StudyCourseD
         return listStudyCourse;
     }
 
+    @Override
+    public List <StudyCourse> getAllStudyCourses() throws DaoException {
+
+        List<StudyCourse> studyCourses = new ArrayList <>();
+
+        try {
+            ResultSet rs = this.selectStudyCourses.executeQuery();
+
+            while (rs.next()){
+
+                studyCourses.add(this.generateStudyCourse(rs));
+            }
+
+        } catch (SQLException e) {
+            throw new SelectDaoException("Error getAllStudyCourses", e);
+        }
+
+        return studyCourses;
+    }
+
     /**
      * Chiude connession e query precompilate
      * @throws DaoException
@@ -363,6 +385,7 @@ public class StudyCourseDaoImpl extends DaoDataMySQLImpl implements StudyCourseD
             this.updateStudyCourse.close();
             this.deleteStudyCourse.close();
             this.selectStudyCourseByCourse.close();
+            this.selectStudyCourses.close();
 
             super.destroy();
 

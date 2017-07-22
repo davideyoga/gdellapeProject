@@ -163,7 +163,7 @@ public class CreateUser extends BaseController {
                         } else {
 
                             //inserisco il messaggio di email gia' presente nel database
-                            datamodel.put("message", "email gia' presente nel database");
+                            datamodel.put("message", "E-mail already in the database");
 
                             //lancio la pagina di creazione dell'utente
                             TemplateController.process("create_user.ftl", datamodel, response, getServletContext());
@@ -176,7 +176,7 @@ public class CreateUser extends BaseController {
                     //se i dati passati dalla form non sono corretti:
                     }else{
                         //inserisco il messaggio di dati non corretti
-                        datamodel.put("message", "dati passati non corretti");
+                        datamodel.put("message", "Past data is incorrect");
 
                         //lancio la pagina di creazione dell'utente
                         TemplateController.process("create_user.ftl", datamodel, response, getServletContext());
@@ -200,7 +200,7 @@ public class CreateUser extends BaseController {
             //se va tutto a buon fine lancio la pagina di creazione dell'utente con il messaggio di avvenuta creazioen dell'utente
 
             //inserisco il messaggio utente creato
-            datamodel.put("message", "utente creato");
+            datamodel.put("message", "User created");
 
             //lancio la pagina di creazione dell'utente
             TemplateController.process("create_user.ftl", datamodel, response, getServletContext());
@@ -215,7 +215,7 @@ public class CreateUser extends BaseController {
             userDao = null;
 
             //inserisco il messaggio utente creato con messaggio di errore del log
-            datamodel.put("message", "utente creato, ma errore nell' inserimento del log");
+            datamodel.put("message", "User created but insert log error ");
 
             //lancio la pagina di creazione dell'utente
             TemplateController.process("create_user.ftl", datamodel, response, getServletContext());

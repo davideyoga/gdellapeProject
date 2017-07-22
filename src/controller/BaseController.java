@@ -43,7 +43,13 @@ public class BaseController extends HttpServlet {
         this.utilityManager = controller.utility.SingletonUtilityManager.getUtilityManager();
     }
 
-
+    /**
+     * Setta la pagina precedentemente visitata nella sessione (se non esiste la crea) e indirizza al login
+     * Una volta la login verra' reindirizzato a previousPage
+     * @param request
+     * @param response
+     * @param servletName
+     */
     public void createPreviousPageAndRedirectToLogin(HttpServletRequest request, HttpServletResponse response, String servletName){
 
         try {

@@ -53,20 +53,6 @@ public interface SessionManager {
      */
     User getUser(HttpServletRequest request);
 
-    /**
-     * Cambia la lingua e la restituisce
-     * @param request
-     * @return
-     */
-    String changeLanguage(HttpServletRequest request);
-
-    /**
-     * Restituisce la lingua corrente
-     * @param request
-     * @return
-     */
-    String getLanguage(HttpServletRequest request);
-
     void setUser(HttpServletRequest request, User user);
 
 }
