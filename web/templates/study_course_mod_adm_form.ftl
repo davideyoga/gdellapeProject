@@ -10,70 +10,108 @@
             <div class="col-md-6">
 
                 <div class="profile-form-email">
-                    Email
-                    <input type="email" value= "<#if user.email??>${user.email}<#else></#if>" name="email" >
+                    Name
+                    <input type="text" value= "<#if studyCourse.name??>${studyCourse.name}<#else></#if>" name="name" >
                     <i class="fa fa-lock"></i>
                 </div>
 
                 <div class="profile-form-password">
-                    Password
-                    <input type="password" value= "<#if user.password??>${user.password}<#else></#if>" name="password" >
+                    Code
+                    <input type="number" value= "<#if studyCourse.code??>${studyCourse.code}<#else></#if>" name="code" >
                     <i class="fa fa-lock"></i>
                 </div>
 
                 <div class="profile-form-ripetere-password">
-                    Repeat Password
-                    <input type="password" value= "<#if user.password??>${user.password}<#else></#if>" name="ripetere-password">
+                    Description Ita
+                    <input type="text" value= "<#if studyCourse.description_ita??>${studyCourse.description_ita}<#else></#if>" name="description_ita">
                     <i class="fa fa-lock"></i>
                 </div>
 
                 <div class="profile-form-surname">
-                    Surname
-                    <input type="text" value="<#if user.surname??>${user.surname}<#else></#if>" name="surname">
+                    Description Eng
+                    <input type="text" value="<#if studyCourse.description_eng??>${studyCourse.description_eng}<#else></#if>" name="description_eng">
                     <i class="fa fa-envelope"></i>
                 </div>
 
                 <div class="profile-form-name">
-                    Name
-                    <input type="text" value= "<#if user.name??>${user.name}<#else></#if>" name="name">
+                    department_ita
+                    <input type="text" value= "<#if studyCourse.department_ita??>${studyCourse.department_ita}<#else></#if>" name="department_ita">
                     <i class="fa fa-lock"></i>
                 </div>
 
 
                 <div class="profile-form-number">
-                    Telephone Number
-                    <input type="number" value= "<#if user.number??>${user.number}<#else>666</#if>" name="number">
+                    department_eng
+                    <input type="text" value= "<#if studyCourse.department_eng??>${studyCourse.department_eng}<#else></#if>" name="department_eng">
                     <i class="fa fa-lock"></i>
                 </div>
 
                 <div class="profile-form-curriculum_ita">
-                    Italian Curriculum
-                    <input type="text" value= "<#if user.curriculum_ita??>${user.curriculum_ita}<#else></#if>" name="curriculum_ita">
+                    level_ita
+                    <input type="text" value= "<#if studyCourse.level_ita??>${studyCourse.level_ita}<#else></#if>" name="level_ita">
                 </div>
 
                 <div class="profile-form-curriculum_eng">
-                    English Curriculum
-                    <input type="text" value= "<#if user.curriculum_eng??>${user.curriculum_eng}<#else></#if>" name="curriculum_eng">
+                    level_eng
+                    <input type="text" value= "<#if studyCourse.level_eng??>${studyCourse.level_eng}<#else></#if>" name="level_eng">
                     <i class="fa fa-lock"></i>
                 </div>
 
                 <div class="profile-form-receprion_hours_ita">
-                    Reception Hours in Italian
-                    <input type="text" value= "<#if user.receprion_hours_ita??>${user.receprion_hours_ita}<#else></#if>" name="receprion_hours_ita">
+                    duration
+                    <input type="text" value= "<#if studyCourse.duration??>${studyCourse.duration}<#else></#if>" name="duration">
                     <i class="fa fa-lock"></i>
                 </div>
 
                 <div class="profile-form-receprion_hours_eng">
-                    Reception Hours in English
-                    <input type="text" value=   "<#if user.receprion_hours_ita??>${user.receprion_hours_ita}<#else></#if>" name="receprion_hours_eng">
+                    class
+                    <input type="text" value=   "<#if studyCourse.class??>${studyCourse.class}<#else></#if>" name="class">
                     <i class="fa fa-lock"></i>
                 </div>
 
-            <#list listGroups as groups>
 
-                <input type="checkbox" name="${groups.name}" value="${groups.name}" <#if listUserGroups?seq_contains(groups) >checked<#else></#if> > ${groups.name} <br>
+                <div class="profile-form-receprion_hours_eng">
+                    seat
+                    <input type="text" value=   "<#if studyCourse.seat??>${studyCourse.seat}<#else></#if>" name="seat">
+                    <i class="fa fa-lock"></i>
+                </div>
 
-            </#list>
+                <div class="profile-form-receprion_hours_eng">
+                    accessType_ita
+                    <input type="text" value=   "<#if studyCourse.accessType_ita??>${studyCourse.accessType_ita}<#else></#if>" name="accessType_ita">
+                    <i class="fa fa-lock"></i>
+                </div>
+
+                <div class="profile-form-receprion_hours_eng">
+                    accessType_eng
+                    <input type="text" value=   "<#if studyCourse.accessType_eng??>${studyCourse.accessType_eng}<#else></#if>" name="accessType_eng">
+                    <i class="fa fa-lock"></i>
+                </div>
+
+
+                <div class="profile-form-receprion_hours_eng">
+                    language_ita
+                    <input type="text" value=   "<#if studyCourse.language_ita??>${studyCourse.language_ita}<#else></#if>" name="language_ita">
+                    <i class="fa fa-lock"></i>
+                </div>
+
+                <div class="profile-form-receprion_hours_eng">
+                    language_eng
+                    <input type="text" value=   "<#if studyCourse.language_eng??>${studyCourse.language_eng}<#else></#if>" name="language_eng">
+                    <i class="fa fa-lock"></i>
+                </div>
+
+
+                <!--CICLO SUI CORSI-->
+
+                <!--CICLO TUTTI I CORSI-->
+                <!--se il corso e' contenuto nei corsi del corso di studi allora il ceckbox sara' spuntato-->
+
+                <#list listCourses as course>
+
+                    <input type="checkbox" name="${course.name}" value="${course.name}" <#if listCourseByStudyCourse?seq_contains(course) >checked<#else></#if> > ${course.name} <br>
+
+                </#list>
 
             </div>
             <div class="col-md-6 login-do">

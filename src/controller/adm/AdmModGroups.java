@@ -320,7 +320,7 @@ public class AdmModGroups extends BaseController {
                     serviceDao = null;
 
                     //lancio il template di modifica del gruppo
-                    TemplateController.process("groups_mod.ftl", datamodel,response,getServletContext());
+                    TemplateController.process("groups_mod_adm.ftl", datamodel,response,getServletContext());
 
                 } catch (DaoException e) {
                     //in caso di dao exception ecc. lancio il template di errore

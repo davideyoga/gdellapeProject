@@ -245,4 +245,30 @@
     </servlet-mapping>
     <!-- Fine Servlet di StudyCourseProfile -->
 
+
+    <!-- Servlet di AdmGetListStudyCourse -->
+    <servlet>
+        <servlet-name>AdmGetListStudyCourse</servlet-name>
+        <servlet-class>controller.adm.AdmGetListStudyCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdmGetListStudyCourse</servlet-name>
+        <url-pattern>/AdmGetListStudyCourse</url-pattern>
+        <url-pattern>/admGetListStudyCourse</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di AdmGetListStudyCourse -->
+
+    <!-- Servlet di AdmModStudyCourse -->
+    <servlet>
+        <servlet-name>AdmModStudyCourse</servlet-name>
+        <servlet-class>controller.adm.AdmModStudyCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdmModStudyCourse</servlet-name>
+        <url-pattern>/AdmModStudyCourse</url-pattern>
+        <url-pattern>/admModStudyCourse</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di AdmModStudyCourse -->
+
+
 </web-app>

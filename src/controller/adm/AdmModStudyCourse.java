@@ -33,9 +33,7 @@ public class AdmModStudyCourse extends BaseController{
     private Map<String, Object> datamodel = new HashMap<>();
 
 
-    private void inserCourse(StudyCourse studyCourse){
-
-        try {
+    private void inserCourse(StudyCourse studyCourse)throws DaoException{
 
             //inizializzo i corsi
             CourseDao courseDao = new CourseDaoImpl(ds);
@@ -50,13 +48,6 @@ public class AdmModStudyCourse extends BaseController{
             //inserisco nel datamodel i corsi
             datamodel.put("listCourseByStudyCourse",corsiDelCorsoDiStudi);
             datamodel.put("listCourses", corsiDiStudio);
-
-
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
-
-
     }
 
     /**
@@ -127,7 +118,53 @@ public class AdmModStudyCourse extends BaseController{
         }
     }
 
+    /**
+     * Raccoglie i parametri tramite post e n=modifica il corso di studi di conseguenza
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+
+            //pulisco messaggio
+            datamodel.put("message",null);
+
+            //se la sessione e' valida
+            if(sessionManager.isValid(request)) {
+
+                //estraggo il servizio di creazione degli utenti
+                Service modUser = utilityManager.getServiceAndCreate(request, response, ds, "modStudyCourse", "Permissed for modification Study Course",
+                        datamodel, getServletContext());
+
+                //se l'utente ha il permesso
+                if (((List <Service>) request.getSession().getAttribute("services")).contains(modUser)) {
+
+
+                    //estraggo i dati dall
+
+
+
+
+
+                    //se non ha il permesso
+                }else{
+                    //lancio il template di non permesso
+                    TemplateController.process( "not_permissed.ftl", datamodel ,response, getServletContext() );
+                }
+
+                //se la sessione non valida
+            }else{
+                //setto la pagina precedente e reindirizzo al login
+                createPreviousPageAndRedirectToLogin(request,response,"AdmModStudyCourse");
+            }
+
+        } catch (DaoException e) {
+            //in caso di dao exception ecc. lancio il template di errore
+            TemplateController.process("error.ftl", datamodel,response,getServletContext());
+        }
+
     }
 }

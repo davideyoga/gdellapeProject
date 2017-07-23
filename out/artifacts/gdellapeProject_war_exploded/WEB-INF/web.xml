@@ -14,23 +14,24 @@
 
     <display-name>gdellapeProject</display-name>
 
+    <!-- Servlet di home -->
+    <servlet>
+        <servlet-name>Home</servlet-name>
+        <servlet-class>controller.Home</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Home</servlet-name>
+        <url-pattern>/Home</url-pattern>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di home -->
+
     <!-- Init Servlet -->
     <welcome-file-list>
-        <welcome-file>TemplateServlet</welcome-file>
+        <welcome-file>Home</welcome-file>
     </welcome-file-list>
     <!-- Fine Init Servlet -->
 
-
-    <!-- Servlet di esempio -->
-    <servlet>
-        <servlet-name>TemplateServlet</servlet-name>
-        <servlet-class>controller.TemplateServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>TemplateServlet</servlet-name>
-        <url-pattern>/TemplateServlet</url-pattern>
-    </servlet-mapping>
-    <!-- Fine Servlet di esempio -->
 
     <session-config>
         <session-timeout>
@@ -195,5 +196,79 @@
         <url-pattern>/getAllLog</url-pattern>
     </servlet-mapping>
     <!-- Fine Servlet di DeleteUser -->
+
+    <!-- Servlet di ListUser -->
+    <servlet>
+        <servlet-name>ListUser</servlet-name>
+        <servlet-class>controller.ListUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListUser</servlet-name>
+        <url-pattern>/ListUser</url-pattern>
+        <url-pattern>/listUser</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di DeleteUser -->
+
+    <!-- Servlet di ListUser -->
+    <servlet>
+        <servlet-name>UserProfile</servlet-name>
+        <servlet-class>controller.UserProfile</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserProfile</servlet-name>
+        <url-pattern>/UserProfile</url-pattern>
+        <url-pattern>/userProfile</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di DeleteUser -->
+
+    <!-- Servlet di ListStudyCourses -->
+    <servlet>
+        <servlet-name>ListStudyCourses</servlet-name>
+        <servlet-class>controller.ListStudyCourses</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListStudyCourses</servlet-name>
+        <url-pattern>/ListStudyCourses</url-pattern>
+        <url-pattern>/listStudyCourses</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di ListStudyCourses -->
+
+    <!-- Servlet di StudyCourseProfile -->
+    <servlet>
+        <servlet-name>StudyCourseProfile</servlet-name>
+        <servlet-class>controller.StudyCourseProfile</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudyCourseProfile</servlet-name>
+        <url-pattern>/StudyCourseProfile</url-pattern>
+        <url-pattern>/studyCourseProfile</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di StudyCourseProfile -->
+
+
+    <!-- Servlet di AdmGetListStudyCourse -->
+    <servlet>
+        <servlet-name>AdmGetListStudyCourse</servlet-name>
+        <servlet-class>controller.adm.AdmGetListStudyCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdmGetListStudyCourse</servlet-name>
+        <url-pattern>/AdmGetListStudyCourse</url-pattern>
+        <url-pattern>/admGetListStudyCourse</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di AdmGetListStudyCourse -->
+
+    <!-- Servlet di AdmModStudyCourse -->
+    <servlet>
+        <servlet-name>AdmModStudyCourse</servlet-name>
+        <servlet-class>controller.adm.AdmModStudyCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdmModStudyCourse</servlet-name>
+        <url-pattern>/AdmModStudyCourse</url-pattern>
+        <url-pattern>/admModStudyCourse</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di AdmModStudyCourse -->
+
 
 </web-app>
