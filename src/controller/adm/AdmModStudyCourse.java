@@ -2,8 +2,11 @@ package controller.adm;
 
 import controller.BaseController;
 import dao.exception.DaoException;
+import dao.implementation.CourseDaoImpl;
 import dao.implementation.StudyCourseDaoImpl;
+import dao.interfaces.CourseDao;
 import dao.interfaces.StudyCourseDao;
+import model.Course;
 import model.Service;
 import model.StudyCourse;
 import view.TemplateController;
@@ -14,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +31,33 @@ public class AdmModStudyCourse extends BaseController{
     private static DataSource ds;
 
     private Map<String, Object> datamodel = new HashMap<>();
+
+
+    private void inserCourse(StudyCourse studyCourse){
+
+        try {
+
+            //inizializzo i corsi
+            CourseDao courseDao = new CourseDaoImpl(ds);
+            courseDao.init();
+
+            //estraggo i corsi che vengono erogati dal mio corso di studi
+            List<Course> corsiDelCorsoDiStudi = courseDao.getCourseByStudyCourse(studyCourse);
+
+            //estraggo tutti i corsi di studio
+            List<Course> corsiDiStudio = courseDao.getCourses();
+
+            //inserisco nel datamodel i corsi
+            datamodel.put("listCourseByStudyCourse",corsiDelCorsoDiStudi);
+            datamodel.put("listCourses", corsiDiStudio);
+
+
+        } catch (DaoException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 
     /**
      * Dopo i vari controlli estrae dalla chiamata get l'id del corso di studi, lo estrae e lo inserisce nel datamodel
@@ -62,9 +93,11 @@ public class AdmModStudyCourse extends BaseController{
                         //inserisco nel template il corso di studi
                         datamodel.put("studyCourse", studyCourse);
 
+                        //inserisco tutti i corsi e i corsi associati al corso di studi nel datamodel
+                        inserCourse(studyCourse);
+
                         //lancio il template
                         TemplateController.process("study_course_mod_adm.ftl", datamodel,response,getServletContext());
-
 
                         //se il corso di studi estratto non esiste
                     }else{

@@ -3,6 +3,9 @@ package dao.interfaces;
 import dao.data.DaoData;
 import dao.exception.DaoException;
 import model.Course;
+import model.StudyCourse;
+
+import java.util.List;
 
 /**
  * Created by antonello on 25/05/17.
@@ -20,4 +23,8 @@ public interface CourseDao extends DaoData{
     Course getCourseBySemester(int semester) throws DaoException;
     Course storeCourse(Course course) throws DaoException;
     void deleteCourse(Course course) throws DaoException;
+
+    List<Course> getCourseByStudyCourse(StudyCourse studyCourse) throws DaoException ;
+
+    List<Course> getCourses() throws DaoException ;
 }

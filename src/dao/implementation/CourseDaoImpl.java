@@ -5,11 +5,14 @@ import dao.exception.DaoException;
 import dao.exception.SelectDaoException;
 import dao.interfaces.CourseDao;
 import model.Course;
+import model.StudyCourse;
 
 import javax.sql.DataSource;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static dao.security.DaoSecurity.stripSlashes;
 
@@ -29,7 +32,9 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
             selectCourseBySemester,
             updateCourse,
             deleteCourseById,
-            deleteCourseByName;
+            deleteCourseByName,
+            selectCourseByStudyCourse,
+            selectCourses;
 
     public CourseDaoImpl(DataSource datasource) {
         super(datasource);
@@ -111,6 +116,15 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
 
             this.deleteCourseById = connection.prepareStatement("DELETE FROM course" +
                     "                                               WHERE id=?");
+
+            this.selectCourseByStudyCourse = connection.prepareStatement("SELECT * " +
+                    "                                                       FROM course " +
+                    "                                                       LEFT JOIN course_studyCourse " +
+                    "                                                       ON course.id = course_studyCourse.course_id " +
+                    "                                                       WHERE course_studyCourse.studyCourse_id=? ");
+
+            this.selectCourses = connection.prepareStatement("SELECT *" +
+                    "                                               FROM course");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -347,6 +361,59 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
         }
     }
 
+    @Override
+    public List<Course> getCourseByStudyCourse(StudyCourse studyCourse) throws DaoException  {
+
+        //inizializzo una lista di corsi
+        List<Course> courses = new ArrayList <>();
+
+        try {
+
+            //setto l'id del corso di studi
+            this.selectCourseByStudyCourse.setInt(1, studyCourse.getId());
+
+            //eseguo la query
+            ResultSet rs = this.selectCourseByStudyCourse.executeQuery();
+
+            //ciclo il risultato della query
+            while (rs.next()){
+
+                //aggiungo alla lista il corso nella riga attuale della query
+                courses.add(this.generateCourse(rs));
+
+            }
+
+        } catch (SQLException e) {
+            throw new SelectDaoException("Error getCourseByStudyCourse",e);
+        }
+
+        //restituisco la lista
+        return courses;
+    }
+
+    @Override
+    public List <Course> getCourses() throws DaoException {
+
+        List<Course> courses = new ArrayList <>();
+
+        try {
+            ResultSet rs = this.selectCourses.executeQuery();
+
+            while (rs.next()){
+
+                courses.add(this.generateCourse(rs));
+
+            }
+
+        } catch (SQLException e) {
+            throw new SelectDaoException("Eror getCourses", e);
+        }
+
+        return courses;
+
+    }
+
+
     public Course generateCourse(ResultSet rs) throws DaoException {
 
         Course course = this.getCourse();
@@ -392,5 +459,7 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
         return course;
     }
 
+
+    //METODO DESTROY CHE CHIUDE LA CONNESSIONE E TUTTE LE QUERY
 
 }
