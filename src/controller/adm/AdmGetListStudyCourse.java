@@ -40,7 +40,7 @@ public class AdmGetListStudyCourse extends BaseController {
             if(sessionManager.isValid(request)) {
 
                 //estraggo il servizio di creazione degli utenti
-                Service modUser = utilityManager.getServiceAndCreate(request, response, ds, "modStudyCourse", "Permissed for modification Study Course",
+                Service modUser = this.getServiceAndCreate(request, response, ds, "modStudyCourse", "Permissed for modification Study Course",
                         datamodel, getServletContext());
 
                 //se l'utente ha il permesso

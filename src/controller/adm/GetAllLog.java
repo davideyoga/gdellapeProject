@@ -46,7 +46,7 @@ public class GetAllLog extends BaseController {
         if(this.sessionManager.isValid(request)){
 
             //estraggo il servizio di visualizzazzione dei log
-            Service logView = utilityManager.getServiceAndCreate(request,response,ds,"logView","Permissed for view the log",
+            Service logView = this.getServiceAndCreate(request,response,ds,"logView","Permissed for view the log",
                     datamodel, getServletContext());
 
             //se l'utente in sessione possiede il servizio viewLog...

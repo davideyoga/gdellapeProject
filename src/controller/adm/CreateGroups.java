@@ -41,7 +41,7 @@ public class CreateGroups extends BaseController {
         if(sessionManager.isHardValid(request)) {
 
             //estraggo il servizio di creazione dei gruppi
-            Service createGroups = utilityManager.getServiceAndCreate(request,response,ds,"createGroup","Service to create group",datamodel, this.getServletContext());
+            Service createGroups = this.getServiceAndCreate(request,response,ds,"createGroup","Service to create group",datamodel, this.getServletContext());
 
             //se l'utente in sessione possiede il servizio createUser...
             if (((List<Service>) request.getSession().getAttribute("services")).contains(createGroups)) {
@@ -87,7 +87,7 @@ public class CreateGroups extends BaseController {
             if (sessionManager.isHardValid(request)) {
 
                 //estraggo il servizio di creazione dei gruppi
-                Service createGroups = utilityManager.getServiceAndCreate(request,response,ds,"createGroup","Service to create group",datamodel, this.getServletContext());
+                Service createGroups = this.getServiceAndCreate(request,response,ds,"createGroup","Service to create group",datamodel, this.getServletContext());
 
                 //se l'utente ha il permesso
                 if (((List <Service>) request.getSession().getAttribute("services")).contains(createGroups)) {

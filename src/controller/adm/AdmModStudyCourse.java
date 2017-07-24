@@ -34,7 +34,7 @@ public class AdmModStudyCourse extends BaseController{
     private Map<String, Object> datamodel = new HashMap<>();
 
 
-    private void inserCourse(StudyCourse studyCourse, CourseDao courseDao)throws DaoException{
+    private void insertCourse(StudyCourse studyCourse, CourseDao courseDao)throws DaoException{
 
             //estraggo i corsi che vengono erogati dal mio corso di studi
             List<Course> corsiDelCorsoDiStudi = courseDao.getCourseByStudyCourse(studyCourse);
@@ -92,7 +92,7 @@ public class AdmModStudyCourse extends BaseController{
             if(sessionManager.isValid(request)) {
 
                 //estraggo il servizio di creazione degli utenti
-                Service modUser = utilityManager.getServiceAndCreate(request, response, ds, "modStudyCourse", "Permissed for modification Study Course",
+                Service modUser = this.getServiceAndCreate(request, response, ds, "modStudyCourse", "Permissed for modification Study Course",
                         datamodel, getServletContext());
 
                 //se l'utente ha il permesso
@@ -123,7 +123,7 @@ public class AdmModStudyCourse extends BaseController{
                         courseDao.init();
 
                         //inserisco tutti i corsi e i corsi associati al corso di studi nel datamodel
-                        inserCourse(studyCourse, courseDao);
+                        insertCourse(studyCourse, courseDao);
 
                         //chiudo il dao dei corsi
                         courseDao.destroy();
@@ -183,7 +183,7 @@ public class AdmModStudyCourse extends BaseController{
             if(sessionManager.isValid(request)) {
 
                 //estraggo il servizio di creazione degli utenti
-                Service modUser = utilityManager.getServiceAndCreate(request, response, ds, "modStudyCourse", "Permissed for modification Study Course",
+                Service modUser = this.getServiceAndCreate(request, response, ds, "modStudyCourse", "Permissed for modification Study Course",
                         datamodel, getServletContext());
 
                 //se l'utente ha il permesso
@@ -202,8 +202,34 @@ public class AdmModStudyCourse extends BaseController{
 
 
                     /*
-                        INSERIRE VAI CONTROLLI SUI DATI PASSATI DALLA FORM
+                        CONTROLLI SUI DATI PASSATI DALLA FORM
                      */
+                    //estraggo i corsi di studi con codice e nome uguale a quello modificato
+                    StudyCourse studyCourseWithCode = studyCourseDao.getStudyCourseByCode(studyCourse.getCode());
+                    StudyCourse studyCourseWithName = studyCourseDao.getStudyCourseByName(studyCourse.getName());
+
+                    //se esiste un corso di studi con lo stesso codice
+                    if( (studyCourseWithCode.getId() > 0 ) && (studyCourseWithName.getId() > 0 ) ){
+
+                        //se esiste un corso di studi con lo stesso codice
+                        if( studyCourseWithCode.getId() > 0 ){
+
+                            //inserisco messaggio di errore di codice esistente
+                            datamodel.put("message", "Error: Existing Code. " );
+                        }
+
+                        if(studyCourseWithName.getId() > 0){
+
+                            //concateno al messaggio di prima(se esiste) il messaggio di errore di nome fia' esistente
+                            datamodel.put("message", datamodel.get("message") + "Error: Existing Name." );
+                        }
+
+                        //lancio template con messaggi di errore
+                        TemplateController.process("study_course_mod_adm.ftl", datamodel,response,getServletContext());
+                        return;
+
+                    }
+
 
                     //se i corsi di studi sono diversi eseguo un update
                     if( !studyCourse.equals(studyCoursePrecedente)){
@@ -277,7 +303,7 @@ public class AdmModStudyCourse extends BaseController{
 
                     }
 
-                    if (courseCambiati = true) {
+                    if (courseCambiati == true) {
 
                         //aggiungo log di modifica associazioni con i gruppi
                         logManager.addLog(sessionManager.getUser(request), "USER: " + sessionManager.getUser(request) + " HAS SUBMITTED CHANGES TO ASSOCIATED STUDY COURSE WITH COURSE", ds);
@@ -289,7 +315,7 @@ public class AdmModStudyCourse extends BaseController{
                      */
 
                     //riestraggo i corsi associati al mio corso di studi e li inserisco nel template
-                    inserCourse(studyCourse, courseDao);
+                    insertCourse(studyCourse, courseDao);
 
                     //inserisco nel template il corso di studi aggiornato
                     datamodel.put("studyCourse", studyCourse);

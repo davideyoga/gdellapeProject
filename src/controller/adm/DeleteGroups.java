@@ -41,7 +41,7 @@ public class DeleteGroups extends BaseController {
         if(sessionManager.isValid(request)) {
 
             //estraggo il servizio di eliminazione dei gruppi
-            Service deleteGroups = utilityManager.getServiceAndCreate(request, response, ds, "deleteGroups", "Permissed for delete Groups",
+            Service deleteGroups = this.getServiceAndCreate(request, response, ds, "deleteGroups", "Permissed for delete Groups",
                     datamodel, getServletContext());
 
             //se l'utente ha il permesso (potrebbe essere ridondante in quanto viene controllato anche per accedere alla lista ma nn si sa mai)

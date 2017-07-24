@@ -270,5 +270,28 @@
     </servlet-mapping>
     <!-- Fine Servlet di AdmModStudyCourse -->
 
+    <!-- Servlet di  DeleteStudyCourse-->
+    <servlet>
+        <servlet-name>DeleteStudyCourse</servlet-name>
+        <servlet-class>controller.adm.DeleteStudyCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteStudyCourse</servlet-name>
+        <url-pattern>/DeleteStudyCourse</url-pattern>
+        <url-pattern>/deleteStudyCourse</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di DeleteStudyCourse -->
+
+    <!-- Servlet di  HomeBackOffice-->
+    <servlet>
+        <servlet-name>HomeBackOffice</servlet-name>
+        <servlet-class>controller.HomeBackOffice</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HomeBackOffice</servlet-name>
+        <url-pattern>/HomeBackOffice</url-pattern>
+        <url-pattern>/homeBackOffice</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di HomeBackOffice -->
 
 </web-app>

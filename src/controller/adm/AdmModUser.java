@@ -57,7 +57,7 @@ public class AdmModUser extends BaseController {
         if(sessionManager.isHardValid(request)) {
 
             //estraggo il servizio di creazione degli utenti
-            Service modUser = utilityManager.getServiceAndCreate(request, response, ds, "modUser", "Permissed for modification User",
+            Service modUser = this.getServiceAndCreate(request, response, ds, "modUser", "Permissed for modification User",
                     datamodel, getServletContext());
 
             //se l'utente ha il permesso (potrebbe essere ridondante in quanto viene controllato anche per accedere alla lista ma nn si sa mai)
@@ -350,7 +350,7 @@ public class AdmModUser extends BaseController {
         if(sessionManager.isValid(request)){
 
             //estraggo il servizio di creazione degli utenti
-            Service modUser = utilityManager.getServiceAndCreate(request,response,ds,"modUser","Permissed for modification User",
+            Service modUser = this.getServiceAndCreate(request,response,ds,"modUser","Permissed for modification User",
                     datamodel, getServletContext());
 
             //se l'utente ha il permesso

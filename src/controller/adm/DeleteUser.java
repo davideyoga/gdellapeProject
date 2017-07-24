@@ -42,7 +42,7 @@ public class DeleteUser extends BaseController {
         if(sessionManager.isValid(request)) {
 
             //estraggo il servizio di eliminazione degli utenti
-            Service deleteUser = utilityManager.getServiceAndCreate(request, response, ds, "deleteUser",
+            Service deleteUser = this.getServiceAndCreate(request, response, ds, "deleteUser",
                     "Permissed for delete User",
                     datamodel, getServletContext());
 

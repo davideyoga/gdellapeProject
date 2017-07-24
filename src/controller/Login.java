@@ -93,8 +93,6 @@ public class Login extends BaseController {
                     //inserisco nel datamodel l'utente
                     this.datamodel.put("user", user);
 
-                    System.out.println("previousPage prima dell'if: " + previousPage);
-
                     //se esiste reinderizzo alla pagina precedente
                     if(previousPage != null && previousPage != ""){
 
@@ -106,8 +104,8 @@ public class Login extends BaseController {
 
                     }else {
 
-                        //lancio il template passandogli il datamodel contenente l'utente, reindirizzo alla home del back-office
-                        TemplateController.process("home_back_office.ftl", this.datamodel, response, getServletContext());
+                        //lancio la servlet di home del back office
+                        response.sendRedirect("HomeBackOffice");
                     }
                 // se l'utente non e' nel database
                 }else processUnknown( request, response);
