@@ -43,8 +43,6 @@ public class StudyCourseProfile extends BaseController {
 
             StudyCourse studyCourse = studyCourseDao.getStudyCourseByCode(request.getParameter("code"));
 
-            System.out.println(studyCourse);
-
             if(studyCourse != null && studyCourse.getId() > 0) {
 
                 datamodel.put("studyCourse", studyCourse);

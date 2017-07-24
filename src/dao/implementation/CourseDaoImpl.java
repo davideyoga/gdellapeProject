@@ -420,16 +420,16 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
 
         try {
 
-            course.setIdCourse(rs.getInt("idCourse"));
+            course.setIdCourse(rs.getInt("id"));
             course.setCode(stripSlashes(rs.getString("code")));
             course.setName(stripSlashes(rs.getString("name")));
             course.setYear(stripSlashes(rs.getString("year")));
             course.setCfu(rs.getInt("cfu"));
             course.setSector(stripSlashes((rs.getString("sector"))));
             course.setLanguage(stripSlashes(rs.getString("language")));
-            course.setSemester(Integer.parseInt("semester"));
-            course.setPrerequisite_ita(stripSlashes(rs.getString("prerequiste_ita")));
-            course.setPrerequisite_eng(stripSlashes(rs.getString("prerequiste_eng")));
+            course.setSemester(rs.getInt("semester"));
+            course.setPrerequisite_ita(stripSlashes(rs.getString("prerequisite_ita")));
+            course.setPrerequisite_eng(stripSlashes(rs.getString("prerequisite_eng")));
             course.setGoals_ita(stripSlashes(rs.getString("goals_ita")));
             course.setGoals_eng(stripSlashes(rs.getString("goals_eng")));
             course.setExame_mode_ita(stripSlashes(rs.getString("exame_mode_ita")));
@@ -454,6 +454,8 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
             course.setExternal_material_ita(stripSlashes(rs.getString("external_material_eng")));
 
         } catch (SQLException e) {
+            e.printStackTrace();
+
             throw new SelectDaoException("Error generateService", e );
         }
         return course;

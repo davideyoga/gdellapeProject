@@ -65,7 +65,7 @@
 
                 <div class="profile-form-receprion_hours_eng">
                     class
-                    <input type="text" value=   "<#if studyCourse.class??>${studyCourse.class}<#else></#if>" name="class">
+                    <input type="number" value="<#if studyCourse.class??>${studyCourse.class}<#else></#if>" name="class">
                     <i class="fa fa-lock"></i>
                 </div>
 

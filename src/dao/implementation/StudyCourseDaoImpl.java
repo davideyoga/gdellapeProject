@@ -28,7 +28,9 @@ public class StudyCourseDaoImpl extends DaoDataMySQLImpl implements StudyCourseD
                                 updateStudyCourse,
                                 deleteStudyCourse,
                                 selectStudyCourseByCourse,
-                                selectStudyCourses;
+                                selectStudyCourses,
+                                insertCourseStudyCourseAssociation,
+                                deleteCourseStudyCourseAssociation;
 
 
     public StudyCourseDaoImpl(DataSource datasource) {
@@ -90,6 +92,16 @@ public class StudyCourseDaoImpl extends DaoDataMySQLImpl implements StudyCourseD
 
             this.selectStudyCourses = connection.prepareStatement("SELECT * " +
                     "                                                       FROM studyCourse");
+
+            this.insertCourseStudyCourseAssociation = connection.prepareStatement("INSERT INTO course_studyCourse" +
+                    "                                                                       (`course_id`, `studyCourse_id`)" +
+                    "                                                                       VALUES (?,?)");
+
+
+
+            this.deleteCourseStudyCourseAssociation = connection.prepareStatement("DELETE FROM course_studyCourse" +
+                    "                                                                       WHERE course_id=?" +
+                    "                                                                       AND studyCourse_id=?");
 
         } catch (SQLException e) {
             throw new InitDaoException( "Error Init in StudyCourseDaoImpl", e);
@@ -228,6 +240,8 @@ public class StudyCourseDaoImpl extends DaoDataMySQLImpl implements StudyCourseD
                 this.updateStudyCourse.executeUpdate();
 
             } catch (SQLException e) {
+                e.printStackTrace();
+
                 throw new UpdateDaoException("Error storeStudyCourse", e);
             }
 
@@ -369,6 +383,38 @@ public class StudyCourseDaoImpl extends DaoDataMySQLImpl implements StudyCourseD
         return studyCourses;
     }
 
+    @Override
+    public void insertCourseStudyCourseConnection(Course course, StudyCourse studyCourse) throws DaoException{
+
+        try {
+
+            this.insertCourseStudyCourseAssociation.setInt(1, course.getIdCourse());
+            this.insertCourseStudyCourseAssociation.setInt(2, studyCourse.getId());
+
+            this.insertCourseStudyCourseAssociation.executeUpdate();
+
+
+        } catch (SQLException e) {
+            throw new InsertDaoException("Error insertCourseStudyCourseConnection", e);
+        }
+
+    }
+
+    @Override
+    public void deleteCourseStudyCourseConnection(Course course, StudyCourse studyCourse) throws DaoException {
+        try {
+
+            this.deleteCourseStudyCourseAssociation.setInt(1, course.getIdCourse());
+            this.deleteCourseStudyCourseAssociation.setInt(2, studyCourse.getId());
+
+            this.deleteCourseStudyCourseAssociation.executeUpdate();
+
+
+        } catch (SQLException e) {
+            throw new InsertDaoException("Error insertCourseStudyCourseConnection", e);
+        }
+    }
+
     /**
      * Chiude connession e query precompilate
      * @throws DaoException
@@ -386,6 +432,7 @@ public class StudyCourseDaoImpl extends DaoDataMySQLImpl implements StudyCourseD
             this.deleteStudyCourse.close();
             this.selectStudyCourseByCourse.close();
             this.selectStudyCourses.close();
+            this.insertCourseStudyCourseAssociation.close();
 
             super.destroy();
 

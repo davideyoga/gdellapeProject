@@ -374,38 +374,62 @@ public class Course {
 
         Course course = (Course) o;
 
-        if (idCourse != course.idCourse) return false;
-        if (cfu != course.cfu) return false;
-        if (semester != course.semester) return false;
-        if (!code.equals(course.code)) return false;
-        if (!name.equals(course.name)) return false;
-        if (!year.equals(course.year)) return false;
-        if (!sector.equals(course.sector)) return false;
-        if (!language.equals(course.language)) return false;
-        if (!prerequisite_ita.equals(course.prerequisite_ita)) return false;
-        if (!prerequisite_eng.equals(course.prerequisite_eng)) return false;
-        if (!goals_ita.equals(course.goals_ita)) return false;
-        if (!goals_eng.equals(course.goals_eng)) return false;
-        if (!exame_mode_ita.equals(course.exame_mode_ita)) return false;
-        if (!exame_mode_eng.equals(course.exame_mode_eng)) return false;
-        if (!teaching_mode_ita.equals(course.teaching_mode_ita)) return false;
-        if (!teaching_mode_eng.equals(course.teaching_mode_eng)) return false;
-        if (!syllabus_ita.equals(course.syllabus_ita)) return false;
-        if (!syllabus_eng.equals(course.syllabus_eng)) return false;
-        if (!note_ita.equals(course.note_ita)) return false;
-        if (!note_eng.equals(course.note_eng)) return false;
-        if (!knowledge_ita.equals(course.knowledge_ita)) return false;
-        if (!knowledge_eng.equals(course.knowledge_eng)) return false;
-        if (!application_ita.equals(course.application_ita)) return false;
-        if (!application_eng.equals(course.application_eng)) return false;
-        if (!evaluation_ita.equals(course.evaluation_ita)) return false;
-        if (!evaluation_eng.equals(course.evaluation_eng)) return false;
-        if (!communication_ita.equals(course.communication_ita)) return false;
-        if (!communication_eng.equals(course.communication_eng)) return false;
-        if (!lifelog_learning_skills_ita.equals(course.lifelog_learning_skills_ita)) return false;
-        if (!lifelog_learning_skills_eng.equals(course.lifelog_learning_skills_eng)) return false;
-        if (!external_material_ita.equals(course.external_material_ita)) return false;
-        return external_material_eng.equals(course.external_material_eng);
+        if (getIdCourse() != course.getIdCourse()) return false;
+        if (getCfu() != course.getCfu()) return false;
+        if (getSemester() != course.getSemester()) return false;
+        if (getCode() != null ? !getCode().equals(course.getCode()) : course.getCode() != null) return false;
+        if (getName() != null ? !getName().equals(course.getName()) : course.getName() != null) return false;
+        if (getYear() != null ? !getYear().equals(course.getYear()) : course.getYear() != null) return false;
+        if (getSector() != null ? !getSector().equals(course.getSector()) : course.getSector() != null) return false;
+        if (getLanguage() != null ? !getLanguage().equals(course.getLanguage()) : course.getLanguage() != null)
+            return false;
+        if (getPrerequisite_ita() != null ? !getPrerequisite_ita().equals(course.getPrerequisite_ita()) : course.getPrerequisite_ita() != null)
+            return false;
+        if (getPrerequisite_eng() != null ? !getPrerequisite_eng().equals(course.getPrerequisite_eng()) : course.getPrerequisite_eng() != null)
+            return false;
+        if (getGoals_ita() != null ? !getGoals_ita().equals(course.getGoals_ita()) : course.getGoals_ita() != null)
+            return false;
+        if (getGoals_eng() != null ? !getGoals_eng().equals(course.getGoals_eng()) : course.getGoals_eng() != null)
+            return false;
+        if (getExame_mode_ita() != null ? !getExame_mode_ita().equals(course.getExame_mode_ita()) : course.getExame_mode_ita() != null)
+            return false;
+        if (getExame_mode_eng() != null ? !getExame_mode_eng().equals(course.getExame_mode_eng()) : course.getExame_mode_eng() != null)
+            return false;
+        if (getTeaching_mode_ita() != null ? !getTeaching_mode_ita().equals(course.getTeaching_mode_ita()) : course.getTeaching_mode_ita() != null)
+            return false;
+        if (getTeaching_mode_eng() != null ? !getTeaching_mode_eng().equals(course.getTeaching_mode_eng()) : course.getTeaching_mode_eng() != null)
+            return false;
+        if (getSyllabus_ita() != null ? !getSyllabus_ita().equals(course.getSyllabus_ita()) : course.getSyllabus_ita() != null)
+            return false;
+        if (getSyllabus_eng() != null ? !getSyllabus_eng().equals(course.getSyllabus_eng()) : course.getSyllabus_eng() != null)
+            return false;
+        if (getNote_ita() != null ? !getNote_ita().equals(course.getNote_ita()) : course.getNote_ita() != null)
+            return false;
+        if (getNote_eng() != null ? !getNote_eng().equals(course.getNote_eng()) : course.getNote_eng() != null)
+            return false;
+        if (getKnowledge_ita() != null ? !getKnowledge_ita().equals(course.getKnowledge_ita()) : course.getKnowledge_ita() != null)
+            return false;
+        if (getKnowledge_eng() != null ? !getKnowledge_eng().equals(course.getKnowledge_eng()) : course.getKnowledge_eng() != null)
+            return false;
+        if (getApplication_ita() != null ? !getApplication_ita().equals(course.getApplication_ita()) : course.getApplication_ita() != null)
+            return false;
+        if (getApplication_eng() != null ? !getApplication_eng().equals(course.getApplication_eng()) : course.getApplication_eng() != null)
+            return false;
+        if (getEvaluation_ita() != null ? !getEvaluation_ita().equals(course.getEvaluation_ita()) : course.getEvaluation_ita() != null)
+            return false;
+        if (getEvaluation_eng() != null ? !getEvaluation_eng().equals(course.getEvaluation_eng()) : course.getEvaluation_eng() != null)
+            return false;
+        if (getCommunication_ita() != null ? !getCommunication_ita().equals(course.getCommunication_ita()) : course.getCommunication_ita() != null)
+            return false;
+        if (getCommunication_eng() != null ? !getCommunication_eng().equals(course.getCommunication_eng()) : course.getCommunication_eng() != null)
+            return false;
+        if (getLifelog_learning_skills_ita() != null ? !getLifelog_learning_skills_ita().equals(course.getLifelog_learning_skills_ita()) : course.getLifelog_learning_skills_ita() != null)
+            return false;
+        if (getLifelog_learning_skills_eng() != null ? !getLifelog_learning_skills_eng().equals(course.getLifelog_learning_skills_eng()) : course.getLifelog_learning_skills_eng() != null)
+            return false;
+        if (getExternal_material_ita() != null ? !getExternal_material_ita().equals(course.getExternal_material_ita()) : course.getExternal_material_ita() != null)
+            return false;
+        return getExternal_material_eng() != null ? getExternal_material_eng().equals(course.getExternal_material_eng()) : course.getExternal_material_eng() == null;
     }
 
     @Override
