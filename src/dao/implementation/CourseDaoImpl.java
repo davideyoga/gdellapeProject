@@ -113,7 +113,7 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
                     "lifelog_learning_skills_eng=?"+
                     "external_material_ita=?"+
                     "external_material_eng=?" +
-                    "WHERE id=?");
+                    "whre id=?");
 
 
             this.deleteCourseById = connection.prepareStatement("DELETE FROM course" +
@@ -367,7 +367,7 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
     }
 
     @Override
-    public Course getCourseByUser(User user) throws DaoException {
+    public List<Course> getCoursesByUser(User user) throws DaoException {
         return null;
     }
 

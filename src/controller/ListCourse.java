@@ -68,7 +68,7 @@ public class ListCourse extends BaseController {
                         courseDao.init();
 
                         //estraggo i corsi collegati all'utente in sessione e li inserisco i corsi nel datamodel
-                        datamodel.put("courses", courseDao.getCourseByUser(sessionManager.getUser(request)));
+                        datamodel.put("courses", courseDao.getCoursesByUser(sessionManager.getUser(request)));
 
                         courseDao.destroy();
 
