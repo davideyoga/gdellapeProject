@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import controller.logController.LogManager;
@@ -9,15 +11,18 @@ import controller.sessionController.SessionManager;
 import controller.sessionController.SingletonSessionManager;
 import controller.utility.UtilityManager;
 import dao.exception.DaoException;
+import dao.implementation.GroupsDaoImpl;
 import dao.implementation.ServiceDaoImpl;
+import dao.implementation.UserDaoImpl;
+import dao.implementation.UserGroupsDaoImpl;
+import dao.interfaces.GroupsDao;
 import dao.interfaces.ServiceDao;
 import dao.interfaces.UserDao;
-import model.Course;
-import model.Service;
-import model.StudyCourse;
-import model.User;
+import dao.interfaces.UserGroupsDao;
+import model.*;
 import view.TemplateController;
 
+import javax.annotation.Resource;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -32,11 +37,16 @@ import java.io.IOException;
  */
 public class BaseController extends HttpServlet {
 
-    public SessionManager sessionManager;
+    protected SessionManager sessionManager;
 
-    public LogManager logManager;
+    protected LogManager logManager;
 
-    public UtilityManager utilityManager;
+    protected UtilityManager utilityManager;
+
+    @Resource(name = "jdbc/gdellapeProject")
+    protected static DataSource ds;
+
+    protected Map<String, Object> datamodel = new HashMap<>();
 
     @Override
     public void init() throws ServletException {
@@ -263,5 +273,40 @@ public class BaseController extends HttpServlet {
         course.setExternal_material_ita(request.getParameter("external_material_eng"));
 
         return course;
+    }
+
+    protected void insertUserInCourseServlet(HttpServletRequest request) throws DaoException{
+
+            //aggiungo tutti i gruppi al datamodel (per creare un selettore)
+            GroupsDao groupsDao = new GroupsDaoImpl(ds);
+            groupsDao.init();
+
+            List <Groups> groupsList = groupsDao.getAllGroups();
+            datamodel.put("groupsList", groupsList);
+
+
+            //aggiungo tutti gli utenti al datamodel
+            UserDao userDao = new UserDaoImpl(ds);
+            userDao.init();
+
+            List <User> userList = userDao.getUsers();
+            datamodel.put("userList", userList);
+
+            //AGGIUNGO UNA MAPPA CON CHIAVE UN GRUPPO E COME VALORE UN UserGroups
+            UserGroupsDao userGroupsDao = new UserGroupsDaoImpl(ds);
+            userDao.init();
+
+            //inizializzo una mappa di liste, ad ogni gruppo corrispondera' una lista di UserGroups
+            Map <Groups, List <UserGroups>> groupsUserGroupsList = new HashMap <>();
+
+            //ciclo sulla lista di tutti i gruppi
+            for (Groups groups : groupsList) {
+
+                //aggiungo groups come chiave e come valore la lista di tutti i suoi UserGroups
+                groupsUserGroupsList.put(groups, userGroupsDao.getUserGroupsByGroups(groups));
+
+            }
+            //aggiungo al template la mappa
+            datamodel.put("groupsUserGroupsAssociation", groupsUserGroupsList);
     }
 }

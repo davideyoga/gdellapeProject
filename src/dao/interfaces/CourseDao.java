@@ -4,6 +4,7 @@ import dao.data.DaoData;
 import dao.exception.DaoException;
 import model.Course;
 import model.StudyCourse;
+import model.User;
 
 import java.util.List;
 
@@ -23,6 +24,8 @@ public interface CourseDao extends DaoData{
     Course getCourseBySemester(int semester) throws DaoException;
     Course storeCourse(Course course) throws DaoException;
     void deleteCourse(Course course) throws DaoException;
+
+    Course getCourseByUser(User user) throws DaoException;
 
     List<Course> getCourseByStudyCourse(StudyCourse studyCourse) throws DaoException ;
 

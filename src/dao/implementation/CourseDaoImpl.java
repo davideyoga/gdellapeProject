@@ -6,6 +6,7 @@ import dao.exception.SelectDaoException;
 import dao.interfaces.CourseDao;
 import model.Course;
 import model.StudyCourse;
+import model.User;
 
 import javax.sql.DataSource;
 import java.sql.PreparedStatement;
@@ -46,7 +47,7 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
             super.init();
 
             this.insertCourse = connection.prepareStatement("INSERT INTO course" +
-                    " VALUES (NULL,?,?,?,?,?,?,?)");
+                    " VALUES (NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
             this.selectCourseById = connection.prepareStatement("SELECT *" +
                     " FROM course" +
@@ -81,37 +82,38 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
                     " WHERE semester = ?");
 
             this.updateCourse = connection.prepareStatement("UPDATE USER " +
-                    "SET code = ?" +
-                    "name = ?" +
-                    "year = ?" +
-                    "cfu = ?"+
-                    "sector = ?"+
-                    "language = ?"+
-                    "semester = ?"+
-                    "prerequisite_ita"+
-                    "prerequisite_eng"+
-                    "goals_ita"+
-                    "goals_eng"+
-                    "exame_mode_ita"+
-                    "exam_mode_eng"+
-                    "teaching_mode_ita"+
-                    "teaching_mode_eng"+
-                    "syllabus_ita"+
-                    "syllabus_eng"+
-                    "note_ita"+
-                    "note_eng"+
-                    "knowledge_ita"+
-                    "knowledge_eng"+
-                    "application_ita"+
-                    "application_eng"+
-                    "evaluation_ita"+
-                    "evaluation_eng"+
-                    "communication_ita"+
-                    "communication_eng"+
-                    "lifelog_learning_skills_ita"+
-                    "lifelog_learning_skills_eng"+
-                    "external_material_ita"+
-                    "external_material_eng");
+                    "SET code = ?," +
+                    "name = ?," +
+                    "year = ?," +
+                    "cfu = ?,"+
+                    "sector = ?,"+
+                    "language = ?,"+
+                    "semester = ?,"+
+                    "prerequisite_ita = ?"+
+                    "prerequisite_eng = ?"+
+                    "goals_ita = ?"+
+                    "goals_eng = ?"+
+                    "exame_mode_ita = ?"+
+                    "exam_mode_eng = ?"+
+                    "teaching_mode_ita=?"+
+                    "teaching_mode_eng=?"+
+                    "syllabus_ita=?"+
+                    "syllabus_eng=?"+
+                    "note_ita=?"+
+                    "note_eng=?"+
+                    "knowledge_ita=?"+
+                    "knowledge_eng=?"+
+                    "application_ita=?"+
+                    "application_eng=?"+
+                    "evaluation_ita=?"+
+                    "evaluation_eng=?"+
+                    "communication_ita=?"+
+                    "communication_eng=?"+
+                    "lifelog_learning_skills_ita=?"+
+                    "lifelog_learning_skills_eng=?"+
+                    "external_material_ita=?"+
+                    "external_material_eng=?" +
+                    "WHERE id=?");
 
 
             this.deleteCourseById = connection.prepareStatement("DELETE FROM course" +
@@ -162,7 +164,7 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
 
     @Override
     public Course getCourseByName(String name) throws DaoException {
-        Course course = null;
+        Course course = this.getCourse();
 
         try {
 
@@ -179,6 +181,8 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
             }
         } catch (SQLException e) {
             e.printStackTrace();
+
+            throw new SelectDaoException("Error getCourseByName", e);
         }
 
         return course;
@@ -203,6 +207,7 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new SelectDaoException("Error getCourseByCode", e);
         }
 
         return course;
@@ -359,6 +364,11 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public Course getCourseByUser(User user) throws DaoException {
+        return null;
     }
 
     @Override

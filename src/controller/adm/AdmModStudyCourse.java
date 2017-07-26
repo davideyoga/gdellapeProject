@@ -247,7 +247,7 @@ public class AdmModStudyCourse extends BaseController{
                     //inizializzo un booleano per capire se devo aggiungere un log
                     boolean courseCambiati = false;
 
-                    //ciclo la lista contenente tutti i corsi, SI PUO' OTTIMIZZARE
+                    //ciclo la lista contenente tutti i corsi
                     for (Course course : allCourses) {
 
 

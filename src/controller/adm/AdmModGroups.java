@@ -49,24 +49,25 @@ public class AdmModGroups extends BaseController {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //pulisco messaggio
-        datamodel.put("message",null);
+        try {
 
-        //se la session e' valida e abbastanza nuova
-        if(sessionManager.isHardValid(request)) {
+            //pulisco messaggio
+            datamodel.put("message", null);
 
-            //estraggo il servizio di creazione degli utenti
-            Service modGroups = this.getServiceAndCreate(request,response,ds,"modGroups","Permissed for modification Groups",
-                    datamodel, getServletContext());
+            //se la session e' valida e abbastanza nuova
+            if (sessionManager.isHardValid(request)) {
 
-            //se l'utente in sessione possiede il servizio modGroups...
-            if (((List<Service>) request.getSession().getAttribute("services")).contains(modGroups)) {
+                //estraggo il servizio di creazione degli utenti
+                Service modGroups = this.getServiceAndCreate(request, response, ds, "modGroups", "Permissed for modification Groups",
+                        datamodel, getServletContext());
 
-                //inizializzo il gruppo per renderli visibili nel blocco catch
-                Groups groupsDaForm = null;
-                Groups groupsPrimaDelleModifiche = null;
+                //se l'utente in sessione possiede il servizio modGroups...
+                if (((List <Service>) request.getSession().getAttribute("services")).contains(modGroups)) {
 
-                try {
+                    //inizializzo il gruppo per renderli visibili nel blocco catch
+                    Groups groupsDaForm = null;
+                    Groups groupsPrimaDelleModifiche = null;
+
 
                     //inizializzo il dao
                     ServiceDao serviceDao = new ServiceDaoImpl(ds);
@@ -79,7 +80,7 @@ public class AdmModGroups extends BaseController {
                     groupsPrimaDelleModifiche = groupsDao.getGroupsById((int) request.getSession().getAttribute("idGroupsToModify"));
 
                     //controllo sulla corretta estrazione del gruppo
-                    if(groupsPrimaDelleModifiche == null || groupsPrimaDelleModifiche.getId() == 0){
+                    if (groupsPrimaDelleModifiche == null || groupsPrimaDelleModifiche.getId() == 0) {
 
                         //lancio servlet di errore
                         response.sendRedirect("Error");
@@ -87,10 +88,10 @@ public class AdmModGroups extends BaseController {
                     }
 
                     //estraggo i servizi di propieta' del gruppo prima della modifica
-                    List<Service> serviceListPrima = serviceDao.getServicesByGroup(groupsPrimaDelleModifiche);
+                    List <Service> serviceListPrima = serviceDao.getServicesByGroup(groupsPrimaDelleModifiche);
 
                     //estraggo tutti i servizi
-                    List<Service> serviceListAll = serviceDao.getAllService();
+                    List <Service> serviceListAll = serviceDao.getAllService();
 
                     /*
                      * INIZIO MOD PROFILO GRUPPO
@@ -107,12 +108,12 @@ public class AdmModGroups extends BaseController {
                     groupsDaForm.setDescription(request.getParameter("description"));
 
                     //se il gruppo e' cambiato rispetto a prima
-                    if(!groupsDaForm.equals(groupsPrimaDelleModifiche)){
+                    if (!groupsDaForm.equals(groupsPrimaDelleModifiche)) {
 
                         //effettuo l'update
                         groupsDao.storeGroups(groupsDaForm);
 
-                        logManager.addLog(sessionManager.getUser(request),"GROUPS: " + groupsPrimaDelleModifiche + " IT'S CHANGE: "+ groupsDaForm,ds);
+                        logManager.addLog(sessionManager.getUser(request), "GROUPS: " + groupsPrimaDelleModifiche + " IT'S CHANGE: " + groupsDaForm, ds);
 
                     }
                     //se non e' cambiato non faccio nulla
@@ -134,16 +135,16 @@ public class AdmModGroups extends BaseController {
                     GroupsService groupsService = groupsServiceDao.getGroupsSerivce();
 
                     //creo una lista con i nomi dei servizi che mi arrivano dalla form
-                    List<String> nameServiceListDopo = new ArrayList<>();
+                    List <String> nameServiceListDopo = new ArrayList <>();
 
                     //ciclo sulla lista di tutti i servizi per estrarre i servizi dalla form
-                    for( Service service:serviceListAll){
+                    for (Service service : serviceListAll) {
 
                         //se l'admin ha ceckato sul ceckbox del servizio service
-                        if(request.getParameter(service.getName()) != null){
+                        if (request.getParameter(service.getName()) != null) {
 
                             //aggiungo il nome del servizio alla lista dei nomi dei servizi dalla ceckati dalla form
-                            nameServiceListDopo.add( request.getParameter(service.getName()));
+                            nameServiceListDopo.add(request.getParameter(service.getName()));
                         }
                     }
 
@@ -152,48 +153,48 @@ public class AdmModGroups extends BaseController {
 
                     //per chiarimenti maggiori di quello fatto sotto andare nella servlet AdmModUser, e' lo stesso principio
 
-                    //ciclo la lista dei gruppi, SI PUO' OTTIMIZZARE
-                    for (Service service:serviceListAll){
+                    //ciclo la lista dei gruppi
+                    for (Service service : serviceListAll) {
 
-                            //caso 3, se il servizio e' presente in serviceListPrima ma non in nameServiceList
-                            if( serviceListPrima.contains(service) && !nameServiceListDopo.contains(service.getName()) ){
+                        //caso 3, se il servizio e' presente in serviceListPrima ma non in nameServiceList
+                        if (serviceListPrima.contains(service) && !nameServiceListDopo.contains(service.getName())) {
 
-                                //tolgo il servizio service al gruppo
+                            //tolgo il servizio service al gruppo
 
-                                //setto il groupsService
-                                groupsService.setIdGroups(groupsPrimaDelleModifiche.getId());
-                                groupsService.setIdService(service.getId());
+                            //setto il groupsService
+                            groupsService.setIdGroups(groupsPrimaDelleModifiche.getId());
+                            groupsService.setIdService(service.getId());
 
-                                //elimino la connessione tra groups e service
-                                groupsServiceDao.deleteGroupsService(groupsService);
+                            //elimino la connessione tra groups e service
+                            groupsServiceDao.deleteGroupsService(groupsService);
 
-                                serviziCambiati = true;
+                            serviziCambiati = true;
 
-                            }
+                        }
 
-                            //caso 2, se groups non e' contenuto in groupsListPrima ed ora e' contenuto in nameGroupsListDopo
-                            if(!serviceListPrima.contains(service) && nameServiceListDopo.contains(service.getName())){
+                        //caso 2, se groups non e' contenuto in groupsListPrima ed ora e' contenuto in nameGroupsListDopo
+                        if (!serviceListPrima.contains(service) && nameServiceListDopo.contains(service.getName())) {
 
-                                //aggiungo il servizio al gruppo
+                            //aggiungo il servizio al gruppo
 
-                                //setto il groupsUser
-                                groupsService.setIdGroups(groupsPrimaDelleModifiche.getId());
-                                groupsService.setIdService(service.getId());
+                            //setto il groupsUser
+                            groupsService.setIdGroups(groupsPrimaDelleModifiche.getId());
+                            groupsService.setIdService(service.getId());
 
-                                System.out.println("groupsService: " + groupsService);
+                            System.out.println("groupsService: " + groupsService);
 
-                                //creo la connessione tra groups e service
-                                groupsServiceDao.insertGroupsService(groupsService);
+                            //creo la connessione tra groups e service
+                            groupsServiceDao.insertGroupsService(groupsService);
 
-                                serviziCambiati = true;
+                            serviziCambiati = true;
 
-                            }
+                        }
 
-                            //se non sono veri nessuno dei due ci troviamo nel caso 1, quindi non faccio nulla
+                        //se non sono veri nessuno dei due ci troviamo nel caso 1, quindi non faccio nulla
 
                     }
 
-                    if(serviziCambiati == true){
+                    if (serviziCambiati == true) {
 
                         //aggiungo log di modifica associazioni con i servizi
                         logManager.addLog(sessionManager.getUser(request), "GROUPS: " + groupsDaForm + " HAS SUBMITTED CHANGES TO ASSOCIATED SERVICE", ds);
@@ -208,8 +209,8 @@ public class AdmModGroups extends BaseController {
 
                     //FINITO, LANCIO IL TEMPLATE CON I DATI CARICATI
 
-                    //mi prendo i nuovi servizi per ricaricarli nel template, SI PUO' OTTIMIZZARE
-                    List<Service> newListService = serviceDao.getServicesByGroup(groupsDaForm);
+                    //mi prendo i nuovi servizi per ricaricarli nel template
+                    List <Service> newListService = serviceDao.getServicesByGroup(groupsDaForm);
 
                     //carico i servizi a cui ha accesso il gruppo
                     //per farlo ho bisogno dei nuovi servizi
@@ -226,28 +227,29 @@ public class AdmModGroups extends BaseController {
                     groupsServiceDao.destroy();
                     groupsServiceDao = null;
                     groupsDao.destroy();
-                    groupsDao=null;
+                    groupsDao = null;
                     serviceDao.destroy();
                     serviceDao = null;
 
                     //lancio il template di modifica dell'utente
-                    TemplateController.process("groups_mod_adm.ftl", datamodel,response,getServletContext());
+                    TemplateController.process("groups_mod_adm.ftl", datamodel, response, getServletContext());
 
-                } catch (DaoException | LogException e) {
-                    //lancio servlet di errore
-                    response.sendRedirect("Error");
+
+                    //se non ha il permesso
+                } else {
+
+                    //lancio il messaggio di servizio non permesso
+                    TemplateController.process("not_permissed.ftl", datamodel, response, getServletContext());
                 }
-
-                //se non ha il permesso
+                //se isHardValid = false
             } else {
-
-                //lancio il messaggio di servizio non permesso
-                TemplateController.process( "not_permissed.ftl", datamodel ,response, getServletContext() );
+                //setto la pagina precedente e reindirizzo al login
+                createPreviousPageAndRedirectToLogin(request, response, "AdmGetListGroups");
             }
-            //se isHardValid = false
-        }else {
-            //setto la pagina precedente e reindirizzo al login
-            createPreviousPageAndRedirectToLogin(request, response, "AdmGetListGroups");
+
+        } catch (DaoException | LogException e) {
+            //lancio servlet di errore
+            response.sendRedirect("Error");
         }
 
     }
@@ -263,18 +265,19 @@ public class AdmModGroups extends BaseController {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
 
-        //se la sessione e' valida
-        if(sessionManager.isValid(request)){
+            //se la sessione e' valida
+            if (sessionManager.isValid(request)) {
 
-            //estraggo il servizio di creazione dei gruppi
-            Service modGroups = this.getServiceAndCreate(request,response,ds,"modGroups","Permissed for modification Groups",
-                    datamodel, getServletContext());
+                //estraggo il servizio di creazione dei gruppi
+                Service modGroups = this.getServiceAndCreate(request, response, ds, "modGroups", "Permissed for modification Groups",
+                        datamodel, getServletContext());
 
-            //se l'utente ha il permesso (potrebbe essere ridondante in quanto viene controllato anche per accedere alla lista ma nn si sa mai)
-            if (((List<Service>) request.getSession().getAttribute("services")).contains(modGroups)) {
+                //se l'utente ha il permesso (potrebbe essere ridondante in quanto viene controllato anche per accedere alla lista ma nn si sa mai)
+                if (((List <Service>) request.getSession().getAttribute("services")).contains(modGroups)) {
 
-                try {
+
                     //inizializzo i dao
                     GroupsDao groupsDao = new GroupsDaoImpl(ds);
                     groupsDao.init();
@@ -282,28 +285,28 @@ public class AdmModGroups extends BaseController {
                     ServiceDao serviceDao = new ServiceDaoImpl(ds);
                     serviceDao.init();
 
+                    if (request.getParameter("id") == null) {
+                        response.sendRedirect("AdmGetListGroups");
+                    }
+
                     //estraggo l'id del gruppo passato tramite get
                     int idGroups = Integer.parseInt(request.getParameter("id"));
 
                     //estraggo il gruppo tramite l'id passato dalla richiesta get
-                    Groups groups = groupsDao.getGroupsById( idGroups);
+                    Groups groups = groupsDao.getGroupsById(idGroups);
 
                     //estraggo i servizi a cui ha accesso il gruppo
-                    List<Service> listGroupsService = serviceDao.getServicesByGroup(groups);
+                    List <Service> listGroupsService = serviceDao.getServicesByGroup(groups);
 
                     //estraggo tutti i gruppi
-                    List<Service> listService = serviceDao.getAllService();
+                    List <Service> listService = serviceDao.getAllService();
 
                     //carico nel template il gruppo
                     datamodel.put("groups", groups);
 
 
-
-
                     //prima di lanciara il template carico nella sessione dell'amministatore l'id dell'utente che intendo modificare
-                    request.getSession().setAttribute("idGroupsToModify", groups.getId() );
-
-
+                    request.getSession().setAttribute("idGroupsToModify", groups.getId());
 
 
                     //carico i servizi a cui appartiene il gruppo
@@ -320,26 +323,26 @@ public class AdmModGroups extends BaseController {
                     serviceDao = null;
 
                     //lancio il template di modifica del gruppo
-                    TemplateController.process("groups_mod_adm.ftl", datamodel,response,getServletContext());
+                    TemplateController.process("groups_mod_adm.ftl", datamodel, response, getServletContext());
 
-                } catch (DaoException e) {
-                    //in caso di dao exception ecc. lancio il template di errore
-                    TemplateController.process("error.ftl", datamodel,response,getServletContext());
+
+                    //se l'utente in sessione non ha i permessi
+                } else {
+
+                    //lancio il template di non permesso
+                    TemplateController.process("not_permissed.ftl", datamodel, response, getServletContext());
                 }
+                //se la sessione non e' valida
+            } else {
 
+                //setto la pagina alla lista degli utenti in quanto questa chiamata avviene tramite GET
+                createPreviousPageAndRedirectToLogin(request, response, "AdmGetListGroups");
 
-                //se l'utente in sessione non ha i permessi
-            }else{
-
-                //lancio il template di non permesso
-                TemplateController.process( "not_permissed.ftl", datamodel ,response, getServletContext() );
             }
-            //se la sessione non e' valida
-        }else{
 
-            //setto la pagina alla lista degli utenti in quanto questa chiamata avviene tramite GET
-            createPreviousPageAndRedirectToLogin(request,response,"AdmGetListGroups");
-
+        } catch (DaoException e) {
+            //in caso di dao exception ecc. lancio il template di errore
+            TemplateController.process("error.ftl", datamodel,response,getServletContext());
         }
     }
 }

@@ -1,6 +1,7 @@
 package controller.adm;
 
 import controller.BaseController;
+import dao.exception.DaoException;
 import dao.implementation.GroupsDaoImpl;
 import dao.interfaces.GroupsDao;
 import model.Groups;
@@ -23,36 +24,27 @@ import java.util.Map;
  */
 public class AdmGetListGroups extends BaseController {
 
-    @Resource(name = "jdbc/gdellapeProject")
-    private static DataSource ds;
 
-    private Map<String, Object> datamodel = new HashMap<>();
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        try {
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            //pulisco messaggio
+            datamodel.put("message",null);
 
-        this.doGet(request, response);
+            //se sessione valida
+            if (this.sessionManager.isValid(request)) {
 
-    }
+                //estraggo il servizio di creazione degli utenti
+                Service modGroups = this.getServiceAndCreate(request, response, ds, "modGroups", "Permissed for modification Groups",
+                        datamodel, getServletContext());
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                //se l'utente in sessione possiede il servizio modGroups...
+                if (((List <Service>) request.getSession().getAttribute("services")).contains(modGroups)) {
 
-        //se sessione valida
-        if(this.sessionManager.isValid(request)){
+                    //inizializzo la lista di tutti i gruppi
+                    List <Groups> groupsList = new ArrayList <>();
 
-            //estraggo il servizio di creazione degli utenti
-            Service modGroups = this.getServiceAndCreate(request,response,ds,"modGroups","Permissed for modification Groups",
-                    datamodel, getServletContext());
-
-            //se l'utente in sessione possiede il servizio modGroups...
-            if (((List<Service>) request.getSession().getAttribute("services")).contains(modGroups)) {
-
-                //inizializzo la lista di tutti i gruppi
-                List<Groups> groupsList = new ArrayList<>();
-
-                try {
 
                     //inizializzo il dao dei gruppi
                     GroupsDao groupsDao = new GroupsDaoImpl(ds);
@@ -62,31 +54,41 @@ public class AdmGetListGroups extends BaseController {
                     groupsList = groupsDao.getAllGroups();
 
                     //chiudo il dao
-                    groupsDao.close();
+                    groupsDao.destroy();
                     groupsDao = null;
 
-                } catch (Exception e) {
-                    //in caso di dao exception ecc. lancio il template di errore
-                    TemplateController.process("error.ftl", datamodel,response,getServletContext());
-                }
 
-                //lancio il template con i gruppi caricati
-                datamodel.put("groups", groupsList);
-                TemplateController.process( "groups_list_adm.ftl", datamodel ,response, getServletContext() );
+                    //lancio il template con i gruppi caricati
+                    datamodel.put("groups", groupsList);
+                    TemplateController.process("groups_list_adm.ftl", datamodel, response, getServletContext());
 
 
-            } else {
+                } else {
 
-                //lancio il messaggio di servizio non permesso
-                TemplateController.process( "not_permissed.ftl", datamodel ,response, getServletContext() );
+                    //lancio la servlet di errore
+                    response.sendRedirect("Error");}
+
+
+            } else {//se sessione non valida
+
+                //setto la pagina precedente e reindirizzo al login
+                createPreviousPageAndRedirectToLogin(request, response, "AdmGetListGroups");
+
             }
-
-
-        }else{//se sessione non valida
-
-            //setto la pagina precedente e reindirizzo al login
-            createPreviousPageAndRedirectToLogin(request, response, "AdmGetListGroups");
-
+        } catch (DaoException e) {
+            //in caso di dao exception ecc. lancio il template di errore
+            TemplateController.process("error.ftl", datamodel,response,getServletContext());
         }
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        processRequest(request, response);
     }
 }

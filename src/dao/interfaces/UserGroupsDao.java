@@ -19,7 +19,7 @@ public interface UserGroupsDao extends DaoData {
 
     public List<UserGroups> getUserGroupsByUser ( User user ) throws DaoException;
 
-    public List<UserGroups> getUserGroupssByGroups (Groups groups) throws DaoException;
+    public List<UserGroups> getUserGroupsByGroups (Groups groups) throws DaoException;
 
     public void deleteUserGroups( UserGroups userGroups ) throws DaoException;
 }

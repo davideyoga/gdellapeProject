@@ -34,37 +34,26 @@ public class AdmGetListUser extends BaseController {
 
     private Map<String, Object> datamodel = new HashMap<>();
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        this.doGet(request, response);
+        try {
 
-    }
+            //pulisco messaggio
+            datamodel.put("message",null);
 
-    /**
-     * Controlli su sessione e permessi, se va tutto a buon fine lancio il template con la lista degli utenti
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            //se sessione valida
+            if (this.sessionManager.isValid(request)) {
 
-        //se sessione valida
-        if(this.sessionManager.isValid(request)){
+                //estraggo il servizio di creazione degli utenti
+                Service modUser = this.getServiceAndCreate(request, response, ds, "modUser", "Permissed for modification User",
+                        datamodel, getServletContext());
 
-            //estraggo il servizio di creazione degli utenti
-            Service modUser = this.getServiceAndCreate(request,response,ds,"modUser","Permissed for modification User",
-                                                                    datamodel, getServletContext());
+                //se l'utente in sessione possiede il servizio modUser...
+                if (((List <Service>) request.getSession().getAttribute("services")).contains(modUser)) {
 
-            //se l'utente in sessione possiede il servizio modUser...
-            if (((List<Service>) request.getSession().getAttribute("services")).contains(modUser)) {
+                    //inizializzo la lista di tutti gli utenti
+                    List <User> userList = new ArrayList <>();
 
-                //inizializzo la lista di tutti gli utenti
-                List<User> userList = new ArrayList <>();
-
-                try {
 
                     //inizializzo il dao degli utenti
                     UserDao userDao = new UserDaoImpl(ds);
@@ -77,28 +66,50 @@ public class AdmGetListUser extends BaseController {
                     userDao.close();
                     userDao = null;
 
-                } catch (Exception e) {
-                    //in caso di dao exception ecc. lancio il template di errore
-                    TemplateController.process("error.ftl", datamodel,response,getServletContext());
+
+                    //lancio il template con gli utenti caricati
+                    datamodel.put("users", userList);
+                    TemplateController.process("user_list_adm.ftl", datamodel, response, getServletContext());
+
+
+                } else {
+
+                    //lancio il messaggio di servizio non permesso
+                    TemplateController.process("not_permissed.ftl", datamodel, response, getServletContext());
                 }
 
-                //lancio il template con gli utenti caricati
-                datamodel.put("users", userList);
-                TemplateController.process( "user_list_adm.ftl", datamodel ,response, getServletContext() );
 
+            } else {//se sessione non valida
 
-            } else {
+                //setto la pagina precedente e reindirizzo al login
+                createPreviousPageAndRedirectToLogin(request, response, "AdmGetListUser");
 
-                //lancio il messaggio di servizio non permesso
-                TemplateController.process( "not_permissed.ftl", datamodel ,response, getServletContext() );
             }
 
-
-        }else{//se sessione non valida
-
-            //setto la pagina precedente e reindirizzo al login
-            createPreviousPageAndRedirectToLogin(request, response, "AdmGetListUser");
-
+        } catch (Exception e) {
+            //in caso di dao exception ecc. lancio il template di errore
+            TemplateController.process("error.ftl", datamodel,response,getServletContext());
         }
     }
+
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        processRequest(request, response);
+
+    }
+
+    /**
+     * Controlli su sessione e permessi, se va tutto a buon fine lancio il template con la lista degli utenti
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
 }

@@ -50,24 +50,24 @@ public class AdmModUser extends BaseController {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //pulisco messaggio
-        datamodel.put("message",null);
+        try {
+            //pulisco messaggio
+            datamodel.put("message", null);
 
-        //se la session ee' valida e abbastanza nuova
-        if(sessionManager.isHardValid(request)) {
+            //se la session ee' valida e abbastanza nuova
+            if (sessionManager.isHardValid(request)) {
 
-            //estraggo il servizio di creazione degli utenti
-            Service modUser = this.getServiceAndCreate(request, response, ds, "modUser", "Permissed for modification User",
-                    datamodel, getServletContext());
+                //estraggo il servizio di creazione degli utenti
+                Service modUser = this.getServiceAndCreate(request, response, ds, "modUser", "Permissed for modification User",
+                        datamodel, getServletContext());
 
-            //se l'utente ha il permesso (potrebbe essere ridondante in quanto viene controllato anche per accedere alla lista ma nn si sa mai)
-            if (((List <Service>) request.getSession().getAttribute("services")).contains(modUser)) {
+                //se l'utente ha il permesso (potrebbe essere ridondante in quanto viene controllato anche per accedere alla lista ma nn si sa mai)
+                if (((List <Service>) request.getSession().getAttribute("services")).contains(modUser)) {
 
-                //inizializzo gli user per renderli visibili nel blocco catch
-                User userDaForm = null;
-                User userPrimaDelleModifiche = null;
+                    //inizializzo gli user per renderli visibili nel blocco catch
+                    User userDaForm = null;
+                    User userPrimaDelleModifiche = null;
 
-                try {
 
                     //inizializzo il dao
                     UserDao userDao = new UserDaoImpl(ds);
@@ -81,7 +81,7 @@ public class AdmModUser extends BaseController {
                     userPrimaDelleModifiche = userDao.getUserById((int) request.getSession().getAttribute("idUserToModify"));
 
                     //se l'utente estratto e' valido
-                    if(userPrimaDelleModifiche != null && userPrimaDelleModifiche.getId() > 0) {
+                    if (userPrimaDelleModifiche != null && userPrimaDelleModifiche.getId() > 0) {
 
 
                         //estraggo i gruppi a cui appartiene l'utente prima della modifica
@@ -193,7 +193,7 @@ public class AdmModUser extends BaseController {
                                 //CASO2: il gruppo e' stato aggiunto, quindi non e' contenuto in groupsListPrima ed ora e' contenuto in nameGroupsListDopo: aggiungo il gruppo all'utente
                                 //CASO3: il gruppo e' stato tolto, quindi e' presente in groupsListPrima ma non in nameGroupsList: tolgo il gruppo all'utente
 
-                                //ciclo la lista contenente tutti i gruppi, SI PUO' OTTIMIZZARE
+                                //ciclo la lista contenente tutti i gruppi
                                 for (Groups groups : groupsListAll) {
 
                                     //caso 3, se il gruppo e' presente in groupsListPrima ma non in nameGroupsList
@@ -246,7 +246,7 @@ public class AdmModUser extends BaseController {
 
                                 //FINITO, LANCIO IL TEMPLATE CON I DATI CARICATI
 
-                                //mi prendo i nuovi gruppi per ricaricarli nel template, SI PUO' OTTIMIZZARE
+                                //mi prendo i nuovi gruppi per ricaricarli nel template
                                 List <Groups> newListGroups = groupsDao.getGroupsByUser(userDaForm);
 
                                 //carico i gruppi a cui appartiene l'utente
@@ -307,25 +307,27 @@ public class AdmModUser extends BaseController {
                         }
 
                         //se l'utente estratto non e' valido
-                    }else{
+                    } else {
                         //lancio servlet di errore
                         response.sendRedirect("Error");
                     }
-                } catch (DaoException | LogException e) {
-                    //lancio servlet di errore
-                    response.sendRedirect("Error");
+
+
+                    //se non ha il permesso
+                } else {
+
+                    //lancio il messaggio di servizio non permesso
+                    TemplateController.process("not_permissed.ftl", datamodel, response, getServletContext());
                 }
-
-                //se non ha il permesso
+                //se isHardValid = false
             } else {
-
-                //lancio il messaggio di servizio non permesso
-                TemplateController.process( "not_permissed.ftl", datamodel ,response, getServletContext() );
+                //setto la pagina precedente e reindirizzo al login
+                createPreviousPageAndRedirectToLogin(request, response, "AdmGetListUser");
             }
-        //se isHardValid = false
-        }else {
-            //setto la pagina precedente e reindirizzo al login
-            createPreviousPageAndRedirectToLogin(request, response, "AdmGetListUser");
+
+        } catch (DaoException | LogException e) {
+            //lancio servlet di errore
+            response.sendRedirect("Error");
         }
 
     }
@@ -342,22 +344,21 @@ public class AdmModUser extends BaseController {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            //pulisco messaggio
+            datamodel.put("message", null);
 
-        //pulisco messaggio
-        datamodel.put("message",null);
+            //se la sessione e' valida
+            if (sessionManager.isValid(request)) {
 
-        //se la sessione e' valida
-        if(sessionManager.isValid(request)){
+                //estraggo il servizio di creazione degli utenti
+                Service modUser = this.getServiceAndCreate(request, response, ds, "modUser", "Permissed for modification User",
+                        datamodel, getServletContext());
 
-            //estraggo il servizio di creazione degli utenti
-            Service modUser = this.getServiceAndCreate(request,response,ds,"modUser","Permissed for modification User",
-                    datamodel, getServletContext());
-
-            //se l'utente ha il permesso
-            if (((List<Service>) request.getSession().getAttribute("services")).contains(modUser)) {
+                //se l'utente ha il permesso
+                if (((List <Service>) request.getSession().getAttribute("services")).contains(modUser)) {
 
 
-                try {
                     //inizializzo i dao
                     UserDao userDao = new UserDaoImpl(ds);
                     userDao.init();
@@ -365,23 +366,29 @@ public class AdmModUser extends BaseController {
                     GroupsDao groupsDao = new GroupsDaoImpl(ds);
                     groupsDao.init();
 
+                    //se non e' presente l'id del corso di studi passato come parametro get c'e' un problema
+                    if (request.getParameter("id") == null) {
+                        response.sendRedirect("AdmGetListUser");
+                        return;
+                    }
+
                     //estraggo l'id dell'utente passato trmaite get
                     int idUser = Integer.parseInt(request.getParameter("id"));
 
                     //estraggo l'utente tramite l'id passato dalla richiesta get
-                    User user = userDao.getUserById( idUser);
+                    User user = userDao.getUserById(idUser);
 
                     //estraggo i gruppi a cui appartiene l'utente
-                    List<Groups> listUserGroups = groupsDao.getGroupsByUser(user);
+                    List <Groups> listUserGroups = groupsDao.getGroupsByUser(user);
 
                     //estraggo tutti i gruppi
-                    List<Groups> listGroups = groupsDao.getAllGroups();
+                    List <Groups> listGroups = groupsDao.getAllGroups();
 
                     //carico nel template l'utente
                     datamodel.put("user", user);
 
                     //prima di lanciara il template carico nella sessione dell'amministatore l'id dell'utente che intendo modificare
-                    request.getSession().setAttribute("idUserToModify", user.getId() );
+                    request.getSession().setAttribute("idUserToModify", user.getId());
 
                     //carico i gruppi a cui appartiene l'utente
                     datamodel.put("listUserGroups", listUserGroups);
@@ -394,29 +401,28 @@ public class AdmModUser extends BaseController {
                     userDao = null;
 
                     groupsDao.destroy();
-                    groupsDao= null;
+                    groupsDao = null;
 
                     //lancio il template di modifica dell'utente
-                    TemplateController.process("user_mod.ftl", datamodel,response,getServletContext());
+                    TemplateController.process("user_mod.ftl", datamodel, response, getServletContext());
 
-                } catch (DaoException e) {
-                    //in caso di dao exception ecc. lancio il template di errore
-                    TemplateController.process("error.ftl", datamodel,response,getServletContext());
+
+                    //se l'utente in sessione non ha i permessi
+                } else {
+
+                    //lancio il template di non permesso
+                    TemplateController.process("not_permissed.ftl", datamodel, response, getServletContext());
                 }
+                //se la sessione non e' valida
+            } else {
 
+                //setto la pagina alla lista degli utenti in quanto questa chiamata avviene tramite GET
+                createPreviousPageAndRedirectToLogin(request, response, "AdmGetListUser");
 
-                //se l'utente in sessione non ha i permessi
-            }else{
-
-                //lancio il template di non permesso
-                TemplateController.process( "not_permissed.ftl", datamodel ,response, getServletContext() );
             }
-        //se la sessione non e' valida
-        }else{
-
-            //setto la pagina alla lista degli utenti in quanto questa chiamata avviene tramite GET
-            createPreviousPageAndRedirectToLogin(request,response,"AdmGetListUser");
-
+        } catch (DaoException e) {
+            //in caso di dao exception ecc. lancio il template di errore
+            TemplateController.process("error.ftl", datamodel,response,getServletContext());
         }
     }
 }

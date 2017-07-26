@@ -130,7 +130,7 @@ public class UserGroupsDaoImpl extends DaoDataMySQLImpl implements UserGroupsDao
     }
 
     @Override
-    public List<UserGroups> getUserGroupssByGroups(Groups groups) throws DaoException {
+    public List<UserGroups> getUserGroupsByGroups(Groups groups) throws DaoException {
 
         List<UserGroups> ugList = new ArrayList<UserGroups>();
 
