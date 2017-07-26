@@ -330,51 +330,12 @@ public class Course {
     }
 
     @Override
-    public String toString() {
-        return "Course{" +
-                "idCourse=" + idCourse +
-                ", code='" + code + '\'' +
-                ", name='" + name + '\'' +
-                ", year='" + year + '\'' +
-                ", cfu=" + cfu +
-                ", sector='" + sector + '\'' +
-                ", language='" + language + '\'' +
-                ", semester=" + semester +
-                ", prerequisite_ita='" + prerequisite_ita + '\'' +
-                ", prerequisite_eng='" + prerequisite_eng + '\'' +
-                ", goals_ita='" + goals_ita + '\'' +
-                ", goals_eng='" + goals_eng + '\'' +
-                ", exame_mode_ita='" + exame_mode_ita + '\'' +
-                ", exame_mode_eng='" + exame_mode_eng + '\'' +
-                ", teaching_mode_ita='" + teaching_mode_ita + '\'' +
-                ", teaching_mode_eng='" + teaching_mode_eng + '\'' +
-                ", syllabus_ita='" + syllabus_ita + '\'' +
-                ", syllabus_eng='" + syllabus_eng + '\'' +
-                ", note_ita='" + note_ita + '\'' +
-                ", note_eng='" + note_eng + '\'' +
-                ", knowledge_ita='" + knowledge_ita + '\'' +
-                ", knowledge_eng='" + knowledge_eng + '\'' +
-                ", application_ita='" + application_ita + '\'' +
-                ", application_eng='" + application_eng + '\'' +
-                ", evaluation_ita='" + evaluation_ita + '\'' +
-                ", evaluation_eng='" + evaluation_eng + '\'' +
-                ", communication_ita='" + communication_ita + '\'' +
-                ", communication_eng='" + communication_eng + '\'' +
-                ", lifelog_learning_skills_ita='" + lifelog_learning_skills_ita + '\'' +
-                ", lifelog_learning_skills_eng='" + lifelog_learning_skills_eng + '\'' +
-                ", external_material_ita='" + external_material_ita + '\'' +
-                ", external_material_eng='" + external_material_eng + '\'' +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
         Course course = (Course) o;
 
-        if (getIdCourse() != course.getIdCourse()) return false;
         if (getCfu() != course.getCfu()) return false;
         if (getSemester() != course.getSemester()) return false;
         if (getCode() != null ? !getCode().equals(course.getCode()) : course.getCode() != null) return false;
@@ -434,38 +395,75 @@ public class Course {
 
     @Override
     public int hashCode() {
-        int result = idCourse;
-        result = 31 * result + code.hashCode();
-        result = 31 * result + name.hashCode();
-        result = 31 * result + year.hashCode();
-        result = 31 * result + cfu;
-        result = 31 * result + sector.hashCode();
-        result = 31 * result + language.hashCode();
-        result = 31 * result + semester;
-        result = 31 * result + prerequisite_ita.hashCode();
-        result = 31 * result + prerequisite_eng.hashCode();
-        result = 31 * result + goals_ita.hashCode();
-        result = 31 * result + goals_eng.hashCode();
-        result = 31 * result + exame_mode_ita.hashCode();
-        result = 31 * result + exame_mode_eng.hashCode();
-        result = 31 * result + teaching_mode_ita.hashCode();
-        result = 31 * result + teaching_mode_eng.hashCode();
-        result = 31 * result + syllabus_ita.hashCode();
-        result = 31 * result + syllabus_eng.hashCode();
-        result = 31 * result + note_ita.hashCode();
-        result = 31 * result + note_eng.hashCode();
-        result = 31 * result + knowledge_ita.hashCode();
-        result = 31 * result + knowledge_eng.hashCode();
-        result = 31 * result + application_ita.hashCode();
-        result = 31 * result + application_eng.hashCode();
-        result = 31 * result + evaluation_ita.hashCode();
-        result = 31 * result + evaluation_eng.hashCode();
-        result = 31 * result + communication_ita.hashCode();
-        result = 31 * result + communication_eng.hashCode();
-        result = 31 * result + lifelog_learning_skills_ita.hashCode();
-        result = 31 * result + lifelog_learning_skills_eng.hashCode();
-        result = 31 * result + external_material_ita.hashCode();
-        result = 31 * result + external_material_eng.hashCode();
+        int result = getCode() != null ? getCode().hashCode() : 0;
+        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
+        result = 31 * result + (getYear() != null ? getYear().hashCode() : 0);
+        result = 31 * result + getCfu();
+        result = 31 * result + (getSector() != null ? getSector().hashCode() : 0);
+        result = 31 * result + (getLanguage() != null ? getLanguage().hashCode() : 0);
+        result = 31 * result + getSemester();
+        result = 31 * result + (getPrerequisite_ita() != null ? getPrerequisite_ita().hashCode() : 0);
+        result = 31 * result + (getPrerequisite_eng() != null ? getPrerequisite_eng().hashCode() : 0);
+        result = 31 * result + (getGoals_ita() != null ? getGoals_ita().hashCode() : 0);
+        result = 31 * result + (getGoals_eng() != null ? getGoals_eng().hashCode() : 0);
+        result = 31 * result + (getExame_mode_ita() != null ? getExame_mode_ita().hashCode() : 0);
+        result = 31 * result + (getExame_mode_eng() != null ? getExame_mode_eng().hashCode() : 0);
+        result = 31 * result + (getTeaching_mode_ita() != null ? getTeaching_mode_ita().hashCode() : 0);
+        result = 31 * result + (getTeaching_mode_eng() != null ? getTeaching_mode_eng().hashCode() : 0);
+        result = 31 * result + (getSyllabus_ita() != null ? getSyllabus_ita().hashCode() : 0);
+        result = 31 * result + (getSyllabus_eng() != null ? getSyllabus_eng().hashCode() : 0);
+        result = 31 * result + (getNote_ita() != null ? getNote_ita().hashCode() : 0);
+        result = 31 * result + (getNote_eng() != null ? getNote_eng().hashCode() : 0);
+        result = 31 * result + (getKnowledge_ita() != null ? getKnowledge_ita().hashCode() : 0);
+        result = 31 * result + (getKnowledge_eng() != null ? getKnowledge_eng().hashCode() : 0);
+        result = 31 * result + (getApplication_ita() != null ? getApplication_ita().hashCode() : 0);
+        result = 31 * result + (getApplication_eng() != null ? getApplication_eng().hashCode() : 0);
+        result = 31 * result + (getEvaluation_ita() != null ? getEvaluation_ita().hashCode() : 0);
+        result = 31 * result + (getEvaluation_eng() != null ? getEvaluation_eng().hashCode() : 0);
+        result = 31 * result + (getCommunication_ita() != null ? getCommunication_ita().hashCode() : 0);
+        result = 31 * result + (getCommunication_eng() != null ? getCommunication_eng().hashCode() : 0);
+        result = 31 * result + (getLifelog_learning_skills_ita() != null ? getLifelog_learning_skills_ita().hashCode() : 0);
+        result = 31 * result + (getLifelog_learning_skills_eng() != null ? getLifelog_learning_skills_eng().hashCode() : 0);
+        result = 31 * result + (getExternal_material_ita() != null ? getExternal_material_ita().hashCode() : 0);
+        result = 31 * result + (getExternal_material_eng() != null ? getExternal_material_eng().hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "idCourse=" + idCourse +
+                ", code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                ", year='" + year + '\'' +
+                ", cfu=" + cfu +
+                ", sector='" + sector + '\'' +
+                ", language='" + language + '\'' +
+                ", semester=" + semester +
+                ", prerequisite_ita='" + prerequisite_ita + '\'' +
+                ", prerequisite_eng='" + prerequisite_eng + '\'' +
+                ", goals_ita='" + goals_ita + '\'' +
+                ", goals_eng='" + goals_eng + '\'' +
+                ", exame_mode_ita='" + exame_mode_ita + '\'' +
+                ", exame_mode_eng='" + exame_mode_eng + '\'' +
+                ", teaching_mode_ita='" + teaching_mode_ita + '\'' +
+                ", teaching_mode_eng='" + teaching_mode_eng + '\'' +
+                ", syllabus_ita='" + syllabus_ita + '\'' +
+                ", syllabus_eng='" + syllabus_eng + '\'' +
+                ", note_ita='" + note_ita + '\'' +
+                ", note_eng='" + note_eng + '\'' +
+                ", knowledge_ita='" + knowledge_ita + '\'' +
+                ", knowledge_eng='" + knowledge_eng + '\'' +
+                ", application_ita='" + application_ita + '\'' +
+                ", application_eng='" + application_eng + '\'' +
+                ", evaluation_ita='" + evaluation_ita + '\'' +
+                ", evaluation_eng='" + evaluation_eng + '\'' +
+                ", communication_ita='" + communication_ita + '\'' +
+                ", communication_eng='" + communication_eng + '\'' +
+                ", lifelog_learning_skills_ita='" + lifelog_learning_skills_ita + '\'' +
+                ", lifelog_learning_skills_eng='" + lifelog_learning_skills_eng + '\'' +
+                ", external_material_ita='" + external_material_ita + '\'' +
+                ", external_material_eng='" + external_material_eng + '\'' +
+                '}';
     }
 }

@@ -343,7 +343,7 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
     }
 
     //lo store puo' essere il metodo che integra sia l'update che lo store,
-    //si effettua lo store se nell'oggetto course creato non e' presente l'id, quindi si presuppone che sia nuovo,
+    //si effettua la insert se nell'oggetto course creato non e' presente l'id, quindi si presuppone che sia nuovo,
     //update altrimenti
     @Override
     public Course storeCourse(Course course) throws DaoException {

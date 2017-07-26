@@ -43,10 +43,10 @@ public class CreateGroups extends BaseController {
             //estraggo il servizio di creazione dei gruppi
             Service createGroups = this.getServiceAndCreate(request,response,ds,"createGroup","Service to create group",datamodel, this.getServletContext());
 
-            //se l'utente in sessione possiede il servizio createUser...
+            //se l'utente in sessione possiede il servizio createGroups
             if (((List<Service>) request.getSession().getAttribute("services")).contains(createGroups)) {
 
-                //lancio il template di creazione utente
+                //lancio il template di creazione
                 TemplateController.process( "create_group.ftl", datamodel ,response, getServletContext() );
 
             } else {
@@ -164,7 +164,7 @@ public class CreateGroups extends BaseController {
             //se va tutto a buon fine lancio la pagina di creazione del gruppo con il messaggio di avvenuta creazione
 
             //inserisco il messaggio utente creato
-            datamodel.put("message", "gruppo creato");
+            datamodel.put("message", "Created Group");
 
             //lancio la pagina di creazione di un gruppo
             TemplateController.process("create_group.ftl", datamodel, response, getServletContext());
@@ -179,7 +179,7 @@ public class CreateGroups extends BaseController {
             groupsDao = null;
 
             //inserisco il messaggio utente creato con messaggio di errore del log
-            datamodel.put("message", "Gruppo creato, ma errore nell' inserimento del log");
+            datamodel.put("message", "Created Group but log insert error");
 
             //lancio la pagina di creazione del gruppo
             TemplateController.process("create_group.ftl", datamodel, response, getServletContext());

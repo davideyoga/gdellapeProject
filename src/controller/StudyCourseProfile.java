@@ -41,6 +41,13 @@ public class StudyCourseProfile extends BaseController {
             StudyCourseDao studyCourseDao = new StudyCourseDaoImpl(ds);
             studyCourseDao.init();
 
+            //se nei parametri GET non e' presente il codice lancio la lista dei corsi di studio
+            if(request.getParameter("code") == null || request.getParameter("code").equals("")){
+
+                response.sendRedirect("ListStudyCourse");
+                return;
+            }
+
             StudyCourse studyCourse = studyCourseDao.getStudyCourseByCode(request.getParameter("code"));
 
             if(studyCourse != null && studyCourse.getId() > 0) {

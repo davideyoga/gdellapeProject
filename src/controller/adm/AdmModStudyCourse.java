@@ -47,33 +47,6 @@ public class AdmModStudyCourse extends BaseController{
             datamodel.put("listCourses", corsiDiStudio);
     }
 
-    /**
-     * Riempie e restituisce lo studyCourse con i dati della form
-     * @param request
-     * @param studyCourse
-     * @return
-     */
-    private StudyCourse getStudyCourseByForm( HttpServletRequest request, StudyCourse studyCourse){
-
-        studyCourse.setId((Integer) request.getSession().getAttribute("idStudyCourseToModify"));
-        studyCourse.setCode(request.getParameter("code"));
-        studyCourse.setName(request.getParameter("name"));
-        studyCourse.setDescription_ita(request.getParameter("description_ita"));
-        studyCourse.setDescription_eng(request.getParameter("description_eng"));
-        studyCourse.setDepartment_ita(request.getParameter("department_ita"));
-        studyCourse.setDepartment_eng(request.getParameter("department_eng"));
-        studyCourse.setLevel_ita(Integer.parseInt(request.getParameter("level_ita")));
-        studyCourse.setLevel_eng(Integer.parseInt(request.getParameter("level_eng")));
-        studyCourse.setDuration(Integer.parseInt(request.getParameter("duration")));
-        studyCourse.setClasses(request.getParameter("class"));
-        studyCourse.setSeat(request.getParameter("seat"));
-        studyCourse.setAccessType_ita(request.getParameter("accessType_ita"));
-        studyCourse.setAccessType_eng(request.getParameter("accessType_eng"));
-        studyCourse.setLanguage_ita(request.getParameter("language_ita"));
-        studyCourse.setLanguage_eng(request.getParameter("language_eng"));
-
-        return studyCourse;
-    }
 
 
     /**
@@ -198,7 +171,7 @@ public class AdmModStudyCourse extends BaseController{
 
                     //estraggo il corso di studi dalla form
                     StudyCourse studyCourse = studyCourseDao.getStudyCouse();
-                    studyCourse = getStudyCourseByForm(request, studyCourse);
+                    studyCourse = this.getStudyCourseByForm(request, studyCourse, (Integer) request.getSession().getAttribute("idStudyCourseToModify"));
 
 
                     /*
@@ -208,17 +181,17 @@ public class AdmModStudyCourse extends BaseController{
                     StudyCourse studyCourseWithCode = studyCourseDao.getStudyCourseByCode(studyCourse.getCode());
                     StudyCourse studyCourseWithName = studyCourseDao.getStudyCourseByName(studyCourse.getName());
 
-                    //se esiste un corso di studi con lo stesso codice
-                    if( (studyCourseWithCode.getId() > 0 ) && (studyCourseWithName.getId() > 0 ) ){
+                    //se esiste un corso di studi con lo stesso codice o nome
+                    if( (studyCourseWithCode != null ) && (studyCourseWithName!= null ) ){
 
                         //se esiste un corso di studi con lo stesso codice
-                        if( studyCourseWithCode.getId() > 0 ){
+                        if( studyCourseWithCode!= null ){
 
                             //inserisco messaggio di errore di codice esistente
                             datamodel.put("message", "Error: Existing Code. " );
                         }
 
-                        if(studyCourseWithName.getId() > 0){
+                        if(studyCourseWithName!= null ){
 
                             //concateno al messaggio di prima(se esiste) il messaggio di errore di nome fia' esistente
                             datamodel.put("message", datamodel.get("message") + "Error: Existing Name." );

@@ -172,6 +172,28 @@ public class StudyCourse {
     }
 
     @Override
+    public String toString() {
+        return "StudyCourse{" +
+                "id=" + id +
+                ", code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                ", description_ita='" + description_ita + '\'' +
+                ", description_eng='" + description_eng + '\'' +
+                ", department_ita='" + department_ita + '\'' +
+                ", department_eng='" + department_eng + '\'' +
+                ", level_ita=" + level_ita +
+                ", level_eng=" + level_eng +
+                ", duration=" + duration +
+                ", classes='" + classes + '\'' +
+                ", seat='" + seat + '\'' +
+                ", accessType_ita='" + accessType_ita + '\'' +
+                ", accessType_eng='" + accessType_eng + '\'' +
+                ", language_ita='" + language_ita + '\'' +
+                ", language_eng='" + language_eng + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -222,27 +244,5 @@ public class StudyCourse {
         result = 31 * result + (getLanguage_ita() != null ? getLanguage_ita().hashCode() : 0);
         result = 31 * result + (getLanguage_eng() != null ? getLanguage_eng().hashCode() : 0);
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return "StudyCourse{" +
-                "id=" + id +
-                ", code='" + code + '\'' +
-                ", name='" + name + '\'' +
-                ", description_ita='" + description_ita + '\'' +
-                ", description_eng='" + description_eng + '\'' +
-                ", department_ita='" + department_ita + '\'' +
-                ", department_eng='" + department_eng + '\'' +
-                ", level_ita=" + level_ita +
-                ", level_eng=" + level_eng +
-                ", duration=" + duration +
-                ", classes='" + classes + '\'' +
-                ", seat='" + seat + '\'' +
-                ", accessType_ita='" + accessType_ita + '\'' +
-                ", accessType_eng='" + accessType_eng + '\'' +
-                ", language_ita='" + language_ita + '\'' +
-                ", language_eng='" + language_eng + '\'' +
-                '}';
     }
 }

@@ -294,4 +294,28 @@
     </servlet-mapping>
     <!-- Fine Servlet di HomeBackOffice -->
 
+    <!-- Servlet di  CreateStudyCourse-->
+    <servlet>
+        <servlet-name>CreateStudyCourse</servlet-name>
+        <servlet-class>controller.adm.CreateStudyCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateStudyCourse</servlet-name>
+        <url-pattern>/CreateStudyCourse</url-pattern>
+        <url-pattern>/createStudyCourse</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di CreateStudyCourse -->
+
+    <!-- Servlet di  CreateCourse-->
+    <servlet>
+        <servlet-name>CreateCourse</servlet-name>
+        <servlet-class>controller.adm.CreateCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateCourse</servlet-name>
+        <url-pattern>/CreateCourse</url-pattern>
+        <url-pattern>/createCourse</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di CreateStudyCourse -->
+
 </web-app>

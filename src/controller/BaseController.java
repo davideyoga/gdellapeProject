@@ -2,7 +2,6 @@ package controller;
 
 import java.util.Map;
 
-import com.sun.javafx.collections.MappingChange;
 import controller.logController.LogManager;
 import controller.logController.SingletonLogManager;
 import controller.sessionController.SessionException;
@@ -13,7 +12,9 @@ import dao.exception.DaoException;
 import dao.implementation.ServiceDaoImpl;
 import dao.interfaces.ServiceDao;
 import dao.interfaces.UserDao;
+import model.Course;
 import model.Service;
+import model.StudyCourse;
 import model.User;
 import view.TemplateController;
 
@@ -55,7 +56,7 @@ public class BaseController extends HttpServlet {
      * @param response
      * @param servletName
      */
-    public void createPreviousPageAndRedirectToLogin(HttpServletRequest request, HttpServletResponse response, String servletName){
+    protected void createPreviousPageAndRedirectToLogin(HttpServletRequest request, HttpServletResponse response, String servletName){
 
         try {
             //creo la sessione se non esiste e carico la pagina in cui si trovava l'utente prima di essere reindirizzato al login
@@ -82,7 +83,7 @@ public class BaseController extends HttpServlet {
      * @return
      * @throws DaoException
      */
-    public boolean isExistEmail(UserDao userDao, String email) throws DaoException {
+    protected boolean isExistEmail(UserDao userDao, String email) throws DaoException {
 
         User user = userDao.getUserByEmail(email);
 
@@ -97,7 +98,7 @@ public class BaseController extends HttpServlet {
      * @param response
      * @param templateName
      */
-    public void processTemplate(HttpServletRequest request, HttpServletResponse response, String templateName, Map<String, Object> datamodel){
+    protected void processTemplate(HttpServletRequest request, HttpServletResponse response, String templateName, Map<String, Object> datamodel){
 
         //se non e' settato nessun parametro della lingua:
         if( request.getParameter("lng") == null ){
@@ -121,7 +122,7 @@ public class BaseController extends HttpServlet {
      * @param request
      * @param datamodel
      */
-    public void setLng(HttpServletRequest request, Map<String, Object> datamodel){
+    protected void setLng(HttpServletRequest request, Map<String, Object> datamodel){
 
         //se non e' settato nessun parametro della lingua:
         if( request.getParameter("lng") == null ){
@@ -141,7 +142,7 @@ public class BaseController extends HttpServlet {
     }
 
 
-    public Service getServiceAndCreate(HttpServletRequest request, HttpServletResponse response, DataSource ds, String nameService, String descriptionService, Map<String, Object> datamodel, ServletContext context){
+    protected Service getServiceAndCreate(HttpServletRequest request, HttpServletResponse response, DataSource ds, String nameService, String descriptionService, Map<String, Object> datamodel, ServletContext context){
 
         //inizializzo il dao per estrarre il servizio createUser
         ServiceDao serviceDao = new ServiceDaoImpl(ds);
@@ -183,5 +184,84 @@ public class BaseController extends HttpServlet {
 
         return service;
 
+    }
+
+    /**
+     * Riempie e restituisce lo studyCourse con i dati della form
+     * @param request
+     * @param studyCourse
+     * @return
+     */
+    protected StudyCourse getStudyCourseByForm(HttpServletRequest request, StudyCourse studyCourse, int idStudyCourse){
+
+        studyCourse.setId(idStudyCourse);
+        studyCourse.setCode(request.getParameter("code"));
+        studyCourse.setName(request.getParameter("name"));
+        studyCourse.setDescription_ita(request.getParameter("description_ita"));
+        studyCourse.setDescription_eng(request.getParameter("description_eng"));
+        studyCourse.setDepartment_ita(request.getParameter("department_ita"));
+        studyCourse.setDepartment_eng(request.getParameter("department_eng"));
+
+        if(request.getParameter("level_ita") != null) {
+            studyCourse.setLevel_ita(Integer.parseInt(request.getParameter("level_ita")));
+        }
+        if(request.getParameter("level_eng") != null) {
+            studyCourse.setLevel_eng(Integer.parseInt(request.getParameter("level_eng")));
+        }
+        if(request.getParameter("duration") != null) {
+            studyCourse.setDuration(Integer.parseInt(request.getParameter("duration")));
+        }
+        studyCourse.setClasses(request.getParameter("class"));
+        studyCourse.setSeat(request.getParameter("seat"));
+        studyCourse.setAccessType_ita(request.getParameter("accessType_ita"));
+        studyCourse.setAccessType_eng(request.getParameter("accessType_eng"));
+        studyCourse.setLanguage_ita(request.getParameter("language_ita"));
+        studyCourse.setLanguage_eng(request.getParameter("language_eng"));
+
+        return studyCourse;
+    }
+
+    protected Course getCourseByForm(HttpServletRequest request,Course course, int idCourse){
+
+        course.setIdCourse(idCourse);
+        course.setCode((request.getParameter("code")));
+        course.setName(request.getParameter("name"));
+        course.setYear(request.getParameter("year"));
+
+        if (request.getParameter("cfu") != null ) {
+            course.setCfu(Integer.parseInt(request.getParameter("cfu")));
+        }
+
+        course.setSector(request.getParameter("sector"));
+        course.setLanguage(request.getParameter("language"));
+        if(request.getParameter("semester") != null ) {
+            course.setSemester(Integer.parseInt(request.getParameter("semester")));
+        }
+        course.setPrerequisite_ita(request.getParameter("prerequisite_ita"));
+        course.setPrerequisite_eng(request.getParameter("prerequisite_eng"));
+        course.setGoals_ita(request.getParameter("goals_ita"));
+        course.setGoals_eng(request.getParameter("goals_eng"));
+        course.setExame_mode_ita(request.getParameter("exame_mode_ita"));
+        course.setExame_mode_eng(request.getParameter("exame_mode_eng"));
+        course.setTeaching_mode_ita(request.getParameter("teaching_mode_ita"));
+        course.setTeaching_mode_eng(request.getParameter("teaching_mode_eng"));
+        course.setSyllabus_ita(request.getParameter("syllabus_ita"));
+        course.setSyllabus_eng(request.getParameter("syllabus_eng"));
+        course.setNote_ita(request.getParameter("note_ita"));
+        course.setNote_eng(request.getParameter("note_eng"));
+        course.setKnowledge_ita(request.getParameter("knowledge_ita"));
+        course.setKnowledge_eng(request.getParameter("knowledge_eng"));
+        course.setApplication_ita(request.getParameter("application_ita"));
+        course.setApplication_eng(request.getParameter("application_eng"));
+        course.setEvaluation_ita(request.getParameter("evaluation_ita"));
+        course.setEvaluation_eng(request.getParameter("evaluation_eng"));
+        course.setCommunication_ita(request.getParameter("communication_ita"));
+        course.setCommunication_eng(request.getParameter("communication_eng"));
+        course.setLifelog_learning_skills_ita(request.getParameter("lifelog_learning_skills_ita"));
+        course.setLifelog_learning_skills_eng(request.getParameter("lifelog_learning_skills_eng"));
+        course.setExternal_material_ita(request.getParameter("external_material_ita"));
+        course.setExternal_material_ita(request.getParameter("external_material_eng"));
+
+        return course;
     }
 }

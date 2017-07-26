@@ -136,11 +136,13 @@ public class StudyCourseDaoImpl extends DaoDataMySQLImpl implements StudyCourseD
             ResultSet rs = this.selectStudyCourseById.executeQuery();
 
             if(rs.next()){
+
                 studyCourse = generateStudyCourse(rs);
 
             }else return null;
 
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new SelectDaoException("Error getStudyCourseById", e);
         }
 
@@ -192,14 +194,16 @@ public class StudyCourseDaoImpl extends DaoDataMySQLImpl implements StudyCourseD
 
             this.selectStudyCourseByName.setString(1, name);
 
-            ResultSet rs = this.selectStudyCourseById.executeQuery();
+            ResultSet rs = this.selectStudyCourseByName.executeQuery();
 
             if(rs.next()){
+
                 studyCourse = generateStudyCourse(rs);
 
             }else return null;
 
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new SelectDaoException("Error getStudyCourseByCode", e);
         }
 
@@ -220,7 +224,7 @@ public class StudyCourseDaoImpl extends DaoDataMySQLImpl implements StudyCourseD
 
             try {
 
-                this.updateStudyCourse.setString(1, addSlashes(studyCourse.getCode()) );
+                this.updateStudyCourse.setString(1, studyCourse.getCode() );
                 this.updateStudyCourse.setString(2, addSlashes(studyCourse.getName()));
                 this.updateStudyCourse.setString(3, addSlashes(studyCourse.getDescription_ita()));
                 this.updateStudyCourse.setString(4, addSlashes(studyCourse.getDescription_eng()));
@@ -251,7 +255,7 @@ public class StudyCourseDaoImpl extends DaoDataMySQLImpl implements StudyCourseD
 
             try {
 
-                this.insertStudyCourse.setString(1, addSlashes(studyCourse.getCode()) );
+                this.insertStudyCourse.setString(1, studyCourse.getCode() );
                 this.insertStudyCourse.setString(2, addSlashes(studyCourse.getName()));
                 this.insertStudyCourse.setString(3, addSlashes(studyCourse.getDescription_ita()));
                 this.insertStudyCourse.setString(4, addSlashes(studyCourse.getDescription_eng()));

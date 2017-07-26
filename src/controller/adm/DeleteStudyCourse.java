@@ -1,6 +1,7 @@
 package controller.adm;
 
 import controller.BaseController;
+import controller.logController.LogException;
 import dao.exception.DaoException;
 import dao.implementation.StudyCourseDaoImpl;
 import dao.interfaces.StudyCourseDao;
@@ -57,6 +58,10 @@ public class DeleteStudyCourse extends BaseController {
                     //estraggo il corso di studi in base all'id passato tramite parametro GET e lo elimino
                     studyCourseDao.deleteStudyCourse(studyCourseDao.getStudyCourseById(Integer.parseInt(request.getParameter("id"))));
 
+                    //aggiungo un log di avvenuta eliminazione del gruppo
+                    logManager.addLog(sessionManager.getUser(request),"STUDY COURSE DELETED: " + studyCourseDao.getStudyCourseById(Integer.parseInt(request.getParameter("id"))) + " BY: " + sessionManager.getUser(request), ds);
+
+
                     //chiudo il dao
                     studyCourseDao.destroy();
 
@@ -82,9 +87,12 @@ public class DeleteStudyCourse extends BaseController {
         TemplateController.process("error.ftl", datamodel, response, getServletContext());
 
         } catch (IOException e) {
-            //errore generato dalla response.sendRedirect()
+            //lancio template di errore
+            TemplateController.process("error.ftl", datamodel, response, getServletContext());
 
             e.printStackTrace();
+        } catch (LogException e) {
+
         }
     }
 }
