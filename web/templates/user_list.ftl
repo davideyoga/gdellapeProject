@@ -9,7 +9,7 @@
 
 </head>
 <body>
-
+    <!--puzzi male-->
     <!--Eventuale messaggio di errore-->
     <p><#if message??>${message}<#else></#if></p>
 
