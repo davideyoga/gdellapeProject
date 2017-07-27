@@ -157,6 +157,8 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
             }
         } catch (SQLException e) {
             e.printStackTrace();
+
+            throw new SelectDaoException("Error getCourseById", e);
         }
 
         return course;
@@ -234,17 +236,16 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
                 return null;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new SelectDaoException("Error getCourseByYear", e);
         }
 
         return course;
     }
-    /*
-        DEVE TORNARE UNA LISTA DI CORSI
-     */
+
     @Override
-    public Course getCourseByCfu(int cfu) throws DaoException {
-        Course course = null;
+    public List<Course> getCourseByCfu(int cfu) throws DaoException {
+
+        List<Course> courseList = new ArrayList <>();
 
         try {
 
@@ -252,18 +253,16 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
 
             ResultSet rs = this.selectCourseByCfu.executeQuery();
 
-            if (rs.next()){
+            while (rs.next()){
 
-                course = generateCourse(rs);
-            }
-            else {//se risultato nullo ritorno null
-                return null;
+                courseList.add(this.generateCourse(rs));
+
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new SelectDaoException("Error getCourseByCfu", e);
         }
 
-        return course;
+        return courseList;
     }
 
     /*
@@ -362,7 +361,11 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
             this.deleteCourseById.setInt(1, course.getIdCourse());
             this.deleteCourseById.executeUpdate();
         } catch (SQLException e) {
+
             e.printStackTrace();
+
+            throw new DaoException("Error deleteCourse", e);
+
         }
     }
 

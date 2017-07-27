@@ -18,7 +18,7 @@ public interface CourseDao extends DaoData{
     Course getCourseByName(String name) throws DaoException;
     Course getCourseByCode(String code) throws DaoException;
     Course getCourseByYear(String year) throws DaoException;
-    Course getCourseByCfu(int cfu) throws DaoException;
+    List<Course> getCourseByCfu(int cfu) throws DaoException;
     Course getCourseBySector(String sector) throws DaoException;
     Course getCourseByLanguage(String language) throws DaoException;
     Course getCourseBySemester(int semester) throws DaoException;

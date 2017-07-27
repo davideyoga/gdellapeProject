@@ -308,5 +308,10 @@ public class BaseController extends HttpServlet {
             }
             //aggiungo al template la mappa
             datamodel.put("groupsUserGroupsAssociation", groupsUserGroupsList);
+
+            //chiudo i dao
+            groupsDao.destroy();
+            userDao.destroy();
+            userGroupsDao.destroy();
     }
 }

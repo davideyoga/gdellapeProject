@@ -1,5 +1,6 @@
 package controller;
 
+import controller.logController.LogException;
 import dao.exception.DaoException;
 import dao.implementation.CourseDaoImpl;
 import dao.interfaces.CourseDao;
@@ -125,27 +126,52 @@ public class ModCourse extends BaseController {
                     }else {
 
                         //estraggo i dati dalla form
-                        Course course = courseDao.getCourse();
-                        course = this.getCourseByForm(request, course, courseBySession.getIdCourse());
+                        Course courseByForm = courseDao.getCourse();
+                        courseByForm = this.getCourseByForm(request, courseByForm, courseBySession.getIdCourse());
 
-                        //controllo su code e name
+                        //se l'utente ha cambiato nome e non esiste un nome uguale a quello inserito e
+                        //(stessa cosa per codice) oppure
+                        //l'utente non ha cambiato nome e codice
+                        if(     !courseByForm.getName().equals(courseBySession.getName()) && courseDao.getCourseByName(courseByForm.getName()) == null ||
+                                !courseByForm.getCode().equals(courseBySession.getCode()) && courseDao.getCourseByCode(courseByForm.getCode()) == null ||
+                                courseByForm.getName().equals(courseBySession.getName()) && courseByForm.getCode().equals(courseBySession.getCode()))
+                        {
 
+                            //setto l'id del corso
+                            courseByForm.setIdCourse(courseBySession.getIdCourse());
 
+                            //esegue l'update
+                            courseDao.storeCourse(courseByForm);
 
+                            //inserisco nel datamodel il corso
+                            datamodel.put("", courseByForm);
 
+                            //inserisco il messaggio di avvenuta modifica
+                            datamodel.put("message", "Course Modified");
 
-                        /*
-                            STAVO QUI
-                         */
+                            //inserisco un log
+                            logManager.addLog(sessionManager.getUser(request), "UPDATE COURSE: BEFORE: " + courseBySession +
+                                                                                                        ". AFTER: " + courseBySession, ds);
 
+                        }else{
 
+                            if (courseDao.getCourseByName(courseByForm.getName()) != null){
 
+                                //inserisco nel datamodel il messaggio di errore nome esistente nel db
+                                datamodel.put("message", "Error: Existing Name ");
+                            }
 
+                            if(courseDao.getCourseByCode(courseByForm.getCode()) != null){
 
+                                //concateno al messaggio di prima(se esiste) il messaggio di errore di codice gia' esistente
+                                datamodel.put("message", datamodel.get("message") + "Error: Existing Code." );
+                            }
 
-                        //update course
+                        }
 
-                        //lancio template
+                        //lancio il template
+                        TemplateController.process("course_mod.ftl", datamodel,response,getServletContext());
+
                     }
                     //se l'utente non ha il permesso di modificare il corso
                 }else{
@@ -162,9 +188,14 @@ public class ModCourse extends BaseController {
         } catch (DaoException e) {
             e.printStackTrace();
 
+            //in caso di dao exception ecc. lancio il template di errore
             TemplateController.process("error.ftl", datamodel,response,getServletContext());
-        }
 
+        } catch (LogException e) {
+            e.printStackTrace();
+
+            //inserisco messaggio di avvenuto modifica ma errore di lo
+        }
 
     }
 }
