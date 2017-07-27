@@ -16,7 +16,7 @@
 
         <p>${user.name} ${user.surname}</p>
         <p>Email: ${user.email}</p>
-        <p>Telephone number: <#if user.number??>${user.number}<#else>Not present</#if></p>
+        <p>Telephone number: <#if user.number??>${user.number?string.computer}<#else>Not present</#if></p>
         <p>Curriculum:  <#if user.curriculum_eng??>
                 ${user.curriculum_eng}
             <#elseif user.curriculum_ita??>

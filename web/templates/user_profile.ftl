@@ -19,7 +19,7 @@
 
 <p>${user.name} ${user.surname}</p>
 <p>Email: ${user.email}</p>
-<p>Numero di telefono: <#if user.number??>${user.number}<#else>Non presente</#if></p>
+<p>Numero di telefono: <#if user.number??>${user.number?string.computer}<#else>Non presente</#if></p>
 
 <p>Curriculum:  <#if user.curriculum_ita??>
                     ${user.curriculum_ita}
