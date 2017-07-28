@@ -42,7 +42,7 @@
 
                 <div class="profile-form-number">
                     Telephone Number
-                    <input type="number" value= "<#if user.number??>${user.number?string.computer}<#else>666</#if>" name="number">
+                    <input type="text" value= "<#if user.number??>${user.number?string.computer}<#else>666</#if>" name="number">
                     <i class="fa fa-lock"></i>
                 </div>
 
