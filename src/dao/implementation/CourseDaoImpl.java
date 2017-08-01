@@ -215,12 +215,11 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
         return course;
     }
 
-    /*
-        DEVE TORNARE UNA LISTA DI CORSI
-     */
+
     @Override
-    public Course getCourseByYear(String year) throws DaoException {
-        Course course = null;
+    public List<Course> getCourseByYear(String year) throws DaoException {
+
+        List<Course> course = new ArrayList <>();
 
         try {
 
@@ -228,13 +227,11 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
 
             ResultSet rs = this.selectCourseByYear.executeQuery();
 
-            if (rs.next()){
+            while(rs.next()){
 
-                course = generateCourse(rs);
+                course.add(generateCourse(rs));
             }
-            else {//se risultato nullo ritorno null
-                return null;
-            }
+
         } catch (SQLException e) {
             throw new SelectDaoException("Error getCourseByYear", e);
         }

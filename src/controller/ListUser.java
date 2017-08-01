@@ -53,6 +53,8 @@ public class ListUser extends BaseController {
             this.processTemplate(request, response, "user_list", datamodel);
 
         } catch (DaoException e) {
+            e.printStackTrace();
+
             //lancio messaggio di errore
             TemplateController.process("error.ftl", datamodel, response, getServletContext());
         }

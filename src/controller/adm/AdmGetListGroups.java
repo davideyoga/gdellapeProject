@@ -63,10 +63,12 @@ public class AdmGetListGroups extends BaseController {
                     TemplateController.process("groups_list_adm.ftl", datamodel, response, getServletContext());
 
 
+                    //se non possiede il servizio
                 } else {
 
-                    //lancio la servlet di errore
-                    response.sendRedirect("Error");}
+                    //lancio servlet di servizio non permesso
+                    response.sendRedirect("ServiceNotPermissed");
+                }
 
 
             } else {//se sessione non valida

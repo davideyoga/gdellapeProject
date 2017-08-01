@@ -75,12 +75,21 @@ public class AdmModGroups extends BaseController {
                     serviceDao.init();
                     groupsDao.init();
 
+                    //controllo se nella sessione e' presente l'id del gruppo da modificare (non dovrebbe mai succedere)
+                    if( request.getSession().getAttribute("idGroupsToModify") == null ||
+                            request.getSession().getAttribute("idGroupsToModify").equals("")){
+
+                        //lancio servlet della lista dei gruppi
+                        response.sendRedirect("AdmGetListGroups");
+
+                    }
+
                     //estraggo il gruppo prima della modifica
                     //nota: l'id del gruppo che si intende modificare viene inserito nel metodo doGet, quindi sara' sempre presente,
                     groupsPrimaDelleModifiche = groupsDao.getGroupsById((int) request.getSession().getAttribute("idGroupsToModify"));
 
                     //controllo sulla corretta estrazione del gruppo
-                    if (groupsPrimaDelleModifiche == null || groupsPrimaDelleModifiche.getId() == 0) {
+                    if (groupsPrimaDelleModifiche == null || groupsPrimaDelleModifiche.getId() <= 0) {
 
                         //lancio servlet di errore
                         response.sendRedirect("Error");
@@ -238,8 +247,8 @@ public class AdmModGroups extends BaseController {
                     //se non ha il permesso
                 } else {
 
-                    //lancio il messaggio di servizio non permesso
-                    TemplateController.process("not_permissed.ftl", datamodel, response, getServletContext());
+                    //lancio servlet di servizio non permesso
+                    response.sendRedirect("ServiceNotPermissed");
                 }
                 //se isHardValid = false
             } else {
@@ -285,8 +294,10 @@ public class AdmModGroups extends BaseController {
                     ServiceDao serviceDao = new ServiceDaoImpl(ds);
                     serviceDao.init();
 
-                    if (request.getParameter("id") == null) {
+                    //se non e' presente il parametro GET id del gruppo da modificare o e' nullo
+                    if (request.getParameter("id") == null || request.getParameter("id").equals("")) {
                         response.sendRedirect("AdmGetListGroups");
+                        return;
                     }
 
                     //estraggo l'id del gruppo passato tramite get
@@ -329,8 +340,8 @@ public class AdmModGroups extends BaseController {
                     //se l'utente in sessione non ha i permessi
                 } else {
 
-                    //lancio il template di non permesso
-                    TemplateController.process("not_permissed.ftl", datamodel, response, getServletContext());
+                    //lancio servlet di servizio non permesso
+                    response.sendRedirect("ServiceNotPermissed");
                 }
                 //se la sessione non e' valida
             } else {

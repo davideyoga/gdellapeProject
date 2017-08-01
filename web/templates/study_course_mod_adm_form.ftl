@@ -102,6 +102,9 @@
                 </div>
 
 
+                <a href="ModAssociationStudyCourseWithCourse?idStudyCourse=${studyCourse.id}">Mod Association With Course</a>
+
+
                 <!--CICLO SUI CORSI-->
 
                 <!--CICLO TUTTI I CORSI-->

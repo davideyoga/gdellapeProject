@@ -117,6 +117,10 @@ public class AdmModUser extends BaseController {
                                 //per castare la stringa in int
                                 String numberDaForm = request.getParameter("number");
 
+                                /*
+                                    CONTROLLO SE IL NUMERO E' UN NUMERO E NON UN CARATTERE
+                                 */
+
                                 //se il numero estratto dalla form e' diverso da 0 e divero da ""
                                 if (numberDaForm != null && numberDaForm != "") {
 

@@ -30,6 +30,8 @@ public class StudyCourseDaoImpl extends DaoDataMySQLImpl implements StudyCourseD
                                 selectStudyCourseByCourse,
                                 selectStudyCourses,
                                 insertCourseStudyCourseAssociation,
+                                selectCfuType,
+                                updateCourseStudyCourse,
                                 deleteCourseStudyCourseAssociation;
 
 
@@ -94,8 +96,20 @@ public class StudyCourseDaoImpl extends DaoDataMySQLImpl implements StudyCourseD
                     "                                                       FROM studyCourse");
 
             this.insertCourseStudyCourseAssociation = connection.prepareStatement("INSERT INTO course_studyCourse" +
-                    "                                                                       (`course_id`, `studyCourse_id`)" +
-                    "                                                                       VALUES (?,?)");
+                    "                                                                       (`course_id`, `studyCourse_id`, `cfuType`)" +
+                    "                                                                       VALUES (?,?,?)");
+
+            this.selectCfuType = connection.prepareStatement("SELECT *" +
+                    "                                               FROM course_studyCourse" +
+                    "                                               WHERE course_id=?" +
+                    "                                               AND studyCourse_id=?");
+
+            this.updateCourseStudyCourse = connection.prepareStatement("UPDATE course_studyCourse" +
+                    "                                                           SET course_id=?," +
+                    "                                                               studyCourse_id=?," +
+                    "                                                               cfuType=?" +
+                    "                                                               WHERE course_id=?" +
+                    "                                                               AND studyCourse_id=?");
 
 
 
@@ -388,12 +402,13 @@ public class StudyCourseDaoImpl extends DaoDataMySQLImpl implements StudyCourseD
     }
 
     @Override
-    public void insertCourseStudyCourseConnection(Course course, StudyCourse studyCourse) throws DaoException{
+    public void insertCourseStudyCourseConnection(Course course, StudyCourse studyCourse, String cfuType) throws DaoException{
 
         try {
 
             this.insertCourseStudyCourseAssociation.setInt(1, course.getIdCourse());
             this.insertCourseStudyCourseAssociation.setInt(2, studyCourse.getId());
+            this.insertCourseStudyCourseAssociation.setString(3, cfuType);
 
             this.insertCourseStudyCourseAssociation.executeUpdate();
 
@@ -419,6 +434,52 @@ public class StudyCourseDaoImpl extends DaoDataMySQLImpl implements StudyCourseD
         }
     }
 
+    @Override
+    public String getCfuType(Course course, StudyCourse studyCourse) throws DaoException {
+
+        String cfuType = "";
+
+        try {
+
+            this.selectCfuType.setInt(1, course.getIdCourse());
+            this.selectCfuType.setInt(2, studyCourse.getId());
+
+            ResultSet rs = this.selectCfuType.executeQuery();
+
+            if (rs.next()) {
+
+                cfuType = rs.getString("cfuType");
+            }
+
+        }catch (SQLException e) {
+            throw new InsertDaoException("Error insertCourseStudyCourseConnection", e);
+        }
+
+        return cfuType;
+    }
+
+    @Override
+    public void updateCourseStudyCourse(Course course, StudyCourse studyCourse, String cfuType) throws DaoException {
+
+
+        try {
+            this.updateCourseStudyCourse.setInt(1, course.getIdCourse());
+            this.updateCourseStudyCourse.setInt(2, studyCourse.getId());
+            this.updateCourseStudyCourse.setString(3, cfuType);
+
+            this.updateCourseStudyCourse.setInt(4, course.getIdCourse());
+            this.updateCourseStudyCourse.setInt(5, studyCourse.getId());
+
+            this.updateCourseStudyCourse.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            throw new SelectDaoException("Error updateCourseStudyCourse", e);
+        }
+
+    }
+
     /**
      * Chiude connession e query precompilate
      * @throws DaoException
@@ -437,6 +498,8 @@ public class StudyCourseDaoImpl extends DaoDataMySQLImpl implements StudyCourseD
             this.selectStudyCourseByCourse.close();
             this.selectStudyCourses.close();
             this.insertCourseStudyCourseAssociation.close();
+            this.selectCfuType.close();
+            this.updateCourseStudyCourse.close();
 
             super.destroy();
 

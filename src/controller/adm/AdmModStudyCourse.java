@@ -267,7 +267,7 @@ public class AdmModStudyCourse extends BaseController{
 
                             //aggiungo il gruppo all'utente
 
-                            studyCourseDao.insertCourseStudyCourseConnection(course, studyCourse);
+                            studyCourseDao.insertCourseStudyCourseConnection(course, studyCourse, "cfuType"+course.getName());
 
                             courseCambiati = true;
                         }
