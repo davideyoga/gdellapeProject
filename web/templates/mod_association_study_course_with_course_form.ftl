@@ -4,11 +4,17 @@
 
         <p><#if message??>${message}<#else></#if></p>
 
+        <#assign x=currentYear>
+
+        <a href="ModAssociationStudyCourseWithCourse?idStudyCourse=${studyCourse.id}&age=${currentYear?string.computer} + 1">Next year</a>
+
         <form method="POST" action="ModAssociationStudyCourseWithCourse">
 
             <div>Study Course: ${studyCourse.name}</div>
+            <div>AGE: ${currentYear}</div>
 
-            <#list allCourses as course>
+
+        <#list allCourses as course>
 
                 <!--se il corso e' presente tra i corsi associati al corso di studi preso in esame, setta il checkbox a true, false altrimenti -->
                 <input type="checkbox" name="${course.name}" value="${course.name}" <#if coursesMatch?seq_contains(course) >checked<#else></#if> > ${course.name}

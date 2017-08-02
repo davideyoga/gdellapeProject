@@ -103,4 +103,19 @@ public class SingletonUtilityManager implements UtilityManager {
         return courseYear - actualYear;
     }
 
+    @Override
+    public String getAccademicYearByYear(int year) {
+
+        return year + "/" + year + 1;
+
+    }
+
+    @Override
+    public int getFirstParameterAccademicYear(String accademicYear) {
+
+        return Integer.parseInt( accademicYear.substring(0,3) );
+
+    }
+
+
 }

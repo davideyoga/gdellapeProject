@@ -2,6 +2,7 @@ package controller.adm;
 
 import controller.BaseController;
 import controller.logController.LogException;
+import controller.utility.AccademicYear;
 import dao.exception.DaoException;
 import dao.implementation.CourseDaoImpl;
 import dao.implementation.StudyCourseDaoImpl;
@@ -58,7 +59,11 @@ public class ModAssociationStudyCourseWithCourse extends BaseController {
 
     /**
      * Controlla permessi e sessione, estrae il corso di studi, tutti i corsi, i corsi a lui associati,
-     * inserisc nel datamodel e lancia il template
+     * inserisce nel datamodel e lancia il template
+     * Devo dare la possibilita' di modificare le associazioni con un corso anche di anni diversi da quello attuale,
+     * in questo modo l'adm non e' legato all'anno attuale e puo' ad esempio ad agosto mod. un corso di studi dell'anno
+     * accademico successivo.
+     * Devo dare alla servlet tramite parametro get l'anno che si vuole modificare
      * @param request
      * @param response
      * @throws ServletException
@@ -110,14 +115,25 @@ public class ModAssociationStudyCourseWithCourse extends BaseController {
 
                     }
 
-                    //estraggo l'attuale anno accademico
-                    String accademicYear = utilityManager.getCurrentAccademicYear(Calendar.getInstance());
+                    AccademicYear accademicYear;
+
+                    //controllo l'esistenza del parametro get dell'anno accademico che si vuole modificare
+                    //se non esiste
+                    if(request.getParameter("age") == null || request.getParameter("age").equals("")){
+
+                        //se non esiste l'anno accademico, setto quello attuale
+                        accademicYear = new AccademicYear(Calendar.getInstance());
+
+                    }else{
+                       //se esiste setto quello impostato nella richiesta get
+                       accademicYear = new AccademicYear(Integer.parseInt(request.getParameter("age")));
+                    }
 
                     //estraggo la lista dei corsi di questo anno accademico
-                    List<Course> allCourses = courseDao.getCourseByYear(accademicYear);
+                    List<Course> allCourses = courseDao.getCourseByYear(accademicYear.toString());
 
                     //estraggo la lista dei corsi collegati al corso di studi di quest'anno
-                    List<Course> coursesMatch = getCourseRelatedStudyCourse(courseDao, studyCourse, accademicYear);
+                    List<Course> coursesMatch = getCourseRelatedStudyCourse(courseDao, studyCourse, accademicYear.toString());
 
 
                     //INIZIALIZZO E RIEMPIO UNA LISTA CON TUTTI I TIPI DI CFU PER OGNI CORSO CHE APPARTIENE AL CORSO DI STUDI IN ESAME
@@ -139,14 +155,17 @@ public class ModAssociationStudyCourseWithCourse extends BaseController {
                     datamodel.put("allCourses", allCourses);
                     datamodel.put("coursesMatch", coursesMatch);
                     datamodel.put("cfuType", cfuType);
+                    datamodel.put("currentYear", accademicYear );
 
 
                     //chiudo i dao
                     studyCourseDao.destroy();
                     courseDao.destroy();
 
-                    //prima di lanciara il template carico nella sessione dell'amministatore l'id dell'utente che intendo modificare
+                    //prima di lanciara il template carico nella sessione dell'amministatore l'id dell'utente che intendo modificare e l'anno
                     request.getSession().setAttribute("idStudyCourseToModify", studyCourse.getId() );
+                    request.getSession().setAttribute("currentYear", accademicYear.getFirstYear() );
+
 
                     //lancio il template
                     TemplateController.process("mod_association_study_course_with_course.ftl", datamodel, response, getServletContext());
@@ -215,8 +234,8 @@ public class ModAssociationStudyCourseWithCourse extends BaseController {
                     //estraggo il corso di studi dall'id inserito precedetnemente nella sessione
                     StudyCourse studyCourse = studyCourseDao.getStudyCourseById((Integer) request.getSession().getAttribute("idStudyCourseToModify"));
 
-                    //estraggo l'attuale anno accademico
-                    String accademicYear = utilityManager.getCurrentAccademicYear(Calendar.getInstance());
+                    //estraggo l'anno accademico dalla sessione
+                    AccademicYear accademicYear = new AccademicYear((Integer) request.getSession().getAttribute("currentYear"));
 
 
 
@@ -227,11 +246,11 @@ public class ModAssociationStudyCourseWithCourse extends BaseController {
                         RACCOLO I DATI DELLE ASSOCIAZIONI TRA IL CORSO DI STUDI E IL CORSO
                      */
 
-                    //raccolgo i dati precedenti con le connessioni tra il corso di studi in esame e i corsi dell'utlimo anno
-                    List<Course> courseListPrima = getCourseRelatedStudyCourse(courseDao, studyCourse, accademicYear);
+                    //raccolgo i dati precedenti con le connessioni tra il corso di studi in esame e i corsi dell'anno accademico preso in esame
+                    List<Course> courseListPrima = getCourseRelatedStudyCourse(courseDao, studyCourse, accademicYear.toString());
 
-                    //estraggo la lista dei corsi di quest'anno
-                    List<Course> courseListAll = courseDao.getCourseByYear(accademicYear);
+                    //estraggo la lista dei corsi dell'anno accademico preso in esame
+                    List<Course> courseListAll = courseDao.getCourseByYear(accademicYear.toString());
 
                     //creo una lista con i nomi dei servizi che mi arrivano dalla form
                     List <String> nameCourseListDopo = new ArrayList<>();
@@ -317,10 +336,27 @@ public class ModAssociationStudyCourseWithCourse extends BaseController {
                     if (serviziCambiati) datamodel.put("message", "UPDATE SUCCESSFUL");
 
 
+
+                    //inizializzo la mappa
+                    Map<Integer, String> cfuType = new HashMap <>();
+
+                    //ciclo sulla lista dei corsi che matchano col corso di studi
+                    for(Course course : getCourseRelatedStudyCourse(courseDao, studyCourse, accademicYear.toString()) ){
+
+                        //aggiungo come chiave l'id del corso e come valore il tipo di cfu
+                        cfuType.put(course.getIdCourse(), studyCourseDao.getCfuType(course, studyCourse) );
+
+                    }
+
+
                     //aggiungo al datamodel i dati aggiornati e il messaggio
                     datamodel.put("studyCourse", studyCourse);
                     datamodel.put("allCourses", courseListAll);
-                    datamodel.put("coursesMatch", getCourseRelatedStudyCourse(courseDao, studyCourse, accademicYear));
+                    datamodel.put("coursesMatch", getCourseRelatedStudyCourse(courseDao, studyCourse, accademicYear.toString()));
+                    datamodel.put("cfuType", cfuType);
+                    datamodel.put("currentYear", accademicYear );
+
+
 
                     //se ho effettuato delle modifiche aggiungo un log
                     if(serviziCambiati == true){

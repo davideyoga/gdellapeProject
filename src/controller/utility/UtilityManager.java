@@ -24,5 +24,9 @@ public interface UtilityManager {
 
     int getDifferenceByAccademicAge(Course course, String accademicAge);
 
+    String getAccademicYearByYear(int year);
+
+    int getFirstParameterAccademicYear( String accademicYear);
+
 
 }
