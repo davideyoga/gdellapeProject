@@ -35,6 +35,7 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
             deleteCourseById,
             deleteCourseByName,
             selectCourseByStudyCourse,
+            getSelectCourseByStudyCourseAndYear,
             selectCourses;
 
     public CourseDaoImpl(DataSource datasource) {
@@ -124,6 +125,13 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
                     "                                                       LEFT JOIN course_studyCourse " +
                     "                                                       ON course.id = course_studyCourse.course_id " +
                     "                                                       WHERE course_studyCourse.studyCourse_id=? ");
+
+            this.getSelectCourseByStudyCourseAndYear = connection.prepareStatement("SELECT * " +
+                    "                                                       FROM course " +
+                    "                                                       LEFT JOIN course_studyCourse " +
+                    "                                                       ON course.id = course_studyCourse.course_id " +
+                    "                                                       WHERE course_studyCourse.studyCourse_id=? " +
+                    "                                                       AND year=?");
 
             this.selectCourses = connection.prepareStatement("SELECT *" +
                     "                                               FROM course");
@@ -395,6 +403,36 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
 
         } catch (SQLException e) {
             throw new SelectDaoException("Error getCourseByStudyCourse",e);
+        }
+
+        //restituisco la lista
+        return courses;
+    }
+
+    @Override
+    public List <Course> getCourseByStudyCourseAndYear(StudyCourse studyCourse, String year) throws DaoException {
+        //inizializzo una lista di corsi
+        List<Course> courses = new ArrayList <>();
+
+        try {
+
+            //setto l'id del corso di studi
+            this.getSelectCourseByStudyCourseAndYear.setInt(1, studyCourse.getId());
+            this.getSelectCourseByStudyCourseAndYear.setString(2, year);
+
+            //eseguo la query
+            ResultSet rs = this.getSelectCourseByStudyCourseAndYear.executeQuery();
+
+            //ciclo il risultato della query
+            while (rs.next()){
+
+                //aggiungo alla lista il corso nella riga attuale della query
+                courses.add(this.generateCourse(rs));
+
+            }
+
+        } catch (SQLException e) {
+            throw new SelectDaoException("Error getCourseByStudyCourseAndYear",e);
         }
 
         //restituisco la lista

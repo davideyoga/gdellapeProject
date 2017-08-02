@@ -38,7 +38,7 @@ public class ListCourse extends BaseController {
                 Service modAllCourse = this.getServiceAndCreate(request, response, ds, "modAllCourse", "Service to modificate all course", datamodel, this.getServletContext());
 
                 //estraggo il servizio di creazione dei gruppi
-                Service modCourse = this.getServiceAndCreate(request, response, ds, "modAllCourse", "Service to modificate all course", datamodel, this.getServletContext());
+                Service modCourse = this.getServiceAndCreate(request, response, ds, "modCourse", "Service to modificate course associated with the user", datamodel, this.getServletContext());
 
                 //se l'utente in sessione possiede il servizio che gli permette di modificare tutti i corsi (quindi e' un amministratore)
                 if (((List <Service>) request.getSession().getAttribute("services")).contains(modAllCourse)) {

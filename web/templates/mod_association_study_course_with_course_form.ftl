@@ -6,7 +6,8 @@
 
         <#assign x=currentYear>
 
-        <a href="ModAssociationStudyCourseWithCourse?idStudyCourse=${studyCourse.id}&age=${currentYear?string.computer} + 1">Next year</a>
+        <a href="ModAssociationStudyCourseWithCourse?idStudyCourse=${studyCourse.id}&age=${(currentFirstYear - 1)?string.computer} ">Previous year</a>
+        <a href="ModAssociationStudyCourseWithCourse?idStudyCourse=${studyCourse.id}&age=${(currentFirstYear + 1)?string.computer} ">Next year</a>
 
         <form method="POST" action="ModAssociationStudyCourseWithCourse">
 

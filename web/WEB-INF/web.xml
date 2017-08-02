@@ -343,4 +343,17 @@
     </servlet-mapping>
     <!-- Fine Servlet di ModAssociationStudyCourseWithCourse -->
 
+
+    <!-- Servlet di  ListCourse-->
+    <servlet>
+        <servlet-name>ListCourse</servlet-name>
+        <servlet-class>controller.ListCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListCourse</servlet-name>
+        <url-pattern>/ListCourse</url-pattern>
+        <url-pattern>/listCourse</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di ListCourse -->
+
 </web-app>

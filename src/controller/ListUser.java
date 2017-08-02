@@ -2,8 +2,11 @@ package controller;
 
 import controller.sessionController.SessionException;
 import dao.exception.DaoException;
+import dao.implementation.GroupsDaoImpl;
 import dao.implementation.UserDaoImpl;
+import dao.interfaces.GroupsDao;
 import dao.interfaces.UserDao;
+import model.Groups;
 import model.User;
 import view.TemplateController;
 
@@ -38,12 +41,24 @@ public class ListUser extends BaseController {
 
         try {
 
+            //inizializzo i dao
             UserDao userDao = new UserDaoImpl(ds);
             userDao.init();
+            GroupsDao groupsDao = new GroupsDaoImpl(ds);
+            groupsDao.init();
 
-            List<User> userList = userDao.getUsers();
+            Groups docente = groupsDao.getGroupsByName("Docente");
 
-            //carico la lista dei professori nel datamodel
+            //se il gruppo docenti non esiste
+            if(docente == null){
+                //lancio serlvet di errore
+                response.sendRedirect("Error");
+            }
+
+            //estraggo gli utenti che corrispondono al gruppo dei docenti
+            List<User> userList = userDao.getUserByGroups(docente);
+
+            //carico la lista dei docenti nel datamodel
             datamodel.put("users", userList);
 
             //carico la lingua nel datamodel
