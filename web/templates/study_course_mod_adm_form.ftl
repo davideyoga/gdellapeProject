@@ -108,7 +108,7 @@
                 <!--CICLO SUI CORSI-->
 
                 <!--CICLO TUTTI I CORSI-->
-                <!--se il corso e' contenuto nei corsi del corso di studi allora il ceckbox sara' spuntato-->
+                <!--se il corso e' contenuto nei corsi del corso di studi allora il checkbox sara' spuntato-->
 
                 <#list listCourses as course>
 
