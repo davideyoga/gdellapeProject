@@ -97,14 +97,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <h1><a class="navbar-brand" href="Home"><span>E</span>difying</a></h1>
+            <h1><a class="navbar-brand" href="Home"><span>D</span>isim</a></h1>   <!--calippo alla fragola-->
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
 	<div class="collapse navbar-collapse navbar-right" idCourse="bs-example-navbar-collapse-1">
 		<nav class="link-effect-2" idCourse="link-effect-2">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="index.html"><span data-hover="Home">Home</span></a></li>
+                    <li class="active"><a href="home"><span data-hover="Home">Home</span></a></li>
                     <li><a href="courses.html"><span data-hover="Corsi">Corsi</span></a></li>
                     <li><a href="services.html"><span data-hover="Servizi">Servizi</span></a></li>
                     <li><a href="mail.html"><span data-hover="contattaci">contattaci</span></a></li>
@@ -124,8 +124,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </div>
             <div class="w3ls_banner_bottom_right1">
 
-                <h2><span>L'Istruzione</span> è l'arma più potente per cambiare il mondo. </h2>
-                <p>Nelson Mandela</p>
+                <h2>Benvenuti nel <span>DISIM</span>  </h2>
+                <p>Dipartimento di Ingegneria e Scienze dell'Informazione e Matematica</p>
                 <div class="w3l_more">
                     <a href="#" class="button button--nina" data-text="Scopri di più" data-toggle="modal" data-target="#myModal">
                         <span> Scopri di più</span>
@@ -140,7 +140,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <ul class="slides">
                         <li>
                             <div class="agileits_w3layouts_banner_bottom_grid">
-                                <img src="images/1.jpg" alt=" " class="img-responsive" />
+                                <img src= "images/1.jpg" alt=" " class="img-responsive" />
                             </div>
                         </li>
                         <li>
@@ -181,25 +181,34 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </div>
 </div>
 <!-- //bootstrap-pop-up -->
+
 <!-- register -->
+<#--<div class="register">-->
+    <#--<div class="container">-->
+        <#--<div class="col-md-6 w3layouts_register_right">-->
+            <#--<form action="#" method="post">-->
+                <#--<input name="Name" placeholder="First Name" type="text" required="">-->
+                <#--<input name="Name" placeholder="Last Name" type="text" required="">-->
+                <#--<input name="Email" placeholder="Email" type="email" required="">-->
+                <#--<input name="Subject" placeholder="Subject" type="text" required="">-->
+                <#--<input type="submit" value="Send">-->
+            <#--</form>-->
+        <#--</div>-->
+        <#--<div class="col-md-6 w3layouts_register_left">-->
+            <#--<h3><span>Register</span> now</h3>-->
+            <#--<p>Aliquam sit amet sapien felis. Proin vel dolor sed risus maximus gravida.-->
+                <#--Ut suscipit orci sem, eget lobortis sem dictum eu. Etiam congue ex sed volutpat fringilla.-->
+            <#--</p>-->
+        <#--</div>-->
+        <#--<div class="clearfix"> </div>-->
+    <#--</div>-->
+<#--</div>-->
+
 <div class="register">
     <div class="container">
         <div class="col-md-6 w3layouts_register_right">
-            <form action="#" method="post">
-                <input name="Name" placeholder="First Name" type="text" required="">
-                <input name="Name" placeholder="Last Name" type="text" required="">
-                <input name="Email" placeholder="Email" type="email" required="">
-                <input name="Subject" placeholder="Subject" type="text" required="">
-                <input type="submit" value="Send">
-            </form>
+
         </div>
-        <div class="col-md-6 w3layouts_register_left">
-            <h3><span>Register</span> now</h3>
-            <p>Aliquam sit amet sapien felis. Proin vel dolor sed risus maximus gravida.
-                Ut suscipit orci sem, eget lobortis sem dictum eu. Etiam congue ex sed volutpat fringilla.
-            </p>
-        </div>
-        <div class="clearfix"> </div>
     </div>
 </div>
 <!-- //register -->
@@ -212,17 +221,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
             </div>
             <div class="w3_agile_team_grid_right">
-                <h3>meet our <span>edifying</span> team</h3>
-                <p>Aliquam sit amet sapien felis. Proin vel dolor sed risus maximus gravida.
-                    Ut suscipit orci sem, eget lobortis sem dictum eu. Etiam congue ex sed volutpat fringilla.
+                <h3>Incontra i nostri <span>Docenti</span> ! </h3>
+                <p>Clicca <a href="ListUser?<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>"><span>qui</span></a> per la lista completa dei docenti
                 </p>
             </div>
             <div class="clearfix"> </div>
         </div>
         <div class="agileits_w3layouts_team_grids">
             <div class="col-md-4 agileits_w3layouts_team_grid">
-                <h3>Jane Smith</h3>
-                <p>Manager</p>
+                <h3>rettrice</h3>
+                <p>rettrice</p>
                 <ul class="agileinfo_social_icons w3_agileits_social_icons">
                     <li><a href="#" class="w3_agileits_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                     <li><a href="#" class="wthree_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
@@ -232,8 +240,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <img src="images/5.jpg" alt=" " class="img-responsive" />
             </div>
             <div class="col-md-4 agileits_w3layouts_team_grid">
-                <h3>Belinda Paul</h3>
-                <p>Creative Head</p>
+                <h3>professore 1</h3>
+                <p>capo dipartimento</p>
                 <ul class="agileinfo_social_icons w3_agileits_social_icons">
                     <li><a href="#" class="w3_agileits_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                     <li><a href="#" class="wthree_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
@@ -243,8 +251,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <img src="images/6.jpg" alt=" " class="img-responsive" />
             </div>
             <div class="col-md-4 agileits_w3layouts_team_grid">
-                <h3>Laura Doe</h3>
-                <p>Head of the department</p>
+                <h3>professore 2</h3>
+                <p>altro professore che "conta" qualcosa</p>
                 <ul class="agileinfo_social_icons w3_agileits_social_icons">
                     <li><a href="#" class="w3_agileits_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                     <li><a href="#" class="wthree_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
@@ -419,10 +427,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="col-md-4 w3agile_footer_grid w3agile_footer_grid1">
                     <h3>Navigation</h3>
                     <ul>
-                        <li><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><a href="courses.html">Courses</a></li>
-                        <li><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><a href="services.html">Services</a></li>
-                        <li><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><a href="icons.html">Web Icons</a></li>
-                        <li><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><a href="mail.html">Mail Us</a></li>
+                        <li><span class="glyphicon glyphicon-minus" aria-hidden="true"></span><a href="courses.html">Courses</a></li>
+                        <li><span class="glyphicon glyphicon-minus" aria-hidden="true"></span><a href="services.html">Services</a></li>
+                        <li><span class="glyphicon glyphicon-minus" aria-hidden="true"></span><a href="icons.html">Web Icons</a></li>
+                        <li><span class="glyphicon glyphicon-minus" aria-hidden="true"></span><a href="mail.html">Mail Us</a></li>
                     </ul>
                 </div>
                 <div class="clearfix"> </div>
