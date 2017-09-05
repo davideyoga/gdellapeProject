@@ -1,4 +1,6 @@
-/* Reset */
+<style type = "text/css">
+
+                          /* Reset */
 *{margin:0;padding:0;}
 
 /* Slider */
@@ -322,3 +324,5 @@
     margin-left:45px;
   }
 }
+
+</style>

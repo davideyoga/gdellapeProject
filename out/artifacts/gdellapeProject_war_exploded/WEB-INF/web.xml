@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
@@ -317,5 +318,30 @@
         <url-pattern>/createCourse</url-pattern>
     </servlet-mapping>
     <!-- Fine Servlet di CreateStudyCourse -->
+
+
+    <!-- Servlet di  ServiceNotPermissed-->
+    <servlet>
+        <servlet-name>ServiceNotPermissed</servlet-name>
+        <servlet-class>controller.ServiceNotPermissed</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServiceNotPermissed</servlet-name>
+        <url-pattern>/ServiceNotPermissed</url-pattern>
+        <url-pattern>/serviceNotPermissed</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di ServiceNotPermissed -->
+
+    <!-- Servlet di  ModAssociationStudyCourseWithCourse-->
+    <servlet>
+        <servlet-name>ModAssociationStudyCourseWithCourse</servlet-name>
+        <servlet-class>controller.adm.ModAssociationStudyCourseWithCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ModAssociationStudyCourseWithCourse</servlet-name>
+        <url-pattern>/ModAssociationStudyCourseWithCourse</url-pattern>
+        <url-pattern>/modAssociationStudyCourseWithCourse</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di ModAssociationStudyCourseWithCourse -->
 
 </web-app>
