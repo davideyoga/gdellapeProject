@@ -2,6 +2,7 @@ package dao.implementation;
 
 import dao.data.DaoDataMySQLImpl;
 import dao.exception.DaoException;
+import dao.exception.InsertDaoException;
 import dao.exception.SelectDaoException;
 import dao.interfaces.CourseDao;
 import model.Course;
@@ -35,7 +36,10 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
             deleteCourseById,
             deleteCourseByName,
             selectCourseByStudyCourse,
-            getSelectCourseByStudyCourseAndYear,
+            selectCourseByUserAndYear,
+            selectCourseByStudyCourseAndYear,
+            storeLinkCourseUser,
+            deleteLinkCourseUser,
             selectCourses;
 
     public CourseDaoImpl(DataSource datasource) {
@@ -126,7 +130,7 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
                     "                                                       ON course.id = course_studyCourse.course_id " +
                     "                                                       WHERE course_studyCourse.studyCourse_id=? ");
 
-            this.getSelectCourseByStudyCourseAndYear = connection.prepareStatement("SELECT * " +
+            this.selectCourseByStudyCourseAndYear = connection.prepareStatement("SELECT * " +
                     "                                                       FROM course " +
                     "                                                       LEFT JOIN course_studyCourse " +
                     "                                                       ON course.id = course_studyCourse.course_id " +
@@ -135,6 +139,21 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
 
             this.selectCourses = connection.prepareStatement("SELECT *" +
                     "                                               FROM course");
+
+
+            this.selectCourseByUserAndYear = connection.prepareStatement("SELECT * " +
+                    "                                                       FROM course " +
+                    "                                                       LEFT JOIN course_user " +
+                    "                                                       ON course.id = course_user.course_id " +
+                    "                                                       WHERE course_user.user_id=? " +
+                    "                                                       AND year=?");
+
+            this.storeLinkCourseUser = connection.prepareStatement("INSERT INTO course_user" +
+                    "                                                       VALUES (?,?)");
+
+            this.deleteLinkCourseUser = connection.prepareStatement("DELETE FROM course_user" +
+                    "                                                       WHERE course_id=?" +
+                    "                                                       AND user_id=?");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -380,6 +399,38 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
     }
 
     @Override
+    public List <Course> getCoursesByUserAndYear(User user, String year) throws DaoException {
+
+        //inizializzo una lista di corsi
+        List<Course> courses = new ArrayList <>();
+
+        try {
+
+            //setto l'id dell'utente
+            this.selectCourseByUserAndYear.setInt(1, user.getId());
+            this.selectCourseByUserAndYear.setString(2, year);
+
+            //eseguo la query
+            ResultSet rs = this.selectCourseByUserAndYear.executeQuery();
+
+            //ciclo il risultato della query
+            while (rs.next()){
+
+                //aggiungo alla lista il corso nella riga attuale della query
+                courses.add(this.generateCourse(rs));
+
+            }
+
+        } catch (SQLException e) {
+            throw new SelectDaoException("Error getCourseByStudyCourse",e);
+        }
+
+        //restituisco la lista
+        return courses;
+
+    }
+
+    @Override
     public List<Course> getCourseByStudyCourse(StudyCourse studyCourse) throws DaoException  {
 
         //inizializzo una lista di corsi
@@ -417,11 +468,11 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
         try {
 
             //setto l'id del corso di studi
-            this.getSelectCourseByStudyCourseAndYear.setInt(1, studyCourse.getId());
-            this.getSelectCourseByStudyCourseAndYear.setString(2, year);
+            this.selectCourseByStudyCourseAndYear.setInt(1, studyCourse.getId());
+            this.selectCourseByStudyCourseAndYear.setString(2, year);
 
             //eseguo la query
-            ResultSet rs = this.getSelectCourseByStudyCourseAndYear.executeQuery();
+            ResultSet rs = this.selectCourseByStudyCourseAndYear.executeQuery();
 
             //ciclo il risultato della query
             while (rs.next()){
@@ -445,6 +496,7 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
         List<Course> courses = new ArrayList <>();
 
         try {
+
             ResultSet rs = this.selectCourses.executeQuery();
 
             while (rs.next()){
@@ -458,6 +510,42 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
         }
 
         return courses;
+
+    }
+
+    @Override
+    public void storeLinkCourseUser(Course course, User user) throws DaoException {
+
+        try {
+
+            this.storeLinkCourseUser.setInt(1, course.getIdCourse());
+            this.storeLinkCourseUser.setInt(2, user.getId());
+
+            this.storeLinkCourseUser.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            throw new InsertDaoException("Error storeLinkCourseUser", e);
+        }
+
+    }
+
+    @Override
+    public void deleteLinkCourseUser(Course course, User user) throws DaoException {
+
+        try {
+
+            this.deleteLinkCourseUser.setInt(1, course.getIdCourse());
+            this.deleteLinkCourseUser.setInt(2, user.getId());
+
+            this.deleteLinkCourseUser.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            throw new InsertDaoException("Error deleteLinkCourseUser", e);
+        }
 
     }
 

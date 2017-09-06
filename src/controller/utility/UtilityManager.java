@@ -2,7 +2,9 @@ package controller.utility;
 
 import model.Course;
 import model.Service;
+import model.User;
 
+import javax.jws.soap.SOAPBinding;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,5 +30,13 @@ public interface UtilityManager {
 
     int getFirstParameterAccademicYear( String accademicYear);
 
+    /**
+     * Torna oggetti presenti nella lista a e non presenti nella lista b
+     * Per non stravolgere tutto gli passo una lista di utenti invece che un oggetto iterabile
+     * @param a
+     * @param b
+     * @return
+     */
+    List<User> getContentInAButNotInB(List<User> a, List<User> b);
 
 }

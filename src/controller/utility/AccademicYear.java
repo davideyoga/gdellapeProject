@@ -40,6 +40,51 @@ public class AccademicYear {
         }
     }
 
+    /**
+     * Costruttore dell'anno accademico passato come stringa
+     * @param accademicYear
+     * @throws AccademicYearException
+     */
+    public AccademicYear(String accademicYear) throws AccademicYearException{
+
+        try {
+            //estraggo il primo anno (primi 4 caratteri seguiti da uno /)
+            //non uso espressione regolare per la semplicita' delloperazione
+
+            String firstYear = new String();
+
+            for (int x = 0; x < 4; x++) {
+
+                firstYear = firstYear + accademicYear.charAt(x);
+
+            }
+
+            String secondYear = new String();
+
+            for (int x = 5; x < 9; x++) {
+
+                secondYear = secondYear + accademicYear.charAt(x);
+
+            }
+
+            //controllo se la stringa passata corrisponde ad un anno accademico
+            if (Integer.parseInt(firstYear) == Integer.parseInt(secondYear) - 1 && accademicYear.length() == 9 &&
+                    accademicYear.charAt(4) == '/') {
+
+                //inizializzo l'anno accademico con il primo nuemro
+                new AccademicYear(firstYear);
+
+            } else {
+                throw new AccademicYearException("Error in AccademicYear(String accademicYear)");
+            }
+
+            //se i primi e gli ultimi 4 caratteri non sono numeri
+        }catch (NumberFormatException e){
+            throw  new AccademicYearException("Error in AccademicYear(String accademicYear)", e);
+        }
+
+    }
+
     public int getFirstYear() {
         return firstYear;
     }

@@ -2,6 +2,7 @@ package dao.interfaces;
 
 import dao.data.DaoData;
 import dao.exception.DaoException;
+import model.Course;
 import model.Groups;
 import model.User;
 
@@ -25,6 +26,9 @@ public interface UserDao extends DaoData{
     public User generateUser(ResultSet rs) throws DaoException;
 
     List<User> getUserByGroups(Groups groups) throws DaoException;
+
+    List<User> getUserByCourse(Course course) throws DaoException;
+
 
     List<User> getUsers() throws DaoException;
 

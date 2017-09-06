@@ -357,4 +357,55 @@
     </servlet-mapping>
     <!-- Fine Servlet di ListCourse -->
 
+
+    <!-- Servlet di  ModCourse-->
+    <servlet>
+        <servlet-name>ModCourse</servlet-name>
+        <servlet-class>controller.ModCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ModCourse</servlet-name>
+        <url-pattern>/ModCourse</url-pattern>
+        <url-pattern>/modCourse</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di ModCourse -->
+
+    <!-- Servlet di  ModAdmCourse-->
+    <servlet>
+        <servlet-name>ModAdmCourse</servlet-name>
+        <servlet-class>controller.adm.ModAdmCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ModAdmCourse</servlet-name>
+        <url-pattern>/ModAdmCourse</url-pattern>
+        <url-pattern>/modAdmCourse</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di ModCourse -->
+
+
+    <!-- Servlet di  ModAssociationCourseWithUser-->
+    <servlet>
+        <servlet-name>ModAssociationCourseWithUser</servlet-name>
+        <servlet-class>controller.adm.ModAssociationCourseWithUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ModAssociationCourseWithUser</servlet-name>
+        <url-pattern>/ModAssociationCourseWithUser</url-pattern>
+        <url-pattern>/modAssociationCourseWithUser</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di ModAssociationCourseWithUser -->
+
+
+    <!-- Servlet di  AdmModCourse-->
+    <servlet>
+        <servlet-name>AdmModCourse</servlet-name>
+        <servlet-class>controller.adm.AdmModCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdmModCourse</servlet-name>
+        <url-pattern>/AdmModCourse</url-pattern>
+        <url-pattern>/admModCourse</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di AdmModCourse -->
+
 </web-app>

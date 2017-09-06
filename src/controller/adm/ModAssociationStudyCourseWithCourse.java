@@ -411,7 +411,7 @@ public class ModAssociationStudyCourseWithCourse extends BaseController {
 
         }catch (DaoException e) {
             e.printStackTrace();
-            //in caso di dao exception ecc. lancio il template di errore
+            //in caso di dao exception ecc.. lancio il template di errore
             TemplateController.process("error.ftl", datamodel, response, getServletContext());
         } catch (LogException e) {
             e.printStackTrace();

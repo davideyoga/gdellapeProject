@@ -27,10 +27,16 @@ public interface CourseDao extends DaoData{
 
     List<Course> getCoursesByUser(User user) throws DaoException;
 
+    List<Course> getCoursesByUserAndYear(User user, String year) throws DaoException;
+
     List<Course> getCourseByStudyCourse(StudyCourse studyCourse) throws DaoException ;
 
     List<Course> getCourseByStudyCourseAndYear(StudyCourse studyCourse, String year) throws DaoException;
 
     List<Course> getCourses() throws DaoException ;
+
+    void storeLinkCourseUser(Course course, User user) throws DaoException;
+
+    void deleteLinkCourseUser(Course course, User user) throws DaoException;
 
 }

@@ -5,13 +5,16 @@ import dao.implementation.ServiceDaoImpl;
 import dao.interfaces.ServiceDao;
 import model.Course;
 import model.Service;
+import model.User;
 import view.TemplateController;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -115,6 +118,31 @@ public class SingletonUtilityManager implements UtilityManager {
 
         return Integer.parseInt( accademicYear.substring(0,3) );
 
+    }
+
+    /**
+     * Torna oggetti presenti nella lista a e non presenti nella lista b
+     * Per non stravolgere tutto gli passo una lista di utenti invece che un oggetto iterabile
+     * @param a
+     * @param b
+     * @return
+     */
+    @Override
+    public List<User> getContentInAButNotInB(List<User> a, List<User> b){
+
+        List<User> list = new ArrayList <>();
+
+        //ciclo lista a
+        for( User o : a){
+
+            //se b non contiene l'oggetto o
+            if(!b.contains(o)){
+                list.add(o);
+            }
+
+        }
+
+        return  list;
     }
 
 

@@ -110,11 +110,14 @@ public class Login extends BaseController {
                 // se l'utente non e' nel database
                 }else processUnknown( request, response);
 
-            } catch (DaoException e) {
+            } catch (DaoException | SessionException e) {
                 e.printStackTrace();
-            } catch (SessionException e) {
-                e.printStackTrace();
+
+                //lancio template di errore
+                TemplateController.process( "Error.ftl", datamodel ,response, getServletContext() );
             }
+
+            //se i parametri passati non sono corretti
         }else{
             //rilancio la pagina di login con message di errore "parametri errati"
             this.datamodel.put("message","incorrect parameters");
