@@ -20,6 +20,7 @@ import java.util.List;
 /**
  * @authorDavide Micarelli
  * ModCourse e' la servlet per la modifica dei corsi da parte dei docenti, non gli e' permesso modificare varie impostazioni
+ * DA QUESTA SERVLET NON E' PERMESSA LA MODIFICA DI UN CORSO SE DI UN ANNO PRECEDENTE
  */
 public class ModCourse extends BaseController {
 

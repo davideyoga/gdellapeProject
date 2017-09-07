@@ -1,11 +1,13 @@
 package controller.adm;
 
 import controller.BaseController;
+import model.Service;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @author Davide Micarelli
@@ -27,7 +29,28 @@ public class UpdateCourse extends BaseController {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        //pulisco messaggio
+        datamodel.put("message",null);
 
+        //se sessione valida
+        if (this.sessionManager.isValid(request)) {
+
+            //estraggo il servizio di creazione degli utenti
+            Service modGroups = this.getServiceAndCreate(request, response, ds, "modGroups", "Permissed for modification Groups",
+                    datamodel, getServletContext());
+
+            //se l'utente in sessione possiede il servizio modGroups...
+            if (((List<Service>) request.getSession().getAttribute("services")).contains(modGroups)) {
+
+
+
+            }else{
+
+            }
+
+        }else{
+
+        }
 
     }
 

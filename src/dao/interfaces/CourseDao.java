@@ -39,4 +39,9 @@ public interface CourseDao extends DaoData{
 
     void deleteLinkCourseUser(Course course, User user) throws DaoException;
 
+    List<Course> getCourseModulated(Course course) throws DaoException;
+
+    List<Course> getCoursePropedeutic(Course course) throws DaoException;
+
+    List<Course> getCourseBorrowed(Course course) throws DaoException;
 }

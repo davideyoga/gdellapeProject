@@ -40,7 +40,11 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
             selectCourseByStudyCourseAndYear,
             storeLinkCourseUser,
             deleteLinkCourseUser,
-            selectCourses;
+            selectCourses,
+            selectCourseModulated,
+            selectCoursePropedeutic,
+            selectCourseBorrowed;
+
 
     public CourseDaoImpl(DataSource datasource) {
         super(datasource);
@@ -154,6 +158,22 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
             this.deleteLinkCourseUser = connection.prepareStatement("DELETE FROM course_user" +
                     "                                                       WHERE course_id=?" +
                     "                                                       AND user_id=?");
+
+            this.selectCourseModulated = connection.prepareStatement("SELECT * FROM course" +
+                    "                                                           LEFT JOIN moduleCourse" +
+                    "                                                           ON course.id = moduleCourse.corse_module_id " +
+                    "                                                           WHERE moduleCourse.course_id = ? ");
+
+            this.selectCoursePropedeutic = connection.prepareStatement("SELECT * FROM course" +
+                    "                                                           LEFT JOIN preparatoryCourse " +
+                    "                                                           ON course.id = preparatoryCourse.corse_preparatory_id " +
+                    "                                                           WHERE preparatoryCourse.course_id = ?");
+
+            this.selectCourseBorrowed = connection.prepareStatement("SELECT * FROM course" +
+                    "                                                           LEFT JOIN borrowedCourse " +
+                    "                                                           ON course.id = borrowedCourse.corse_borrowed_id " +
+                    "                                                           WHERE borrowedCourse.course_id = ?");
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -547,6 +567,76 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
             throw new InsertDaoException("Error deleteLinkCourseUser", e);
         }
 
+    }
+
+    @Override
+    public List <Course> getCourseModulated(Course course) throws DaoException {
+
+        List<Course> courses = new ArrayList <>();
+
+        try {
+
+            this.selectCourseModulated.setInt(1, course.getIdCourse());
+
+            ResultSet rs = this.selectCourseModulated.executeQuery();
+
+            while (rs.next()){
+
+                courses.add(this.generateCourse(rs));
+
+            }
+
+        } catch (SQLException e) {
+            throw new SelectDaoException("Error getCourseModulated", e);
+        }
+
+        return courses;
+    }
+
+    @Override
+    public List <Course> getCoursePropedeutic(Course course) throws DaoException {
+        List<Course> courses = new ArrayList <>();
+
+        try {
+
+            this.selectCoursePropedeutic.setInt(1, course.getIdCourse());
+
+            ResultSet rs = this.selectCoursePropedeutic.executeQuery();
+
+            while (rs.next()){
+
+                courses.add(this.generateCourse(rs));
+
+            }
+
+        } catch (SQLException e) {
+            throw new SelectDaoException("Error getCourseModulated", e);
+        }
+
+        return courses;
+    }
+
+    @Override
+    public List <Course> getCourseBorrowed(Course course) throws DaoException {
+        List<Course> courses = new ArrayList <>();
+
+        try {
+
+            this.selectCourseBorrowed.setInt(1, course.getIdCourse());
+
+            ResultSet rs = this.selectCourseBorrowed.executeQuery();
+
+            while (rs.next()){
+
+                courses.add(this.generateCourse(rs));
+
+            }
+
+        } catch (SQLException e) {
+            throw new SelectDaoException("Error getCourseModulated", e);
+        }
+
+        return courses;
     }
 
 
