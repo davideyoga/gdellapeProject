@@ -6,6 +6,12 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
+    <context-param>
+        <param-name>uploads.directory</param-name>
+        <!-- Tomcat deve aver il permesso di scrittura su questa cartella-->
+        <param-value>/etc/apache-tomcat-8.5.14/download</param-value>
+    </context-param>
+
     <resource-ref>
         <res-ref-name>jdbc/gdellapeProject</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
@@ -407,5 +413,39 @@
         <url-pattern>/admModCourse</url-pattern>
     </servlet-mapping>
     <!-- Fine Servlet di AdmModCourse -->
+
+    <!-- Servlet di  AdmModCourse-->
+    <display-name>ServletFileUploadDownloadExample</display-name>
+    <context-param>
+        <param-name>tempfile.dir</param-name>
+        <param-value>tmpfiles</param-value>
+    </context-param>
+    <!-- Servlet di  AdmModCourse-->
+
+
+    <!-- Inizio Servlet di TestDownload-->
+    <servlet>
+        <servlet-name>TestDownload</servlet-name>
+        <servlet-class>controller.adm.TestDownload</servlet-class>
+
+        <multipart-config>
+            <!--
+            <location>/tmp</location> temporary files location (DEF: "") -->
+            <max-file-size>20848820</max-file-size>
+            <!-- max size of accepted uploadd (DEF: unlimited!) -->
+            <max-request-size>418018841</max-request-size>
+            <!-- max size of multipart requests (may contain more files or data) (DEF: ulimited!) -->
+            <!-- <file-size-threshold>1048576</file-size-threshold> max size of files to hold in memory (without writing to temporary disk file) (DEF: 0) -->
+        </multipart-config>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TestDownload</servlet-name>
+        <url-pattern>/TestDownload</url-pattern>
+        <url-pattern>/testDownload</url-pattern>
+    </servlet-mapping>
+
+    <!-- Fine Servlet di TestDownload-->
+
+
 
 </web-app>

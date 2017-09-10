@@ -316,4 +316,12 @@ public class BaseController extends HttpServlet {
             userDao.destroy();
             userGroupsDao.destroy();
     }
+
+
+    protected void processError(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+        //lancio servlet di errore
+        response.sendRedirect("Error");
+
+    }
 }

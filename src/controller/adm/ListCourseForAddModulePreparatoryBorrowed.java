@@ -64,19 +64,28 @@ public class ListCourseForAddModulePreparatoryBorrowed extends BaseController{
                             List coursesPropedeutic = courseDao.getCoursePropedeutic(courseWithId);
                             List coursesBorrowed = courseDao.getCourseBorrowed(courseWithId);
 
+                            //estraggo tutti i corsi
+                            List allCourse = courseDao.getCourses();
+
                             //inserisco il corso nel datamodel
                             datamodel.put("course", courseWithId);
 
-                            //inserisco nel datamodel
+                            //inserisco nel datamodel i corsi prop, modulati ecc...
                             datamodel.put("coursesModulated", coursesModulated);
                             datamodel.put("coursesPropedeutic", coursesPropedeutic);
                             datamodel.put("coursesBorrowed", coursesBorrowed);
+
+                            //chiudo il dao
+                            courseDao.destroy();
 
                             //lancio il template
                             TemplateController.process("listCourseForAddingModuleBorrowedPreparatory.ftl", datamodel,response,getServletContext());
 
                             //se non esiste corso con tale id
                         }else{
+
+                            //chiudo il dao
+                            courseDao.destroy();
 
                             //reindirizzo alla lista dei corsi
                             response.sendRedirect("ListCourse");

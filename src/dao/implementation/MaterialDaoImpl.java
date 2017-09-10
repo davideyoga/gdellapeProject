@@ -26,6 +26,7 @@ public class MaterialDaoImpl extends DaoDataMySQLImpl implements MaterialDao {
     public MaterialDaoImpl(DataSource datasource) {
         super(datasource);
     }
+
     public void init() throws DaoException{
 
         try{
