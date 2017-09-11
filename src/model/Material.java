@@ -10,57 +10,24 @@ import java.sql.Timestamp;
 public class Material {
 
     int id;
+    String name;
     String description_ita;
     String description_eng;
     Timestamp data;
-    Double size;
+    Long size;
     String type;
+    String route;
 
     public Material(DaoData daoData){
         this.id = 0;
+        this.name = null;
         this.description_ita = null;
         this.description_eng = null;
         this.data = null;
         this.size = null;
         this.type = null;
-    }
+        this.route = null;
 
-    @Override
-    public String toString() {
-        return "Material{" +
-                "idCourse=" + id +
-                ", description_ita='" + description_ita + '\'' +
-                ", description_eng='" + description_eng + '\'' +
-                ", data=" + data +
-                ", size=" + size +
-                ", type='" + type + '\'' +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Material material = (Material) o;
-
-        if (id != material.id) return false;
-        if (!description_ita.equals(material.description_ita)) return false;
-        if (!description_eng.equals(material.description_eng)) return false;
-        if (!data.equals(material.data)) return false;
-        if (!size.equals(material.size)) return false;
-        return type.equals(material.type);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + description_ita.hashCode();
-        result = 31 * result + description_eng.hashCode();
-        result = 31 * result + data.hashCode();
-        result = 31 * result + size.hashCode();
-        result = 31 * result + type.hashCode();
-        return result;
     }
 
     public int getId() {
@@ -69,6 +36,14 @@ public class Material {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription_ita() {
@@ -95,11 +70,11 @@ public class Material {
         this.data = data;
     }
 
-    public Double getSize() {
+    public Long getSize() {
         return size;
     }
 
-    public void setSize(Double size) {
+    public void setSize(Long size) {
         this.size = size;
     }
 
@@ -109,5 +84,59 @@ public class Material {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getRoute() {
+        return route;
+    }
+
+    public void setRoute(String route) {
+        this.route = route;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Material material = (Material) o;
+
+        if (getId() != material.getId()) return false;
+        if (getName() != null ? !getName().equals(material.getName()) : material.getName() != null) return false;
+        if (getDescription_ita() != null ? !getDescription_ita().equals(material.getDescription_ita()) : material.getDescription_ita() != null)
+            return false;
+        if (getDescription_eng() != null ? !getDescription_eng().equals(material.getDescription_eng()) : material.getDescription_eng() != null)
+            return false;
+        if (getData() != null ? !getData().equals(material.getData()) : material.getData() != null) return false;
+        if (getSize() != null ? !getSize().equals(material.getSize()) : material.getSize() != null) return false;
+        if (getType() != null ? !getType().equals(material.getType()) : material.getType() != null) return false;
+        return getRoute() != null ? getRoute().equals(material.getRoute()) : material.getRoute() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId();
+        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
+        result = 31 * result + (getDescription_ita() != null ? getDescription_ita().hashCode() : 0);
+        result = 31 * result + (getDescription_eng() != null ? getDescription_eng().hashCode() : 0);
+        result = 31 * result + (getData() != null ? getData().hashCode() : 0);
+        result = 31 * result + (getSize() != null ? getSize().hashCode() : 0);
+        result = 31 * result + (getType() != null ? getType().hashCode() : 0);
+        result = 31 * result + (getRoute() != null ? getRoute().hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String   toString() {
+        return "Material{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description_ita='" + description_ita + '\'' +
+                ", description_eng='" + description_eng + '\'' +
+                ", data=" + data +
+                ", size=" + size +
+                ", type='" + type + '\'' +
+                ", route='" + route + '\'' +
+                '}';
     }
 }

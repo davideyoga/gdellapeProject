@@ -241,6 +241,10 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
     public Course getCourseByCode(String code) throws DaoException {
         Course course = null;
 
+        if(code == null){
+            return null;
+        }
+
         try {
 
             this.selectCourseByCode.setString(1, code);

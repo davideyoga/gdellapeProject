@@ -1,5 +1,6 @@
-package controller;
+package controller.adm;
 
+import controller.BaseController;
 import controller.logController.LogException;
 import controller.utility.AccademicYear;
 import controller.utility.AccademicYearException;

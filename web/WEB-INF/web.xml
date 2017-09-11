@@ -50,7 +50,7 @@
     <!-- Servlet di login -->
     <servlet>
         <servlet-name>Login</servlet-name>
-        <servlet-class>controller.Login</servlet-class>
+        <servlet-class>controller.adm.Login</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
@@ -62,7 +62,7 @@
     <!-- Servlet di logout -->
     <servlet>
         <servlet-name>Logout</servlet-name>
-        <servlet-class>controller.Logout</servlet-class>
+        <servlet-class>controller.adm.Logout</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>
@@ -74,7 +74,7 @@
     <!-- Servlet di ProfileManager -->
     <servlet>
         <servlet-name>ProfileManagement</servlet-name>
-        <servlet-class>controller.ProfileManagement</servlet-class>
+        <servlet-class>controller.adm.ProfileManagement</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ProfileManagement</servlet-name>
@@ -292,7 +292,7 @@
     <!-- Servlet di  HomeBackOffice-->
     <servlet>
         <servlet-name>HomeBackOffice</servlet-name>
-        <servlet-class>controller.HomeBackOffice</servlet-class>
+        <servlet-class>controller.adm.HomeBackOffice</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeBackOffice</servlet-name>
@@ -367,7 +367,7 @@
     <!-- Servlet di  ModCourse-->
     <servlet>
         <servlet-name>ModCourse</servlet-name>
-        <servlet-class>controller.ModCourse</servlet-class>
+        <servlet-class>controller.adm.ModCourse</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ModCourse</servlet-name>
@@ -414,19 +414,21 @@
     </servlet-mapping>
     <!-- Fine Servlet di AdmModCourse -->
 
-    <!-- Servlet di  AdmModCourse-->
+
     <display-name>ServletFileUploadDownloadExample</display-name>
     <context-param>
         <param-name>tempfile.dir</param-name>
         <param-value>tmpfiles</param-value>
     </context-param>
-    <!-- Servlet di  AdmModCourse-->
 
 
-    <!-- Inizio Servlet di TestDownload-->
+
+
+
+    <!-- Servlet di  AddMaterial-->
     <servlet>
-        <servlet-name>TestDownload</servlet-name>
-        <servlet-class>controller.adm.TestDownload</servlet-class>
+        <servlet-name>AddMaterial</servlet-name>
+        <servlet-class>controller.adm.AddMaterial</servlet-class>
 
         <multipart-config>
             <!--
@@ -437,15 +439,27 @@
             <!-- max size of multipart requests (may contain more files or data) (DEF: ulimited!) -->
             <!-- <file-size-threshold>1048576</file-size-threshold> max size of files to hold in memory (without writing to temporary disk file) (DEF: 0) -->
         </multipart-config>
+
     </servlet>
     <servlet-mapping>
-        <servlet-name>TestDownload</servlet-name>
-        <url-pattern>/TestDownload</url-pattern>
-        <url-pattern>/testDownload</url-pattern>
+        <servlet-name>AddMaterial</servlet-name>
+        <url-pattern>/AddMaterial</url-pattern>
+        <url-pattern>/addMaterial</url-pattern>
     </servlet-mapping>
+    <!-- Fine Servlet di AddMaterial -->
 
-    <!-- Fine Servlet di TestDownload-->
 
+    <!-- Servlet di  ListMaterial-->
+    <servlet>
+        <servlet-name>ListMaterial</servlet-name>
+        <servlet-class>controller.ListMaterial</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListMaterial</servlet-name>
+        <url-pattern>/ListMaterial</url-pattern>
+        <url-pattern>/listMaterial</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di ListMaterial -->
 
 
 </web-app>

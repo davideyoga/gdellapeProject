@@ -1,5 +1,6 @@
-package controller;
+package controller.adm;
 
+import controller.BaseController;
 import view.TemplateController;
 
 import javax.annotation.Resource;
