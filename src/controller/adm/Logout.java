@@ -1,5 +1,7 @@
-package controller;
+package controller.adm;
 
+
+import controller.BaseController;
 
 import javax.servlet.ServletException;;
 import javax.servlet.http.HttpServletRequest;

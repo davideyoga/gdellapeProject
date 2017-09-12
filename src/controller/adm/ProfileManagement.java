@@ -1,5 +1,6 @@
-package controller;
+package controller.adm;
 
+import controller.BaseController;
 import controller.logController.LogException;
 import controller.sessionController.SessionException;
 import dao.exception.DaoException;
@@ -127,6 +128,9 @@ public class ProfileManagement extends BaseController {
 
                             //eseguo l'update dell'utente
                             userDao.storeUser(userDaForm);
+
+                            //inserisco il messaggio di avvenuta modifica dei dati personali
+                            datamodel.put("message", "Update Successful");
 
                             //inserisco un log nel db descrivendo cio' che e' successo
                             logManager.addLog(userDaForm, "USER WITH ID: " + userDaForm.getId() + " HAS CHANGE YOUR PERSONAL DATA.        " +

@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<#include "list_courses_form.ftl">
+<#include "course_mod_form_adm.ftl">
 
 </body>
 </html>

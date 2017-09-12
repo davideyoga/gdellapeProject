@@ -58,7 +58,7 @@ public class AdmModGroups extends BaseController {
             if (sessionManager.isHardValid(request)) {
 
                 //estraggo il servizio di creazione degli utenti
-                Service modGroups = this.getServiceAndCreate(request, response, ds, "modGroups", "Permissed for modification Groups",
+                Service modGroups = this.getServiceAndCreate(request, response, ds, "modGroups", "Permission for modification Groups",
                         datamodel, getServletContext());
 
                 //se l'utente in sessione possiede il servizio modGroups...

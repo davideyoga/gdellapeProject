@@ -3,6 +3,7 @@ package dao.implementation;
 import dao.data.DaoDataMySQLImpl;
 import dao.exception.*;
 import dao.interfaces.UserDao;
+import model.Course;
 import model.Groups;
 import model.User;
 
@@ -29,6 +30,7 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
                                 deleteUserById,
                                 selectUserByGroupsId,
                                 selectUserByEmail,
+                                selectUserByCourse,
                                 selectUsers;
 
 
@@ -89,6 +91,12 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
 
             this.selectUsers = connection.prepareStatement("SELECT *" +
                     "                                           FROM user");
+
+            this.selectUserByCourse = connection.prepareStatement("SELECT *" +
+                    "                                                       FROM user" +
+                    "                                                       LEFT JOIN course_user " +
+                    "                                                       ON user.id = course_user.user_id " +
+                    "                                                       WHERE course_user.course_id=? ");
 
         } catch (SQLException e) {
             throw new InitDaoException("Error initializing user dao", e);
@@ -322,6 +330,32 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
     }
 
     @Override
+    public List <User> getUserByCourse(Course course) throws DaoException {
+        List<User> list = new ArrayList<>();
+
+        try{
+
+            this.selectUserByCourse.setInt( 1, course.getIdCourse());
+
+            ResultSet rs = this.selectUserByCourse.executeQuery();
+
+            //rs ritorna un insieme di tuple rappresentanti i gruppi a cuoi appartiene l'utente
+            //scorro rs ed aggiungo alla lista il gruppo
+            while( rs.next() ){
+
+                User user = this.generateUser(rs);
+
+                list.add(user);
+            }
+
+        }catch (Exception e) {
+            throw new DaoException("Error query getUserByGroups", e);
+        }
+
+        return list;
+    }
+
+    @Override
     public List <User> getUsers() throws DaoException {
 
         try {
@@ -355,6 +389,7 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
             this.selectUserByGroupsId.close();
             this.selectUserByEmail.close();
             this.selectUsers.close();
+            selectUserByCourse.close();
 
             super.destroy(); //chiudo la connessione
 

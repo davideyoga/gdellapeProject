@@ -17,11 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Davide Micarelli
@@ -43,6 +39,22 @@ public class ModAssociationStudyCourseWithCourse extends BaseController {
 
         //TOLGO I CORSI DI STUDIO DI UN ANNO PRECEDENTE A QUELLO ATTUALE
 
+        Iterator<Course> iterator = coursesMatch.iterator();
+
+        while (iterator.hasNext()){
+
+            Course course = iterator.next();
+
+            //se il corso e' di un anno diverso da quello attuale
+            if( utilityManager.getDifferenceByAccademicAge(course, accademicYear) != 0 ){
+
+                //elimino il corso dalla lista
+                iterator.remove();
+            }
+
+        }
+
+        /*  IL CICLO COL FOR EACH DA UN ConcurrentModificationException PRIMA DEL 2009 E DOPO IL 2020
         //ciclo sulla lista dei corsi che appartengono al corso di studi
         for (Course course : coursesMatch ){
 
@@ -53,6 +65,8 @@ public class ModAssociationStudyCourseWithCourse extends BaseController {
                 coursesMatch.remove(course);
             }
         }
+
+        */
 
         return coursesMatch;
     }
@@ -94,6 +108,8 @@ public class ModAssociationStudyCourseWithCourse extends BaseController {
                     CourseDao courseDao = new CourseDaoImpl(ds);
                     courseDao.init();
 
+
+
                     //controllo se non e' presente il parametro get con l'id del corso di studi
                     if( request.getParameter("idStudyCourse") == null || request.getParameter("idStudyCourse").equals("") ){
 
@@ -115,6 +131,7 @@ public class ModAssociationStudyCourseWithCourse extends BaseController {
 
                     }
 
+                    //inizializzo un anno accademico
                     AccademicYear accademicYear;
 
                     //controllo l'esistenza del parametro get dell'anno accademico che si vuole modificare
@@ -124,13 +141,16 @@ public class ModAssociationStudyCourseWithCourse extends BaseController {
                         //se non esiste l'anno accademico, setto quello attuale
                         accademicYear = new AccademicYear(Calendar.getInstance());
 
+                        //se esiste
                     }else{
+
                        //se esiste setto quello impostato nella richiesta get
                        accademicYear = new AccademicYear(Integer.parseInt(request.getParameter("age")));
                     }
 
                     //estraggo la lista dei corsi di questo anno accademico
                     List<Course> allCourses = courseDao.getCourseByYear(accademicYear.toString());
+
 
                     //estraggo la lista dei corsi collegati al corso di studi di quest'anno
                     List<Course> coursesMatch = getCourseRelatedStudyCourse(courseDao, studyCourse, accademicYear.toString());
@@ -156,13 +176,15 @@ public class ModAssociationStudyCourseWithCourse extends BaseController {
                     datamodel.put("coursesMatch", coursesMatch);
                     datamodel.put("cfuType", cfuType);
                     datamodel.put("currentYear", accademicYear );
+                    datamodel.put("currentFirstYear", accademicYear.getFirstYear());
 
 
                     //chiudo i dao
                     studyCourseDao.destroy();
                     courseDao.destroy();
 
-                    //prima di lanciara il template carico nella sessione dell'amministatore l'id dell'utente che intendo modificare e l'anno
+                    //prima di lanciara il template carico nella sessione dell'amministatore l'id dell'utente e l'anno che intendo modificare, tale parametro mi permette di tenere traccia
+                    //anche dopo aver eseguito una richiesta POST
                     request.getSession().setAttribute("idStudyCourseToModify", studyCourse.getId() );
                     request.getSession().setAttribute("currentYear", accademicYear.getFirstYear() );
 
@@ -231,13 +253,22 @@ public class ModAssociationStudyCourseWithCourse extends BaseController {
                     CourseDao courseDao = new CourseDaoImpl(ds);
                     courseDao.init();
 
-                    //estraggo il corso di studi dall'id inserito precedetnemente nella sessione
+                    //estraggo il corso di studi dall'id inserito precedentemente nella sessione
                     StudyCourse studyCourse = studyCourseDao.getStudyCourseById((Integer) request.getSession().getAttribute("idStudyCourseToModify"));
+
+
+                    //controllo la presenza del parametro currentYear che rappresenta l'anno preso in esame, dovrebbe essere sempre presente,
+                    //se cosi non fosse c'e' un problema, per ovviare lancio la lista dei corsi di studio
+                    if(request.getSession().getAttribute("currentYear") == null ||
+                            request.getSession().getAttribute("currentYear").equals("")){
+
+                        //se l'anno non presente lancio la servlet della lista dei corsi di studio
+                        response.sendRedirect("AdmGetListStudyCourse");
+                        return;
+                    }
 
                     //estraggo l'anno accademico dalla sessione
                     AccademicYear accademicYear = new AccademicYear((Integer) request.getSession().getAttribute("currentYear"));
-
-
 
 
 
@@ -277,8 +308,6 @@ public class ModAssociationStudyCourseWithCourse extends BaseController {
                         //caso 3, se il corso e' presente in courseListAll ma non in nameCourseList
                         if (courseListPrima.contains(course) && !nameCourseListDopo.contains(course.getName())) {
 
-                            System.out.println("SONO ENTRATO NEL PRIMO CASO");
-
                             //tolgo il servizio service al gruppo
                             studyCourseDao.deleteCourseStudyCourseConnection(course, studyCourse);
 
@@ -288,8 +317,6 @@ public class ModAssociationStudyCourseWithCourse extends BaseController {
 
                         //caso 2, se groups non e' contenuto in groupsListPrima ed ora e' contenuto in nameGroupsListDopo
                         if (!courseListPrima.contains(course) && nameCourseListDopo.contains(course.getName())) {
-
-                            System.out.println("SONO ENTRATO NEL SECONDO CASO");
 
                             //aggiungo il servizio al gruppo
                             studyCourseDao.insertCourseStudyCourseConnection(course, studyCourse, request.getParameter("cfuType"+course.getName()));
@@ -303,8 +330,6 @@ public class ModAssociationStudyCourseWithCourse extends BaseController {
                         //se non sono state effettuate modifiche rispetto a prima
                         if( courseListPrima.contains(course) && nameCourseListDopo.contains(course.getName()) ) {
 
-                            System.out.println("SONO ENTRATO NEL TERZO CASO");
-
                             //estraggo il tipo dei cfu
                             String cfuType = studyCourseDao.getCfuType(course, studyCourse);
 
@@ -313,9 +338,6 @@ public class ModAssociationStudyCourseWithCourse extends BaseController {
 
                             //se il corso era gia associato al corso di studi ma ha cambiato il tipo di cfu
                             if (!cfuType.equals(request.getParameter("cfuType" + course.getName()))) {
-
-
-                                System.out.println("SONO ENTRATO NEL QUARTO CASO");
 
                                 System.out.println(request.getParameter("cfuType" + course.getName()));
 
@@ -328,7 +350,7 @@ public class ModAssociationStudyCourseWithCourse extends BaseController {
 
                         }
 
-                        //se non sono veri nessuno dei due ci troviamo nel caso 1, quindi non faccio nulla
+                        //se non sono veri nessuno dei due ci troviamo nel caso in cui non e' stata e quindi non faccio nulla
 
                     }
 
@@ -389,10 +411,13 @@ public class ModAssociationStudyCourseWithCourse extends BaseController {
 
         }catch (DaoException e) {
             e.printStackTrace();
-            //in caso di dao exception ecc. lancio il template di errore
+            //in caso di dao exception ecc.. lancio il template di errore
             TemplateController.process("error.ftl", datamodel, response, getServletContext());
         } catch (LogException e) {
             e.printStackTrace();
+
+            //lancio template
+            TemplateController.process("error.ftl", datamodel, response, getServletContext());
         }
     }
 }
