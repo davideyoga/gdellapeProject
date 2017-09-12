@@ -259,7 +259,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="agileits_testimonial_grid">
                     <div class="w3l_testimonial_grid">
                         <p>In eu auctor felis, idCourse eleifend dolor. Integer bibendum dictum erat,
-                            non laoreet dolor.
+                            non laoreet dolor.  porchiddio
                         </p>
                         <h4>Rosy Crisp</h4>
                         <h5>Student</h5>
