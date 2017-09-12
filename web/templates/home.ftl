@@ -197,7 +197,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <li><a href="#" class="agileinfo_google"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
                     <li><a href="#" class="agileits_pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
                 </ul>
-                <img src="https://photos-1.dropbox.com/t/2/AABWujxLkvxTHHYqPU2TMUd6gRkL4cRXQEjcMHR3DoxZVg/12/314683952/jpeg/32x32/1/_/1/2/5.jpg/EI67t7YCGMECIAcoBw/WLfe0vmYLRTqZ8Oy2Kxgsm46VYFw6fQ-ZP7h2WmGIyw?size=1280x960&size_mode=3" alt=" " class="img-responsive" />
+                <img src="https://photos-3.dropbox.com/t/2/AAAB0h8A822rYTBqVmu23QWWBoIy0f3tw3a_r0NMGpPF0g/12/624186369/jpeg/32x32/3/1505224800/0/2/FB_IMG_1492454801757.jpg/ENDdp4cFGLMCIAcoBw/o5MTdPtwnhpDzHSxhPkKMuHeTPc8v6-tTFmAneVLOAo?dl=0&size=1280x960&size_mode=3" alt=" " class="img-responsive" />
             </div>
             <div class="col-md-4 agileits_w3layouts_team_grid">
                 <h3>professore 1</h3>
