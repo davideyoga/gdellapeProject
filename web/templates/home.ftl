@@ -86,7 +86,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <ul id="login_signup" >
             <li><i class="fa fa-lock" aria-hidden="true"></i><a href="login" id="login_link">Login </a></li>
             <#--cambio lingua-->
-            <li><a href="Home?<#if lng == 'IT'>lng=EN<#elseif lng == 'EN'>lng=IT<#else>lng=EN</#if>">Change Language <img src="icons/blank.gif" class="flag flag-gb" alt="gb" />
+            <li><a href="Home?<#if lng == 'IT'>lng=EN<#elseif lng == 'EN'>lng=IT<#else>lng=EN</#if>">Change Language <img src="icons/blank.gif" class="flag flag-gb" alt="" />
             </a></li>
         </ul>
     </div>
