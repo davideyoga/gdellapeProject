@@ -1,5 +1,6 @@
-package controller;
+package controller.adm;
 
+import controller.BaseController;
 import controller.utility.AccademicYear;
 import dao.exception.DaoException;
 import dao.implementation.CourseDaoImpl;

@@ -42,7 +42,7 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
             deleteLinkCourseUser,
             selectCourses,
             selectCourseModulated,
-            selectCoursePropedeutic,
+            selectCoursePreparatory,
             selectCourseBorrowed;
 
 
@@ -164,7 +164,7 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
                     "                                                           ON course.id = moduleCourse.corse_module_id " +
                     "                                                           WHERE moduleCourse.course_id = ? ");
 
-            this.selectCoursePropedeutic = connection.prepareStatement("SELECT * FROM course" +
+            this.selectCoursePreparatory = connection.prepareStatement("SELECT * FROM course" +
                     "                                                           LEFT JOIN preparatoryCourse " +
                     "                                                           ON course.id = preparatoryCourse.corse_preparatory_id " +
                     "                                                           WHERE preparatoryCourse.course_id = ?");
@@ -598,14 +598,14 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
     }
 
     @Override
-    public List <Course> getCoursePropedeutic(Course course) throws DaoException {
+    public List <Course> getCoursePreparatory(Course course) throws DaoException {
         List<Course> courses = new ArrayList <>();
 
         try {
 
-            this.selectCoursePropedeutic.setInt(1, course.getIdCourse());
+            this.selectCoursePreparatory.setInt(1, course.getIdCourse());
 
-            ResultSet rs = this.selectCoursePropedeutic.executeQuery();
+            ResultSet rs = this.selectCoursePreparatory.executeQuery();
 
             while (rs.next()){
 

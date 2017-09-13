@@ -41,7 +41,7 @@ public interface CourseDao extends DaoData{
 
     List<Course> getCourseModulated(Course course) throws DaoException;
 
-    List<Course> getCoursePropedeutic(Course course) throws DaoException;
+    List<Course> getCoursePreparatory(Course course) throws DaoException;
 
     List<Course> getCourseBorrowed(Course course) throws DaoException;
 }
