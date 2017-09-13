@@ -6,6 +6,12 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
+    <context-param>
+        <param-name>uploads.directory</param-name>
+        <!-- Tomcat deve aver il permesso di scrittura su questa cartella-->
+        <param-value>/etc/apache-tomcat-8.5.14/download</param-value>
+    </context-param>
+
     <resource-ref>
         <res-ref-name>jdbc/gdellapeProject</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
@@ -44,7 +50,7 @@
     <!-- Servlet di login -->
     <servlet>
         <servlet-name>Login</servlet-name>
-        <servlet-class>controller.Login</servlet-class>
+        <servlet-class>controller.adm.Login</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
@@ -56,7 +62,7 @@
     <!-- Servlet di logout -->
     <servlet>
         <servlet-name>Logout</servlet-name>
-        <servlet-class>controller.Logout</servlet-class>
+        <servlet-class>controller.adm.Logout</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>
@@ -68,7 +74,7 @@
     <!-- Servlet di ProfileManager -->
     <servlet>
         <servlet-name>ProfileManagement</servlet-name>
-        <servlet-class>controller.ProfileManagement</servlet-class>
+        <servlet-class>controller.adm.ProfileManagement</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ProfileManagement</servlet-name>
@@ -286,7 +292,7 @@
     <!-- Servlet di  HomeBackOffice-->
     <servlet>
         <servlet-name>HomeBackOffice</servlet-name>
-        <servlet-class>controller.HomeBackOffice</servlet-class>
+        <servlet-class>controller.adm.HomeBackOffice</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeBackOffice</servlet-name>
@@ -343,5 +349,117 @@
         <url-pattern>/modAssociationStudyCourseWithCourse</url-pattern>
     </servlet-mapping>
     <!-- Fine Servlet di ModAssociationStudyCourseWithCourse -->
+
+
+    <!-- Servlet di  ListCourse-->
+    <servlet>
+        <servlet-name>ListCourse</servlet-name>
+        <servlet-class>controller.ListCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListCourse</servlet-name>
+        <url-pattern>/ListCourse</url-pattern>
+        <url-pattern>/listCourse</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di ListCourse -->
+
+
+    <!-- Servlet di  ModCourse-->
+    <servlet>
+        <servlet-name>ModCourse</servlet-name>
+        <servlet-class>controller.adm.ModCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ModCourse</servlet-name>
+        <url-pattern>/ModCourse</url-pattern>
+        <url-pattern>/modCourse</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di ModCourse -->
+
+    <!-- Servlet di  ModAdmCourse-->
+    <servlet>
+        <servlet-name>ModAdmCourse</servlet-name>
+        <servlet-class>controller.adm.ModAdmCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ModAdmCourse</servlet-name>
+        <url-pattern>/ModAdmCourse</url-pattern>
+        <url-pattern>/modAdmCourse</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di ModCourse -->
+
+
+    <!-- Servlet di  ModAssociationCourseWithUser-->
+    <servlet>
+        <servlet-name>ModAssociationCourseWithUser</servlet-name>
+        <servlet-class>controller.adm.ModAssociationCourseWithUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ModAssociationCourseWithUser</servlet-name>
+        <url-pattern>/ModAssociationCourseWithUser</url-pattern>
+        <url-pattern>/modAssociationCourseWithUser</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di ModAssociationCourseWithUser -->
+
+
+    <!-- Servlet di  AdmModCourse-->
+    <servlet>
+        <servlet-name>AdmModCourse</servlet-name>
+        <servlet-class>controller.adm.AdmModCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdmModCourse</servlet-name>
+        <url-pattern>/AdmModCourse</url-pattern>
+        <url-pattern>/admModCourse</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di AdmModCourse -->
+
+
+    <display-name>ServletFileUploadDownloadExample</display-name>
+    <context-param>
+        <param-name>tempfile.dir</param-name>
+        <param-value>tmpfiles</param-value>
+    </context-param>
+
+
+
+
+
+    <!-- Servlet di  AddMaterial-->
+    <servlet>
+        <servlet-name>AddMaterial</servlet-name>
+        <servlet-class>controller.adm.AddMaterial</servlet-class>
+
+        <multipart-config>
+            <!--
+            <location>/tmp</location> temporary files location (DEF: "") -->
+            <max-file-size>20848820</max-file-size>
+            <!-- max size of accepted uploadd (DEF: unlimited!) -->
+            <max-request-size>418018841</max-request-size>
+            <!-- max size of multipart requests (may contain more files or data) (DEF: ulimited!) -->
+            <!-- <file-size-threshold>1048576</file-size-threshold> max size of files to hold in memory (without writing to temporary disk file) (DEF: 0) -->
+        </multipart-config>
+
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddMaterial</servlet-name>
+        <url-pattern>/AddMaterial</url-pattern>
+        <url-pattern>/addMaterial</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di AddMaterial -->
+
+
+    <!-- Servlet di  ListMaterial-->
+    <servlet>
+        <servlet-name>ListMaterial</servlet-name>
+        <servlet-class>controller.ListMaterial</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListMaterial</servlet-name>
+        <url-pattern>/ListMaterial</url-pattern>
+        <url-pattern>/listMaterial</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di ListMaterial -->
+
 
 </web-app>

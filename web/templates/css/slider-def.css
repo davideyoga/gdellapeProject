@@ -24,8 +24,8 @@
   animation:slide 30s infinite;
 }
 .slider{
-  width:25%;
-  height:100%;
+  /*width:25%;*/
+  /*height:100%;*/
   float:left;
   position:relative;
   z-index:1;

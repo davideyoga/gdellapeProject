@@ -54,6 +54,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <#include "css/lsb.css">
 <#include "css/font-awesome.css">
 <#include "css/flexslider.css">
+<#include "css/flags.css">
+<#include "css/flags.min.css">
 
     <!-- js -->
     <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
@@ -84,21 +86,22 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <ul id="login_signup" >
             <li><i class="fa fa-lock" aria-hidden="true"></i><a href="login" id="login_link">Login </a></li>
             <#--cambio lingua-->
-            <li><a href="Home?<#if lng == 'IT'>lng=EN<#elseif lng == 'EN'>lng=IT<#else>lng=EN</#if>">Change Language En</span></a></li>
+            <li><a href="Home?<#if lng == 'IT'>lng=EN<#elseif lng == 'EN'>lng=IT<#else>lng=EN</#if>">Change Language <img src="icons/blank.gif" class="flag flag-gb" alt="" />
+            </a></li>
         </ul>
     </div>
 	<#-- login signin banner-->
 
     <nav class="navbar navbar-default">
-        <div class="navbar-header navbar-left">
+        <#--<div class="navbar-header navbar-left">-->
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <h1><a class="navbar-brand" href="Home"><span>D</span>isim</a></h1>   <!--calippo alla fragola-->
-        </div>
+            <h1><a class="navbar-brand" href="Home"><span>U</span>niversità</a></h1>   <!--calippo alla fragola-->
+        <#--</div>-->
 
         <!-- Collect the nav links, forms, and other content for toggling -->
 	<div class="collapse navbar-collapse navbar-right" idCourse="bs-example-navbar-collapse-1">
@@ -118,68 +121,33 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <div class="banner-bottom">
     <div class="container">
         <div class="col-md-6 w3ls_banner_bottom_left">
-            <div class="w3ls_banner_bottom_left1">
-                <p>01</p>
-                <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
-            </div>
+            <#--<div class="w3ls_banner_bottom_left1">-->
+                <#--<p>01</p>-->
+                <#--<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>-->
+            <#--</div>-->
             <div class="w3ls_banner_bottom_right1">
 
                 <h2>Benvenuti nel <span>DISIM</span>  </h2>
-                <p>Dipartimento di Ingegneria e Scienze dell'Informazione e Matematica</p>
+                <p>Dipartimento di Ingegneria <br> e Scienze dell'Informazione e Matematica</p>
                 <div class="w3l_more">
                     <a href="#" class="button button--nina" data-text="Scopri di più" data-toggle="modal" data-target="#myModal">
                         <span> Scopri di più</span>
                     </a>
                 </div>
             </div>
-            <div class="clearfix"> </div>
         </div>
         <div class="col-md-6 w3ls_banner_bottom_right">
-            <section class="slider">
-                <div class="flexslider">
-                    <ul class="slides">
-                        <li>
-                            <div class="agileits_w3layouts_banner_bottom_grid">
-                                <img src= "images/1.jpg" alt=" " class="img-responsive" />
-                            </div>
-                        </li>
-                        <li>
-                            <div class="agileits_w3layouts_banner_bottom_grid">
-                                <img src="images/2.jpg" alt=" " class="img-responsive" />
-                            </div>
-                        </li>
-                        <li>
-                            <div class="agileits_w3layouts_banner_bottom_grid">
-                                <img src="images/3.jpg" alt=" " class="img-responsive" />
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </section>
+            <div class="agileits_w3layouts_banner_bottom_grid" >
+                <br>
+                <img src= "https://photos-1.dropbox.com/t/2/AADifJAFfBd-btUbv2awTVipNkoJxT1RJPCqGl3BYMealA/12/314683952/png/32x32/1/_/1/2/logo.png/EI67t7YCGNUCIAcoBw/r3BrAjZPVaV1okCHZhXjZgT_EFoInIH7L2eMLqvfB7U?size=1280x960&size_mode=3" alt=" " class="img-responsive" />
+            </div>
+
         </div>
-        <div class="clearfix"> </div>
-    </div>
+
 </div>
 <!-- //banner-bottom -->
 <!-- bootstrap-pop-up -->
-<div class="modal video-modal fade" idCourse="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                Edifying
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <section>
-                <div class="modal-body">
-                    <img src="10.jpg" alt=" " class="img-responsive" />
-                    <p>morra di stronzate
-                        <i>troiate fatte bene</i>
-                    </p>
-                </div>
-            </section>
-        </div>
-    </div>
-</div>
+
 <!-- //bootstrap-pop-up -->
 
 <!-- register -->
@@ -204,25 +172,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <#--</div>-->
 <#--</div>-->
 
-<div class="register">
-    <div class="container">
-        <div class="col-md-6 w3layouts_register_right">
-
-        </div>
-    </div>
-</div>
-<!-- //register -->
 <!-- team -->
 <div class="team w3_women_team" idCourse="team">
     <div class="container">
         <div class="w3_agile_team_grid">
             <div class="w3_agile_team_grid_left">
-                <p>03</p>
+                <p>02</p>
                 <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
             </div>
             <div class="w3_agile_team_grid_right">
                 <h3>Incontra i nostri <span>Docenti</span> ! </h3>
-                <p>Clicca <a href="ListUser?<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>"><span>qui</span></a> per la lista completa dei docenti
+                <p>Clicca <a href="*"><span>qui</span></a> per la lista completa dei docenti
                 </p>
             </div>
             <div class="clearfix"> </div>
@@ -237,7 +197,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <li><a href="#" class="agileinfo_google"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
                     <li><a href="#" class="agileits_pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
                 </ul>
-                <img src="images/5.jpg" alt=" " class="img-responsive" />
+                <img src="https://photos-3.dropbox.com/t/2/AAAB0h8A822rYTBqVmu23QWWBoIy0f3tw3a_r0NMGpPF0g/12/624186369/jpeg/32x32/3/1505224800/0/2/FB_IMG_1492454801757.jpg/ENDdp4cFGLMCIAcoBw/o5MTdPtwnhpDzHSxhPkKMuHeTPc8v6-tTFmAneVLOAo?dl=0&size=1280x960&size_mode=3" alt=" " class="img-responsive" />
             </div>
             <div class="col-md-4 agileits_w3layouts_team_grid">
                 <h3>professore 1</h3>
@@ -248,7 +208,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <li><a href="#" class="agileinfo_google"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
                     <li><a href="#" class="agileits_pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
                 </ul>
-                <img src="images/6.jpg" alt=" " class="img-responsive" />
+                <img src="https://photos-6.dropbox.com/t/2/AADYoGPms-I1sLKfQrLzDar-JyQ5kda5X7HZdxqIpxP78Q/12/314683952/jpeg/32x32/1/_/1/2/6.jpg/EI67t7YCGMMCIAcoBw/y0ZidP0NtrLfqQq5QzkBosgDxlUvk_P7B7QDVp6G6_Y?size=1280x960&size_mode=3" alt=" " class="img-responsive" />
             </div>
             <div class="col-md-4 agileits_w3layouts_team_grid">
                 <h3>professore 2</h3>
@@ -259,7 +219,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <li><a href="#" class="agileinfo_google"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
                     <li><a href="#" class="agileits_pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
                 </ul>
-                <img src="images/7.jpg" alt=" " class="img-responsive" />
+                <img src="https://photos-4.dropbox.com/t/2/AACedg5LjX2-yzJy9k_SgZ7kZykm8zLSVFZ02sDfAU_BtA/12/314683952/jpeg/32x32/1/_/1/2/7.jpg/EI67t7YCGMUCIAcoBw/qo6bXY-urugNG0DyjH7zULKUGIYa1eSrc157QZMfSnk?size=1280x960&size_mode=3" alt=" " class="img-responsive" />
             </div>
             <div class="clearfix"> </div>
         </div>
@@ -276,77 +236,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </div>
 <!-- //gallery-top -->
 <!-- gallery -->
-<div class="gallery">
-    <ul idCourse="flexiselDemo1">
-        <li>
-            <div class="wthree_gallery_grid">
-                <a href="images/8.jpg" class="lsb-preview" data-lsb-group="header">
-                    <div class="view second-effect">
-                        <img src="images/8.jpg" alt="" class="img-responsive" />
-                        <div class="mask">
-                            <p>Edifying</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="wthree_gallery_grid">
-                <a href="images/9.jpg" class="lsb-preview" data-lsb-group="header">
-                    <div class="view second-effect">
-                        <img src="images/9.jpg" alt="" class="img-responsive" />
-                        <div class="mask">
-                            <p>Edifying</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="wthree_gallery_grid">
-                <a href="images/10.jpg" class="lsb-preview" data-lsb-group="header">
-                    <div class="view second-effect">
-                        <img src="images/10.jpg" alt="" class="img-responsive" />
-                        <div class="mask">
-                            <p>Edifying</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="wthree_gallery_grid">
-                <a href="images/11.jpg" class="lsb-preview" data-lsb-group="header">
-                    <div class="view second-effect">
-                        <img src="images/11.jpg" alt="" class="img-responsive" />
-                        <div class="mask">
-                            <p>Edifying</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="wthree_gallery_grid">
-                <a href="images/12.jpg" class="lsb-preview" data-lsb-group="header">
-                    <div class="view second-effect">
-                        <img src="images/12.jpg" alt="" class="img-responsive" />
-                        <div class="mask">
-                            <p>Edifying</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </li>
-    </ul>
-</div>
+
 <!-- //gallery -->
 <!-- testimonials -->
 <div class="testimonials">
     <div class="container">
         <div class="w3_agile_team_grid">
             <div class="w3_agile_team_grid_left">
-                <p>05</p>
+                <p>03</p>
                 <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
             </div>
             <div class="w3_agile_team_grid_right">
@@ -355,19 +252,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     Ut suscipit orci sem, eget lobortis sem dictum eu. Etiam congue ex sed volutpat fringilla.
                 </p>
             </div>
-            <div class="clearfix"> </div>
+            <#--<div class="clearfix"> </div>-->
         </div>
         <div class="w3ls_testimonials_grids">
             <section class="center slider">
                 <div class="agileits_testimonial_grid">
                     <div class="w3l_testimonial_grid">
                         <p>In eu auctor felis, idCourse eleifend dolor. Integer bibendum dictum erat,
-                            non laoreet dolor.
+                            non laoreet dolor.  porchiddio
                         </p>
                         <h4>Rosy Crisp</h4>
                         <h5>Student</h5>
                         <div class="w3l_testimonial_grid_pos">
-                            <img src="images/1.png" alt=" " class="img-responsive" />
+                            <img src="https://photos-6.dropbox.com/t/2/AACgyLY2w-RFOjRj_AjJmwha3R-f8kV7vvseCHcrPtx1fw/12/314683952/png/32x32/1/_/1/2/1.png/EI67t7YCGLoCIAcoBw/dP-XfKvgRhiYB8009cTdPsv5-Ma_A-en2-ZSYDJ8Igo?size=1280x960&size_mode=3" alt=" " class="img-responsive" />
                         </div>
                     </div>
                 </div>
@@ -379,7 +276,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <h4>Laura Paul</h4>
                         <h5>Student</h5>
                         <div class="w3l_testimonial_grid_pos">
-                            <img src="images/2.png" alt=" " class="img-responsive" />
+                            <img src="https://photos-3.dropbox.com/t/2/AAC2pkHJFTF4L89f-V7tQ3_4Du7DKrlw48kEid95pO20nQ/12/314683952/png/32x32/1/_/1/2/2.png/EI67t7YCGLwCIAcoBw/-qZPXkkWwo3B0AFr60u8rgTVS5DRYkytU7DjcCxet00?size=1280x960&size_mode=3" alt=" " class="img-responsive" />
                         </div>
                     </div>
                 </div>
@@ -391,7 +288,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <h4>Michael Doe</h4>
                         <h5>Student</h5>
                         <div class="w3l_testimonial_grid_pos">
-                            <img src="images/3.png" alt=" " class="img-responsive" />
+                            <img src="https://photos-3.dropbox.com/t/2/AAA4wAmMTMow_ZGXyDbkKFGIVfRw2uSk8SWVn3XPxF7lBg/12/314683952/png/32x32/1/_/1/2/3.png/EI67t7YCGL4CIAcoBw/FQVqIagIK8cT2fvJuiBFyhsN5yQ55bO0HEUNoRdk4J4?size=1280x960&size_mode=3" alt=" " class="img-responsive" />
                         </div>
                     </div>
                 </div>
