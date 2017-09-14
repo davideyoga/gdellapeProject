@@ -3,6 +3,7 @@ package controller.adm;
 import controller.BaseController;
 import controller.logController.LogException;
 import controller.utility.AccademicYear;
+import controller.utility.AccademicYearException;
 import controller.utility.SecurityLayer;
 import dao.exception.DaoException;
 import dao.implementation.CourseDaoImpl;
@@ -21,6 +22,14 @@ import java.util.List;
 
 /**
  * @author Davide Micarelli
+ *
+ *
+ *
+ * ERRORE: java.lang.IllegalStateException: Cannot call sendRedirect() after the response has been committed AL sendRedirect("serviceNotPermissed")
+ *
+ *
+ *
+ *
  *
  * Servlet per l'aggiunta e l'eliminazione dei collegamenti tra corsi propedeutici, modulati ecc..
  *
@@ -68,6 +77,28 @@ public class ModCourseRelation extends BaseController {
         }
     }
 
+    private String getMode(String mode){
+
+        switch(mode) {
+
+            case "borrowed":
+
+                return "borrowed";
+
+            case "module":
+
+                return "module";
+
+            case "preparatory":
+
+                return "preparatory";
+
+            default:
+
+                return null;
+        }
+    }
+
 
     /**
      * Estraggo id del corso e la modalita' di modifca (Propedeutici, Modulati o Mutuati),
@@ -94,7 +125,7 @@ public class ModCourseRelation extends BaseController {
                         datamodel, getServletContext());
 
                 //estraggo il servizio di modifica delle relazione tra tutti i corsi
-                Service modAllRelationWithCourse = this.getServiceAndCreate(request, response, ds, "modRelationWithCourse", "Permit for modification Relation between courses ",
+                Service modAllRelationWithCourse = this.getServiceAndCreate(request, response, ds, "modAllRelationWithCourse", "Permit for modification Relation of all course ",
                         datamodel, getServletContext());
 
 
@@ -107,24 +138,34 @@ public class ModCourseRelation extends BaseController {
                 CourseDao courseDao = new CourseDaoImpl(ds);
                 courseDao.init();
 
-                //estraggo il corso per vedere se esite
-                Course courseById =courseDao.getCourseById(Integer.parseInt(request.getParameter("idCourse")));
+                //estraggo il corso per vedere se esite (se non e' un numero catturo l'eccezzione e lancio errore)
+                Course courseById =courseDao.getCourseById(SecurityLayer.checkNumeric(request.getParameter("idCourse")));
 
                 //se il corso esiste
                 if(courseById != null) {
 
+                    //inizializzo un anno accademico
+                    AccademicYear accademicYear = new AccademicYear(Calendar.getInstance());
 
-                    //se l'utente in sessione possiede il servizio modAllRelationWithCourse oppure possiede il corso e puo' modificare relazioni
-                    //nel caso in cu
+                    System.out.println("user in sessione: " + sessionManager.getUser(request));
+                    System.out.println("corso in sessione: " + courseById);
+                    System.out.println("courseDao.getCoursesByUser(sessionManager.getUser(request)): " + courseDao.getCoursesByUser(sessionManager.getUser(request)));
+
+                    System.out.println("((List <Service>) request.getSession().getAttribute(\"services\")).contains(modRelationWithCourse): " + ((List <Service>) request.getSession().getAttribute("services")).contains(modRelationWithCourse));
+                    System.out.println(" courseDao.getCoursesByUser(sessionManager.getUser(request)).contains(courseById): " +  courseDao.getCoursesByUser(sessionManager.getUser(request)).contains(courseById));
+
+
+                    //se l'utente in sessione possiede il servizio modAllRelationWithCourse oppure possiede il corso , puo' modificare relazioni e
+                    //l'anno e' >= a quello attuale
                     if (((List <Service>) request.getSession().getAttribute("services")).contains(modAllRelationWithCourse) ||
                             (((List <Service>) request.getSession().getAttribute("services")).contains(modRelationWithCourse) &&
-                                    courseDao.getCoursesByUser(sessionManager.getUser(request)).contains(courseById))) {
+                                    courseDao.getCoursesByUser(sessionManager.getUser(request)).contains(courseById) &&
+                                    (new AccademicYear(courseById.getYear()).getFirstYear() >= accademicYear.getFirstYear() )
+                            )) {
 
-                        AccademicYear accademicYear = new AccademicYear(Calendar.getInstance());
 
-                        //estraggo tutti i corsi di questo anno
-                        List<Course> allCourses = courseDao.getCourseByYear(accademicYear.getFirstYear() + "/" + accademicYear.getSecondYear());
-
+                        //estraggo tutti i corsi dell'anno del corso estratto dal parametro get
+                        List<Course> allCourses = courseDao.getCourseByYear(courseById.getYear());
 
                         //estraggo i corsi della modalita' selezionata
                         List<Course> courseRelated = new ArrayList <>();
@@ -160,6 +201,7 @@ public class ModCourseRelation extends BaseController {
                             default:
                         }
 
+                        //chiudo il dao
                         courseDao.destroy();
 
 
@@ -170,6 +212,8 @@ public class ModCourseRelation extends BaseController {
 
                         //lancio servlet di servizio non permesso
                         response.sendRedirect("ServiceNotPermissed");
+
+                        return;
 
                     }
 
@@ -188,7 +232,13 @@ public class ModCourseRelation extends BaseController {
                 createPreviousPageAndRedirectToLogin(request, response, "ListCourse");
             }
 
-        }catch (DaoException e){
+        }catch (DaoException | NumberFormatException e){
+            e.printStackTrace();
+
+            this.processError(request, response);
+
+        } catch (AccademicYearException e) {
+            e.printStackTrace();
 
             this.processError(request, response);
 
@@ -198,13 +248,9 @@ public class ModCourseRelation extends BaseController {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //controllo sessione
-        //pulisco messaggio
-
         try {
 
-
-
+            //pulisco il messaggio
             datamodel.put("message", null);
 
             //se sessione valida
@@ -230,23 +276,24 @@ public class ModCourseRelation extends BaseController {
                 //se il corso esiste
                 if(courseById != null) {
 
+                    //inizializzo un anno accademico
+                    AccademicYear accademicYear = new AccademicYear(Calendar.getInstance());
 
                     //se l'utente in sessione possiede il servizio modAllRelationWithCourse oppure possiede il corso e puo' modificare relazioni
                     //nel caso in cu
                     if (((List <Service>) request.getSession().getAttribute("services")).contains(modAllRelationWithCourse) ||
                             (((List <Service>) request.getSession().getAttribute("services")).contains(modRelationWithCourse) &&
-                                    courseDao.getCoursesByUser(sessionManager.getUser(request)).contains(courseById))) {
+                                    courseDao.getCoursesByUser(sessionManager.getUser(request)).contains(courseById) &&
+                                    (new AccademicYear(courseById.getYear()).getFirstYear() >= accademicYear.getFirstYear() )
+                            )) {
 
 
                         /*
                             RECUPERO I VECCHI DATI
                          */
 
-                        //estraggo il corso di studi attuale
-                        AccademicYear accademicYear = new AccademicYear(Calendar.getInstance());
-
                         //estraggo tutti i corsi di quest'anno
-                        List<Course> allCourses = courseDao.getCourseByYear(accademicYear.getFirstYear() + "/" + accademicYear.getSecondYear());
+                        List<Course> allCourses = courseDao.getCourseByYear(courseById.getYear());
 
                         //estraggo i corsi della modalita' selezionata
                         List<Course> oldCourseRelated = new ArrayList <>();
@@ -290,7 +337,7 @@ public class ModCourseRelation extends BaseController {
                             //ciclo sulla lista di tutti i corsi di quest'anno per estrarre i servizi dalla form
                             for (Course course: allCourses) {
 
-                                //se l'admin ha ceckato sul ceckbox del corso course
+                                //se l'utente ha ceckato sul ceckbox del corso course
                                 if (request.getParameter(String.valueOf(course.getIdCourse())) != null) {
 
                                     //aggiungo l'id del corso alla lista degli id dei corsi ceckati dalla form
@@ -320,11 +367,30 @@ public class ModCourseRelation extends BaseController {
                                 //caso 3, se il corso e' presente in oldCourseRelated ma non in nenewCourseRelated
                                 if (oldCourseRelated.contains(course) && !newCourseRelated.contains(course.getIdCourse())) {
 
-                                    //tolgo il collegamento con il corso course al corso
+                                    //tolgo il collegamento con il corso course al corso interessato
 
-                                    /*
-                                        MANCA
-                                     */
+                                    switch(mode) {
+
+                                        case "borrowed":
+
+                                            courseDao.deleteLinkCourseBorrowed(courseById, course.getIdCourse());
+
+                                            break;
+
+                                        case "module":
+
+                                            courseDao.deleteLinkCourseModulated(courseById, course.getIdCourse());
+
+                                            break;
+
+                                        case "preparatory":
+
+                                            courseDao.deleteLinkCoursePreparatory(courseById, course.getIdCourse());
+
+                                        default:
+                                    }
+
+
 
                                     serviziCambiati = true;
 
@@ -335,9 +401,27 @@ public class ModCourseRelation extends BaseController {
 
                                     //aggiungo il servizio al gruppo
 
-                                    /*
-                                        MANCA
-                                     */
+                                    switch(mode) {
+
+                                        case "borrowed":
+
+                                            courseDao.addLinkCourseBorrowed(courseById, course.getIdCourse());
+
+                                            break;
+
+                                        case "module":
+
+                                            courseDao.addLinkCourseModulated(courseById, course.getIdCourse());
+
+                                            break;
+
+                                        case "preparatory":
+
+                                            courseDao.addLinkCoursePreparatory(courseById, course.getIdCourse());
+
+                                        default:
+                                    }
+
 
 
                                     serviziCambiati = true;
@@ -356,9 +440,40 @@ public class ModCourseRelation extends BaseController {
                             }
 
 
+                            /*
+                                RIESTRAGGO I CORSI RELAZIONATI PER IL TEMPLATE
+                             */
+
+                            List<Course> courseRelated = new ArrayList <>();
+
+                            switch(mode) {
+
+                                case "borrowed":
+
+                                    courseRelated= courseDao.getCourseBorrowed(courseById);
+
+                                    break;
+
+                                case "module":
+
+                                    courseRelated= courseDao.getCourseModulated(courseById);
+
+                                    break;
+
+                                case "preparatory":
+
+                                    courseRelated= courseDao.getCoursePreparatory(courseById);
+
+                                default:
+                            }
 
 
+
+                            //chiudo il dao dei corsi
                             courseDao.destroy();
+
+                            //lancio il processo template
+                            this.processTemplate(request, response, courseById, allCourses, courseRelated, mode);
 
                             /*
                                 DA QUESTO PUNTO IN POI E' ANDATO STORTO QUALCOSA
@@ -408,6 +523,8 @@ public class ModCourseRelation extends BaseController {
 
 
         } catch (LogException e) {
+            e.printStackTrace();
+        } catch (AccademicYearException e) {
             e.printStackTrace();
         }
     }

@@ -475,5 +475,18 @@
     </servlet-mapping>
     <!-- Fine Servlet di ListMaterialNotAnonymous -->
 
+    <!-- Servlet di  ModCourseRelation-->
+    <servlet>
+        <servlet-name>ModCourseRelation</servlet-name>
+        <servlet-class>controller.adm.ModCourseRelation</servlet-class>
+
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ModCourseRelation</servlet-name>
+        <url-pattern>/ModCourseRelation</url-pattern>
+        <url-pattern>/modCourseRelation</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di ModCourseRelation -->
+
 
 </web-app>

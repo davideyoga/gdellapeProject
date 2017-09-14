@@ -44,4 +44,16 @@ public interface CourseDao extends DaoData{
     List<Course> getCoursePreparatory(Course course) throws DaoException;
 
     List<Course> getCourseBorrowed(Course course) throws DaoException;
+
+    void addLinkCourseModulated( Course course, int idCourseModulated ) throws DaoException;
+
+    void addLinkCoursePreparatory( Course course, int idCoursePreparatory )throws DaoException;
+
+    void addLinkCourseBorrowed( Course course, int idCourseBorrowed)throws DaoException;
+
+    void deleteLinkCourseModulated( Course course, int idCourseModulated ) throws DaoException;
+
+    void deleteLinkCoursePreparatory( Course course, int idCoursePreparatory )throws DaoException;
+
+    void deleteLinkCourseBorrowed( Course course, int idCourseBorrowed)throws DaoException;
 }

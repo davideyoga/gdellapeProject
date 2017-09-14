@@ -28,6 +28,7 @@ public class ListCourseForAddModulePreparatoryBorrowed extends BaseController{
      * @throws ServletException
      * @throws IOException
      */
+    /*
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //controlli su sessione e permessi
@@ -131,4 +132,6 @@ public class ListCourseForAddModulePreparatoryBorrowed extends BaseController{
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         this.processRequest(req, resp);
     }
+
+    */
 }

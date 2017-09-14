@@ -39,11 +39,18 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
             selectCourseByUserAndYear,
             selectCourseByStudyCourseAndYear,
             storeLinkCourseUser,
+            selectCourseByUser,
             deleteLinkCourseUser,
             selectCourses,
             selectCourseModulated,
             selectCoursePreparatory,
-            selectCourseBorrowed;
+            selectCourseBorrowed,
+            addLinkCourseModulated,
+            addLinkCoursePreparatory,
+            addLinkCourseBorrowed,
+            deleteLinkCourseModulated,
+            deleteLinkCoursePreparatory,
+            deleteLinkCourseBorrowed;
 
 
     public CourseDaoImpl(DataSource datasource) {
@@ -173,6 +180,35 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
                     "                                                           LEFT JOIN borrowedCourse " +
                     "                                                           ON course.id = borrowedCourse.corse_borrowed_id " +
                     "                                                           WHERE borrowedCourse.course_id = ?");
+
+            this.selectCourseByUser = connection.prepareStatement("SELECT * " +
+                    "                                                       FROM course " +
+                    "                                                       LEFT JOIN course_user " +
+                    "                                                       ON course.id = course_user.course_id " +
+                    "                                                       WHERE course_user.user_id=? ");
+
+
+            this.addLinkCourseModulated = connection.prepareStatement("INSERT INTO moduleCourse" +
+                    "                                                       VALUES (?,?)");
+
+            this.addLinkCoursePreparatory = connection.prepareStatement("INSERT INTO preparatoryCourse" +
+                    "                                                           VALUES (?,?)");
+
+            this.addLinkCourseBorrowed = connection.prepareStatement("INSERT INTO borrowedCourse" +
+                    "                                                           VALUES (?,?)");
+
+
+            this.deleteLinkCourseModulated = connection.prepareStatement("DELETE FROM moduleCourse" +
+                    "                                                           WHERE course_id=?" +
+                    "                                                           AND course_module_id=?");
+
+            this.deleteLinkCoursePreparatory = connection.prepareStatement("DELETE FROM preparatoryCourse" +
+                    "                                                           WHERE course_id=?" +
+                    "                                                           AND course_preparatory_id=?");
+
+            this.deleteLinkCourseBorrowed = connection.prepareStatement("DELETE FROM borrowedCourse" +
+                    "                                                           WHERE course_id=?" +
+                    "                                                           AND course_borrowed_id=?");
 
 
         } catch (SQLException e) {
@@ -419,7 +455,33 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
 
     @Override
     public List<Course> getCoursesByUser(User user) throws DaoException {
-        return null;
+
+        //inizializzo una lista di corsi
+        List<Course> courses = new ArrayList <>();
+
+        try {
+
+            //setto l'id dell'utente
+            this.selectCourseByUser.setInt(1, user.getId());
+
+            //eseguo la query
+            ResultSet rs = this.selectCourseByUser.executeQuery();
+
+            //ciclo il risultato della query
+            while (rs.next()){
+
+                //aggiungo alla lista il corso nella riga attuale della query
+                courses.add(this.generateCourse(rs));
+
+            }
+
+        } catch (SQLException e) {
+            throw new SelectDaoException("Error getCoursesByUser",e);
+        }
+
+        //restituisco la lista
+        return courses;
+
     }
 
     @Override
@@ -641,6 +703,110 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
         }
 
         return courses;
+    }
+
+    @Override
+    public void addLinkCourseModulated(Course course, int idCourseModulated) throws DaoException {
+
+        try {
+
+            this.addLinkCourseModulated.setInt(1, course.getIdCourse());
+            this.addLinkCourseModulated.setInt(2, idCourseModulated);
+
+            this.addLinkCourseModulated.executeUpdate();
+
+
+        } catch (SQLException e) {
+            throw new SelectDaoException("Error addLinkCourseModulated", e);
+        }
+
+    }
+
+    @Override
+    public void addLinkCoursePreparatory(Course course, int idCoursePreparatory) throws DaoException {
+
+        try {
+
+            this.addLinkCoursePreparatory.setInt(1, course.getIdCourse());
+            this.addLinkCoursePreparatory.setInt(2, idCoursePreparatory);
+
+            this.addLinkCoursePreparatory.executeUpdate();
+
+
+        } catch (SQLException e) {
+            throw new SelectDaoException("Error addLinkCoursePreparatory", e);
+        }
+
+    }
+
+    @Override
+    public void addLinkCourseBorrowed(Course course, int idCourseBorrowed) throws DaoException {
+
+        try {
+
+            this.addLinkCourseBorrowed.setInt(1, course.getIdCourse());
+            this.addLinkCourseBorrowed.setInt(2, idCourseBorrowed);
+
+            this.addLinkCourseBorrowed.executeUpdate();
+
+
+        } catch (SQLException e) {
+            throw new SelectDaoException("Error addLinkCourseBorrowed", e);
+        }
+    }
+
+    @Override
+    public void deleteLinkCourseModulated(Course course, int idCourseModulated) throws DaoException {
+
+        try {
+
+            this.deleteLinkCourseModulated.setInt(1,course.getIdCourse());
+            this.deleteLinkCourseModulated.setInt(2,idCourseModulated);
+
+            this.deleteLinkCourseModulated.executeUpdate();
+
+
+        } catch (SQLException e) {
+
+            throw new SelectDaoException("Error deleteLinkCourseModulated", e);
+        }
+
+    }
+
+    @Override
+    public void deleteLinkCoursePreparatory(Course course, int idCoursePreparatory ) throws DaoException {
+
+        try {
+
+            this.deleteLinkCoursePreparatory.setInt(1,course.getIdCourse());
+            this.deleteLinkCoursePreparatory.setInt(2,idCoursePreparatory);
+
+            this.deleteLinkCoursePreparatory.executeUpdate();
+
+
+        } catch (SQLException e) {
+
+            throw new SelectDaoException("Error deleteLinkCoursePreparatory", e);
+        }
+
+    }
+
+    @Override
+    public void deleteLinkCourseBorrowed(Course course, int idCourseBorrowed) throws DaoException {
+
+        try {
+
+            this.deleteLinkCourseBorrowed.setInt(1,course.getIdCourse());
+            this.deleteLinkCourseBorrowed.setInt(2,idCourseBorrowed);
+
+            this.deleteLinkCourseBorrowed.executeUpdate();
+
+
+        } catch (SQLException e) {
+
+            throw new SelectDaoException("Error deleteLinkCourseBorrowed", e);
+        }
+
     }
 
 
