@@ -16,7 +16,7 @@ public class ServiceNotPermissed extends BaseController {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //lancio template di servizio non permesso
-        TemplateController.process("not_permissed.ftl", datamodel,response,getServletContext());
+        TemplateController.process("not_permitted.ftl", datamodel,response,getServletContext());
 
     }
 

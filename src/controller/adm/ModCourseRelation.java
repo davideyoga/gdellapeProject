@@ -39,6 +39,9 @@ public class ModCourseRelation extends BaseController {
 
     protected void processTemplate(HttpServletRequest request, HttpServletResponse response, Course course ,List<Course> allCourse, List<Course> courseRelated, String mode){
 
+        //elimino il corso in questione da tutti i corsi
+        allCourse.remove(course);
+
         //inserisco nel datamodel i dati
         datamodel.put("allCourse", allCourse);
         datamodel.put("courseRelated", courseRelated);
@@ -46,23 +49,22 @@ public class ModCourseRelation extends BaseController {
         datamodel.put("mode", mode);
 
         //inserisco dati nella sessione per il metodo post
-        request.setAttribute("idCourse", course.getIdCourse());
-        request.setAttribute("mode", mode);
+        request.getSession().setAttribute("idCourse", course.getIdCourse());
+        request.getSession().setAttribute("mode", mode);
 
         //lancio il template
         TemplateController.process("mod_relation_course.ftl", datamodel,response,getServletContext());
 
     }
 
-    private boolean ceckGetValue(HttpServletRequest request){
+    private boolean checkGetValue(HttpServletRequest request){
 
         try {
+
             //controllo sull'esistenza del parametro id del corso e della presenza di un parametro mode valido
             if(request.getParameter("idCourse")!=null && SecurityLayer.checkNumeric(request.getParameter("idCourse")) != 0
-                    &&
-                    (request.getParameter("mode") == "borrowed" ||
-                            request.getParameter("mode")  == "module" ||
-                            request.getParameter("mode") == "preparatory") )
+                    && this.getMode(request.getParameter("mode")) != null
+                )
             {
                 return true;
 
@@ -130,8 +132,10 @@ public class ModCourseRelation extends BaseController {
 
 
                 //controllo sulla correttezza dei dati passati come GET
-                if(!this.ceckGetValue(request)){
+                if(!this.checkGetValue(request)){
+
                     this.processError(request, response);
+                    return;
                 }
 
                 //inizializzo un dao dei corsi
@@ -146,14 +150,6 @@ public class ModCourseRelation extends BaseController {
 
                     //inizializzo un anno accademico
                     AccademicYear accademicYear = new AccademicYear(Calendar.getInstance());
-
-                    System.out.println("user in sessione: " + sessionManager.getUser(request));
-                    System.out.println("corso in sessione: " + courseById);
-                    System.out.println("courseDao.getCoursesByUser(sessionManager.getUser(request)): " + courseDao.getCoursesByUser(sessionManager.getUser(request)));
-
-                    System.out.println("((List <Service>) request.getSession().getAttribute(\"services\")).contains(modRelationWithCourse): " + ((List <Service>) request.getSession().getAttribute("services")).contains(modRelationWithCourse));
-                    System.out.println(" courseDao.getCoursesByUser(sessionManager.getUser(request)).contains(courseById): " +  courseDao.getCoursesByUser(sessionManager.getUser(request)).contains(courseById));
-
 
                     //se l'utente in sessione possiede il servizio modAllRelationWithCourse oppure possiede il corso , puo' modificare relazioni e
                     //l'anno e' >= a quello attuale
@@ -224,6 +220,8 @@ public class ModCourseRelation extends BaseController {
 
                     this.processError(request, response);
 
+                    return;
+
                 }
 
                 //se la sessione non e' valida
@@ -237,11 +235,14 @@ public class ModCourseRelation extends BaseController {
 
             this.processError(request, response);
 
+            return;
+
         } catch (AccademicYearException e) {
             e.printStackTrace();
 
             this.processError(request, response);
 
+            return;
         }
     }
 
@@ -268,7 +269,6 @@ public class ModCourseRelation extends BaseController {
                 //inizializzo un dao dei corsi
                 CourseDao courseDao = new CourseDaoImpl(ds);
                 courseDao.init();
-
 
                 //estraggo il corso per vedere se esite
                 Course courseById =courseDao.getCourseById((Integer) request.getSession().getAttribute("idCourse"));
@@ -300,9 +300,8 @@ public class ModCourseRelation extends BaseController {
 
                         String mode = (String) request.getSession().getAttribute("mode");
 
-                        if(mode != null && ( request.getParameter("mode") == "borrowed" ||
-                                request.getParameter("mode")  == "module" ||
-                                request.getParameter("mode") == "preparatory")){
+                        //controllo la correttezza del parametro mode
+                        if(mode != null && this.getMode(String.valueOf(request.getSession().getAttribute("mode")) ) != null ){
 
                             switch(mode) {
 
@@ -484,6 +483,8 @@ public class ModCourseRelation extends BaseController {
 
                             this.processError(request, response);
 
+                            return;
+
                         }
 
                         //controllo tra vecchi dati e nuovi e eseguo operazioni appropriate
@@ -495,37 +496,46 @@ public class ModCourseRelation extends BaseController {
                         //se non ha permesso di modificare questo corso
                     }else{
 
-
                         //chiudo dao corsi
                         courseDao.destroy();
+
+                        response.sendRedirect("NotPermitted");
+                        return;
                     }
 
                     //se il corso non esiste piu'
                 }else{
 
-
-
                     //chiudo dao corsi
                     courseDao.destroy();
 
+                    this.processError(request, response);
+                    return;
                 }
-
-
 
                 //se non ha un sessione valida per tale operazione
             } else {
 
-
+                createPreviousPageAndRedirectToLogin(request, response, "ListCourse");
             }
 
         } catch (DaoException e) {
             e.printStackTrace();
 
+            this.processError(request, response);
+            return;
 
         } catch (LogException e) {
             e.printStackTrace();
+
+            this.processError(request, response);
+            return;
+
         } catch (AccademicYearException e) {
             e.printStackTrace();
+
+            this.processError(request, response);
+            return;
         }
     }
 }

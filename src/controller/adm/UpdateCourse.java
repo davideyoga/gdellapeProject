@@ -18,10 +18,24 @@ import java.util.List;
  */
 public class UpdateCourse extends BaseController {
 
+    /**
+     * Controllo
+     * @param request
+     * @return
+     */
+    private boolean checkValue(HttpServletRequest request){
+
+
+
+
+        return true;
+    }
+
+
 
     /**
      * Controlli su validita' della sessione e permesso,
-     * prendoo l'id del corso passato come parametro get,
+     * prendo l'id del corso passato come parametro get,
      * estatto tale corso controllo se e' di un anno precedente a questo,
      * oppure non e' stato riaggiornato,
      * prendo il corso con tale id, e lo carico nel datamodel
@@ -35,19 +49,24 @@ public class UpdateCourse extends BaseController {
         //se sessione valida
         if (this.sessionManager.isValid(request)) {
 
-            //estraggo il servizio di creazione degli utenti
-            Service modGroups = this.getServiceAndCreate(request, response, ds, "modGroups", "Permissed for modification Groups",
+            //estraggo il servizio di aggiornare un corso
+            Service updateCourse = this.getServiceAndCreate(request, response, ds, "updateCourse", "Permissed for update Course",
                     datamodel, getServletContext());
 
-            //se l'utente in sessione possiede il servizio modGroups...
-            if (((List<Service>) request.getSession().getAttribute("services")).contains(modGroups)) {
+            //se l'utente in sessione possiede il servizio updateCourse...
+            if (((List<Service>) request.getSession().getAttribute("services")).contains(updateCourse)) {
+
+
+                //controllo dei parametri get
 
 
 
+                //se l'utente non possiede il servizio
             }else{
 
             }
 
+            //se l'utente non ha una sessione valida
         }else{
 
         }

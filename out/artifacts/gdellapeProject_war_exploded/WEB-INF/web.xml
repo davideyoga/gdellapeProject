@@ -354,7 +354,7 @@
     <!-- Servlet di  ListCourse-->
     <servlet>
         <servlet-name>ListCourse</servlet-name>
-        <servlet-class>controller.ListCourse</servlet-class>
+        <servlet-class>controller.adm.ListCourse</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ListCourse</servlet-name>
@@ -460,6 +460,33 @@
         <url-pattern>/listMaterial</url-pattern>
     </servlet-mapping>
     <!-- Fine Servlet di ListMaterial -->
+
+
+    <!-- Servlet di  ListMaterialNotAnonymous-->
+    <servlet>
+        <servlet-name>ListMaterialNotAnonymous</servlet-name>
+        <servlet-class>controller.adm.ListMaterialNotAnonymous</servlet-class>
+
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListMaterialNotAnonymous</servlet-name>
+        <url-pattern>/ListMaterialNotAnonymous</url-pattern>
+        <url-pattern>/listMaterialNotAnonymous</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di ListMaterialNotAnonymous -->
+
+    <!-- Servlet di  ModCourseRelation-->
+    <servlet>
+        <servlet-name>ModCourseRelation</servlet-name>
+        <servlet-class>controller.adm.ModCourseRelation</servlet-class>
+
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ModCourseRelation</servlet-name>
+        <url-pattern>/ModCourseRelation</url-pattern>
+        <url-pattern>/modCourseRelation</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di ModCourseRelation -->
 
 
 </web-app>

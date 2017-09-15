@@ -161,6 +161,8 @@ public class ModCourse extends BaseController {
 
                         //inserisco l'anno del corso prima al corso dopo, per far in modo che non vi sia la possibilita' di modificare l'anno del corso
                         courseByForm.setYear(courseById.getYear());
+                        //stessa cosa per il codice del corso
+                        courseByForm.setCode(courseById.getCode());
 
                         //siccome l'utente base (docente non puo' andare a modificare codice e nome non devo eseguire alcun controllo)
 

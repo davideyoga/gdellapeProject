@@ -168,17 +168,17 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
 
             this.selectCourseModulated = connection.prepareStatement("SELECT * FROM course" +
                     "                                                           LEFT JOIN moduleCourse" +
-                    "                                                           ON course.id = moduleCourse.corse_module_id " +
+                    "                                                           ON course.id = moduleCourse.course_module_id " +
                     "                                                           WHERE moduleCourse.course_id = ? ");
 
             this.selectCoursePreparatory = connection.prepareStatement("SELECT * FROM course" +
                     "                                                           LEFT JOIN preparatoryCourse " +
-                    "                                                           ON course.id = preparatoryCourse.corse_preparatory_id " +
+                    "                                                           ON course.id = preparatoryCourse.course_preparatory_id " +
                     "                                                           WHERE preparatoryCourse.course_id = ?");
 
             this.selectCourseBorrowed = connection.prepareStatement("SELECT * FROM course" +
                     "                                                           LEFT JOIN borrowedCourse " +
-                    "                                                           ON course.id = borrowedCourse.corse_borrowed_id " +
+                    "                                                           ON course.id = borrowedCourse.course_borrowed_id " +
                     "                                                           WHERE borrowedCourse.course_id = ?");
 
             this.selectCourseByUser = connection.prepareStatement("SELECT * " +
