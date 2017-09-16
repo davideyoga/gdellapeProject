@@ -322,6 +322,16 @@ public class BaseController extends HttpServlet {
 
         //lancio servlet di errore
         response.sendRedirect("Error");
+        return;
+    }
+
+    protected void processNotPermitted(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+        //lancio servlet di errore
+        response.sendRedirect("NotPermitted");
+        return;
 
     }
+
+
 }

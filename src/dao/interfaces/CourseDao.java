@@ -1,5 +1,6 @@
 package dao.interfaces;
 
+import controller.utility.AccademicYear;
 import dao.data.DaoData;
 import dao.exception.DaoException;
 import model.Course;
@@ -26,6 +27,8 @@ public interface CourseDao extends DaoData{
     void deleteCourse(Course course) throws DaoException;
 
     List<Course> getCoursesByUser(User user) throws DaoException;
+
+    Course getCoursesByCodeAndYear(String code, AccademicYear accademicYear) throws DaoException;
 
     List<Course> getCoursesByUserAndYear(User user, String year) throws DaoException;
 

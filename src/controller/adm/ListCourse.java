@@ -121,6 +121,9 @@ public class ListCourse extends BaseController {
                         //lancio il template dell'utente che non puo' eliminare i corsi
                         TemplateController.process("list_courses.ftl", datamodel, response, getServletContext());
 
+
+
+
                         //se non ha nessuno dei due permessi
                    } else {
                         //lancio il messaggio di servizio non permesso

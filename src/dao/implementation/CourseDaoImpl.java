@@ -1,5 +1,6 @@
 package dao.implementation;
 
+import controller.utility.AccademicYear;
 import dao.data.DaoDataMySQLImpl;
 import dao.exception.DaoException;
 import dao.exception.InsertDaoException;
@@ -45,6 +46,7 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
             selectCourseModulated,
             selectCoursePreparatory,
             selectCourseBorrowed,
+            selectCourseByCodeAndYear,
             addLinkCourseModulated,
             addLinkCoursePreparatory,
             addLinkCourseBorrowed,
@@ -186,6 +188,11 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
                     "                                                       LEFT JOIN course_user " +
                     "                                                       ON course.id = course_user.course_id " +
                     "                                                       WHERE course_user.user_id=? ");
+
+            this.selectCourseByCodeAndYear = connection.prepareStatement("SELECT * " +
+                    "                                                               FROM course" +
+                    "                                                               WHERE code=?" +
+                    "                                                               AND year=?");
 
 
             this.addLinkCourseModulated = connection.prepareStatement("INSERT INTO moduleCourse" +
@@ -425,6 +432,8 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
             }
         } catch (SQLException e) {
             e.printStackTrace();
+
+            throw new DaoException("Error in getCoursesByCodeAndYear", e);
         }
 
         return course;
@@ -435,7 +444,89 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
     //update altrimenti
     @Override
     public Course storeCourse(Course course) throws DaoException {
-        //non ho capito a che serve
+        try {
+            //se il corso non presenta l'id egesuo una insert
+            if (course.getIdCourse() <= 0) {
+
+                this.insertCourse.setString(1, course.getCode());
+                this.insertCourse.setString(2, course.getName());
+                this.insertCourse.setString(3,course.getYear());
+                this.insertCourse.setInt(4,course.getCfu());
+                this.insertCourse.setString(5,course.getSector());
+                this.insertCourse.setString(6,course.getLanguage());
+                this.insertCourse.setInt(7,course.getSemester());
+                this.insertCourse.setString(8,course.getPrerequisite_ita());
+                this.insertCourse.setString(9,course.getPrerequisite_eng());
+                this.insertCourse.setString(10,course.getGoals_ita());
+                this.insertCourse.setString(11,course.getGoals_eng());
+                this.insertCourse.setString(12,course.getExame_mode_ita());
+                this.insertCourse.setString(13,course.getExame_mode_eng());
+                this.insertCourse.setString(14,course.getTeaching_mode_ita());
+                this.insertCourse.setString(15,course.getTeaching_mode_eng());
+                this.insertCourse.setString(16,course.getSyllabus_ita());
+                this.insertCourse.setString(17,course.getSyllabus_eng());
+                this.insertCourse.setString(18,course.getNote_ita());
+                this.insertCourse.setString(19,course.getNote_eng());
+                this.insertCourse.setString(20,course.getKnowledge_ita());
+                this.insertCourse.setString(21,course.getKnowledge_eng());
+                this.insertCourse.setString(22,course.getApplication_ita());
+                this.insertCourse.setString(23,course.getApplication_eng());
+                this.insertCourse.setString(24,course.getEvaluation_ita());
+                this.insertCourse.setString(25,course.getEvaluation_eng());
+                this.insertCourse.setString(26,course.getCommunication_ita());
+                this.insertCourse.setString(27,course.getCommunication_eng());
+                this.insertCourse.setString(28,course.getLifelog_learning_skills_ita());
+                this.insertCourse.setString(29,course.getLifelog_learning_skills_eng());
+                this.insertCourse.setString(30, course.getExternal_material_ita());
+                this.insertCourse.setString(31,course.getExternal_material_eng());
+
+                this.insertCourse.executeUpdate();
+
+            } else {
+
+                this.updateCourse.setString(1, course.getCode());
+                this.updateCourse.setString(2, course.getName());
+                this.updateCourse.setString(3,course.getYear());
+                this.updateCourse.setInt(4,course.getCfu());
+                this.updateCourse.setString(5,course.getSector());
+                this.updateCourse.setString(6,course.getLanguage());
+                this.updateCourse.setInt(7,course.getSemester());
+                this.updateCourse.setString(8,course.getPrerequisite_ita());
+                this.updateCourse.setString(9,course.getPrerequisite_eng());
+                this.updateCourse.setString(10,course.getGoals_ita());
+                this.updateCourse.setString(11,course.getGoals_eng());
+                this.updateCourse.setString(12,course.getExame_mode_ita());
+                this.updateCourse.setString(13,course.getExame_mode_eng());
+                this.updateCourse.setString(14,course.getTeaching_mode_ita());
+                this.updateCourse.setString(15,course.getTeaching_mode_eng());
+                this.updateCourse.setString(16,course.getSyllabus_ita());
+                this.updateCourse.setString(17,course.getSyllabus_eng());
+                this.updateCourse.setString(18,course.getNote_ita());
+                this.updateCourse.setString(19,course.getNote_eng());
+                this.updateCourse.setString(20,course.getKnowledge_ita());
+                this.updateCourse.setString(21,course.getKnowledge_eng());
+                this.updateCourse.setString(22,course.getApplication_ita());
+                this.updateCourse.setString(23,course.getApplication_eng());
+                this.updateCourse.setString(24,course.getEvaluation_ita());
+                this.updateCourse.setString(25,course.getEvaluation_eng());
+                this.updateCourse.setString(26,course.getCommunication_ita());
+                this.updateCourse.setString(27,course.getCommunication_eng());
+                this.updateCourse.setString(28,course.getLifelog_learning_skills_ita());
+                this.updateCourse.setString(29,course.getLifelog_learning_skills_eng());
+                this.updateCourse.setString(30, course.getExternal_material_ita());
+                this.updateCourse.setString(31,course.getExternal_material_eng());
+
+                this.updateCourse.executeUpdate();
+
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            throw new DaoException("Error storeCourse",e);
+        }
+
         return null;
     }
 
@@ -481,6 +572,35 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
 
         //restituisco la lista
         return courses;
+
+    }
+
+    @Override
+    public Course getCoursesByCodeAndYear(String code, AccademicYear accademicYear) throws DaoException {
+
+        Course course = null;
+
+        try {
+
+            this.selectCourseByCodeAndYear.setString(1, code);
+            this.selectCourseByCodeAndYear.setString(2, accademicYear.toString());
+
+            ResultSet rs = this.selectCourseByCodeAndYear.executeQuery();
+
+            if (rs.next()){
+
+                course = generateCourse(rs);
+            }
+            else {//se risultato nullo ritorno null
+                return null;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            throw new DaoException("Error in getCoursesByCodeAndYear", e);
+        }
+
+        return course;
 
     }
 
