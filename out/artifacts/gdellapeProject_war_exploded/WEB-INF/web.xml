@@ -488,5 +488,28 @@
     </servlet-mapping>
     <!-- Fine Servlet di ModCourseRelation -->
 
+    <!-- Servlet di  UpdateCourse-->
+    <servlet>
+        <servlet-name>UpdateCourse</servlet-name>
+        <servlet-class>controller.adm.UpdateCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateCourse</servlet-name>
+        <url-pattern>/UpdateCourse</url-pattern>
+        <url-pattern>/updateCourse</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di UpdateCourse -->
+
+    <!-- Servlet di  AddBook-->
+    <servlet>
+        <servlet-name>AddBook</servlet-name>
+        <servlet-class>controller.adm.AddBook</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddBook</servlet-name>
+        <url-pattern>/AddBook</url-pattern>
+        <url-pattern>/addBook</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di AddBook -->
 
 </web-app>
