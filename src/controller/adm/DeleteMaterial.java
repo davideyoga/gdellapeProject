@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @Creator Davide Micarelli
+ * @author Davide Micarelli
  */
 public class DeleteMaterial extends BaseController {
 
@@ -62,11 +62,11 @@ public class DeleteMaterial extends BaseController {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
+        processRequest(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        processRequest(req, resp);
     }
 }
