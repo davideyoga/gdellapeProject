@@ -23,6 +23,7 @@ public class BookDaoImpl extends DaoDataMySQLImpl implements BookDao {
             selectBookById,
             updateBook,
             insertLinkBookToCourse,
+            deleteLinkBookToCourse,
             deleteBookById;
 
     public BookDaoImpl(DataSource datasource) {
@@ -46,6 +47,10 @@ public class BookDaoImpl extends DaoDataMySQLImpl implements BookDao {
 
             this.deleteBookById = connection.prepareStatement("DELETE FROM book" +
                     "                                               WHERE id=?");
+
+            this.deleteLinkBookToCourse = connection.prepareStatement("DELETE FROM course_book              " +
+                    "                                                       WHERE course_id=?" +
+                    "                                                       AND book_id=?");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -155,6 +160,22 @@ public class BookDaoImpl extends DaoDataMySQLImpl implements BookDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void deleteLinkToCourseBook(Course course, Book book) throws DaoException {
+
+        try {
+
+            this.deleteLinkBookToCourse.setInt(1, course.getIdCourse());
+            this.deleteLinkBookToCourse.setInt(2, book.getId());
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            throw new DaoException("Error deleteLinkToCourseBook", e);
+        }
+
     }
 
     @Override
