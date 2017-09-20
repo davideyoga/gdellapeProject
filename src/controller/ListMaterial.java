@@ -44,7 +44,7 @@ public class ListMaterial extends BaseController {
             courseDao.init();
 
             //estraggo il corso a seconda del codice passato come parametro get
-            String code = request.getParameter("code");
+            String code = request.getParameter("id");
 
             System.out.println("code: " + code);
 

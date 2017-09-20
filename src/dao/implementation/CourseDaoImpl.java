@@ -1,5 +1,6 @@
 package dao.implementation;
 
+import controller.utility.AccademicYear;
 import dao.data.DaoDataMySQLImpl;
 import dao.exception.DaoException;
 import dao.exception.InsertDaoException;
@@ -39,11 +40,19 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
             selectCourseByUserAndYear,
             selectCourseByStudyCourseAndYear,
             storeLinkCourseUser,
+            selectCourseByUser,
             deleteLinkCourseUser,
             selectCourses,
             selectCourseModulated,
-            selectCoursePropedeutic,
-            selectCourseBorrowed;
+            selectCoursePreparatory,
+            selectCourseBorrowed,
+            selectCourseByCodeAndYear,
+            addLinkCourseModulated,
+            addLinkCoursePreparatory,
+            addLinkCourseBorrowed,
+            deleteLinkCourseModulated,
+            deleteLinkCoursePreparatory,
+            deleteLinkCourseBorrowed;
 
 
     public CourseDaoImpl(DataSource datasource) {
@@ -161,18 +170,52 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
 
             this.selectCourseModulated = connection.prepareStatement("SELECT * FROM course" +
                     "                                                           LEFT JOIN moduleCourse" +
-                    "                                                           ON course.id = moduleCourse.corse_module_id " +
+                    "                                                           ON course.id = moduleCourse.course_module_id " +
                     "                                                           WHERE moduleCourse.course_id = ? ");
 
-            this.selectCoursePropedeutic = connection.prepareStatement("SELECT * FROM course" +
+            this.selectCoursePreparatory = connection.prepareStatement("SELECT * FROM course" +
                     "                                                           LEFT JOIN preparatoryCourse " +
-                    "                                                           ON course.id = preparatoryCourse.corse_preparatory_id " +
+                    "                                                           ON course.id = preparatoryCourse.course_preparatory_id " +
                     "                                                           WHERE preparatoryCourse.course_id = ?");
 
             this.selectCourseBorrowed = connection.prepareStatement("SELECT * FROM course" +
                     "                                                           LEFT JOIN borrowedCourse " +
-                    "                                                           ON course.id = borrowedCourse.corse_borrowed_id " +
+                    "                                                           ON course.id = borrowedCourse.course_borrowed_id " +
                     "                                                           WHERE borrowedCourse.course_id = ?");
+
+            this.selectCourseByUser = connection.prepareStatement("SELECT * " +
+                    "                                                       FROM course " +
+                    "                                                       LEFT JOIN course_user " +
+                    "                                                       ON course.id = course_user.course_id " +
+                    "                                                       WHERE course_user.user_id=? ");
+
+            this.selectCourseByCodeAndYear = connection.prepareStatement("SELECT * " +
+                    "                                                               FROM course" +
+                    "                                                               WHERE code=?" +
+                    "                                                               AND year=?");
+
+
+            this.addLinkCourseModulated = connection.prepareStatement("INSERT INTO moduleCourse" +
+                    "                                                       VALUES (?,?)");
+
+            this.addLinkCoursePreparatory = connection.prepareStatement("INSERT INTO preparatoryCourse" +
+                    "                                                           VALUES (?,?)");
+
+            this.addLinkCourseBorrowed = connection.prepareStatement("INSERT INTO borrowedCourse" +
+                    "                                                           VALUES (?,?)");
+
+
+            this.deleteLinkCourseModulated = connection.prepareStatement("DELETE FROM moduleCourse" +
+                    "                                                           WHERE course_id=?" +
+                    "                                                           AND course_module_id=?");
+
+            this.deleteLinkCoursePreparatory = connection.prepareStatement("DELETE FROM preparatoryCourse" +
+                    "                                                           WHERE course_id=?" +
+                    "                                                           AND course_preparatory_id=?");
+
+            this.deleteLinkCourseBorrowed = connection.prepareStatement("DELETE FROM borrowedCourse" +
+                    "                                                           WHERE course_id=?" +
+                    "                                                           AND course_borrowed_id=?");
 
 
         } catch (SQLException e) {
@@ -389,6 +432,8 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
             }
         } catch (SQLException e) {
             e.printStackTrace();
+
+            throw new DaoException("Error in getCoursesByCodeAndYear", e);
         }
 
         return course;
@@ -399,7 +444,89 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
     //update altrimenti
     @Override
     public Course storeCourse(Course course) throws DaoException {
-        //non ho capito a che serve
+        try {
+            //se il corso non presenta l'id egesuo una insert
+            if (course.getIdCourse() <= 0) {
+
+                this.insertCourse.setString(1, course.getCode());
+                this.insertCourse.setString(2, course.getName());
+                this.insertCourse.setString(3,course.getYear());
+                this.insertCourse.setInt(4,course.getCfu());
+                this.insertCourse.setString(5,course.getSector());
+                this.insertCourse.setString(6,course.getLanguage());
+                this.insertCourse.setInt(7,course.getSemester());
+                this.insertCourse.setString(8,course.getPrerequisite_ita());
+                this.insertCourse.setString(9,course.getPrerequisite_eng());
+                this.insertCourse.setString(10,course.getGoals_ita());
+                this.insertCourse.setString(11,course.getGoals_eng());
+                this.insertCourse.setString(12,course.getExame_mode_ita());
+                this.insertCourse.setString(13,course.getExame_mode_eng());
+                this.insertCourse.setString(14,course.getTeaching_mode_ita());
+                this.insertCourse.setString(15,course.getTeaching_mode_eng());
+                this.insertCourse.setString(16,course.getSyllabus_ita());
+                this.insertCourse.setString(17,course.getSyllabus_eng());
+                this.insertCourse.setString(18,course.getNote_ita());
+                this.insertCourse.setString(19,course.getNote_eng());
+                this.insertCourse.setString(20,course.getKnowledge_ita());
+                this.insertCourse.setString(21,course.getKnowledge_eng());
+                this.insertCourse.setString(22,course.getApplication_ita());
+                this.insertCourse.setString(23,course.getApplication_eng());
+                this.insertCourse.setString(24,course.getEvaluation_ita());
+                this.insertCourse.setString(25,course.getEvaluation_eng());
+                this.insertCourse.setString(26,course.getCommunication_ita());
+                this.insertCourse.setString(27,course.getCommunication_eng());
+                this.insertCourse.setString(28,course.getLifelog_learning_skills_ita());
+                this.insertCourse.setString(29,course.getLifelog_learning_skills_eng());
+                this.insertCourse.setString(30, course.getExternal_material_ita());
+                this.insertCourse.setString(31,course.getExternal_material_eng());
+
+                this.insertCourse.executeUpdate();
+
+            } else {
+
+                this.updateCourse.setString(1, course.getCode());
+                this.updateCourse.setString(2, course.getName());
+                this.updateCourse.setString(3,course.getYear());
+                this.updateCourse.setInt(4,course.getCfu());
+                this.updateCourse.setString(5,course.getSector());
+                this.updateCourse.setString(6,course.getLanguage());
+                this.updateCourse.setInt(7,course.getSemester());
+                this.updateCourse.setString(8,course.getPrerequisite_ita());
+                this.updateCourse.setString(9,course.getPrerequisite_eng());
+                this.updateCourse.setString(10,course.getGoals_ita());
+                this.updateCourse.setString(11,course.getGoals_eng());
+                this.updateCourse.setString(12,course.getExame_mode_ita());
+                this.updateCourse.setString(13,course.getExame_mode_eng());
+                this.updateCourse.setString(14,course.getTeaching_mode_ita());
+                this.updateCourse.setString(15,course.getTeaching_mode_eng());
+                this.updateCourse.setString(16,course.getSyllabus_ita());
+                this.updateCourse.setString(17,course.getSyllabus_eng());
+                this.updateCourse.setString(18,course.getNote_ita());
+                this.updateCourse.setString(19,course.getNote_eng());
+                this.updateCourse.setString(20,course.getKnowledge_ita());
+                this.updateCourse.setString(21,course.getKnowledge_eng());
+                this.updateCourse.setString(22,course.getApplication_ita());
+                this.updateCourse.setString(23,course.getApplication_eng());
+                this.updateCourse.setString(24,course.getEvaluation_ita());
+                this.updateCourse.setString(25,course.getEvaluation_eng());
+                this.updateCourse.setString(26,course.getCommunication_ita());
+                this.updateCourse.setString(27,course.getCommunication_eng());
+                this.updateCourse.setString(28,course.getLifelog_learning_skills_ita());
+                this.updateCourse.setString(29,course.getLifelog_learning_skills_eng());
+                this.updateCourse.setString(30, course.getExternal_material_ita());
+                this.updateCourse.setString(31,course.getExternal_material_eng());
+
+                this.updateCourse.executeUpdate();
+
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            throw new DaoException("Error storeCourse",e);
+        }
+
         return null;
     }
 
@@ -419,7 +546,62 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
 
     @Override
     public List<Course> getCoursesByUser(User user) throws DaoException {
-        return null;
+
+        //inizializzo una lista di corsi
+        List<Course> courses = new ArrayList <>();
+
+        try {
+
+            //setto l'id dell'utente
+            this.selectCourseByUser.setInt(1, user.getId());
+
+            //eseguo la query
+            ResultSet rs = this.selectCourseByUser.executeQuery();
+
+            //ciclo il risultato della query
+            while (rs.next()){
+
+                //aggiungo alla lista il corso nella riga attuale della query
+                courses.add(this.generateCourse(rs));
+
+            }
+
+        } catch (SQLException e) {
+            throw new SelectDaoException("Error getCoursesByUser",e);
+        }
+
+        //restituisco la lista
+        return courses;
+
+    }
+
+    @Override
+    public Course getCoursesByCodeAndYear(String code, AccademicYear accademicYear) throws DaoException {
+
+        Course course = null;
+
+        try {
+
+            this.selectCourseByCodeAndYear.setString(1, code);
+            this.selectCourseByCodeAndYear.setString(2, accademicYear.toString());
+
+            ResultSet rs = this.selectCourseByCodeAndYear.executeQuery();
+
+            if (rs.next()){
+
+                course = generateCourse(rs);
+            }
+            else {//se risultato nullo ritorno null
+                return null;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            throw new DaoException("Error in getCoursesByCodeAndYear", e);
+        }
+
+        return course;
+
     }
 
     @Override
@@ -598,14 +780,14 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
     }
 
     @Override
-    public List <Course> getCoursePropedeutic(Course course) throws DaoException {
+    public List <Course> getCoursePreparatory(Course course) throws DaoException {
         List<Course> courses = new ArrayList <>();
 
         try {
 
-            this.selectCoursePropedeutic.setInt(1, course.getIdCourse());
+            this.selectCoursePreparatory.setInt(1, course.getIdCourse());
 
-            ResultSet rs = this.selectCoursePropedeutic.executeQuery();
+            ResultSet rs = this.selectCoursePreparatory.executeQuery();
 
             while (rs.next()){
 
@@ -641,6 +823,110 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
         }
 
         return courses;
+    }
+
+    @Override
+    public void addLinkCourseModulated(Course course, int idCourseModulated) throws DaoException {
+
+        try {
+
+            this.addLinkCourseModulated.setInt(1, course.getIdCourse());
+            this.addLinkCourseModulated.setInt(2, idCourseModulated);
+
+            this.addLinkCourseModulated.executeUpdate();
+
+
+        } catch (SQLException e) {
+            throw new SelectDaoException("Error addLinkCourseModulated", e);
+        }
+
+    }
+
+    @Override
+    public void addLinkCoursePreparatory(Course course, int idCoursePreparatory) throws DaoException {
+
+        try {
+
+            this.addLinkCoursePreparatory.setInt(1, course.getIdCourse());
+            this.addLinkCoursePreparatory.setInt(2, idCoursePreparatory);
+
+            this.addLinkCoursePreparatory.executeUpdate();
+
+
+        } catch (SQLException e) {
+            throw new SelectDaoException("Error addLinkCoursePreparatory", e);
+        }
+
+    }
+
+    @Override
+    public void addLinkCourseBorrowed(Course course, int idCourseBorrowed) throws DaoException {
+
+        try {
+
+            this.addLinkCourseBorrowed.setInt(1, course.getIdCourse());
+            this.addLinkCourseBorrowed.setInt(2, idCourseBorrowed);
+
+            this.addLinkCourseBorrowed.executeUpdate();
+
+
+        } catch (SQLException e) {
+            throw new SelectDaoException("Error addLinkCourseBorrowed", e);
+        }
+    }
+
+    @Override
+    public void deleteLinkCourseModulated(Course course, int idCourseModulated) throws DaoException {
+
+        try {
+
+            this.deleteLinkCourseModulated.setInt(1,course.getIdCourse());
+            this.deleteLinkCourseModulated.setInt(2,idCourseModulated);
+
+            this.deleteLinkCourseModulated.executeUpdate();
+
+
+        } catch (SQLException e) {
+
+            throw new SelectDaoException("Error deleteLinkCourseModulated", e);
+        }
+
+    }
+
+    @Override
+    public void deleteLinkCoursePreparatory(Course course, int idCoursePreparatory ) throws DaoException {
+
+        try {
+
+            this.deleteLinkCoursePreparatory.setInt(1,course.getIdCourse());
+            this.deleteLinkCoursePreparatory.setInt(2,idCoursePreparatory);
+
+            this.deleteLinkCoursePreparatory.executeUpdate();
+
+
+        } catch (SQLException e) {
+
+            throw new SelectDaoException("Error deleteLinkCoursePreparatory", e);
+        }
+
+    }
+
+    @Override
+    public void deleteLinkCourseBorrowed(Course course, int idCourseBorrowed) throws DaoException {
+
+        try {
+
+            this.deleteLinkCourseBorrowed.setInt(1,course.getIdCourse());
+            this.deleteLinkCourseBorrowed.setInt(2,idCourseBorrowed);
+
+            this.deleteLinkCourseBorrowed.executeUpdate();
+
+
+        } catch (SQLException e) {
+
+            throw new SelectDaoException("Error deleteLinkCourseBorrowed", e);
+        }
+
     }
 
 

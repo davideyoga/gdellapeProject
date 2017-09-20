@@ -114,8 +114,9 @@ public class AddMaterial extends BaseController {
                         //estraggo tutti i corsi appartenenti all'utente
                         List <Course> coursesByUser = courseDao.getCoursesByUser(sessionManager.getUser(request));
 
-                        //controllo se il corso con id passato e' tra i corsi dell'utente
-                        if (coursesByUser != null && coursesByUser.contains(courseById)) {
+                        //controllo se il corso con id passato e' tra i corsi dell'utente e se ha il permesso di modificare corsi Lorenzo1
+                        if (coursesByUser != null && coursesByUser.contains(courseById) &&
+                                ((List <Service>) request.getSession().getAttribute("services")).contains(addMaterial)) {
 
                             //se si lancio il template
                             this.processTemplate(request, response, courseById);

@@ -1,5 +1,6 @@
 package dao.interfaces;
 
+import controller.utility.AccademicYear;
 import dao.data.DaoData;
 import dao.exception.DaoException;
 import model.Course;
@@ -27,6 +28,8 @@ public interface CourseDao extends DaoData{
 
     List<Course> getCoursesByUser(User user) throws DaoException;
 
+    Course getCoursesByCodeAndYear(String code, AccademicYear accademicYear) throws DaoException;
+
     List<Course> getCoursesByUserAndYear(User user, String year) throws DaoException;
 
     List<Course> getCourseByStudyCourse(StudyCourse studyCourse) throws DaoException ;
@@ -41,7 +44,19 @@ public interface CourseDao extends DaoData{
 
     List<Course> getCourseModulated(Course course) throws DaoException;
 
-    List<Course> getCoursePropedeutic(Course course) throws DaoException;
+    List<Course> getCoursePreparatory(Course course) throws DaoException;
 
     List<Course> getCourseBorrowed(Course course) throws DaoException;
+
+    void addLinkCourseModulated( Course course, int idCourseModulated ) throws DaoException;
+
+    void addLinkCoursePreparatory( Course course, int idCoursePreparatory )throws DaoException;
+
+    void addLinkCourseBorrowed( Course course, int idCourseBorrowed)throws DaoException;
+
+    void deleteLinkCourseModulated( Course course, int idCourseModulated ) throws DaoException;
+
+    void deleteLinkCoursePreparatory( Course course, int idCoursePreparatory )throws DaoException;
+
+    void deleteLinkCourseBorrowed( Course course, int idCourseBorrowed)throws DaoException;
 }

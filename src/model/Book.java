@@ -26,36 +26,6 @@ public class Book {
         this.link = null;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Book book = (Book) o;
-
-        if (id != book.id) return false;
-        if (age != book.age) return false;
-        if (!code.equals(book.code)) return false;
-        if (!author.equals(book.author)) return false;
-        if (!title.equals(book.title)) return false;
-        if (!volume.equals(book.volume)) return false;
-        if (!editor.equals(book.editor)) return false;
-        return link.equals(book.link);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + code.hashCode();
-        result = 31 * result + author.hashCode();
-        result = 31 * result + title.hashCode();
-        result = 31 * result + volume.hashCode();
-        result = 31 * result + age;
-        result = 31 * result + editor.hashCode();
-        result = 31 * result + link.hashCode();
-        return result;
-    }
-
     public int getId() {
         return id;
     }
@@ -118,5 +88,49 @@ public class Book {
 
     public void setLink(String link) {
         this.link = link;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", code='" + code + '\'' +
+                ", author='" + author + '\'' +
+                ", title='" + title + '\'' +
+                ", volume='" + volume + '\'' +
+                ", age=" + age +
+                ", editor='" + editor + '\'' +
+                ", link='" + link + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Book book = (Book) o;
+
+        if (getId() != book.getId()) return false;
+        if (getAge() != book.getAge()) return false;
+        if (getCode() != null ? !getCode().equals(book.getCode()) : book.getCode() != null) return false;
+        if (getAuthor() != null ? !getAuthor().equals(book.getAuthor()) : book.getAuthor() != null) return false;
+        if (getTitle() != null ? !getTitle().equals(book.getTitle()) : book.getTitle() != null) return false;
+        if (getVolume() != null ? !getVolume().equals(book.getVolume()) : book.getVolume() != null) return false;
+        if (getEditor() != null ? !getEditor().equals(book.getEditor()) : book.getEditor() != null) return false;
+        return getLink() != null ? getLink().equals(book.getLink()) : book.getLink() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId();
+        result = 31 * result + (getCode() != null ? getCode().hashCode() : 0);
+        result = 31 * result + (getAuthor() != null ? getAuthor().hashCode() : 0);
+        result = 31 * result + (getTitle() != null ? getTitle().hashCode() : 0);
+        result = 31 * result + (getVolume() != null ? getVolume().hashCode() : 0);
+        result = 31 * result + getAge();
+        result = 31 * result + (getEditor() != null ? getEditor().hashCode() : 0);
+        result = 31 * result + (getLink() != null ? getLink().hashCode() : 0);
+        return result;
     }
 }

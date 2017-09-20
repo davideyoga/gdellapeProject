@@ -1,5 +1,6 @@
-package controller;
+package controller.adm;
 
+import controller.BaseController;
 import controller.utility.AccademicYear;
 import dao.exception.DaoException;
 import dao.implementation.CourseDaoImpl;
@@ -119,6 +120,9 @@ public class ListCourse extends BaseController {
 
                         //lancio il template dell'utente che non puo' eliminare i corsi
                         TemplateController.process("list_courses.ftl", datamodel, response, getServletContext());
+
+
+
 
                         //se non ha nessuno dei due permessi
                    } else {

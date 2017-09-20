@@ -4,11 +4,13 @@ import dao.data.DaoDataMySQLImpl;
 import dao.exception.DaoException;
 import dao.interfaces.BookDao;
 import model.Book;
+import model.Course;
 
 import javax.sql.DataSource;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import static dao.security.DaoSecurity.addSlashes;
 import static dao.security.DaoSecurity.stripSlashes;
@@ -20,6 +22,8 @@ public class BookDaoImpl extends DaoDataMySQLImpl implements BookDao {
     private PreparedStatement insertBook,
             selectBookById,
             updateBook,
+            insertLinkBookToCourse,
+            deleteLinkBookToCourse,
             deleteBookById;
 
     public BookDaoImpl(DataSource datasource) {
@@ -32,14 +36,21 @@ public class BookDaoImpl extends DaoDataMySQLImpl implements BookDao {
             super.init();
 
             this.insertBook = connection.prepareStatement("INSERT INTO book" +
-                                                            " VALUES (NULL,?,?,?,?,?,?,?)");
+                                                            " VALUES (NULL,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 
             this.selectBookById = connection.prepareStatement("SELECT *" +
                                                                  " FROM book" +
                                                                  " WHERE id = ?");
 
+            this.insertLinkBookToCourse = connection.prepareStatement("INSERT INTO course_book" +
+                    "                                                           VALUES (?,?)");
+
             this.deleteBookById = connection.prepareStatement("DELETE FROM book" +
                     "                                               WHERE id=?");
+
+            this.deleteLinkBookToCourse = connection.prepareStatement("DELETE FROM course_book              " +
+                    "                                                       WHERE course_id=?" +
+                    "                                                       AND book_id=?");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -80,41 +91,64 @@ public class BookDaoImpl extends DaoDataMySQLImpl implements BookDao {
     }
 
     @Override
-    public void storeBook(Book book) throws DaoException {
-        if (book.getId() > 0){ //se > di 0 è gia nel database
-            try{
-                this.updateBook.setString(1,addSlashes(book.getCode()));
-                this.updateBook.setString(2,addSlashes(book.getAuthor()));
-                this.updateBook.setString(3,addSlashes(book.getTitle()));
-                this.updateBook.setString(4,addSlashes(book.getVolume()));
-                this.updateBook.setInt(5,book.getAge());
-                this.updateBook.setString(6,addSlashes(book.getEditor()));
-                this.updateBook.setString(7,addSlashes(book.getLink()));
+    public int storeBook(Book book) throws DaoException {
+
+        try {
+
+            if (book.getId() > 0) { //se > di 0 è gia nel database
+
+
+                this.updateBook.setString(1, addSlashes(book.getCode()));
+                this.updateBook.setString(2, addSlashes(book.getAuthor()));
+                this.updateBook.setString(3, addSlashes(book.getTitle()));
+                this.updateBook.setString(4, addSlashes(book.getVolume()));
+                this.updateBook.setInt(5, book.getAge());
+                this.updateBook.setString(6, addSlashes(book.getEditor()));
+                this.updateBook.setString(7, addSlashes(book.getLink()));
 
                 this.updateBook.executeUpdate();
 
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        else{ //non è presente nel db quindi eseguo una insert
-            try{
-                this.insertBook.setString(1,addSlashes(book.getCode()));
-                this.insertBook.setString(2,addSlashes(book.getAuthor()));
-                this.insertBook.setString(3,addSlashes(book.getTitle()));
-                this.insertBook.setString(4,addSlashes(book.getVolume()));
-                this.insertBook.setInt(5,book.getAge());
-                this.insertBook.setString(6,addSlashes(book.getEditor()));
-                this.insertBook.setString(7,addSlashes(book.getLink()));
+                return book.getId();
+
+
+            } else { //non è presente nel db quindi eseguo una insert
+
+                this.insertBook.setString(1, addSlashes(book.getCode()));
+                this.insertBook.setString(2, addSlashes(book.getAuthor()));
+                this.insertBook.setString(3, addSlashes(book.getTitle()));
+                this.insertBook.setString(4, addSlashes(book.getVolume()));
+                this.insertBook.setInt(5, book.getAge());
+                this.insertBook.setString(6, addSlashes(book.getEditor()));
+                this.insertBook.setString(7, addSlashes(book.getLink()));
 
                 this.insertBook.executeUpdate();
 
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+                //estraggo il resultset per estrarne l'id appena insertito
+                ResultSet keys = insertBook.getGeneratedKeys();
 
+                //inizializzo un valore dell'id per ritornarlo
+                int key = 0;
+
+                if (keys.next()) {
+                    //i campi del record sono le componenti della chiave
+                    //(nel nostro caso, un solo intero)
+                    //the record fields are the key componenets
+                    //(a single integer in our case)
+                    key = keys.getInt(1);
+                }
+
+                return key;
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            throw new DaoException("Error storeCourse", e);
+        }
     }
+
+
 
     @Override
     public void deleteBook(Book book) throws DaoException {
@@ -126,5 +160,39 @@ public class BookDaoImpl extends DaoDataMySQLImpl implements BookDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void deleteLinkToCourseBook(Course course, Book book) throws DaoException {
+
+        try {
+
+            this.deleteLinkBookToCourse.setInt(1, course.getIdCourse());
+            this.deleteLinkBookToCourse.setInt(2, book.getId());
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            throw new DaoException("Error deleteLinkToCourseBook", e);
+        }
+
+    }
+
+    @Override
+    public void addLinkBookToCourse(Course course, Book book) throws DaoException {
+
+        try {
+
+            this.insertLinkBookToCourse.setInt(1, course.getIdCourse());
+            this.insertLinkBookToCourse.setInt(2, book.getId());
+
+            this.insertLinkBookToCourse.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            throw new DaoException("Error addLinkBookToCourse", e);
+        }
+
     }
 }
