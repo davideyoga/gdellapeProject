@@ -59,6 +59,7 @@ html, body{
 p,ul li,ol li{
 	margin:0;
 	font-size:14px;
+	font-weight: bold;
 }
 h1,h2,h3,h4,h5,h6{
 	font-family: 'Prompt', sans-serif;
@@ -80,8 +81,8 @@ input[type="submit"],input[type="reset"],a,.w3_agileits_services1_grid1{
 }
 /*-- banner --*/
 .banner{
-	background:url(https://photos-6.dropbox.com/t/2/AAA1uCA1sdJyUg1dtLDWL8Rqy7VNFAbUhOSVqa8SHElBEg/12/314683952/jpeg/32x32/1/_/1/2/banner.jpg/EI67t7YCGNMCIAcoBw/HMXAWSEuO-KCuK2OMV8Hs4e6bOiLUI3usbeWYCrLQE8?size=1280x960&size_mode=3) no-repeat 0px 0px;
-
+	/*background:url(http://www.abruzzo24ore.tv/img/3bcda8f2aed2c8f1fdea1c020dadcf39/w/1024/h/576/scale/175129.jpg) no-repeat 0px 0px;*/
+	background-color: #0a98c5;
 	background-size:cover;
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
@@ -91,7 +92,8 @@ input[type="submit"],input[type="reset"],a,.w3_agileits_services1_grid1{
 	position: relative;
 }
 .banner1{
-	background:url(../images/banner.jpg) no-repeat 0px 0px;
+	/*background:url(http://www.abruzzo24ore.tv/img/3bcda8f2aed2c8f1fdea1c020dadcf39/w/1024/h/576/scale/175129.jpg) no-repeat 0px 0px;*/
+	background-color: #0a98c5;
 	background-size:cover;
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
@@ -114,7 +116,7 @@ input[type="submit"],input[type="reset"],a,.w3_agileits_services1_grid1{
 	margin-right: 0;
 }
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-	color:#ec9114;
+	color: #0ACCFF;
 	background:none;
 }
 .navbar-default .navbar-nav > li > a {
@@ -178,7 +180,8 @@ nav.navbar.navbar-default {
 	transition: 0.3s;
 }
 .link-effect-2 a span::before {
-	color:#ec9114;
+	/*color:#ec9114;*/
+	color: #000000;
 	position: absolute;
 	top: 100%;
 	content: attr(data-hover);
@@ -703,7 +706,7 @@ nav.navbar.navbar-default {
 /*-- gallery-top --*/
 .gallery-top{
 	padding:1.5em;
-	background:#0accff;
+	background:#0a98c5;
 }
 .agileinfo_gallery_top{
 	padding:1.5em;
@@ -1158,7 +1161,7 @@ nav.navbar.navbar-default {
 /*-- //testimonials --*/
 /*-- footer --*/
 .footer{
-	background: url(https://photos-2.dropbox.com/t/2/AAB8cRZ77kHbbtVogb6YcgbLE-s8A_nvdDHK1FiuRc1UCg/12/314683952/jpeg/32x32/1/_/1/2/13.jpg/EI67t7YCGNMCIAcoBw/_WINUS5oBzKGUQCMg4GXmXrNLIrREAqxqWcpbcaFJ68?size=1280x960&size_mode=3) no-repeat 0px 0px;
+	background: url(/templates/images/13.jpg) no-repeat 0px 0px;
 	background-size: cover;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -1510,7 +1513,7 @@ p.b_label {
 	margin-top:2em;
 }
 .wthree_services_grid1{
-	background:url(../images/9.jpg) no-repeat 0px 0px;
+	background:url(/templates/images/9.jpg) no-repeat 0px 0px;
 	background-size:cover;
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
@@ -1518,7 +1521,7 @@ p.b_label {
 	-ms-background-size:cover;
 }
 .wthree_services_grid2{
-	background:url(../images/10.jpg) no-repeat 0px 0px;
+	background:url(/templates/images/10.jpg) no-repeat 0px 0px;
 	background-size:cover;
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
@@ -1526,7 +1529,7 @@ p.b_label {
 	-ms-background-size:cover;
 }
 .wthree_services_grid3{
-	background:url(../images/11.jpg) no-repeat 0px 0px;
+	background:url(/templates/images/11.jpg) no-repeat 0px 0px;
 	background-size:cover;
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
@@ -1534,7 +1537,7 @@ p.b_label {
 	-ms-background-size:cover;
 }
 .wthree_services_grid4{
-	background:url(../images/8.jpg) no-repeat 0px 0px;
+	background:url(/templates/images/8.jpg) no-repeat 0px 0px;
 	background-size:cover;
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
@@ -1542,7 +1545,7 @@ p.b_label {
 	-ms-background-size:cover;
 }
 .wthree_services_grid5{
-	background:url(../images/14.jpg) no-repeat 0px 0px;
+	background:url(/templates/images/14.jpg) no-repeat 0px 0px;
 	background-size:cover;
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
@@ -1550,7 +1553,7 @@ p.b_label {
 	-ms-background-size:cover;
 }
 .wthree_services_grid6{
-	background:url(../images/15.jpg) no-repeat 0px 0px;
+	background:url(/templates/images/15.jpg) no-repeat 0px 0px;
 	background-size:cover;
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
@@ -1622,7 +1625,7 @@ p.b_label {
 /*-- //services --*/
 /*-- services-bottom --*/
 .services-bottom{
-	background: url(../images/4.jpg) no-repeat 0px 0px;
+	background: url(/templates/images/4.jpg) no-repeat 0px 0px;
 	background-size: cover;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;

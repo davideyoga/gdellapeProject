@@ -139,7 +139,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div class="col-md-6 w3ls_banner_bottom_right">
             <div class="agileits_w3layouts_banner_bottom_grid" >
                 <br>
-                <img src= "https://photos-1.dropbox.com/t/2/AADifJAFfBd-btUbv2awTVipNkoJxT1RJPCqGl3BYMealA/12/314683952/png/32x32/1/_/1/2/logo.png/EI67t7YCGNUCIAcoBw/r3BrAjZPVaV1okCHZhXjZgT_EFoInIH7L2eMLqvfB7U?size=1280x960&size_mode=3" alt=" " class="img-responsive" />
+                <img src= "https://s26.postimg.org/yc4vy4pnd/logo.png" srcset="http://imageshack.com/a/img923/5059/ujcgvX.png" class="img-responsive" />
             </div>
 
         </div>
@@ -197,7 +197,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <li><a href="#" class="agileinfo_google"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
                     <li><a href="#" class="agileits_pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
                 </ul>
-                <img src="https://photos-3.dropbox.com/t/2/AAAB0h8A822rYTBqVmu23QWWBoIy0f3tw3a_r0NMGpPF0g/12/624186369/jpeg/32x32/3/1505224800/0/2/FB_IMG_1492454801757.jpg/ENDdp4cFGLMCIAcoBw/o5MTdPtwnhpDzHSxhPkKMuHeTPc8v6-tTFmAneVLOAo?dl=0&size=1280x960&size_mode=3" alt=" " class="img-responsive" />
+                <img src="/templates/images/5.jpg" srcset="" class="img-responsive" />
             </div>
             <div class="col-md-4 agileits_w3layouts_team_grid">
                 <h3>professore 1</h3>
@@ -208,7 +208,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <li><a href="#" class="agileinfo_google"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
                     <li><a href="#" class="agileits_pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
                 </ul>
-                <img src="https://photos-6.dropbox.com/t/2/AADYoGPms-I1sLKfQrLzDar-JyQ5kda5X7HZdxqIpxP78Q/12/314683952/jpeg/32x32/1/_/1/2/6.jpg/EI67t7YCGMMCIAcoBw/y0ZidP0NtrLfqQq5QzkBosgDxlUvk_P7B7QDVp6G6_Y?size=1280x960&size_mode=3" alt=" " class="img-responsive" />
+                <img src="/templates/images/6.jpg" srcset="https://s26.postimg.org/iocvitot5/image.jpg" class="img-responsive" />
             </div>
             <div class="col-md-4 agileits_w3layouts_team_grid">
                 <h3>professore 2</h3>
@@ -219,7 +219,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <li><a href="#" class="agileinfo_google"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
                     <li><a href="#" class="agileits_pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
                 </ul>
-                <img src="https://photos-4.dropbox.com/t/2/AACedg5LjX2-yzJy9k_SgZ7kZykm8zLSVFZ02sDfAU_BtA/12/314683952/jpeg/32x32/1/_/1/2/7.jpg/EI67t7YCGMUCIAcoBw/qo6bXY-urugNG0DyjH7zULKUGIYa1eSrc157QZMfSnk?size=1280x960&size_mode=3" alt=" " class="img-responsive" />
+                <img src="/templates/images/7.jpg" srcset="https://s26.postimg.org/fnw12adi1/image.jpg" class="img-responsive" />
             </div>
             <div class="clearfix"> </div>
         </div>
@@ -264,7 +264,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <h4>Rosy Crisp</h4>
                         <h5>Student</h5>
                         <div class="w3l_testimonial_grid_pos">
-                            <img src="https://photos-6.dropbox.com/t/2/AACgyLY2w-RFOjRj_AjJmwha3R-f8kV7vvseCHcrPtx1fw/12/314683952/png/32x32/1/_/1/2/1.png/EI67t7YCGLoCIAcoBw/dP-XfKvgRhiYB8009cTdPsv5-Ma_A-en2-ZSYDJ8Igo?size=1280x960&size_mode=3" alt=" " class="img-responsive" />
+                            <img src="/templates/images/1.png" srcset="https://s26.postimg.org/4yica11p5/image.png" class="img-responsive" />
                         </div>
                     </div>
                 </div>
@@ -276,7 +276,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <h4>Laura Paul</h4>
                         <h5>Student</h5>
                         <div class="w3l_testimonial_grid_pos">
-                            <img src="https://photos-3.dropbox.com/t/2/AAC2pkHJFTF4L89f-V7tQ3_4Du7DKrlw48kEid95pO20nQ/12/314683952/png/32x32/1/_/1/2/2.png/EI67t7YCGLwCIAcoBw/-qZPXkkWwo3B0AFr60u8rgTVS5DRYkytU7DjcCxet00?size=1280x960&size_mode=3" alt=" " class="img-responsive" />
+                            <img src="/templates/images/2.png" srcset="https://s26.postimg.org/7aqc7meah/image.png" class="img-responsive" />
                         </div>
                     </div>
                 </div>
@@ -288,7 +288,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <h4>Michael Doe</h4>
                         <h5>Student</h5>
                         <div class="w3l_testimonial_grid_pos">
-                            <img src="https://photos-3.dropbox.com/t/2/AAA4wAmMTMow_ZGXyDbkKFGIVfRw2uSk8SWVn3XPxF7lBg/12/314683952/png/32x32/1/_/1/2/3.png/EI67t7YCGL4CIAcoBw/FQVqIagIK8cT2fvJuiBFyhsN5yQ55bO0HEUNoRdk4J4?size=1280x960&size_mode=3" alt=" " class="img-responsive" />
+                            <img src="/templates/images/4.png" srcset="https://s26.postimg.org/jyaoxvil5/image.png" class="img-responsive" />
                         </div>
                     </div>
                 </div>
