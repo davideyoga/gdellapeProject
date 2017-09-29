@@ -38,7 +38,7 @@
         <div class="footer-main">
             <div class="footer-top">
                 <div class="col-md-4 ftr-grid fg1">
-                    <h3><a href="index.html"><span>B</span>rilliance</a></h3>
+                    <h3><a href="index.html"><span>U</span>niversit&agrave</a></h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adip magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
                 </div>
                 <div class="col-md-4 ftr-grid fg2 mid-gd">
@@ -75,9 +75,9 @@
                     <h3>Keep In Touch With Us</h3>
                     <div class="right-w3l">
                         <ul class="top-links">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-facebook facebook-color" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter twitter-color" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus google-color" aria-hidden="true"></i></a></li>
                         </ul>
                     </div>
                     <div class="right-w3-2">

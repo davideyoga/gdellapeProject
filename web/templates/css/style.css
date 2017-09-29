@@ -1020,6 +1020,7 @@ ul.social-icons li i.fa {
 ul.social-icons li i.fa:hover {
 	   background: #0064d2;
 }
+
 /*-- //team --*/
 /*-- news --*/
 #news {
@@ -1272,10 +1273,11 @@ ul.top-links li {
 	margin-bottom: 9px;
 }
 .right-w3l ul.top-links li a i.fa {
-        color: #000;
+    color: #000;
     background-color: #fff;
     width: 26px;
     height: 26px;
+    border-radius: 13px ;
     font-size: 13px;
     line-height: 26px;
     text-align: center;
@@ -1288,8 +1290,21 @@ ul.top-links li {
 }
 .right-w3l ul.top-links li a i.fa:hover {
 	color: #fff;
-    background-color: #0064d2;
+    background-color: #000000;
 }
+
+.google-color:hover{
+    background-color: #dd4b39 !important;
+}
+
+.twitter-color:hover{
+    background-color: #00aced !important;
+}
+
+.facebook-color:hover{
+    background-color: #3b5998 !important;
+}
+
 .right-w3l {
     float: left;
     width:12%;
