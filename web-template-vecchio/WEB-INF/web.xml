@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <context-param>
+        <param-name>uploads.directory</param-name>
+        <!-- Tomcat deve aver il permesso di scrittura su questa cartella-->
+        <param-value>/etc/apache-tomcat-8.5.14/download</param-value>
+    </context-param>
+
+    <resource-ref>
+        <res-ref-name>jdbc/gdellapeProject</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+    </resource-ref>
+
+    <display-name>gdellapeProject</display-name>
+
+    <!-- Servlet di home -->
+    <servlet>
+        <servlet-name>Home</servlet-name>
+        <servlet-class>controller.Home</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Home</servlet-name>
+        <url-pattern>/Home</url-pattern>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di home -->
+
+    <!-- Init Servlet -->
+    <welcome-file-list>
+        <welcome-file>Home</welcome-file>
+    </welcome-file-list>
+    <!-- Fine Init Servlet -->
+
+
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+
+
+    <!-- Servlet di login -->
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>controller.adm.Login</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Login</url-pattern>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di login -->
+
+    <!-- Servlet di logout -->
+    <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>controller.adm.Logout</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/Logout</url-pattern>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di logout -->
+
+    <!-- Servlet di ProfileManager -->
+    <servlet>
+        <servlet-name>ProfileManagement</servlet-name>
+        <servlet-class>controller.adm.ProfileManagement</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProfileManagement</servlet-name>
+        <url-pattern>/ProfileManagement</url-pattern>
+        <url-pattern>/profileManagement</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di ProfileManager -->
+
+    <!-- Servlet di CreateUser -->
+    <servlet>
+        <servlet-name>CreateUser</servlet-name>
+        <servlet-class>controller.adm.CreateUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateUser</servlet-name>
+        <url-pattern>/CreateUser</url-pattern>
+        <url-pattern>/createUser</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di CreateUser -->
+
+    <!-- Servlet di AdmGetListUser -->
+    <servlet>
+        <servlet-name>AdmGetListUser</servlet-name>
+        <servlet-class>controller.adm.AdmGetListUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdmGetListUser</servlet-name>
+        <url-pattern>/AdmGetListUser</url-pattern>
+        <url-pattern>/admGetListUser</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di AdmGetListUser -->
+
+    <!-- Servlet di AdmGetListUser -->
+    <servlet>
+        <servlet-name>AdmModUser</servlet-name>
+        <servlet-class>controller.adm.AdmModUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdmModUser</servlet-name>
+        <url-pattern>/AdmModUser</url-pattern>
+        <url-pattern>/admModUser</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di AdmGetListUser -->
+
+    <!-- Servlet di AdmGetListGroups -->
+    <servlet>
+        <servlet-name>AdmGetListGroups</servlet-name>
+        <servlet-class>controller.adm.AdmGetListGroups</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdmGetListGroups</servlet-name>
+        <url-pattern>/AdmGetListGroups</url-pattern>
+        <url-pattern>/admGetListGroups</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di AdmGetListGroups -->
+
+
+    <!-- Servlet di AdmModGroups -->
+    <servlet>
+        <servlet-name>AdmModGroups</servlet-name>
+        <servlet-class>controller.adm.AdmModGroups</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdmModGroups</servlet-name>
+        <url-pattern>/AdmModGroups</url-pattern>
+        <url-pattern>/admModGroups</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di AdmModGroups -->
+
+    <!-- Servlet di Error -->
+    <servlet>
+        <servlet-name>Error</servlet-name>
+        <servlet-class>controller.Error</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Error</servlet-name>
+        <url-pattern>/Error</url-pattern>
+        <url-pattern>/error</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di Error -->
+
+    <!-- Servlet di CreateGroups -->
+    <servlet>
+        <servlet-name>CreateGroups</servlet-name>
+        <servlet-class>controller.adm.CreateGroups</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateGroups</servlet-name>
+        <url-pattern>/CreateGroups</url-pattern>
+        <url-pattern>/createGroups</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di CreateGroups -->
+
+    <!-- Servlet di DeleteGroups -->
+    <servlet>
+        <servlet-name>DeleteGroups</servlet-name>
+        <servlet-class>controller.adm.DeleteGroups</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteGroups</servlet-name>
+        <url-pattern>/DeleteGroups</url-pattern>
+        <url-pattern>/deleteGroups</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di DeleteGroups -->
+
+    <!-- Servlet di DeleteUser -->
+    <servlet>
+        <servlet-name>DeleteUser</servlet-name>
+        <servlet-class>controller.adm.DeleteUser</servlet-class>
+        </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteUser</servlet-name>
+        <url-pattern>/DeleteUser</url-pattern>
+        <url-pattern>/deleteUser</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di DeleteUser -->
+
+    <!-- Servlet di GetAllLog -->
+    <servlet>
+        <servlet-name>GetAllLog</servlet-name>
+        <servlet-class>controller.adm.GetAllLog</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetAllLog</servlet-name>
+        <url-pattern>/GetAllLog</url-pattern>
+        <url-pattern>/getAllLog</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di DeleteUser -->
+
+    <!-- Servlet di ListUser -->
+    <servlet>
+        <servlet-name>ListUser</servlet-name>
+        <servlet-class>controller.ListUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListUser</servlet-name>
+        <url-pattern>/ListUser</url-pattern>
+        <url-pattern>/listUser</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di DeleteUser -->
+
+    <!-- Servlet di ListUser -->
+    <servlet>
+        <servlet-name>UserProfile</servlet-name>
+        <servlet-class>controller.UserProfile</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserProfile</servlet-name>
+        <url-pattern>/UserProfile</url-pattern>
+        <url-pattern>/userProfile</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di DeleteUser -->
+
+    <!-- Servlet di ListStudyCourses -->
+    <servlet>
+        <servlet-name>ListStudyCourses</servlet-name>
+        <servlet-class>controller.ListStudyCourses</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListStudyCourses</servlet-name>
+        <url-pattern>/ListStudyCourses</url-pattern>
+        <url-pattern>/listStudyCourses</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di ListStudyCourses -->
+
+    <!-- Servlet di StudyCourseProfile -->
+    <servlet>
+        <servlet-name>StudyCourseProfile</servlet-name>
+        <servlet-class>controller.StudyCourseProfile</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudyCourseProfile</servlet-name>
+        <url-pattern>/StudyCourseProfile</url-pattern>
+        <url-pattern>/studyCourseProfile</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di StudyCourseProfile -->
+
+
+    <!-- Servlet di AdmGetListStudyCourse -->
+    <servlet>
+        <servlet-name>AdmGetListStudyCourse</servlet-name>
+        <servlet-class>controller.adm.AdmGetListStudyCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdmGetListStudyCourse</servlet-name>
+        <url-pattern>/AdmGetListStudyCourse</url-pattern>
+        <url-pattern>/admGetListStudyCourse</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di AdmGetListStudyCourse -->
+
+    <!-- Servlet di AdmModStudyCourse -->
+    <servlet>
+        <servlet-name>AdmModStudyCourse</servlet-name>
+        <servlet-class>controller.adm.AdmModStudyCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdmModStudyCourse</servlet-name>
+        <url-pattern>/AdmModStudyCourse</url-pattern>
+        <url-pattern>/admModStudyCourse</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di AdmModStudyCourse -->
+
+    <!-- Servlet di  DeleteStudyCourse-->
+    <servlet>
+        <servlet-name>DeleteStudyCourse</servlet-name>
+        <servlet-class>controller.adm.DeleteStudyCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteStudyCourse</servlet-name>
+        <url-pattern>/DeleteStudyCourse</url-pattern>
+        <url-pattern>/deleteStudyCourse</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di DeleteStudyCourse -->
+
+    <!-- Servlet di  HomeBackOffice-->
+    <servlet>
+        <servlet-name>HomeBackOffice</servlet-name>
+        <servlet-class>controller.adm.HomeBackOffice</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HomeBackOffice</servlet-name>
+        <url-pattern>/HomeBackOffice</url-pattern>
+        <url-pattern>/homeBackOffice</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di HomeBackOffice -->
+
+    <!-- Servlet di  CreateStudyCourse-->
+    <servlet>
+        <servlet-name>CreateStudyCourse</servlet-name>
+        <servlet-class>controller.adm.CreateStudyCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateStudyCourse</servlet-name>
+        <url-pattern>/CreateStudyCourse</url-pattern>
+        <url-pattern>/createStudyCourse</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di CreateStudyCourse -->
+
+    <!-- Servlet di  CreateCourse-->
+    <servlet>
+        <servlet-name>CreateCourse</servlet-name>
+        <servlet-class>controller.adm.CreateCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateCourse</servlet-name>
+        <url-pattern>/CreateCourse</url-pattern>
+        <url-pattern>/createCourse</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di CreateStudyCourse -->
+
+
+    <!-- Servlet di  ServiceNotPermissed-->
+    <servlet>
+        <servlet-name>ServiceNotPermissed</servlet-name>
+        <servlet-class>controller.ServiceNotPermissed</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServiceNotPermissed</servlet-name>
+        <url-pattern>/ServiceNotPermissed</url-pattern>
+        <url-pattern>/serviceNotPermissed</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di ServiceNotPermissed -->
+
+    <!-- Servlet di  ModAssociationStudyCourseWithCourse-->
+    <servlet>
+        <servlet-name>ModAssociationStudyCourseWithCourse</servlet-name>
+        <servlet-class>controller.adm.ModAssociationStudyCourseWithCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ModAssociationStudyCourseWithCourse</servlet-name>
+        <url-pattern>/ModAssociationStudyCourseWithCourse</url-pattern>
+        <url-pattern>/modAssociationStudyCourseWithCourse</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di ModAssociationStudyCourseWithCourse -->
+
+
+    <!-- Servlet di  ListCourse-->
+    <servlet>
+        <servlet-name>ListCourse</servlet-name>
+        <servlet-class>controller.adm.ListCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListCourse</servlet-name>
+        <url-pattern>/ListCourse</url-pattern>
+        <url-pattern>/listCourse</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di ListCourse -->
+
+
+    <!-- Servlet di  ModCourse-->
+    <servlet>
+        <servlet-name>ModCourse</servlet-name>
+        <servlet-class>controller.adm.ModCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ModCourse</servlet-name>
+        <url-pattern>/ModCourse</url-pattern>
+        <url-pattern>/modCourse</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di ModCourse -->
+
+    <!-- Servlet di  ModAdmCourse-->
+    <servlet>
+        <servlet-name>ModAdmCourse</servlet-name>
+        <servlet-class>controller.adm.ModAdmCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ModAdmCourse</servlet-name>
+        <url-pattern>/ModAdmCourse</url-pattern>
+        <url-pattern>/modAdmCourse</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di ModCourse -->
+
+
+    <!-- Servlet di  ModAssociationCourseWithUser-->
+    <servlet>
+        <servlet-name>ModAssociationCourseWithUser</servlet-name>
+        <servlet-class>controller.adm.ModAssociationCourseWithUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ModAssociationCourseWithUser</servlet-name>
+        <url-pattern>/ModAssociationCourseWithUser</url-pattern>
+        <url-pattern>/modAssociationCourseWithUser</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di ModAssociationCourseWithUser -->
+
+
+    <!-- Servlet di  AdmModCourse-->
+    <servlet>
+        <servlet-name>AdmModCourse</servlet-name>
+        <servlet-class>controller.adm.AdmModCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdmModCourse</servlet-name>
+        <url-pattern>/AdmModCourse</url-pattern>
+        <url-pattern>/admModCourse</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di AdmModCourse -->
+
+
+    <display-name>ServletFileUploadDownloadExample</display-name>
+    <context-param>
+        <param-name>tempfile.dir</param-name>
+        <param-value>tmpfiles</param-value>
+    </context-param>
+
+
+
+
+
+    <!-- Servlet di  AddMaterial-->
+    <servlet>
+        <servlet-name>AddMaterial</servlet-name>
+        <servlet-class>controller.adm.AddMaterial</servlet-class>
+
+        <multipart-config>
+            <!--
+            <location>/tmp</location> temporary files location (DEF: "") -->
+            <max-file-size>20848820</max-file-size>
+            <!-- max size of accepted uploadd (DEF: unlimited!) -->
+            <max-request-size>418018841</max-request-size>
+            <!-- max size of multipart requests (may contain more files or data) (DEF: ulimited!) -->
+            <!-- <file-size-threshold>1048576</file-size-threshold> max size of files to hold in memory (without writing to temporary disk file) (DEF: 0) -->
+        </multipart-config>
+
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddMaterial</servlet-name>
+        <url-pattern>/AddMaterial</url-pattern>
+        <url-pattern>/addMaterial</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di AddMaterial -->
+
+
+    <!-- Servlet di  ListMaterial-->
+    <servlet>
+        <servlet-name>ListMaterial</servlet-name>
+        <servlet-class>controller.ListMaterial</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListMaterial</servlet-name>
+        <url-pattern>/ListMaterial</url-pattern>
+        <url-pattern>/listMaterial</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di ListMaterial -->
+
+
+    <!-- Servlet di  ListMaterialNotAnonymous-->
+    <servlet>
+        <servlet-name>ListMaterialNotAnonymous</servlet-name>
+        <servlet-class>controller.adm.ListMaterialNotAnonymous</servlet-class>
+
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListMaterialNotAnonymous</servlet-name>
+        <url-pattern>/ListMaterialNotAnonymous</url-pattern>
+        <url-pattern>/listMaterialNotAnonymous</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di ListMaterialNotAnonymous -->
+
+    <!-- Servlet di  ModCourseRelation-->
+    <servlet>
+        <servlet-name>ModCourseRelation</servlet-name>
+        <servlet-class>controller.adm.ModCourseRelation</servlet-class>
+
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ModCourseRelation</servlet-name>
+        <url-pattern>/ModCourseRelation</url-pattern>
+        <url-pattern>/modCourseRelation</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di ModCourseRelation -->
+
+    <!-- Servlet di  UpdateCourse-->
+    <servlet>
+        <servlet-name>UpdateCourse</servlet-name>
+        <servlet-class>controller.adm.UpdateCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateCourse</servlet-name>
+        <url-pattern>/UpdateCourse</url-pattern>
+        <url-pattern>/updateCourse</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di UpdateCourse -->
+
+    <!-- Servlet di  AddBook-->
+    <servlet>
+        <servlet-name>AddBook</servlet-name>
+        <servlet-class>controller.adm.AddBook</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddBook</servlet-name>
+        <url-pattern>/AddBook</url-pattern>
+        <url-pattern>/addBook</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di AddBook -->
+
+</web-app>
