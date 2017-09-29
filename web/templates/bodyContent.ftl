@@ -93,7 +93,7 @@
                 <div class="clearfix"> </div>
             </div>
             <div class="copyrights">
-                <p>&copy; 2017 universit&agrave. All Rights Reserved | Design by  <a href="https://www.youporn.com">Youporn</a> </p>
+                <p>&copy; 2017 universit&agrave. All Rights Reserved | Design by noialtri </p>
             </div>
         </div>
     </div>
