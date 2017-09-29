@@ -1,17 +1,19 @@
 <!-- banner -->
 <div class="w3ls_banner_section">
     <div class="container">
-        <h2>Education Needs Complete <span>Solution</span></h2>
-        <p> for Admission Coming soon</p>
+        <h2>Welcome to <span>Universit&agrave</span></h2>
+        <#--<p> for Admission Coming soon</p>-->
 
         <div class="wthree-counter-agile">
-            <!--timer-->
+            <!--timer
             <section class="examples">
                 <div class="simply-countdown-losange" id="simply-countdown-losange"></div>
                 <div class="clearfix"></div>
             </section>
 
-            <!--//timer-->
+            --//timer-->
+
+            <div class="clearfix"></div>
 
         </div>
 
