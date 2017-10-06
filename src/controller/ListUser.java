@@ -64,6 +64,9 @@ public class ListUser extends BaseController {
             //carico la lingua nel datamodel
             this.setLng(request, datamodel);
 
+            //setto l'utente in sessione
+            this.datamodel.put("user", sessionManager.getUser(request));
+
             //lancia il template appropriato alla lingua selezionata dall'utente
             this.processTemplate(request, response, "user_list", datamodel);
 

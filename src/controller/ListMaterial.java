@@ -29,8 +29,11 @@ public class ListMaterial extends BaseController {
         datamodel.put("course", course);
         datamodel.put("material", materials);
 
-        //lancio il template
-        TemplateController.process("list_material.ftl", datamodel, response, getServletContext());
+        //setto l'utente in sessione
+        this.datamodel.put("user", sessionManager.getUser(request));
+
+        //lancio il template con lingua appropriata
+        super.processTemplate(request, response, "list_material", datamodel );
 
     }
 

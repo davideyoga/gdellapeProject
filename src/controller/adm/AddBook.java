@@ -32,6 +32,9 @@ public class AddBook extends BaseController {
         //inserisco in sessione l'id del corso
         request.getSession().setAttribute("idCourse", course.getIdCourse());
 
+        //setto l'utente in sessione
+        this.datamodel.put("user", sessionManager.getUser(request));
+
         //lancio il template
         TemplateController.process("add_book.ftl", datamodel, response, getServletContext());
 

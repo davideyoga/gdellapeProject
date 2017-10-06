@@ -6,9 +6,9 @@ import dao.exception.DaoException;
 import dao.implementation.StudyCourseDaoImpl;
 import dao.interfaces.StudyCourseDao;
 import model.Service;
-import view.TemplateController;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
@@ -28,7 +28,7 @@ public class DeleteStudyCourse extends BaseController {
     private Map<String, Object> datamodel = new HashMap<>();
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
 
@@ -71,7 +71,7 @@ public class DeleteStudyCourse extends BaseController {
                     //se non ha i permessi
                 } else {
                     //lancio il template di non permesso
-                    TemplateController.process("not_permissed.ftl", datamodel, response, getServletContext());
+                    this.processNotPermitted(request, response);
                 }
                 //se session non valida o non abbastanza nuova
             } else {
@@ -84,11 +84,11 @@ public class DeleteStudyCourse extends BaseController {
         e.printStackTrace();
 
         //lancio template di errore
-        TemplateController.process("error.ftl", datamodel, response, getServletContext());
+        this.processError(request, response);
 
         } catch (IOException e) {
             //lancio template di errore
-            TemplateController.process("error.ftl", datamodel, response, getServletContext());
+            this.processError(request, response);
 
             e.printStackTrace();
         } catch (LogException e) {

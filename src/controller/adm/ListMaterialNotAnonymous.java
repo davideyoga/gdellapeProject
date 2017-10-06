@@ -33,6 +33,9 @@ public class ListMaterialNotAnonymous extends BaseController {
         datamodel.put("course", course);
         datamodel.put("material", materials);
 
+        //setto l'utente in sessione
+        this.datamodel.put("user", sessionManager.getUser(request));
+
         //lancio il template
         TemplateController.process("list_material_not_anonymous.ftl", datamodel, response, getServletContext());
 

@@ -52,11 +52,14 @@ public class BaseController extends HttpServlet {
     public void init() throws ServletException {
         super.init();
 
+        //setto i manager
         this.sessionManager = SingletonSessionManager.getSessionManager();
 
         this.logManager = SingletonLogManager.getLogManager();
 
         this.utilityManager = controller.utility.SingletonUtilityManager.getUtilityManager();
+
+        //inserisco nel datamodel l'utente
     }
 
     /**

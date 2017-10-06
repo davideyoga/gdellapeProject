@@ -1,6 +1,5 @@
 package controller.adm;
 
-import com.sun.xml.internal.bind.v2.model.core.ID;
 import controller.BaseController;
 import controller.logController.LogException;
 import dao.exception.DaoException;
@@ -272,6 +271,9 @@ public class AdmModUser extends BaseController {
                                 groupsDao.destroy();
                                 groupsDao = null;
 
+                                //setto l'utente in sessione
+                                this.datamodel.put("user", sessionManager.getUser(request));
+
                                 //lancio il template di modifica dell'utente
                                 TemplateController.process("user_mod.ftl", datamodel, response, getServletContext());
 
@@ -287,6 +289,9 @@ public class AdmModUser extends BaseController {
                                 //carico un messaggio di errore
                                 datamodel.put("message", "Error, Email already exists in the system, No changes have been made");
                                 datamodel.put("user", userPrimaDelleModifiche);
+
+                                //setto l'utente in sessione
+                                this.datamodel.put("user", sessionManager.getUser(request));
 
                                 //lancio il template di modifica dell'utente
                                 TemplateController.process("user_mod.ftl", datamodel, response, getServletContext());
@@ -306,6 +311,9 @@ public class AdmModUser extends BaseController {
                             datamodel.put("message", "Error, The entered passwords are different, No changes have been made");
                             datamodel.put("user", userPrimaDelleModifiche);
 
+                            //setto l'utente in sessione
+                            this.datamodel.put("user", sessionManager.getUser(request));
+
                             //lancio il template di modifica dell'utente
                             TemplateController.process("user_mod.ftl", datamodel, response, getServletContext());
                         }
@@ -321,7 +329,7 @@ public class AdmModUser extends BaseController {
                 } else {
 
                     //lancio il messaggio di servizio non permesso
-                    TemplateController.process("not_permissed.ftl", datamodel, response, getServletContext());
+                    this.processNotPermitted(request, response);
                 }
                 //se isHardValid = false
             } else {
@@ -407,6 +415,9 @@ public class AdmModUser extends BaseController {
                     groupsDao.destroy();
                     groupsDao = null;
 
+                    //setto l'utente in sessione
+                    this.datamodel.put("user", sessionManager.getUser(request));
+
                     //lancio il template di modifica dell'utente
                     TemplateController.process("user_mod.ftl", datamodel, response, getServletContext());
 
@@ -415,7 +426,7 @@ public class AdmModUser extends BaseController {
                 } else {
 
                     //lancio il template di non permesso
-                    TemplateController.process("not_permissed.ftl", datamodel, response, getServletContext());
+                    this.processNotPermitted(request, response);
                 }
                 //se la sessione non e' valida
             } else {
@@ -426,7 +437,7 @@ public class AdmModUser extends BaseController {
             }
         } catch (DaoException e) {
             //in caso di dao exception ecc. lancio il template di errore
-            TemplateController.process("error.ftl", datamodel,response,getServletContext());
+            this.processError(request, response);
         }
     }
 }

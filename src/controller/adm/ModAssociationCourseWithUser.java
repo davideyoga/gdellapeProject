@@ -103,6 +103,9 @@ public class ModAssociationCourseWithUser extends BaseController {
                         courseDao.destroy();
                         userDao.destroy();
 
+                        //setto l'utente in sessione
+                        this.datamodel.put("user", sessionManager.getUser(request));
+
                         //lancio il template
                         TemplateController.process("mod_association_course_with_user.ftl", datamodel, response, getServletContext());
 
@@ -110,7 +113,7 @@ public class ModAssociationCourseWithUser extends BaseController {
                         //se non possiede il servizio
                     }else {
                         //lancio il messaggio di servizio non permesso
-                        TemplateController.process("not_permissed.ftl", datamodel, response, getServletContext());
+                        this.processNotPermitted(request, response);
                     }
 
                     //se sessione non valida
@@ -124,7 +127,7 @@ public class ModAssociationCourseWithUser extends BaseController {
                 e.printStackTrace();
 
                 //lancio il template di errore
-                TemplateController.process("error.ftl", datamodel, response, getServletContext());
+                this.processError(request, response);
             }
         }
 
@@ -229,6 +232,9 @@ public class ModAssociationCourseWithUser extends BaseController {
                     datamodel.put("userMatch", userCollegatiDopo);
                     datamodel.put("allUser", allUsers);
 
+                    //setto l'utente in sessione
+                    this.datamodel.put("user", sessionManager.getUser(request));
+
                     //lancio il template
                     TemplateController.process("mod_association_course_with_user.ftl", datamodel, response, getServletContext());
 
@@ -236,7 +242,7 @@ public class ModAssociationCourseWithUser extends BaseController {
                 } else {
 
                     //lancio il messaggio di servizio non permesso
-                    TemplateController.process("not_permissed.ftl", datamodel, response, getServletContext());
+                    this.processNotPermitted(request, response);
                 }
 
                  //se non ho una sessione valida
@@ -251,7 +257,7 @@ public class ModAssociationCourseWithUser extends BaseController {
             e.printStackTrace();
 
             //lancio il template di errore
-            TemplateController.process("error.ftl", datamodel, response, getServletContext());
+            this.processError(request, response);
         }
 
     }

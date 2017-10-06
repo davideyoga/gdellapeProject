@@ -47,6 +47,10 @@ public class ListStudyCourses extends BaseController {
             //carico la lingua nel datamodel
             this.setLng(request, datamodel);
 
+
+            //setto l'utente in sessione
+            this.datamodel.put("user", sessionManager.getUser(request));
+
             //lancio il template
             processTemplate(request, response, "study_course_list", datamodel);
 

@@ -21,6 +21,9 @@ public class Home extends BaseController {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        //setto l'utente in sessione
+        this.datamodel.put("user", sessionManager.getUser(request));
+
         //carico la lingua nel datamodel
         this.setLng(request, datamodel);
 

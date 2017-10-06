@@ -6,7 +6,6 @@ import dao.exception.DaoException;
 import dao.implementation.CourseDaoImpl;
 import dao.interfaces.CourseDao;
 import model.Service;
-import view.TemplateController;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -65,7 +64,7 @@ public class DeleteCourse extends BaseController {
                     //se non ha i permessi
                 } else {
                     //lancio il messaggio di servizio non permesso
-                    TemplateController.process("not_permissed.ftl", datamodel, response, getServletContext());
+                    this.processNotPermitted(request, response);
                 }
             }else {
 
@@ -77,7 +76,7 @@ public class DeleteCourse extends BaseController {
             e.printStackTrace();
 
             //in caso di dao exception ecc. lancio il template di errore
-            TemplateController.process("error.ftl", datamodel,response,getServletContext());
+            this.processError(request, response);
 
         } catch (LogException e) {
             e.printStackTrace();

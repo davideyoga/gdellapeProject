@@ -32,6 +32,9 @@ public class AddMaterial extends BaseController {
         //inserisco id del corso nella sessione da usare nel parametro post
         request.getSession().setAttribute("idCourse", courseById.getIdCourse());
 
+        //setto l'utente in sessione
+        this.datamodel.put("user", sessionManager.getUser(request));
+
         //lancio il template con il corso caricato
         datamodel.put("course", courseById);
         TemplateController.process("add_material.ftl", datamodel, response, getServletContext());

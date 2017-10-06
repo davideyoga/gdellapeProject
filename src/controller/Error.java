@@ -14,11 +14,14 @@ import java.util.Map;
 /**
  * @Creator Davide Micarelli
  */
-public class Error extends HttpServlet {
+public class Error extends BaseController {
 
     private Map<String, Object> datamodel = new HashMap<>();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        //setto l'utente in sessione
+        this.datamodel.put("user", sessionManager.getUser(request));
 
         //lancio la pagina di errore
         TemplateController.process("error.ftl", datamodel, response , this.getServletContext() );

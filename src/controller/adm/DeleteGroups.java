@@ -7,14 +7,13 @@ import dao.implementation.GroupsDaoImpl;
 import dao.interfaces.GroupsDao;
 import model.Groups;
 import model.Service;
-import view.TemplateController;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +34,7 @@ public class DeleteGroups extends BaseController {
      * @param response
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response){
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //se la sessione e' valida
         if(sessionManager.isValid(request)) {
@@ -80,26 +79,26 @@ public class DeleteGroups extends BaseController {
                     groupsDao = null;
 
                     //lancio messaggio di errore interno
-                    TemplateController.process("error.ftl", datamodel,response,getServletContext());
+                    this.processError(request, response);
 
                 } catch (IOException e) {
 
                     //dovuto alla redirect;
                     //lancio messaggio di errore interno
-                    TemplateController.process("error.ftl", datamodel,response,getServletContext());
+                    this.processError(request, response);
 
                 } catch (LogException e) {
 
                     //lancio messaggio di errore interno
                     datamodel.put("message", "Deleted group but no log entered");
-                    TemplateController.process("error.ftl", datamodel,response,getServletContext());
+                    this.processError(request,response);
 
                 }
 
                 //se non ha i permessi
             }else{
                 //lancio il template di non permesso
-                TemplateController.process( "not_permissed.ftl", datamodel ,response, getServletContext() );
+                this.processNotPermitted(request, response);
             }
         //se session non valida o non abbastanza nuova
         }else{

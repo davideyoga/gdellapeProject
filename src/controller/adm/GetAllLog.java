@@ -2,12 +2,9 @@ package controller.adm;
 
 import controller.BaseController;
 import dao.implementation.LogDaoImpl;
-import dao.implementation.UserDaoImpl;
 import dao.interfaces.LogDao;
-import dao.interfaces.UserDao;
 import model.Log;
 import model.Service;
-import model.User;
 import view.TemplateController;
 
 import javax.annotation.Resource;
@@ -71,18 +68,22 @@ public class GetAllLog extends BaseController {
                 } catch (Exception e) {
                     e.printStackTrace();
                     //in caso di dao exception ecc. lancio il template di errore
-                    TemplateController.process("error.ftl", datamodel,response,getServletContext());
+                    this.processError(request, response);
                 }
 
                 //lancio il template con gli utenti caricati
                 datamodel.put("logs", logList);
+
+                //setto l'utente in sessione
+                this.datamodel.put("user", sessionManager.getUser(request));
+
                 TemplateController.process( "log_list.ftl", datamodel ,response, getServletContext() );
 
 
             } else {
 
                 //lancio il messaggio di servizio non permesso
-                TemplateController.process( "not_permissed.ftl", datamodel ,response, getServletContext() );
+                this.processNotPermitted(request, response);
             }
 
 
@@ -94,5 +95,4 @@ public class GetAllLog extends BaseController {
         }
 
     }
-
 }

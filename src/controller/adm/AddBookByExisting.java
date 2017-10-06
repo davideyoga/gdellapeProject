@@ -17,6 +17,7 @@ import java.io.IOException;
 
 /**
  * @author Davide Micarelli
+ * aggiunge libro con ajax
  */
 public class AddBookByExisting extends BaseController {
 

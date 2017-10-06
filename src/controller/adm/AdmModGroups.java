@@ -242,6 +242,9 @@ public class AdmModGroups extends BaseController {
                     serviceDao.destroy();
                     serviceDao = null;
 
+                    //setto l'utente in sessione
+                    this.datamodel.put("user", sessionManager.getUser(request));
+
                     //lancio il template di modifica dell'utente
                     TemplateController.process("groups_mod_adm.ftl", datamodel, response, getServletContext());
 
@@ -335,6 +338,9 @@ public class AdmModGroups extends BaseController {
                     serviceDao.destroy();
                     serviceDao = null;
 
+                    //setto l'utente in sessione
+                    this.datamodel.put("user", sessionManager.getUser(request));
+
                     //lancio il template di modifica del gruppo
                     TemplateController.process("groups_mod_adm.ftl", datamodel, response, getServletContext());
 
@@ -343,7 +349,7 @@ public class AdmModGroups extends BaseController {
                 } else {
 
                     //lancio servlet di servizio non permesso
-                    response.sendRedirect("ServiceNotPermissed");
+                    this.processNotPermitted(request, response);
                 }
                 //se la sessione non e' valida
             } else {
@@ -355,7 +361,7 @@ public class AdmModGroups extends BaseController {
 
         } catch (DaoException e) {
             //in caso di dao exception ecc. lancio il template di errore
-            TemplateController.process("error.ftl", datamodel,response,getServletContext());
+            this.processError(request, response);
         }
     }
 }

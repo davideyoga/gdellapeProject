@@ -91,17 +91,18 @@ public class StudyCourseProfile extends BaseController {
                 datamodel.put("currentFirstYear", accademicYear.getFirstYear());
                 datamodel.put("accademicYear", accademicYear.toString());
 
-
-
                 //carico la lingua nel datamodel
                 this.setLng(request, datamodel);
+
+                //setto l'utente in sessione
+                this.datamodel.put("user", sessionManager.getUser(request));
 
                 processTemplate(request, response, "study_course_profile", datamodel);
 
             }else{
 
-                //lancio template di errore
-                TemplateController.process("error.ftl", datamodel, response, getServletContext());
+                //lancio metodo di errore
+                this.processError(request, response);
             }
 
             //chiudo il dao

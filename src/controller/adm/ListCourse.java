@@ -92,10 +92,11 @@ public class ListCourse extends BaseController {
 
                     courseDao.destroy();
 
+                    //setto l'utente in sessione
+                    this.datamodel.put("user", sessionManager.getUser(request));
+
                     //lancio il template dei corsi dell'admin che puo' anche eliminarli
                     TemplateController.process("list_courses_adm.ftl", datamodel, response, getServletContext());
-
-
 
 
 
@@ -118,6 +119,9 @@ public class ListCourse extends BaseController {
 
                         courseDao.destroy();
 
+                        //setto l'utente in sessione
+                        this.datamodel.put("user", sessionManager.getUser(request));
+
                         //lancio il template dell'utente che non puo' eliminare i corsi
                         TemplateController.process("list_courses.ftl", datamodel, response, getServletContext());
 
@@ -127,7 +131,7 @@ public class ListCourse extends BaseController {
                         //se non ha nessuno dei due permessi
                    } else {
                         //lancio il messaggio di servizio non permesso
-                        TemplateController.process("not_permissed.ftl", datamodel, response, getServletContext());
+                        this.processNotPermitted(request, response);
                     }
                 }
                 //se la sessione non e' valida
@@ -142,7 +146,7 @@ public class ListCourse extends BaseController {
             e.printStackTrace();
 
             //in caso di dao exception ecc. lancio il template di errore
-            TemplateController.process("error.ftl", datamodel,response,getServletContext());
+            this.processError(request, response);
         }
 
     }

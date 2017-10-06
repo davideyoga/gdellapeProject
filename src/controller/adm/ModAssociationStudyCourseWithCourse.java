@@ -189,13 +189,16 @@ public class ModAssociationStudyCourseWithCourse extends BaseController {
                     request.getSession().setAttribute("currentYear", accademicYear.getFirstYear() );
 
 
+                    //setto l'utente in sessione
+                    this.datamodel.put("user", sessionManager.getUser(request));
+
                     //lancio il template
                     TemplateController.process("mod_association_study_course_with_course.ftl", datamodel, response, getServletContext());
 
                 //se l'utente non ha il permesso
                 }else{
 
-                    response.sendRedirect("ServiceNotPermissed");
+                    this.processNotPermitted(request, response);
                 }
 
             //se non ha una sessione valida
@@ -208,7 +211,7 @@ public class ModAssociationStudyCourseWithCourse extends BaseController {
         }catch (DaoException e) {
             e.printStackTrace();
             //in caso di dao exception ecc. lancio il template di errore
-            TemplateController.process("error.ftl", datamodel, response, getServletContext());
+            this.processError(request, response);
         }
     }
 
@@ -389,7 +392,8 @@ public class ModAssociationStudyCourseWithCourse extends BaseController {
                     studyCourseDao.destroy();
                     courseDao.destroy();
 
-
+                    //setto l'utente in sessione
+                    this.datamodel.put("user", sessionManager.getUser(request));
 
                     //lancio il template
                     TemplateController.process("mod_association_study_course_with_course.ftl", datamodel, response, getServletContext());
@@ -399,7 +403,7 @@ public class ModAssociationStudyCourseWithCourse extends BaseController {
                     //se l'utente non ha il permesso
                 }else{
 
-                    response.sendRedirect("ServiceNotPermissed");
+                    this.processNotPermitted(request, response);
                 }
 
                 //se non ha una sessione valida
@@ -412,12 +416,13 @@ public class ModAssociationStudyCourseWithCourse extends BaseController {
         }catch (DaoException e) {
             e.printStackTrace();
             //in caso di dao exception ecc.. lancio il template di errore
-            TemplateController.process("error.ftl", datamodel, response, getServletContext());
+            this.processError(request, response);
+
         } catch (LogException e) {
             e.printStackTrace();
 
             //lancio template
-            TemplateController.process("error.ftl", datamodel, response, getServletContext());
+            this.processError(request, response);
         }
     }
 }

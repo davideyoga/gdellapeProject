@@ -59,13 +59,16 @@ public class AdmGetListStudyCourse extends BaseController {
                     //inserisco nel datamodel tutti i corsi di studio
                     datamodel.put("studyCourses", studyCourses);
 
+                    //setto l'utente in sessione
+                    this.datamodel.put("user", sessionManager.getUser(request));
+
                     //lancio il template
                     TemplateController.process("study_course_list_adm.ftl", datamodel,response,getServletContext());
 
                     //se l'utente non ha il permesso
                 }else{
-                    //lancio il template di non permesso
-                    TemplateController.process( "not_permissed.ftl", datamodel ,response, getServletContext() );
+                    //lancio servlet di servizio non permesso
+                    response.sendRedirect("ServiceNotPermissed");
                 }
 
                 //se l'utente non ha una sessione valida
@@ -75,7 +78,7 @@ public class AdmGetListStudyCourse extends BaseController {
             }
         } catch (DaoException e) {
             //in caso di dao exception ecc. lancio il template di errore
-            TemplateController.process("error.ftl", datamodel,response,getServletContext());
+            this.processError(request, response);
         }
 
     }

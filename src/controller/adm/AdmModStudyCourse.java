@@ -104,13 +104,16 @@ public class AdmModStudyCourse extends BaseController{
                         //prima di lanciara il template carico nella sessione dell'amministatore l'id dell'utente che intendo modificare
                         request.getSession().setAttribute("idStudyCourseToModify", studyCourse.getId() );
 
+                        //setto l'utente in sessione
+                        this.datamodel.put("user", sessionManager.getUser(request));
+
                         //lancio il template
                         TemplateController.process("study_course_mod_adm.ftl", datamodel,response,getServletContext());
 
                         //se il corso di studi estratto non esiste
                     }else{
                         //lancio messaggio di errore
-                        TemplateController.process("error.ftl", datamodel,response,getServletContext());
+                        this.processError(request, response);
                     }
 
 
@@ -120,7 +123,7 @@ public class AdmModStudyCourse extends BaseController{
                     //se non ha il permesso
                 }else{
                     //lancio il template di non permesso
-                    TemplateController.process( "not_permissed.ftl", datamodel ,response, getServletContext() );
+                    this.processNotPermitted(request, response);
                 }
 
                 //se la sessione non valida
@@ -133,7 +136,7 @@ public class AdmModStudyCourse extends BaseController{
             e.printStackTrace();
 
             //in caso di dao exception ecc. lancio il template di errore
-            TemplateController.process("error.ftl", datamodel,response,getServletContext());
+            this.processError(request, response);
         }
     }
 
@@ -196,6 +199,9 @@ public class AdmModStudyCourse extends BaseController{
                             //concateno al messaggio di prima(se esiste) il messaggio di errore di nome fia' esistente
                             datamodel.put("message", datamodel.get("message") + "Error: Existing Name." );
                         }
+
+                        //setto l'utente in sessione
+                        this.datamodel.put("user", sessionManager.getUser(request));
 
                         //lancio template con messaggi di errore
                         TemplateController.process("study_course_mod_adm.ftl", datamodel,response,getServletContext());
@@ -293,6 +299,9 @@ public class AdmModStudyCourse extends BaseController{
                     //inserisco nel template il corso di studi aggiornato
                     datamodel.put("studyCourse", studyCourse);
 
+                    //setto l'utente in sessione
+                    this.datamodel.put("user", sessionManager.getUser(request));
+
                     //lancio il template
                     TemplateController.process("study_course_mod_adm.ftl", datamodel,response,getServletContext());
 
@@ -305,7 +314,7 @@ public class AdmModStudyCourse extends BaseController{
                     //se non ha il permesso
                 }else{
                     //lancio il template di non permesso
-                    TemplateController.process( "not_permissed.ftl", datamodel ,response, getServletContext() );
+                    this.processNotPermitted(request, response);
                 }
 
                 //se la sessione non valida
@@ -317,9 +326,12 @@ public class AdmModStudyCourse extends BaseController{
         } catch (DaoException e) {
             e.printStackTrace();
             //in caso di dao exception ecc. lancio il template di errore
-            TemplateController.process("error.ftl", datamodel,response,getServletContext());
+            this.processError(request, response);
+
         } catch (LogException e) {
             e.printStackTrace();
+
+            this.processError(request, response);
         }
 
     }

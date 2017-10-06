@@ -85,19 +85,23 @@ public class ModCourse extends BaseController {
 
                         //lancio il template con il corso caricato
                         datamodel.put("course", courseById);
+
+                        //setto l'utente in sessione
+                        this.datamodel.put("user", sessionManager.getUser(request));
+
                         TemplateController.process("course_mod.ftl", datamodel, response, getServletContext());
 
                         //se il corso non e' di questo anno accademico (il docente non puo' modificare un anno accademico che non sia quello attuale)
                     }else{
 
                         //lancio il messaggio di servizio non permesso
-                        TemplateController.process("not_permissed.ftl", datamodel, response, getServletContext());
+                        this.processNotPermitted(request, response);
 
                     }
                     //se l'utente non puo' modificare il corso
                 } else {
                     //lancio il messaggio di servizio non permesso
-                    TemplateController.process("not_permissed.ftl", datamodel, response, getServletContext());
+                    this.processNotPermitted(request, response);
                 }
 
                 //chiudo il dao
@@ -111,11 +115,11 @@ public class ModCourse extends BaseController {
         } catch (DaoException | NumberFormatException e) {
             e.printStackTrace();
 
-            TemplateController.process("error.ftl", datamodel, response, getServletContext());
+            this.processError(request, response);
         } catch (AccademicYearException e) {
             e.printStackTrace();
 
-            TemplateController.process("error.ftl", datamodel, response, getServletContext());
+            this.processError(request, response);
         }
     }
 
@@ -193,6 +197,9 @@ public class ModCourse extends BaseController {
 
                         }
 
+                        //setto l'utente in sessione
+                        this.datamodel.put("user", sessionManager.getUser(request));
+
                         //lancio il template
                         TemplateController.process("course_mod.ftl", datamodel,response,getServletContext());
 
@@ -200,7 +207,7 @@ public class ModCourse extends BaseController {
                     //se l'utente non ha il permesso di modificare il corso
                 }else{
                     //lancio il messaggio di servizio non permesso
-                    TemplateController.process("not_permissed.ftl", datamodel, response, getServletContext());
+                    this.processNotPermitted(request, response);
                 }
 
                 //se non ha sessione valida
@@ -213,10 +220,13 @@ public class ModCourse extends BaseController {
             e.printStackTrace();
 
             //in caso di dao exception ecc. lancio il template di errore
-            TemplateController.process("error.ftl", datamodel,response,getServletContext());
+            this.processError(request, response);
 
         } catch (LogException e) {
             e.printStackTrace();
+
+            //setto l'utente in sessione
+            this.datamodel.put("user", sessionManager.getUser(request));
 
             //siccome ad un docente che non sia insrito il log non gle ne puo' fregare di meno lancio comunque il template
             TemplateController.process("course_mod.ftl", datamodel,response,getServletContext());

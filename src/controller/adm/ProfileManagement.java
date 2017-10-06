@@ -37,6 +37,9 @@ public class ProfileManagement extends BaseController {
     private void processTemplate(HttpServletRequest request, HttpServletResponse response){
 
         //inserisco l'user estratto dalla sessione da passare al template
+        this.datamodel.put("userCurrent", sessionManager.getUser(request));
+
+        //setto l'utente in sessione
         this.datamodel.put("user", sessionManager.getUser(request));
 
         //se richiesta get lancio il template di profilo con i dati dell'utente in sessione
@@ -103,7 +106,11 @@ public class ProfileManagement extends BaseController {
 
                     //lancio il template con messaggio di errore inerente
                     datamodel.put("message","Error, different password");
-                    datamodel.put("user",userInSessione);
+                    datamodel.put("userCurrent",userInSessione);
+
+                    //setto l'utente in sessione
+                    this.datamodel.put("user", sessionManager.getUser(request));
+
                     TemplateController.process("profile.ftl", datamodel, response, getServletContext());
 
 
@@ -114,7 +121,11 @@ public class ProfileManagement extends BaseController {
 
                         //lancio il template con messaggio di errore inerente
                         datamodel.put("message", "Error, The password is smaller than 6 characters");
-                        datamodel.put("user", userInSessione);
+                        datamodel.put("userCurrent", userInSessione);
+
+                        //setto l'utente in sessione
+                        this.datamodel.put("user", sessionManager.getUser(request));
+
                         TemplateController.process("profile.ftl", datamodel, response, getServletContext());
 
 
@@ -147,7 +158,10 @@ public class ProfileManagement extends BaseController {
                         sessionManager.setUser(request, userDaForm);
 
                         //inserisco il nuovo utente nel datamodel
-                        datamodel.put("user", sessionManager.getUser(request));
+                        datamodel.put("userCurrent", sessionManager.getUser(request));
+
+                        //setto l'utente in sessione
+                        this.datamodel.put("user", sessionManager.getUser(request));
 
                         //lancio tameplate
                         TemplateController.process("profile.ftl", datamodel, response, getServletContext());
@@ -161,7 +175,7 @@ public class ProfileManagement extends BaseController {
             } catch (DaoException e) {
 
                 //in caso di dao exception lancio il template di errore
-                TemplateController.process("error.ftl", datamodel,response,getServletContext());
+                this.processError(request, response);
 
             } catch (LogException e) {
 
@@ -179,10 +193,13 @@ public class ProfileManagement extends BaseController {
 
                 } catch (DaoException e1) {
                     //in caso di dao exception lancio il template di errore
-                    TemplateController.process("error.ftl", datamodel,response,getServletContext());
+                    this.processError(request, response);
                 }
 
                 datamodel.put("message", "Error, not insert log");
+
+                //setto l'utente in sessione
+                this.datamodel.put("user", sessionManager.getUser(request));
 
                 //lancio il template di profilo con i dati dell'utente in sessione ed il messaggio di errore del log
                 TemplateController.process("profile.ftl", datamodel, response, getServletContext());

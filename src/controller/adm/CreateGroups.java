@@ -11,9 +11,11 @@ import model.Service;
 import view.TemplateController;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,33 +37,43 @@ public class CreateGroups extends BaseController {
      * @param response
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response){
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //se sessione valida, uso hardValid perche' questo processo implica un controllo di sicurezza
-        if(sessionManager.isHardValid(request)) {
+        try {
+            //se sessione valida, uso hardValid perche' questo processo implica un controllo di sicurezza
+            if (sessionManager.isHardValid(request)) {
 
-            //estraggo il servizio di creazione dei gruppi
-            Service createGroups = this.getServiceAndCreate(request,response,ds,"createGroup","Service to create group",datamodel, this.getServletContext());
+                //estraggo il servizio di creazione dei gruppi
+                Service createGroups = this.getServiceAndCreate(request, response, ds, "createGroup", "Service to create group", datamodel, this.getServletContext());
 
-            //se l'utente in sessione possiede il servizio createGroups
-            if (((List<Service>) request.getSession().getAttribute("services")).contains(createGroups)) {
+                //se l'utente in sessione possiede il servizio createGroups
+                if (((List <Service>) request.getSession().getAttribute("services")).contains(createGroups)) {
 
-                //lancio il template di creazione
-                TemplateController.process( "create_group.ftl", datamodel ,response, getServletContext() );
+                    //setto l'utente in sessione
+                    this.datamodel.put("user", sessionManager.getUser(request));
 
+                    //lancio il template di creazione
+                    TemplateController.process("create_group.ftl", datamodel, response, getServletContext());
+
+                } else {
+
+                    //lancio il messaggio di servizio non permesso
+                    this.processNotPermitted(request, response);
+
+                }
+
+
+                //se la sessione non e' valida
             } else {
 
-                //lancio il messaggio di servizio non permesso
-                TemplateController.process( "not_permissed.ftl", datamodel ,response, getServletContext() );
+                //setto la previous page e reindirizzo alla login
+                createPreviousPageAndRedirectToLogin(request, response, "CreateGroups");
 
             }
 
+        }catch (ServletException e){
 
-            //se la sessione non e' valida
-        }else{
-
-            //setto la previous page e reindirizzo alla login
-            createPreviousPageAndRedirectToLogin(request, response, "CreateGroups");
+            this.processError(request, response);
 
         }
 
@@ -73,7 +85,7 @@ public class CreateGroups extends BaseController {
      * @param response
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response){
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //pulisco messaggio
         datamodel.put("message",null);
@@ -129,6 +141,9 @@ public class CreateGroups extends BaseController {
                             //inserisco il messaggio di gruppo con lo stesso nome gia' presente nel database
                             datamodel.put("message", "gruppo con questo nome gia presente nel database");
 
+                            //setto l'utente in sessione
+                            this.datamodel.put("user", sessionManager.getUser(request));
+
                             //lancio la pagina di creazione dell'utente
                             TemplateController.process("create_group.ftl", datamodel, response, getServletContext());
 
@@ -142,6 +157,9 @@ public class CreateGroups extends BaseController {
                         //inserisco il messaggio di dati non corretti
                         datamodel.put("message", "dati passati non corretti");
 
+                        //setto l'utente in sessione
+                        this.datamodel.put("user", sessionManager.getUser(request));
+
                         //lancio la pagina di creazione del gruppo
                         TemplateController.process("create_group.ftl", datamodel, response, getServletContext());
                     }
@@ -150,7 +168,7 @@ public class CreateGroups extends BaseController {
                 } else {
 
                     //lancio il template della pagina not_permissed
-                    TemplateController.process( "not_permissed.ftl", datamodel ,response, getServletContext() );
+                    this.processNotPermitted(request, response);
                 }
 
                 //se la sessione non e' valida
@@ -166,12 +184,15 @@ public class CreateGroups extends BaseController {
             //inserisco il messaggio utente creato
             datamodel.put("message", "Created Group");
 
+            //setto l'utente in sessione
+            this.datamodel.put("user", sessionManager.getUser(request));
+
             //lancio la pagina di creazione di un gruppo
             TemplateController.process("create_group.ftl", datamodel, response, getServletContext());
 
         }catch ( DaoException e) {
             //in caso di dao exception ecc. lancio il template di errore
-            TemplateController.process("error.ftl", datamodel,response,getServletContext());
+            this.processError(request, response);
 
         } catch (LogException e) {
 
@@ -180,6 +201,9 @@ public class CreateGroups extends BaseController {
 
             //inserisco il messaggio utente creato con messaggio di errore del log
             datamodel.put("message", "Created Group but log insert error");
+
+            //setto l'utente in sessione
+            this.datamodel.put("user", sessionManager.getUser(request));
 
             //lancio la pagina di creazione del gruppo
             TemplateController.process("create_group.ftl", datamodel, response, getServletContext());

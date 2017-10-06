@@ -39,13 +39,16 @@ public class CreateCourse extends BaseController {
             //se l'utente in sessione possiede il servizio
             if (((List <Service>) request.getSession().getAttribute("services")).contains(createGroups)) {
 
+                //setto l'utente in sessione
+                this.datamodel.put("user", sessionManager.getUser(request));
+
                 //lancio il template di creazione
                 TemplateController.process("create_course.ftl", datamodel, response, getServletContext());
 
 
             } else {
                     //lancio il messaggio di servizio non permesso
-                    TemplateController.process("not_permissed.ftl", datamodel, response, getServletContext());
+                    this.processNotPermitted(request, response);
             }
                 //se la sessione non e' valida
         } else {
@@ -110,6 +113,9 @@ public class CreateCourse extends BaseController {
                             datamodel.put("message", datamodel.get("message") + "Error: Existing Code. ");
                         }
 
+                        //setto l'utente in sessione
+                        this.datamodel.put("user", sessionManager.getUser(request));
+
                         //lancio il template
                         TemplateController.process("create_course.ftl", datamodel, response, getServletContext());
 
@@ -131,12 +137,16 @@ public class CreateCourse extends BaseController {
 
                         //inserisco messaggio di avvenuta creazione del corso e lancio il template
                         datamodel.put("message", "Course Created");
+
+                        //setto l'utente in sessione
+                        this.datamodel.put("user", sessionManager.getUser(request));
+
                         TemplateController.process("create_course.ftl", datamodel, response, getServletContext());
                     }
 
                 } else {
                     //lancio il messaggio di servizio non permesso
-                    TemplateController.process("not_permissed.ftl", datamodel, response, getServletContext());
+                    this.processNotPermitted(request, response);
                 }
                 //se la sessione non e' valida
             } else {
@@ -147,11 +157,14 @@ public class CreateCourse extends BaseController {
             }
         }catch(DaoException e){
             //in caso di dao exception ecc. lancio il template di errore
-            TemplateController.process("error.ftl", datamodel,response,getServletContext());
+            this.processError(request, response);
 
         } catch (LogException e) {
             //inserisco nel datamodel un messaggio di avvenuto inserimento del corso ma di errore nell'inserimnto del log
             datamodel.put("message", "Created Course but log insert error");
+
+            //setto l'utente in sessione
+            this.datamodel.put("user", sessionManager.getUser(request));
 
             //lancio il template
             TemplateController.process("create_course.ftl", datamodel, response, getServletContext());

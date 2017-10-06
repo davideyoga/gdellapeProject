@@ -15,6 +15,9 @@ public class ServiceNotPermissed extends BaseController {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        //setto l'utente in sessione
+        this.datamodel.put("user", sessionManager.getUser(request));
+
         //lancio template di servizio non permesso
         TemplateController.process("not_permitted.ftl", datamodel,response,getServletContext());
 

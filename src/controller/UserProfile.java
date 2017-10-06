@@ -47,11 +47,14 @@ public class UserProfile extends BaseController {
             //se l'utente esiste nel sistema
             if(!(user == null) && user.getId()>0){
 
-                //carico l'user nel datamodel e lancio il template
-                datamodel.put("user", user);
+                //carico l'user nel datamodel
+                datamodel.put("userCurrent", user);
 
                 //carico la lingua nel datamodel
                 this.setLng(request, datamodel);
+
+                //setto l'utente in sessione
+                this.datamodel.put("user", sessionManager.getUser(request));
 
                 //lancia il template appropriato alla lingua selezionata dall'utente
                 this.processTemplate(request, response, "user_profile", datamodel);

@@ -13,9 +13,11 @@ import model.User;
 import view.TemplateController;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +33,7 @@ public class CreateUser extends BaseController {
     private Map<String, Object> datamodel = new HashMap<>();
 
 
-    private Service getCreateUserService(HttpServletRequest request , HttpServletResponse response){
+    private Service getCreateUserService(HttpServletRequest request , HttpServletResponse response) throws ServletException, IOException {
 
         //inizializzo il dao per estrarre il servizio createUser
         ServiceDao serviceDao = new ServiceDaoImpl(ds);
@@ -65,7 +67,7 @@ public class CreateUser extends BaseController {
             datamodel.put("message", "internal error");
 
             //reindirizzo alla pagina di errore
-            TemplateController.process("error.ftl", datamodel, response, getServletContext());
+            this.processError(request, response);
         }
 
         return createUser;
@@ -74,7 +76,7 @@ public class CreateUser extends BaseController {
 
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response){
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //se sessione valida, uso hardValid perche questo processo implica un controllo di sicurezza
         if(sessionManager.isHardValid(request)) {
@@ -85,14 +87,16 @@ public class CreateUser extends BaseController {
                 //se l'utente in sessione possiede il servizio createUser...
                 if (((List <Service>) request.getSession().getAttribute("services")).contains(createUser)) {
 
+                    //setto l'utente in sessione
+                    this.datamodel.put("user", sessionManager.getUser(request));
+
                     //lancio il template di creazione utente
                     TemplateController.process( "create_user.ftl", datamodel ,response, getServletContext() );
 
                 } else {
 
                     //lancio il messaggio di servizio non permesso
-                    TemplateController.process( "not_permissed.ftl", datamodel ,response, getServletContext() );
-
+                    this.processNotPermitted(request, response);
                 }
 
 
@@ -108,7 +112,7 @@ public class CreateUser extends BaseController {
 
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response){
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //pulisco messaggio
         datamodel.put("message",null);
@@ -165,6 +169,9 @@ public class CreateUser extends BaseController {
                             //inserisco il messaggio di email gia' presente nel database
                             datamodel.put("message", "E-mail already in the database");
 
+                            //setto l'utente in sessione
+                            this.datamodel.put("user", sessionManager.getUser(request));
+
                             //lancio la pagina di creazione dell'utente
                             TemplateController.process("create_user.ftl", datamodel, response, getServletContext());
 
@@ -178,6 +185,9 @@ public class CreateUser extends BaseController {
                         //inserisco il messaggio di dati non corretti
                         datamodel.put("message", "Past data is incorrect");
 
+                        //setto l'utente in sessione
+                        this.datamodel.put("user", sessionManager.getUser(request));
+
                         //lancio la pagina di creazione dell'utente
                         TemplateController.process("create_user.ftl", datamodel, response, getServletContext());
                     }
@@ -186,7 +196,7 @@ public class CreateUser extends BaseController {
                 } else {
 
                     //lancio il template della pagina not_permissed
-                    TemplateController.process( "not_permissed.ftl", datamodel ,response, getServletContext() );
+                    this.processNotPermitted(request, response);
                 }
 
             //se la sessione non e' valida
@@ -202,12 +212,15 @@ public class CreateUser extends BaseController {
             //inserisco il messaggio utente creato
             datamodel.put("message", "User created");
 
+            //setto l'utente in sessione
+            this.datamodel.put("user", sessionManager.getUser(request));
+
             //lancio la pagina di creazione dell'utente
             TemplateController.process("create_user.ftl", datamodel, response, getServletContext());
 
         }catch (SessionException | DaoException  e) {
             //in caso di dao exception ecc. lancio il template di errore
-            TemplateController.process("error.ftl", datamodel,response,getServletContext());
+            this.processError(request, response);
 
         } catch (LogException e) {
 
@@ -216,6 +229,9 @@ public class CreateUser extends BaseController {
 
             //inserisco il messaggio utente creato con messaggio di errore del log
             datamodel.put("message", "User created but insert log error ");
+
+            //setto l'utente in sessione
+            this.datamodel.put("user", sessionManager.getUser(request));
 
             //lancio la pagina di creazione dell'utente
             TemplateController.process("create_user.ftl", datamodel, response, getServletContext());

@@ -38,6 +38,9 @@ public class Login extends BaseController {
         //inserisco il messaggio di errore nel datamodel
         this.datamodel.put( "message", "email and password not match" );
 
+        //setto l'utente in sessione
+        this.datamodel.put("user", sessionManager.getUser(request));
+
         //lancio la pagina di login
         TemplateController.process( "login.ftl", this.datamodel ,response, getServletContext() );
     }

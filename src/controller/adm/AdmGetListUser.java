@@ -66,6 +66,8 @@ public class AdmGetListUser extends BaseController {
                     userDao.close();
                     userDao = null;
 
+                    //setto l'utente in sessione
+                    this.datamodel.put("user", sessionManager.getUser(request));
 
                     //lancio il template con gli utenti caricati
                     datamodel.put("users", userList);
@@ -75,7 +77,7 @@ public class AdmGetListUser extends BaseController {
                 } else {
 
                     //lancio il messaggio di servizio non permesso
-                    TemplateController.process("not_permissed.ftl", datamodel, response, getServletContext());
+                    this.processNotPermitted(request, response);
                 }
 
 
@@ -88,7 +90,7 @@ public class AdmGetListUser extends BaseController {
 
         } catch (Exception e) {
             //in caso di dao exception ecc. lancio il template di errore
-            TemplateController.process("error.ftl", datamodel,response,getServletContext());
+            this.processError(request, response);
         }
     }
 

@@ -52,6 +52,9 @@ public class ModCourseRelation extends BaseController {
         request.getSession().setAttribute("idCourse", course.getIdCourse());
         request.getSession().setAttribute("mode", mode);
 
+        //setto l'utente in sessione
+        this.datamodel.put("user", sessionManager.getUser(request));
+
         //lancio il template
         TemplateController.process("mod_relation_course.ftl", datamodel,response,getServletContext());
 

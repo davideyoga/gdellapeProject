@@ -51,6 +51,9 @@ public class CreateStudyCourse extends BaseController {
             //se l'utente in sessione possiede il servizio
             if (((List<Service>) request.getSession().getAttribute("services")).contains(createGroups)) {
 
+                //setto l'utente in sessione
+                this.datamodel.put("user", sessionManager.getUser(request));
+
                 //lancio il template di creazione utente
                 TemplateController.process( "create_study_course.ftl", datamodel ,response, getServletContext() );
 
@@ -58,7 +61,7 @@ public class CreateStudyCourse extends BaseController {
             } else {
 
                 //lancio il messaggio di servizio non permesso
-                TemplateController.process( "not_permissed.ftl", datamodel ,response, getServletContext() );
+                this.processNotPermitted(request, response);
 
             }
 
@@ -116,6 +119,9 @@ public class CreateStudyCourse extends BaseController {
                         //aggiungo il messaggio di valori non esistenti
                         datamodel.put("message", "Error: Missing values or not correct" );
 
+                        //setto l'utente in sessione
+                        this.datamodel.put("user", sessionManager.getUser(request));
+
                         //lancio template con messaggi di errore
                         TemplateController.process("create_study_course.ftl", datamodel,response,getServletContext());
                         return;
@@ -144,6 +150,9 @@ public class CreateStudyCourse extends BaseController {
                             datamodel.put("message", datamodel.get("message") + "Error: Existing Name." );
                         }
 
+                        //setto l'utente in sessione
+                        this.datamodel.put("user", sessionManager.getUser(request));
+
                         //lancio template con messaggi di errore
                         TemplateController.process("create_study_course.ftl", datamodel,response,getServletContext());
                         return;
@@ -161,12 +170,15 @@ public class CreateStudyCourse extends BaseController {
                     //inserisco il messaggio corso di studi creato
                     datamodel.put("message", "Study Course Created");
 
+                    //setto l'utente in sessione
+                    this.datamodel.put("user", sessionManager.getUser(request));
+
                     //lancio la pagina di creazione di un gruppo
                     TemplateController.process("create_study_course.ftl", datamodel, response, getServletContext());
                 } else {
 
                     //lancio il messaggio di servizio non permesso
-                    TemplateController.process( "not_permissed.ftl", datamodel ,response, getServletContext() );
+                    this.processNotPermitted(request, response);
 
                 }
 
@@ -183,15 +195,20 @@ public class CreateStudyCourse extends BaseController {
         }catch (DaoException e) {
             e.printStackTrace();
             //in caso di dao exception ecc. lancio il template di errore
-            TemplateController.process("error.ftl", datamodel,response,getServletContext());
+            this.processError(request, response);
         } catch (LogException e) {
             e.printStackTrace();
 
             //inserisco il messaggio corso di studi creato ma di non avvenuto inserimento del log
             datamodel.put("message", "Study Course Created but not insert the log");
 
+            //setto l'utente in sessione
+            this.datamodel.put("user", sessionManager.getUser(request));
+
             //lancio la pagina di creazione di un gruppo
-            TemplateController.process("create_group.ftl", datamodel, response, getServletContext());
+            TemplateController.process("create_study_course.ftl", datamodel, response, getServletContext());
+
+            //commento a cazzo
         }
 
     }

@@ -74,6 +74,10 @@ public class AdmModCourse extends BaseController {
 
                     //lancio il template con il corso caricato
                     datamodel.put("course", courseById);
+
+                    //setto l'utente in sessione
+                    this.datamodel.put("user", sessionManager.getUser(request));
+
                     TemplateController.process("course_mod.ftl", datamodel, response, getServletContext());
 
                     //se l'utente non ha il permesso per accedere a tale servizio
@@ -90,7 +94,7 @@ public class AdmModCourse extends BaseController {
         } catch (DaoException | NumberFormatException e) {
             e.printStackTrace();
 
-            TemplateController.process("error.ftl", datamodel, response, getServletContext());
+            this.processError(request, response);
         }
     }
 
@@ -165,6 +169,9 @@ public class AdmModCourse extends BaseController {
                                 datamodel.put("course", courseBefore);
 
                             }
+
+                            //setto l'utente in sessione
+                            this.datamodel.put("user", sessionManager.getUser(request));
 
                             //lancio il template
                             TemplateController.process("course_mod.ftl", datamodel, response, getServletContext());

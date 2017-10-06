@@ -83,12 +83,16 @@ public class ModAdmCourse extends BaseController {
 
                     //lancio il template con il corso caricato
                     datamodel.put("course", courseById);
+
+                    //setto l'utente in sessione
+                    this.datamodel.put("user", sessionManager.getUser(request));
+
                     TemplateController.process("course_mod_adm.ftl", datamodel, response, getServletContext());
 
                     //se l'utente non puo' modificare il corso
                 } else {
                     //lancio il messaggio di servizio non permesso
-                    TemplateController.process("not_permissed.ftl", datamodel, response, getServletContext());
+                    this.processNotPermitted(request, response);
                 }
 
 
@@ -104,7 +108,7 @@ public class ModAdmCourse extends BaseController {
         } catch (DaoException | NumberFormatException e) {
             e.printStackTrace();
 
-            TemplateController.process("error.ftl", datamodel, response, getServletContext());
+            this.processError(request, response);
         }
     }
 
@@ -192,13 +196,16 @@ public class ModAdmCourse extends BaseController {
                     courseByForm.setIdCourse(courseById.getIdCourse());
                     datamodel.put("course", courseByForm);
 
+                    //setto l'utente in sessione
+                    this.datamodel.put("user", sessionManager.getUser(request));
+
                     //lancio il template
                     TemplateController.process("course_mod_adm.ftl", datamodel, response, getServletContext());
 
                     //se l'utente non ha il permesso di modificare il corso
                 }else{
                     //lancio il messaggio di servizio non permesso
-                    TemplateController.process("not_permissed.ftl", datamodel, response, getServletContext());
+                    this.processNotPermitted(request, response);
                 }
 
                 //se non ha sessione valida
@@ -211,11 +218,12 @@ public class ModAdmCourse extends BaseController {
             e.printStackTrace();
 
             //in caso di dao exception ecc. lancio il template di errore
-            TemplateController.process("error.ftl", datamodel,response,getServletContext());
+            this.processError(request, response);
 
         } catch (LogException e) {
             e.printStackTrace();
 
+            this.processError(request, response);
 
         }
 

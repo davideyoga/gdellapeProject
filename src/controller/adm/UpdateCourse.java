@@ -30,6 +30,9 @@ public class UpdateCourse extends BaseController {
         //carico il corso nel datamodel
         datamodel.put("course", courseById);
 
+        //setto l'utente in sessione
+        this.datamodel.put("user", sessionManager.getUser(request));
+
         //lancio il template
         TemplateController.process("update_course.ftl", datamodel, response, getServletContext());
 
