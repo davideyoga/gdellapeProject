@@ -10,6 +10,12 @@ html, body{
 	background:#c0deed;
 	margin: 0;
 }
+
+.language a{
+    color: #ffffff !important;
+    font-weight: bold;
+}
+
 p,ul li,ol li{
 	margin:0;
 	font-size:14px;

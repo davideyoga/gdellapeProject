@@ -12,6 +12,9 @@
                     <li><a class="active" href="login" >Sign In</a></li>
                     <li><a href="#" data-toggle="modal" data-target="#myModal3" >Sign Up</a></li>
             </ul>
+            <div class="language">
+                < ciea href="Home?<#if lng == 'IT'>lng=EN<#elseif lng == 'EN'>lng=IT<#else>lng=EN</#if>">Cambia Lingua <img src="/templates/images/blank.gif" class="flag flag-it" alt="" /></a>
+            </div>
         </div>
         <div class="clearfix"> </div>
     </div>

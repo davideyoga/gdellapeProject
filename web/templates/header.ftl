@@ -14,6 +14,9 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- pop-up-box -->
 <link href="templates/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
 <!-- //pop-up-box -->
+<!-- bandierine-->
+<link href="/templates/css/flags.min.css" rel="stylesheet" type="text/css" media="all">
+<!-- fine bandierine-->
 <!-- font-awesome icons -->
 <link href="templates/css/font-awesome.css" rel="stylesheet">
 <!-- //font-awesome icons -->
