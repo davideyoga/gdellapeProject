@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 html, body{
     font-size: 100%;
 	font-family: 'Open Sans', sans-serif;
-	background:#ffffff;
+	background:#c0deed;
 	margin: 0;
 }
 p,ul li,ol li{
@@ -37,7 +37,7 @@ input[type="submit"],input[type="reset"],.w3l_team_grd,.agileits_w3layouts_featu
 .wthree_agile_top_header{
 	    padding: 1em 3em;
     border-bottom: 1px solid #e6e6e6;
-    background: #416180;
+    background: #00aced;
 }
 i.fa.fa-graduation-cap {
         font-size: 0.8em;
@@ -104,7 +104,7 @@ i.fa.fa-graduation-cap {
 }
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
     color:#fff;
-    background: #416180;
+    background: #0064d2;
 }
 .navbar-default .navbar-nav > li > a {
     color: #212121;
@@ -158,7 +158,7 @@ nav.navbar.navbar-default {
   transform: perspective(1px) translateZ(0);
   box-shadow: 0 0 1px transparent;
   position: relative;
-  background: #fff;
+  /*background: #fff;*/
   -webkit-transition-property: color;
   transition-property: color;
   -webkit-transition-duration: 0.3s;
@@ -314,9 +314,9 @@ nav.navbar.navbar-default {
     transition-duration: 0.3s;
 }
 a.w3ls_banner_more{
-    background: #e53238;
+    background: #0064d2;
 	color:#fff !important;
-	border:1px solid #e53238 !important;
+	border:1px solid #0064d2 !important;
 }
 .agileits_more ul li a.hvr-icon-hang:hover {
 	background: #e53238;
@@ -361,7 +361,7 @@ h3.agileinfo_sign  {
     outline: none;
     color: #212121;
     border: none;
-    border: 1px solid #ccc;
+    border: 1px solid #0064d2;
     letter-spacing: 1px;
     text-align: center;
 }
@@ -370,11 +370,11 @@ h3.agileinfo_sign  {
     display: block;
 }
 .signin-form input[type="text"] {
-    background: none;
+    /*background: none;*/
     display: block;
 }
 .signin-form input[type="password"] {
-     background: none;
+     /*background: none;*/
     display: block;
 }
 ::-webkit-input-placeholder{
