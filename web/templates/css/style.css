@@ -11,9 +11,21 @@ html, body{
 	margin: 0;
 }
 
-.language a{
+.language{
+    background: #00aced; /*se cambiate colore qua, cambiatelo anche alla regola language-selection e wthree_agile_top_header*/
+    height: auto;
     color: #ffffff !important;
     font-weight: bold;
+    border-top: 1px;
+    padding-bottom: 2px;
+}
+
+.language-selection a{
+    background: #00aced; /*se cambiate colore qua, cambiatelo anche alla regola wthree_agile_top_header e language*/
+    height: auto;
+    color: #ffffff !important;
+    font-weight: bold;
+    padding-right: 6%;
 }
 
 p,ul li,ol li{
@@ -42,8 +54,8 @@ input[type="submit"],input[type="reset"],.w3l_team_grd,.agileits_w3layouts_featu
 /*-- header --*/
 .wthree_agile_top_header{
 	    padding: 1em 3em;
-    border-bottom: 1px solid #e6e6e6;
-    background: #00aced;
+    border-bottom: 0px solid #e6e6e6;
+    background: #00aced; /*se cambiate colore qua, cambiatelo anche alla regola language-selection*/
 }
 i.fa.fa-graduation-cap {
         font-size: 0.8em;
