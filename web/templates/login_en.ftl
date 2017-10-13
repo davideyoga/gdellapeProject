@@ -3,7 +3,7 @@
 <head>
     <title>Home</title>
 
-<#include "header.ftl">
+<#include "import.ftl">
 
 </head>
 <body>

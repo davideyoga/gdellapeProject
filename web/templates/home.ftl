@@ -4,7 +4,7 @@
     <title>Home</title>
 
     <!--librerie-->
-    <#include "header.ftl">
+    <#include "import.ftl">
 </head>
 <body>
     <!--menù navigazione-->

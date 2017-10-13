@@ -11,8 +11,8 @@
             <ul>
                 <#--<li><a class="active" href="#" data-toggle="modal" data-target="#myModal2" >Sign In</a></li>
                 <li><a href="#" data-toggle="modal" data-target="#myModal3" >Sign Up</a></li>-->
-                    <li><a class="active" href="login" >Sign In</a></li>
-                    <li><a href="#" data-toggle="modal" data-target="#myModal3" >Sign Up</a></li>
+                    <li><a class="active" href="login" >Login</a></li>
+                    <li><a href="register" >Register</a></li>
             </ul>
 
         </div>
