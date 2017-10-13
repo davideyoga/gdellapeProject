@@ -11,6 +11,13 @@ html, body{
 	margin: 0;
 }
 
+.title{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
 .language{
     background: #00aced; /*se cambiate colore qua, cambiatelo anche alla regola language-selection e wthree_agile_top_header*/
     height: auto;
@@ -53,7 +60,7 @@ input[type="submit"],input[type="reset"],.w3l_team_grd,.agileits_w3layouts_featu
 }
 /*-- header --*/
 .wthree_agile_top_header{
-	    padding: 1em 3em;
+    padding: 1em 3em;
     border-bottom: 0px solid #e6e6e6;
     background: #00aced; /*se cambiate colore qua, cambiatelo anche alla regola language-selection*/
 }

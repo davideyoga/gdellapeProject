@@ -26,7 +26,7 @@ public class AddBook extends BaseController {
 
     protected void processTemplate(HttpServletRequest request, HttpServletResponse response, Course course) throws ServletException, IOException {
 
-        //carico il croso nel datamode
+        //carico il corso nel datamodel
         datamodel.put("course", course);
 
         //inserisco in sessione l'id del corso

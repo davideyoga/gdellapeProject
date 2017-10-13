@@ -21,7 +21,7 @@
                     <div class="signin-form profile">
                         <h3 class="agileinfo_sign">Accedi</h3>
                         <div class="login-form">
-                            <form action="#" method="post">
+                            <form action="/Login" method="post">
                                 <input type="text" name="email" placeholder="E-mail" required="">
                                 <input type="password" name="password" placeholder="Password" required="">
                                 <div class="tp">
