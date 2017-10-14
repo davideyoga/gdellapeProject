@@ -33,7 +33,7 @@ public class Register extends BaseController {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
-            TemplateController.process( "register.ftl" , datamodel ,response, getServletContext() );
+            TemplateController.process( "register.ftl", datamodel ,response, getServletContext() );
     }
 
     @Override
