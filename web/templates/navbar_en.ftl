@@ -12,18 +12,19 @@
             <#--<li><a class="active" href="#" data-toggle="modal" data-target="#myModal2" >Sign In</a></li>
             <li><a href="#" data-toggle="modal" data-target="#myModal3" >Sign Up</a></li>-->
                 <li><a class="active" href="login_en" >Sign In</a></li>
-                <li><a href="#" data-toggle="modal" data-target="#myModal3" >Sign Up</a></li>
+                <li><a href="Home?<#if lng == 'IT'>lng=EN<#elseif lng == 'EN'>lng=IT<#else>lng=EN</#if>">Italian<img src="images/blank.gif" class="flag flag-it" alt="" /></a></li>
             </ul>
 
         </div>
 
         <div class="clearfix"> </div>
     </div>
-<#--language change-->
+
+    <#--language change
     <div align="right" class="language-selection language">
         <a href="Home?<#if lng == 'IT'>lng=EN<#elseif lng == 'EN'>lng=IT<#else>lng=EN</#if>">Switch to Italian <img src="images/blank.gif" class="flag flag-it" alt="" /></a>
     </div>
-<#--language change-->
+    language change-->
 
     <div class="container">
         <div class="w3layouts_agileits_nav_section">
