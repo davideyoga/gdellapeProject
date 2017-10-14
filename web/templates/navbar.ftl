@@ -48,10 +48,10 @@
 
                     <nav>
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="/home">Home</a></li>
-
-                            <li><a href="#about" class="hvr-rectangle-out scroll">About</a></li>
-                            <li><a href="#services" class="hvr-rectangle-out scroll">Objectives</a></li>
+                            <li class="active">
+                                <a href="/home">Home</a></li>
+                            <li><a href="/ListStudyCourses" >Corsi</a></li>
+                            <li><a href="#services" class="hvr-rectangle-out scroll">Professori</a></li>
                             <li><a href="#team" class="hvr-rectangle-out scroll">Faculties</a></li>
                             <li><a href="#news" class="hvr-rectangle-out scroll">News</a></li>
                             <li><a href="#gallery" class="hvr-rectangle-out scroll">Gallery</a></li>

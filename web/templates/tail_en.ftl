@@ -4,14 +4,15 @@
         <div class="newsletter-agile">
             <form action="#" method="post">
                 <p>Send us Your Mail, we'll make sure You Never Miss a Thing!</p>
-                <input type="email" name="email" size="30" required="" placeholder="Enter your email here...">
+                <p>Inserisci la tua mail, faremo in modo di non farti perdere nessuna novit&agrave</p>
+                <input type="email" name="email" size="30" required="" placeholder="Inserisci la tua mail qui t...">
                 <input type="submit" value="Subscribe">
             </form>
         </div>
         <div class="footer-main">
             <div class="footer-top">
                 <div class="col-md-4 ftr-grid fg1">
-                    <h3><a href="/home"><span>U</span>niversit&agrave</a></h3>
+                    <h3><a href="index.html"><span>U</span>niversit&agrave</a></h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adip magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
                 </div>
                 <div class="col-md-4 ftr-grid fg2 mid-gd">

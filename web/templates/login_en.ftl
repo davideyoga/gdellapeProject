@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<#include "navbar.ftl">
+<#include "navbar_en.ftl">
 
 <!-- Modal1 -->
 

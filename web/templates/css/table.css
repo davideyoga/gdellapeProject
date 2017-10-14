@@ -1,0 +1,42 @@
+table.responsive {
+    width: 100%;
+    background: #f0f0f0;
+
+}
+
+@media all and (max-width: 768px) {
+
+    table.responsive {
+        width: 100%;
+    }
+
+    .responsive thead tr {
+        display: none;
+
+    }
+
+    .responsive tbody tr {
+        clear: both;
+        display: block;
+        border: 1px solid black;
+        padding-bottom: 10px;
+    }
+
+    .responsive td {
+        display: block;
+        padding: 4px;
+        position: relative;
+        padding-left: 40%;
+    }
+
+    .responsive td:before {
+        clear: both;
+        position: absolute;
+        top: 4px;  /* deve essere come il padding del td */
+        left: 4px; /* deve essere come il padding del td */
+        width: 35%;
+        padding-right: 10px;
+        white-space: nowrap;
+    }
+
+}
