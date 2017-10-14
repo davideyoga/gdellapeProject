@@ -10,7 +10,7 @@
 
 <#include "navbar.ftl">
 <div class="title">
-    Lista Corsi
+    Lista Corsi di studio
 </div>
 
 <div class="container">
@@ -22,8 +22,8 @@
         <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
         <thead>
             <tr>
-                <th>Codice Corso</th>
-                <th>Nome Corso</th>
+                <th>Codice Corso di studio</th>
+                <th>Nome Corso di studio </th>
                 <th> - </th>
             </tr>
         </thead>
