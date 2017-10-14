@@ -51,12 +51,12 @@
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="/home">Home</a></li>
 
-                            <li><a href="#about" class="hvr-rectangle-out scroll">About</a></li>
-                            <li><a href="#services" class="hvr-rectangle-out scroll">Objectives</a></li>
-                            <li><a href="#team" class="hvr-rectangle-out scroll">Faculties</a></li>
-                            <li><a href="#news" class="hvr-rectangle-out scroll">News</a></li>
-                            <li><a href="#gallery" class="hvr-rectangle-out scroll">Gallery</a></li>
-                            <li><a href="#contact" class="hvr-rectangle-out scroll">Contact</a></li>
+                            <li><a href="#about" class="hvr-rectangle-out">About</a></li>
+                            <li><a href="#services" class="hvr-rectangle-out">Objectives</a></li>
+                            <li><a href="#team" class="hvr-rectangle-out">Faculties</a></li>
+                            <li><a href="#news" class="hvr-rectangle-out">News</a></li>
+                            <li><a href="#gallery" class="hvr-rectangle-out">Gallery</a></li>
+                            <li><a href="#contact" class="hvr-rectangle-out">Contact</a></li>
                         </ul>
 
                     </nav>
