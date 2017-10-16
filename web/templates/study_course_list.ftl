@@ -15,7 +15,7 @@
 
 <div class="container">
 
-    <!--Eventuale messaggio di errore-->
+    <!--Eventuale messaggio di errore, blu-->
     <p><#if message??>${message}<#else></#if></p>
 
     <table class="responsive">
