@@ -30,7 +30,7 @@ public class HomeBackOffice extends BaseController {
         this.datamodel.put("user", sessionManager.getUser(request));
 
         //lancio template di home del back office
-        TemplateController.process("login.ftl", this.datamodel, response, getServletContext());
+        TemplateController.process("home_back_office.ftl", this.datamodel, response, getServletContext());
 
     }
 
