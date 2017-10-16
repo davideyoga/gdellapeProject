@@ -12,7 +12,7 @@
                 <#--<li><a class="active" href="#" data-toggle="modal" data-target="#myModal2" >Sign In</a></li>
                 <li><a href="#" data-toggle="modal" data-target="#myModal3" >Sign Up</a></li>-->
                     <#if user??>
-                        <li><a class="active" href="homeBackOffice" >Benvenuto ${user.name}</a></li>
+                        <li><a class="active" href="HomeBackOffice" >Benvenuto ${user.name}</a></li>
                     <#else>
                         <li><a class="active" href="login" >Login</a></li>
                     </#if>
