@@ -67,7 +67,7 @@
             </tr>
             <br>
             <!--Tutta la descrizione del corso, per prendere spunto guardare user_profile.ftl-->
-
+    <#--commento cmmento-->
             <#--<p>CORSI APPARTENENTI AL CORSO DI STUDI (DA SCRIVERE IN INGLESE)</p>-->
             <br>
             <#list courses as course>
