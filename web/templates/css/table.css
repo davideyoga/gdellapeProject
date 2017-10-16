@@ -1,42 +1,21 @@
-table.responsive {
-    width: 100%;
-    background: #f0f0f0;
 
+#page-wrap {
+    margin: 20px;
 }
 
-@media all and (max-width: 768px) {
+table {width: 100%; border-collapse: collapse;}
+tr:nth-of-type(odd) {background: #EEEEEE;}
+th {background: #0064D2; color: #FFFFFF; font-weight: bold;}
+td, th {padding: 6px; border: 1px solid #ccc; text-align: center;}
 
-    table.responsive {
-        width: 100%;
-    }
+@media
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px) {
 
-    .responsive thead tr {
-        display: none;
-
-    }
-
-    .responsive tbody tr {
-        clear: both;
-        display: block;
-        border: 1px solid black;
-        padding-bottom: 10px;
-    }
-
-    .responsive td {
-        display: block;
-        padding: 4px;
-        position: relative;
-        padding-left: 40%;
-    }
-
-    .responsive td:before {
-        clear: both;
-        position: absolute;
-        top: 4px;  /* deve essere come il padding del td */
-        left: 4px; /* deve essere come il padding del td */
-        width: 35%;
-        padding-right: 10px;
-        white-space: nowrap;
-    }
+    table, thead, tbody, th, td, tr {display: block;}
+    thead tr {position: absolute; top: -9999px; left: -9999px;}
+    tr {border: 1px solid #CCCCCC; }
+    td {border: none; border-bottom: 1px solid #eee; position: relative; padding-left: 50%;}
+    td:before {position: absolute; top: 6px; left: 6px; width: 45%; padding-right: 10px; white-space: nowrap;}
 
 }
