@@ -11,6 +11,11 @@ html, body{
 	margin: 0;
 }
 
+.prova{
+    float: right;
+    background: transparent;
+}
+
 .title{
     margin-top: 10px;
     margin-bottom: 10px;
@@ -110,7 +115,7 @@ i.fa.fa-graduation-cap {
 }
 .agileits_w3layouts_sign_in ul li span {
     font-size: 1.5em;
-    color: #f62b2b;
+    color: #0064d2; /*cambio colore*/
 }
 /*-- nav --*/
 .navbar-default {

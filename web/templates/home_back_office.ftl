@@ -10,7 +10,7 @@
 <!--menù navigazione-->
 <#include "navbar.ftl">
 
-<#include "back_office_body.ftl">
+
 
 <!--modulo contatti, email, conclusione-->
 <#include "tail.ftl">

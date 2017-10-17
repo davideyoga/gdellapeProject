@@ -7,21 +7,34 @@
             <h1><a href="/home"><span>U</span>niversit&agrave <i class="fa fa-graduation-cap" aria-hidden="true"></i></a></h1>
         </div>
 
-        <div class="agileits_w3layouts_sign_in">
-            <ul>
+        <div class="prova">
+            <ul class="nav navbar-nav">
                 <#--<li><a class="active" href="#" data-toggle="modal" data-target="#myModal2" >Sign In</a></li>
                 <li><a href="#" data-toggle="modal" data-target="#myModal3" >Sign Up</a></li>-->
                     <#if user??>
-                        <li><a class="active" href="homeBackOffice" >Benvenuto ${user.name}</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" > ${user.name} ${user.surname} <span class="glyphicon glyphicon-user pull-right"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">User stats <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Favourites Snippets <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
+                                <li class="divider"></li>
+                                <li><a href="Logout">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                            </ul>
+                        </li>
                     <#else>
-                        <li><a class="active" href="login" >Login</a></li>
+                        <li class="dropdown"><a class="dropdown-toggle" href="login" >Login</a></li>
                     </#if>
                     <li><a href="Home?<#if lng == 'IT'>lng=EN<#elseif lng == 'EN'>lng=IT<#else>lng=EN</#if>">English<img src="images/blank.gif" class="flag flag-gb" alt="" /></a></li>
             </ul>
 
         </div>
 
-        <div class="clearfix"> </div>
+        <div class="clearfix"></div>
         </div>
     <#--language change
     <div align="right" class="language-selection language">
