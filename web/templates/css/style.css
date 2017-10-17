@@ -15,6 +15,11 @@ html, body{
     padding-right: 5px;
 }
 /*fino qua*/
+
+.dimension{
+    width: 235px;
+}
+
 .prova{
     float: right;
     background: transparent;

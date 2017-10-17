@@ -16,15 +16,20 @@
                         <li class="dropdown" id="spaziatura">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#" > ${user.name} ${user.surname} <span class="glyphicon glyphicon-user pull-right"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                                <li class="dimension">
+                                    <a href="#" class="dimension">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
                                 <li class="divider"></li>
-                                <li><a href="#">User stats <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
+                                <li class="dimension">
+                                    <a href="#" class="dimension">User stats <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
                                 <li class="divider"></li>
-                                <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
+                                <li class="dimension">
+                                    <a href="#" class="dimension">Messages <span class="badge pull-right"> 42 </span></a></li>
                                 <li class="divider"></li>
-                                <li><a href="#">Favourites Snippets <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
+                                <li class="dimension">
+                                    <a href="#" class="dimension">Favourites <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
                                 <li class="divider"></li>
-                                <li><a href="Logout">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                                <li class="dimension">
+                                    <a href="Logout" class="dimension">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
                             </ul>
                         </li>
                     <#else>
