@@ -14,7 +14,18 @@ html, body{
 #spaziatura{
     padding-right: 5px;
 }
+
+#spaziatura1{
+    padding-right: 5px;
+}
 /*fino qua*/
+.red_color{
+    color:red !important;
+}
+
+.white_color{
+    color:white !important;
+}
 
 .dimension{
     width: 235px;
@@ -126,6 +137,7 @@ i.fa.fa-graduation-cap {
     font-size: 1.5em;
     color: #0064d2; /*cambio colore*/
 }
+
 /*-- nav --*/
 .navbar-default {
     background: none;
@@ -152,7 +164,7 @@ i.fa.fa-graduation-cap {
 .navbar-nav > li > a {
     margin: 0;
     padding: 2em;
-    line-height: 1em;
+    /*line-height: 1em;*/
     text-transform: uppercase;
 }
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
