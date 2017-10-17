@@ -17,6 +17,10 @@ public class Logout extends BaseController {
 
         //chiudo la sessione
         sessionManager.destroySession(request);
+
+        //elimino user da template
+        datamodel.put("user", null);
+
         //reindirizzo alla home
         response.sendRedirect("Home");
     }

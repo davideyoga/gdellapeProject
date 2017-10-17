@@ -119,6 +119,7 @@ public class Login extends BaseController {
 
                 //lancio template di errore
                 TemplateController.process( "Error.ftl", datamodel ,response, getServletContext() );
+
             }
 
             //se i parametri passati non sono corretti
@@ -134,7 +135,11 @@ public class Login extends BaseController {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
+        this.datamodel.put("user", sessionManager.getUser(request));
+
         //se richiesta get lancio il template di login
         TemplateController.process( "login.ftl", datamodel ,response, getServletContext() );
+
     }
 }

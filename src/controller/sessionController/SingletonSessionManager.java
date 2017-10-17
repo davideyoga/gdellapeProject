@@ -391,6 +391,7 @@ public class SingletonSessionManager implements SessionManager {
 
         //se la sessione esiste la elimino
         if (session != null) {
+            session.removeAttribute("user");
             session.invalidate();
         }else{
             session = null;
