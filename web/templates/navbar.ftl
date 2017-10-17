@@ -7,7 +7,8 @@
             <h1><a href="/home"><span>U</span>niversit&agrave <i class="fa fa-graduation-cap" aria-hidden="true"></i></a></h1>
         </div>
 
-        <div class="prova">
+        <#--<div class="prova">-->
+        <div class="agileits_w3layouts_sign_in">
             <ul class="nav navbar-nav">
                 <#--<li><a class="active" href="#" data-toggle="modal" data-target="#myModal2" >Sign In</a></li>
                 <li><a href="#" data-toggle="modal" data-target="#myModal3" >Sign Up</a></li>-->
