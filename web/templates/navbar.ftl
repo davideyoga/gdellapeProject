@@ -13,7 +13,7 @@
                 <#--<li><a class="active" href="#" data-toggle="modal" data-target="#myModal2" >Sign In</a></li>
                 <li><a href="#" data-toggle="modal" data-target="#myModal3" >Sign Up</a></li>-->
                     <#if user??>
-                        <li class="dropdown">
+                        <li class="dropdown" id="spaziatura">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#" > ${user.name} ${user.surname} <span class="glyphicon glyphicon-user pull-right"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>

@@ -10,7 +10,11 @@ html, body{
 	background:#c0deed;
 	margin: 0;
 }
-
+/*questo l'ho fatto io*/
+#spaziatura{
+    padding-right: 5px;
+}
+/*fino qua*/
 .prova{
     float: right;
     background: transparent;

@@ -282,6 +282,11 @@ th {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+/*questo l'ho messo io, cambia la dimensione dell'icona utente*/
+.glyphicon.glyphicon-user {
+  font-size: 16px;
+}
+/*fino a qua*/
 .glyphicon-asterisk:before {
   content: "\2a";
 }
