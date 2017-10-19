@@ -8,10 +8,31 @@
         </div>
 
         <div class="agileits_w3layouts_sign_in">
-            <ul>
+            <ul class="nav navbar-nav">
             <#--<li><a class="active" href="#" data-toggle="modal" data-target="#myModal2" >Sign In</a></li>
             <li><a href="#" data-toggle="modal" data-target="#myModal3" >Sign Up</a></li>-->
-                <li><a class="active" href="login_en" >Sign In</a></li>
+            <#if user??>
+                <li class="dropdown" id="spaziatura">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" > ${user.name} <span class="glyphicon glyphicon-user white_color"></span></a>
+                    <ul class="dropdown-menu">
+                        <li class="dimension">
+                            <a href="/homeBackOffice" class="dimension">BackOffice <span class="glyphicon glyphicon-cog white_color pull-right"></span></a></li>
+
+                        <li class="dimension">
+                            <a href="#" class="dimension">User stats <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
+
+                        <li class="dimension">
+                            <a href="#" class="dimension">Favourites <span class="glyphicon glyphicon-heart red_color pull-right"></span></a></li>
+
+                        <li class="dimension">
+                            <a href="Logout" class="dimension">Sign Out <span class="glyphicon glyphicon-log-out red_color pull-right"></span></a></li>
+
+                    </ul>
+                </li>
+            <#else>
+                <li id="spaziatura1">
+                    <a href="login">Login </a></li>
+            </#if>
                 <li><a href="Home?<#if lng == 'IT'>lng=EN<#elseif lng == 'EN'>lng=IT<#else>lng=EN</#if>">Italian<img src="images/blank.gif" class="flag flag-it" alt="" /></a></li>
             </ul>
 
