@@ -7,11 +7,8 @@
             <h1><a href="/home"><span>U</span>niversit&agrave <i class="fa fa-graduation-cap" aria-hidden="true"></i></a></h1>
         </div>
 
-        <#--<div class="prova">-->
         <div class="agileits_w3layouts_sign_in">
             <ul class="nav navbar-nav">
-                <#--<li><a class="active" href="#" data-toggle="modal" data-target="#myModal2" >Sign In</a></li>
-                <li><a href="#" data-toggle="modal" data-target="#myModal3" >Sign Up</a></li>-->
                     <#if user??>
                         <li class="dropdown" id="spaziatura">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#" > ${user.name} <span class="glyphicon glyphicon-user white_color"></span></a>
@@ -27,7 +24,6 @@
 
                                 <li class="dimension">
                                     <a href="Logout" class="dimension">Esci<span class="glyphicon glyphicon-log-out red_color pull-right"></span></a></li>
-
                             </ul>
                         </li>
                     <#else>
@@ -41,11 +37,6 @@
 
         <div class="clearfix"></div>
         </div>
-    <#--language change
-    <div align="right" class="language-selection language">
-        <a href="Home?<#if lng == 'IT'>lng=EN<#elseif lng == 'EN'>lng=IT<#else>lng=EN</#if>">Switch to English <img src="images/blank.gif" class="flag flag-gb" alt="" /></a>
-    </div>
-    language change-->
 
     <div class="container">
         <div class="w3layouts_agileits_nav_section">
@@ -74,10 +65,10 @@
                                 <a href="/home">Home</a></li>
                             <li><a href="/ListStudyCourses" class="hvr-rectangle-out">Corsi</a></li>
                             <li><a href="gianni" class="hvr-rectangle-out">Professori</a></li>
-                            <li><a href="#team" class="hvr-rectangle-out">Faculties</a></li>
-                            <li><a href="#news" class="hvr-rectangle-out">News</a></li>
-                            <li><a href="#gallery" class="hvr-rectangle-out">Gallery</a></li>
-                            <li><a href="#contact" class="hvr-rectangle-out">Contact</a></li>
+                            <li><a href="#team" class="hvr-rectangle-out">Facoltà</a></li>
+                            <li><a href="#news" class="hvr-rectangle-out">Notizie</a></li>
+                            <li><a href="#gallery" class="hvr-rectangle-out">Servizi</a></li>
+                            <li><a href="#contact" class="hvr-rectangle-out">Contatti</a></li>
                         </ul>
 
                     </nav>
