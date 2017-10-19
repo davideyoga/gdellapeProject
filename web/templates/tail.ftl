@@ -1,6 +1,9 @@
 <!-- Footer -->
 <div class="footer w3ls">
     <div class="container">
+    <#if user??>
+
+    <#else>
         <div class="newsletter-agile">
             <form action="#" method="post">
                 <p>Send us Your Mail, we'll make sure You Never Miss a Thing!</p>
@@ -8,6 +11,8 @@
                 <input type="submit" value="Subscribe">
             </form>
         </div>
+    </#if>
+
         <div class="footer-main">
             <div class="footer-top">
                 <div class="col-md-4 ftr-grid fg1">
