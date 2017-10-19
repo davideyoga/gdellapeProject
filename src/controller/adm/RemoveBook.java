@@ -18,7 +18,7 @@ import java.io.IOException;
 /**
  * @author Davide Micarelli
  */
-public class RemoveBook extends BaseController {
+public class  RemoveBook extends BaseController {
 
 
 
