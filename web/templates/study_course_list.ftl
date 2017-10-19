@@ -39,9 +39,6 @@
                         <td>
                             <a href="StudyCourseProfile?code=${studyCourse.code}">Leggi di piu'</a>
                         </td>
-                        <td>
-                            <a href="AdmModStudyCourse?code=${studyCourse.code}">pippoblu</a>
-                        </td>
                     </tr>
                 </#list>
             </tbody>
