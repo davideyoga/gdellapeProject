@@ -17,7 +17,7 @@
 
                 <div class="modal-header">
 
-
+/*ciao */
                     <div class="signin-form profile">
                         <h3 class="agileinfo_sign">Accedi</h3>
                         <div class="login-form">
