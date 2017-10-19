@@ -397,7 +397,7 @@ public class AdmModUser extends BaseController {
                     List <Groups> listGroups = groupsDao.getAllGroups();
 
                     //carico nel template l'utente
-                    datamodel.put("user", user);
+                    datamodel.put("usermod", user);
 
                     //prima di lanciara il template carico nella sessione dell'amministatore l'id dell'utente che intendo modificare
                     request.getSession().setAttribute("idUserToModify", user.getId());

@@ -20,6 +20,36 @@
 
     <table class="responsive">
         <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
+
+        <#if user??>
+        <table>
+            <thead>
+            <tr>
+                <th>Codice Corso di studio</th>
+                <th>Nome Corso di studio </th>
+                <th> - </th>
+            </tr>
+            </thead>
+
+            <tbody>
+                <#list studyCourses as studyCourse>
+                <tr>
+                    <td>${studyCourse.code}</td>
+                    <td> ${studyCourse.name}</td>
+                    <td><a href="StudyCourseProfile?code=${studyCourse.code}">Leggi di piu'</a></td>
+                    <td><a href="admGetListStudyCourse?code=${studyCourse.code}">Leggi di piu'</a></td>
+                </tr>
+                </#list>
+            </tbody>
+        </table>
+        </div>
+        <#else>
+
+        </#if>
+
+
+
+
         <thead>
             <tr>
                 <th>Codice Corso di studio</th>

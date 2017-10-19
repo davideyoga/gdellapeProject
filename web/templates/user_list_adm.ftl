@@ -27,12 +27,12 @@
             </thead>
 
             <tbody>
-            <#list users as user>
+            <#list users as utente>
             <tr>
-                <td>${user.id}</td>
-                <td> ${user.email}</td>
-                <td><a href="AdmModUser?id=${user.id}">Mod User</a></td>
-                <td><a href="DeleteUser?id=${user.id}">Delete User</a></td>
+                <td>${utente.id}</td>
+                <td> ${utente.email}</td>
+                <td><a href="AdmModUser?id=${utente.id}">Mod User</a></td>
+                <td><a href="DeleteUser?id=${utente.id}">Delete User</a></td>
             </tr>
             </#list>
             </tbody>
