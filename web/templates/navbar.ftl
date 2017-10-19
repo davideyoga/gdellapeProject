@@ -14,10 +14,10 @@
                 <li><a href="#" data-toggle="modal" data-target="#myModal3" >Sign Up</a></li>-->
                     <#if user??>
                         <li class="dropdown" id="spaziatura">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" > ${user.name} ${user.surname} <span class="glyphicon glyphicon-user white_color"></span></a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" > ${user.name} <span class="glyphicon glyphicon-user white_color"></span></a>
                             <ul class="dropdown-menu">
                                 <li class="dimension">
-                                    <a href="#" class="dimension">Account Settings <span class="glyphicon glyphicon-cog white_color pull-right"></span></a></li>
+                                    <a href="/homeBackOffice" class="dimension">BackOffice <span class="glyphicon glyphicon-cog white_color pull-right"></span></a></li>
 
                                 <li class="dimension">
                                     <a href="#" class="dimension">User stats <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
