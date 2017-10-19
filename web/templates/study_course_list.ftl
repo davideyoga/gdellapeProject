@@ -33,40 +33,45 @@
 
             <tbody>
                 <#list studyCourses as studyCourse>
-                <tr>
-                    <td>${studyCourse.code}</td>
-                    <td> ${studyCourse.name}</td>
-                    <td><a href="StudyCourseProfile?code=${studyCourse.code}">Leggi di piu'</a></td>
-                    <td><a href="admGetListStudyCourse?code=${studyCourse.code}">Leggi di piu'</a></td>
-                </tr>
+                    <tr>
+                        <td>${studyCourse.code}</td>
+                        <td>${studyCourse.name}</td>
+                        <td>
+                            <a href="StudyCourseProfile?code=${studyCourse.code}">Leggi di piu'</a>
+                        </td>
+                        <td>
+                            <a href="AdmModStudyCourse?code=${studyCourse.code}">pippoblu</a>
+                        </td>
+                    </tr>
                 </#list>
             </tbody>
         </table>
         </div>
+
         <#else>
-
-        </#if>
-
-
-
-
-        <thead>
+            <thead>
             <tr>
                 <th>Codice Corso di studio</th>
                 <th>Nome Corso di studio </th>
                 <th> - </th>
             </tr>
-        </thead>
+            </thead>
 
-        <tbody>
-            <#list studyCourses as studyCourse>
-            <tr>
-                <td>${studyCourse.code}</td>
-                <td> ${studyCourse.name}</td>
-                <td><a href="StudyCourseProfile?code=${studyCourse.code}">Leggi di piu'</a></td>
-            </tr>
-            </#list>
-        </tbody>
+            <tbody>
+                <#list studyCourses as studyCourse>
+                    <tr>
+                        <td>${studyCourse.code}</td>
+                        <td> ${studyCourse.name}</td>
+                        <td><a href="StudyCourseProfile?code=${studyCourse.code}">Leggi di piu'</a></td>
+                    </tr>
+                </#list>
+            </tbody>
+        </#if>
+
+
+
+
+
     </table>
 </div>
 
