@@ -52,10 +52,10 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="w3ls__agileinfo_search">
                     <form action="#" method="post">
-                        <input type="search" name="Search" placeholder="Search here..." required="">
+                        <input type="search" name="Search" placeholder="Cerca qui..." required="">
                         <input type="submit" value=" ">
                     </form>
-                    </a>
+
                 </div>
                 <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
 
