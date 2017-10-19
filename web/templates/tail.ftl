@@ -6,9 +6,9 @@
     <#else>
         <div class="newsletter-agile">
             <form action="#" method="post">
-                <p>Send us Your Mail, we'll make sure You Never Miss a Thing!</p>
-                <input type="email" name="email" size="30" required="" placeholder="Enter your email here...">
-                <input type="submit" value="Subscribe">
+                <p>Mandaci un'E-mail, non perderai una notizia!</p>
+                <input type="email" name="email" size="30" required="" placeholder="E-mail...">
+                <input type="submit" value="Iscriviti">
             </form>
         </div>
     </#if>
@@ -20,13 +20,13 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adip magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
                 </div>
                 <div class="col-md-4 ftr-grid fg2 mid-gd">
-                    <h3>Our Address</h3>
+                    <h3>Come Raggiungerci</h3>
                     <div class="ftr-address">
                         <div class="local">
                             <i class="fa fa-map-marker" aria-hidden="true"></i>
                         </div>
                         <div class="ftr-text">
-                            <p>Lorem ipsum dolor sit amet.</p>
+                            <p>indirizzo</p>
                         </div>
                         <div class="clearfix"> </div>
                     </div>
@@ -35,7 +35,7 @@
                             <i class="fa fa-phone" aria-hidden="true"></i>
                         </div>
                         <div class="ftr-text">
-                            <p>+1 (512) 154 8176</p>
+                            <p>+00 0123456789</p>
                         </div>
                         <div class="clearfix"> </div>
                     </div>
@@ -44,13 +44,13 @@
                             <i class="fa fa-envelope" aria-hidden="true"></i>
                         </div>
                         <div class="ftr-text">
-                            <p><a href="mailto:info@example.com">info@example.com</a></p>
+                            <p><a href="mailto:info@example.com">email@example.com</a></p>
                         </div>
                         <div class="clearfix"> </div>
                     </div>
                 </div>
                 <div class="col-md-4 ftr-grid fg2">
-                    <h3>Keep In Touch With Us</h3>
+                    <h3>Seguici</h3>
                     <div class="right-w3l">
                         <ul class="top-links">
                             <li><a href="#"><i class="fa fa-facebook facebook-color" aria-hidden="true"></i></a></li>

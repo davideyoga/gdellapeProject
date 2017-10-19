@@ -16,7 +16,7 @@
     <p><#if message??>${message}<#else></#if></p>
 
 <div class="profile_form">
-    <h1><a href="profile">PortaleDell'Universita' </a></h1>
+    <h1><a href="profile">Portale Dell'Universita' </a></h1>
     <div class="profile-button">
 
         <p><#if message??>${message}<#else></#if></p>

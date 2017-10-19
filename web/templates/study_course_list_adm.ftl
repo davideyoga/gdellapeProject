@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>Home</title>
+    <title>Lista Corsi di studio</title>
 
 <#include "import.ftl">
 
@@ -15,14 +15,13 @@
 
 <div class="container">
 
-    <!--Eventuale messaggio di errore, blu-->
+    <!--Eventuale messaggio di errore-->
     <p><#if message??>${message}<#else></#if></p>
 
     <table class="responsive">
         <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
 
-        <#if user??>
-        <table>
+
             <thead>
             <tr>
                 <th>Codice Corso di studio</th>
@@ -42,36 +41,8 @@
                     </tr>
                 </#list>
             </tbody>
-        </table>
-        </div>
-
-        <#else>
-            <thead>
-            <tr>
-                <th>Codice Corso di studio</th>
-                <th>Nome Corso di studio </th>
-                <th> - </th>
-            </tr>
-            </thead>
-
-            <tbody>
-                <#list studyCourses as studyCourse>
-                    <tr>
-                        <td>${studyCourse.code}</td>
-                        <td> ${studyCourse.name}</td>
-                        <td><a href="StudyCourseProfile?code=${studyCourse.code}">Leggi di piu'</a></td>
-                    </tr>
-                </#list>
-            </tbody>
-        </#if>
-
-
-
-
-
     </table>
 </div>
-
 <#include "tail.ftl">
 
 </body>
