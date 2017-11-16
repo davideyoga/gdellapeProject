@@ -512,4 +512,16 @@
     </servlet-mapping>
     <!-- Fine Servlet di AddBook -->
 
+    <!-- Servlet di  ListCourseAn-->
+    <servlet>
+        <servlet-name>ListCourseAn</servlet-name>
+        <servlet-class>controller.ListCourseAn</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListCourseAn</servlet-name>
+        <url-pattern>/ListCourseAn</url-pattern>
+        <url-pattern>/listCourseAn</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di ListCourseAn -->
+
 </web-app>
