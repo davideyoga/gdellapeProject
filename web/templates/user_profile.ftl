@@ -13,28 +13,27 @@
 
 <p><#if message??>${message}<#else></#if></p>
 
-<#--NON FUNZIONA MANCO PE CAZZI-->
-<#--<p>${user.name} ${user.surname}</p>-->
+<p>${userCurrent.name} ${userCurrent.surname}</p>
 
-<#--<p>Email: ${user.email}</p>-->
+<p>Email: ${userCurrent.email}</p>
 
-<#--<p>Numero di telefono: <#if user.number??>${user.number?string.computer}<#else>Non presente</#if></p>-->
+<p>Numero di telefono: <#if userCurrent.number??>${userCurrent.number?string.computer}<#else>Non presente</#if></p>
 
-<#--<p>Curriculum:  <#if user.curriculum_ita??>-->
-                        <#--${user.curriculum_ita}-->
-                    <#--<#elseif user.curriculum_eng??>-->
-                        <#--${user.curriculum_eng}-->
-                    <#--<#else>-->
-                <#--</#if>-->
-<#--</p>-->
+<p>Curriculum:  <#if userCurrent.curriculum_ita??>
+                        ${userCurrent.curriculum_ita}
+                    <#elseif userCurrent.curriculum_eng??>
+                        ${userCurrent.curriculum_eng}
+                    <#else>
+                </#if>
+</p>
 
-<#--<p>Orario di ricevimento:   <#if user.receprion_hours_ita??>-->
-                                    <#--${user.receprion_hours_ita}-->
-                                <#--<#elseif user.receprion_hours_eng??>-->
-                                    <#--${user.receprion_hours_eng}-->
-                                <#--<#else>-->
-                            <#--</#if>-->
-<#--</p>-->
+<p>Orario di ricevimento:   <#if userCurrent.receprion_hours_ita??>
+                                    ${userCurrent.receprion_hours_ita}
+                                <#elseif userCurrent.receprion_hours_eng??>
+                                    ${userCurrent.receprion_hours_eng}
+                                <#else>
+                            </#if>
+</p>
 
 <#--<div class="container">-->
 
