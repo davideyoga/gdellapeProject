@@ -13,54 +13,68 @@
 
 <p><#if message??>${message}<#else></#if></p>
 
-<p>${userCurrent.name} ${userCurrent.surname}</p>
+<div class="container">
 
-<p>Email: ${userCurrent.email}</p>
+    <table class="responsive">
+        <#--Come un for-each, cicla sulla lista di users estraendo ogni volta l'utente della lista&ndash;&gt;-->
 
-<p>Numero di telefono: <#if userCurrent.number??>${userCurrent.number?string.computer}<#else>Non presente</#if></p>
+        <thead>
+        <tr>
+            <th>${userCurrent.name} ${userCurrent.surname}</th>
+            <th> </th>
+        </tr>
+        </thead>
 
-<p>Curriculum:  <#if userCurrent.curriculum_ita??>
-                        ${userCurrent.curriculum_ita}
-                    <#elseif userCurrent.curriculum_eng??>
-                        ${userCurrent.curriculum_eng}
-                    <#else>
+        <tbody>
+
+        <tr>
+            <td>
+                Email:
+            </td>
+            <td>
+                ${userCurrent.email}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Numero di telefono:
+            </td>
+            <td>
+                <#if userCurrent.number??>
+                    ${userCurrent.number?string.computer}
+                <#else>Non presente</#if>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Curriculum:
+            </td>
+            <td>
+                <#if userCurrent.curriculum_ita??>
+                    ${userCurrent.curriculum_ita}
+                 <#elseif userCurrent.curriculum_eng??>
+                    ${userCurrent.curriculum_eng}
+                 <#else>
                 </#if>
-</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Orario di ricevimento:
+            </td>
+            <td>
+                <#if userCurrent.receprion_hours_ita??>
+                    ${userCurrent.receprion_hours_ita}
+                 <#elseif userCurrent.receprion_hours_eng??>
+                    ${userCurrent.receprion_hours_eng}
+                 <#else>
+                </#if>
+            </td>
+        </tr>
 
-<p>Orario di ricevimento:   <#if userCurrent.receprion_hours_ita??>
-                                    ${userCurrent.receprion_hours_ita}
-                                <#elseif userCurrent.receprion_hours_eng??>
-                                    ${userCurrent.receprion_hours_eng}
-                                <#else>
-                            </#if>
-</p>
-
-<#--<div class="container">-->
-
-    <#--<table class="responsive">-->
-        <#--<!--Come un for-each, cicla sulla lista di users estraendo ogni volta l'utente della lista&ndash;&gt;-->
-
-        <#--<thead>-->
-        <#--<tr>-->
-            <#--<th>Nome Docente</th>-->
-            <#--<th>Email</th>-->
-            <#--<th> - </th>-->
-        <#--</tr>-->
-        <#--</thead>-->
-
-        <#--<tbody>-->
-        <#--<#list users as user>-->
-        <#--<tr>-->
-            <#--<td>${user.name} ${user.surname}</td>-->
-            <#--<td>${user.email}</td>-->
-            <#--<td>-->
-                <#--<a href="UserProfile?email=${user.email}">Leggi di piu'</a>-->
-            <#--</td>-->
-        <#--</tr>-->
-        <#--</#list>-->
-        <#--</tbody>-->
-    <#--</table>-->
-<#--</div>-->
+        </tbody>
+    </table>
+</div>
 <!--modulo contatti, email, conclusione-->
 <#include "tail.ftl">
 </body>
