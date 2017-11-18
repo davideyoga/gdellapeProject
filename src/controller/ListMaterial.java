@@ -1,5 +1,6 @@
 package controller;
 
+import controller.utility.StreamResult;
 import dao.exception.DaoException;
 import dao.implementation.CourseDaoImpl;
 import dao.implementation.MaterialDaoImpl;
@@ -12,6 +13,7 @@ import view.TemplateController;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -37,8 +39,66 @@ public class ListMaterial extends BaseController {
 
     }
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        this.processMaterial(request, response);
+    }
+
+    /**
+     * Prendo il parametro get che rappresenta l'id del metariale da scaricare,
+     * estraggo il materiale dalla pagina,
+     * poi come parametro get
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        try {
+
+            if(request.getParameter("idMaterial")!=null){
+
+                MaterialDao materialDao = new MaterialDaoImpl(ds);
+
+                Material material = materialDao.getMaterialById(Integer.parseInt(request.getParameter("idMaterial")));
+
+                //apro uno stream
+                StreamResult result = new StreamResult(getServletContext());
+
+                //estraggo il materiale
+                File in = new File(material.getRoute());
+
+                //mando il file al client
+                result.activate(in, request, response);
+
+                //riestraggo il materiale e lancio il template
+                this.processMaterial(request, response);
+
+            }else{
+                this.processError(request, response);
+            }
+
+
+        }catch (NumberFormatException | DaoException e){
+
+            e.printStackTrace();
+
+            this.processError(request, response);
+
+        }
+
+
+    }
+
+
+    /**
+     * Si occupda di estrarre il materiale del corso (dal param id), dopo passa il controllo al processTemplate
+     */
+    private void processMaterial( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
 
         try {
 
@@ -46,10 +106,8 @@ public class ListMaterial extends BaseController {
             CourseDao courseDao = new CourseDaoImpl(ds);
             courseDao.init();
 
-            //estraggo il corso a seconda del codice passato come parametro get
+            //estraggo il corso dall'id passato
             String code = request.getParameter("id");
-
-            System.out.println("code: " + code);
 
             //estraggo il corso con tale codice
             Course course = courseDao.getCourseByCode(code);
@@ -72,7 +130,6 @@ public class ListMaterial extends BaseController {
 
                 this.processTemplate(request, response, course, materials);
 
-
                 //se il corso non esiste
             }else{
 
@@ -88,18 +145,14 @@ public class ListMaterial extends BaseController {
             e.printStackTrace();
 
             this.processError(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+
+            this.processError(request, response);
+        } catch (IOException e) {
+            e.printStackTrace();
+
+            this.processError(request, response);
         }
-
-    }
-
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.processRequest(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.processRequest(request, response);
     }
 }
