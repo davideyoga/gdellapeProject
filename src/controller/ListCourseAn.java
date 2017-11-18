@@ -18,10 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -83,50 +80,35 @@ public class ListCourseAn extends BaseController {
             StudyCourseDao studyCourseDao = new StudyCourseDaoImpl(ds);
             studyCourseDao.init();
 
-
             //estraggo i corsi dell'anno di accademicYear
             List<Course> listCourse = courseDao.getCourseByYear(accademicYear.toString());
 
+            String param;
 
 
             /*
                 INIZIO SELEZIONE CORSI PER NOME
              */
+            if(request.getParameter("name") != null) {
 
-            //inizilizzo un booleano per capire se un corso metcha con il nome passato
-            boolean match = true;
-            int pos = 0;
+                //estaggo il nome della stringa che l'utente ha passato
+                param = request.getParameter("name");
 
-            //elimino corsi che non mecciano con il path name
-            String regex = request.getParameter("name");
-            if(regex != null) {
+                //inizializzo iteratore
+                Iterator <Course> itr = listCourse.iterator();
 
-                List<Integer> listDelete = new LinkedList <>();
+                //ciclo sulla lista
+                while ( itr.hasNext() ) {
 
-                //ciclo sulla lista dei corsi
-                for (Course curr : listCourse) {
+                    //prendo il prossimo corso
+                    Course curr = itr.next();
 
-                    //se l'attuale corso non metcha con la stringa passata dall'user, inserisco l'indice dell'elemento da cancellare
-                    if (!this.matchNome(regex, curr.getName())){
-                        listDelete.add(pos);
-                        System.out.println("Ho aggiunto " + pos + ". Corso: " + curr);
+                    //se il corso non metcha con il pattern lo elimino
+                    if(!this.matchNome(param, curr.getName())){
+
+                        //se non matcha lo rimuovo
+                        itr.remove();
                     }
-
-                    //aumento la posizione
-                    pos++;
-
-                }
-
-                for(Integer curr: listDelete){
-
-                    System.out.println("Sto per rimuovere: " +listCourse.get(curr));
-
-
-                    listCourse.remove(curr.intValue());
-
-                    System.out.println("Ho rimosso corso in posizione " + curr);
-
-
                 }
             }
             /*
@@ -134,34 +116,28 @@ public class ListCourseAn extends BaseController {
              */
 
 
-
             /*
                 INIZIO SELEZIONE CORSI PER CODICE
              */
-            String code = request.getParameter("code");
 
-            //se l'utente ha inserito il codice filtro la losta per il codice
-            if(code != null) {
+            if(request.getParameter("code") != null) {
 
-                match = true;
-                pos=0;
+                //estaggo il parametro passato
+                param = request.getParameter("code");
 
-                for(Course curr: listCourse){
+                //inizializzo iteratore
+                Iterator <Course> itr = listCourse.iterator();
 
-                    //se la varibile match e' a false vuol dire che il corso precedente non metchava con
-                    //il codice passato con l'utente
-                    if(match == false) listCourse.remove(pos);
+                //ciclo sulla lista
+                while (itr.hasNext()) {
 
-                    //se l'attuale corso metcha con la stringa passata dall'user la variabile viene settata a true,
-                    //in modo che al prossimo ciclo non venga eliminato
-                    if ( curr.getCode().equals(code)) match = true;
+                    //prendo il prossimo corso
+                    Course curr = itr.next();
 
-                        //altrimenti la setto a false ijn modo che venga eliminata
-                    else {
-                        match = false;
+                    //se il corso non metcha con il pattern passato lo elimino
+                    if( !curr.getCode().equals(param)){
+                        itr.remove();
                     }
-                    //aumento la posizione
-                    pos++;
                 }
             }
             /*
@@ -174,30 +150,24 @@ public class ListCourseAn extends BaseController {
                 INIZIO SELEZIONE CORSI PER SETTORE
              */
 
-            String sector = request.getParameter("sector");
+            if(request.getParameter("sector") != null) {
 
-            //se l'utente ha inserito il codice filtro la losta per il codice
-            if(sector != null) {
+                //estaggo il parametro passato
+                param = request.getParameter("sector");
 
-                match = true;
-                pos=0;
+                //inizializzo iteratore
+                Iterator <Course> itr = listCourse.iterator();
 
-                for(Course curr: listCourse){
+                //ciclo sulla lista
+                while (itr.hasNext()) {
 
-                    //se la varibile match e' a false vuol dire che il corso precedente non metchava con
-                    //il codice passato con l'utente
-                    if(match == false) listCourse.remove(pos);
+                    //prendo il prossimo corso
+                    Course curr = itr.next();
 
-                    //se l'attuale corso metcha con la stringa passata dall'user la variabile viene settata a true,
-                    //in modo che al prossimo ciclo non venga eliminato
-                    if ( curr.getSector().equals(sector)) match = true;
-
-                        //altrimenti la setto a false in modo che venga eliminata
-                    else {
-                        match = false;
+                    //se il corso non metcha con il pattern passato setto match a false, altrimenti lo setto a true
+                    if( !curr.getSector().equals(param)){
+                        itr.remove();
                     }
-                    //aumento la posizione
-                    pos++;
                 }
             }
 
@@ -212,71 +182,71 @@ public class ListCourseAn extends BaseController {
             /*
                 INIZIO SELEZIONE CORSI PER SEMESTRE
              */
-
             if(request.getParameter("semester") != null) {
 
-                int semester = Integer.parseInt(request.getParameter("semester"));
+                try {
 
-                //se l'utente ha inserito il codice filtro la lista per il codice
-                if (semester != 0 && semester <= 2) {
+                    int semester = Integer.parseInt(request.getParameter("semester"));
 
-                    match = true;
-                    pos = 0;
+                    if (semester != 0 && semester <= 2) {
 
-                    for (Course curr : listCourse) {
+                        //estaggo il parametro passato
+                        param = request.getParameter("semester");
 
-                        //se la varibile match e' a false vuol dire che il corso precedente non metchava con
-                        //il codice passato con l'utente
-                        if (match == false) listCourse.remove(pos);
+                        //inizializzo iteratore
+                        Iterator <Course> itr = listCourse.iterator();
 
-                        //se l'attuale corso metcha con la stringa passata dall'user la variabile viene settata a true,
-                        //in modo che al prossimo ciclo non venga eliminato
-                        if (curr.getSemester() == semester) match = true;
+                        //ciclo sulla lista
+                        while (itr.hasNext()) {
 
-                            //altrimenti la setto a false ijn modo che venga eliminata
-                        else {
-                            match = false;
+                            //prendo il prossimo corso
+                            Course curr = itr.next();
+
+                            //se il corso non metcha con il pattern passato setto match a false, altrimenti lo setto a true
+                            if ( !(curr.getSemester() == semester) ) {
+                                itr.remove();
+                            }
                         }
-                        //aumento la posizione
-                        pos++;
                     }
+
+                }catch (NumberFormatException e){
+
+                    //se il valore inserito non e' un numero non faccio nulla
+
                 }
             }
-
             /*
                 FINE SELEZIONE CORSI PER SEMESTRE
              */
 
+
+
+
+
             /*
                 INIZIO SELEZIONE CORSI PER LINGUA
              */
-            String language = request.getParameter("semester");
 
-            //se l'utente ha inserito la lingua filtro la lista per il codice
-            if(language != null) {
+            if(request.getParameter("language") != null) {
 
-                match = true;
-                pos=0;
+                //estaggo il parametro passato
+                param = request.getParameter("language");
 
-                for(Course curr: listCourse){
+                //inizializzo iteratore
+                Iterator <Course> itr = listCourse.iterator();
 
-                    //se la varibile match e' a false vuol dire che il corso precedente non metchava con
-                    //il codice passato con l'utente
-                    if(match == false) listCourse.remove(pos);
+                //ciclo sulla lista
+                while (itr.hasNext()) {
 
-                    //se l'attuale corso metcha con la stringa passata dall'user la variabile viene settata a true,
-                    //in modo che al prossimo ciclo non venga eliminato
-                    if ( curr.getLanguage() == language) match = true;
+                    //prendo il prossimo corso
+                    Course curr = itr.next();
 
-                        //altrimenti la setto a false ijn modo che venga eliminata
-                    else {
-                        match = false;
+                    //se il corso non metcha con il pattern passato setto match a false, altrimenti lo setto a true
+                    if( !curr.getLanguage().equals(param)){
+                        itr.remove();
                     }
-                    //aumento la posizione
-                    pos++;
                 }
             }
-
             /*
                 FINE SELEZIONE CORSI PER LINGUA
              */
@@ -291,17 +261,21 @@ public class ListCourseAn extends BaseController {
                 INIZIO SELEZIONE CORSI PER DOCENTE
              */
 
-            //controllo se e' stato passato il nome di un docente tramite parametro get
-            if(request.getParameter("user")!=null){
+            if(request.getParameter("docent") != null) {
 
-                match = true;
-                pos=0;
+                //estaggo il parametro passato
+                param = request.getParameter("docent");
 
-                for(Course curr: listCourse){
+                //inizializzo iteratore
+                Iterator <Course> itr = listCourse.iterator();
 
-                    //se la varibile match e' a false vuol dire che il corso precedente non metchava con
-                    //il codice passato con l'utente
-                    if(match == false) listCourse.remove(pos);
+                boolean match = false;
+
+                //ciclo sulla lista
+                while (itr.hasNext()) {
+
+                    //prendo il prossimo corso
+                    Course curr = itr.next();
 
                     //estraggo la lista dei docenti del corso corrente
                     List<User> listuser = userDao.getUserByCourse(curr);
@@ -312,21 +286,18 @@ public class ListCourseAn extends BaseController {
                     //ciclo sulla lista degli utenti collegati al corso corrente
                     for (User currUser : listuser) {
 
-                        //se l'attuale corso metcha con la stringa passata dall'user la variabile viene settata a true,
-                        //in modo che al prossimo ciclo non venga eliminato
-                        if (currUser.getName().equals(request.getParameter("user"))) match = true;
+                        //se trovo il professore lo setto a true, in modo ce non venga eliminato
+                        if (currUser.getName().equals(param)) match = true;
 
                     }
-                    //se esco senza aver trovato un utente collegato al corso il match rimane a false
-                    //e quindi viene eliminato
 
-                    //aumento la posizione del corso che potrebbe essere eliminato
-                    pos++;
+                    //se match esce a false, l'elemento e' da eliminare
+                    if(match==false){
+                        itr.remove();
+                    }
                 }
 
             }
-
-
             /*
                 FINE SELEZIONE CORSI PER DOCENTE
              */
@@ -338,18 +309,21 @@ public class ListCourseAn extends BaseController {
                 INIZIO SELEZIONE CORSI PER CORSO DI STUDI
              */
 
-            //controllo se e' stato passato il nome di un corso di studi tramite parametro get
-            if(request.getParameter("studyCourse")!=null){
+            if(request.getParameter("studyCourse") != null) {
 
-                match = true;
-                pos=0;
+                //estaggo il parametro passato
+                param = request.getParameter("studyCourse");
 
-                //ciclo sulla lista dei corsi di studi rimasti
-                for(Course curr: listCourse){
+                //inizializzo iteratore
+                Iterator <Course> itr = listCourse.iterator();
 
-                    //se la varibile match e' a false vuol dire che il corso precedente non metchava con
-                    //il codice passato con l'utente
-                    if(match == false) listCourse.remove(pos);
+                boolean match;
+
+                //ciclo sulla lista
+                while (itr.hasNext()) {
+
+                    //prendo il prossimo corso
+                    Course curr = itr.next();
 
                     //estraggo i corsi di studi del corso corrente
                     List<StudyCourse> listStudyCourse = studyCourseDao.getStudyCourseByCourse(curr);
@@ -362,34 +336,29 @@ public class ListCourseAn extends BaseController {
 
                         //se l'attuale corso metcha con la stringa passata dall'user la variabile viene settata a true,
                         //in modo che al prossimo ciclo non venga eliminato
-                        if (currStudyCourse.getName().equals(request.getParameter("studyCourse"))) match = true;
+                        if (currStudyCourse.getName().equals(param)) match = true;
 
                     }
 
-                    //se esco senza aver trovato un corso di studi collegato al corso il match rimane a false
-                    //e quindi viene eliminato
-
-                    //aumento la posizione del corso che potrebbe essere eliminato
-                    pos++;
-
+                    //se match esce a false, l'ultimo elemento e' da eliminare
+                    if(match==false){
+                        itr.remove();
+                    }
                 }
+
             }
-
-
             /*
                 FINE SELEZIONE CORSI PER CORSO DI STUDI
              */
-
-
-
-
-
 
             //chiudo i dao
             courseDao.destroy();
             userDao.destroy();
             studyCourseDao.destroy();
 
+
+            System.out.println();
+            System.out.println("Elementi nella lista alla fine della servet:");
 
             for(Course course: listCourse){
 
@@ -430,13 +399,12 @@ public class ListCourseAn extends BaseController {
      */
     private boolean matchNome( String regex, String input){
 
-        //String regex = "(inn)";
-        //String input = "informatica";
-
         Pattern pattern1 = Pattern.compile(regex);
         Matcher matcher = pattern1.matcher(input);
 
         if(matcher.find()) return true;
         else return false;
     }
+
+
 }
