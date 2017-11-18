@@ -382,7 +382,7 @@ public class ListCourseAn extends BaseController {
             e.printStackTrace();
 
             //lancio template di errore
-            TemplateController.process("error.ftl", datamodel, response, getServletContext());
+            this.processError(request, response);
         }
 
 
