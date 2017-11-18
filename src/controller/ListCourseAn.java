@@ -33,6 +33,12 @@ public class ListCourseAn extends BaseController {
 
     protected void processTemplate(HttpServletRequest request, HttpServletResponse response, List<Course> listCourse){
 
+        //carico la lingua nel datamodel
+        this.setLng(request, datamodel);
+
+        //setto l'utente in sessione
+        this.datamodel.put("user", sessionManager.getUser(request));
+
         //carico nel datodel la lista dei corsi rimasti
         datamodel.put("listCourse", listCourse);
 
