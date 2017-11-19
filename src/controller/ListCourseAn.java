@@ -363,9 +363,6 @@ public class ListCourseAn extends BaseController {
             studyCourseDao.destroy();
 
 
-            System.out.println();
-            System.out.println("Elementi nella lista alla fine della servet:");
-
             for(Course course: listCourse){
 
                 System.out.println(course);
@@ -400,10 +397,15 @@ public class ListCourseAn extends BaseController {
     }
 
     /**
-     * Torna true se trova il path passato, false altrimenti
+     * Torna true se trova il path passato, false altrimenti,
+     * non tiene conto di minuscole e maiuscole
      *
      */
     private boolean matchNome( String regex, String input){
+
+
+        regex = regex.toLowerCase();
+        input = input.toLowerCase();
 
         Pattern pattern1 = Pattern.compile(regex);
         Matcher matcher = pattern1.matcher(input);
