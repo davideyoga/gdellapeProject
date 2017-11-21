@@ -63,7 +63,7 @@
                         <ul class="nav navbar-nav">
                             <li class="active">
                                 <a href="/home">Home</a></li>
-                            <li><a href="/ListStudyCourses" class="hvr-rectangle-out">Corsi</a></li>
+                            <li><a href="/ListCourse" class="hvr-rectangle-out">Corsi</a></li>
                             <li><a href="gianni" class="hvr-rectangle-out">Professori</a></li>
                             <li><a href="#team" class="hvr-rectangle-out">Facoltà</a></li>
                             <li><a href="#news" class="hvr-rectangle-out">Notizie</a></li>
