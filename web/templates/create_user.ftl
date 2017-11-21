@@ -16,6 +16,8 @@
     <div class="col-md-6">
 
 
+
+
         <div class="create-user-email">
             email
             <input type="email" name="email" >
