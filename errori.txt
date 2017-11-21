@@ -1,4 +1,4 @@
 controllare utenti che l'admin può cancellare
 (es. l'admin non può cancellare se stesso o altri admin)
 
-modifica corso di studio, AdmModStudyCourse, fallisce perchè dice codice e nome già esistente
+(FIXATO) modifica corso di studio, AdmModStudyCourse, fallisce perchè dice codice e nome già esistente

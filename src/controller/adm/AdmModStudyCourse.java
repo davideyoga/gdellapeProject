@@ -176,50 +176,84 @@ public class AdmModStudyCourse extends BaseController{
                     StudyCourse studyCourse = studyCourseDao.getStudyCouse();
                     studyCourse = this.getStudyCourseByForm(request, studyCourse, (Integer) request.getSession().getAttribute("idStudyCourseToModify"));
 
+                    System.out.println("Corso eztratto dalla form: " + studyCourse);
+
+
 
                     /*
                         CONTROLLI SUI DATI PASSATI DALLA FORM
                      */
-                    //estraggo i corsi di studi con codice e nome uguale a quello modificato
-                    StudyCourse studyCourseWithCode = studyCourseDao.getStudyCourseByCode(studyCourse.getCode());
-                    StudyCourse studyCourseWithName = studyCourseDao.getStudyCourseByName(studyCourse.getName());
 
-                    //se esiste un corso di studi con lo stesso codice o nome
-                    if( (studyCourseWithCode != null ) && (studyCourseWithName!= null ) ){
 
-                        //se esiste un corso di studi con lo stesso codice
-                        if( studyCourseWithCode!= null ){
+                    //se il nome o il codice sono diversi da prima controllo che nel sistema non vi siano corsi con stesso nome o codice
+                    if (!studyCourse.getName().equals(studyCoursePrecedente.getName()) ||
+                            !studyCourse.getCode().equals(studyCoursePrecedente.getCode())) {
 
-                            //inserisco messaggio di errore di codice esistente
-                            datamodel.put("message", "Error: Existing Code. " );
+                        boolean cambiamnti=false;
+
+
+                        //estraggo i corsi di studio con codice e nome uguale a quello modificato
+                        StudyCourse studyCourseWithCode = studyCourseDao.getStudyCourseByCode(studyCourse.getCode());
+                        StudyCourse studyCourseWithName = studyCourseDao.getStudyCourseByName(studyCourse.getName());
+
+
+                        //se i corsi di studio estratto sono gli stessi che sto modificando vuol dire che non ho modificato nome e codice
+                        //se uno dei due corsi di studio esiste e
+                        //uno dei due corsi di studio non e' uguale a quello che stiamo modificando
+                        if ((studyCourseWithCode != null) || (studyCourseWithName != null)) {
+
+                            //se esiste un corso di studi con lo stesso codice
+                            if (studyCourseWithCode != null && !studyCourse.getCode().equals(studyCoursePrecedente.getCode())) {
+
+                                //inserisco messaggio di errore di codice esistente
+                                datamodel.put("message", "Error: Existing Code. ");
+
+                                cambiamnti=true;
+                            }
+
+                            if (studyCourseWithName != null && !studyCourse.getName().equals(studyCoursePrecedente.getName())) {
+
+                                //concateno al messaggio di prima(se esiste) il messaggio di errore di nome fia' esistente
+                                datamodel.put("message", datamodel.get("message") + "Error: Existing Name.");
+
+                                cambiamnti = true;
+                            }
+
+                            if(cambiamnti == true) {
+
+                                //setto l'utente in sessione
+                                this.datamodel.put("user", sessionManager.getUser(request));
+
+                                //lancio template con messaggi di errore
+                                TemplateController.process("study_course_mod_adm.ftl", datamodel, response, getServletContext());
+                                return;
+
+
+                            }else{
+                                //se cambiamenti e' settato a false non faccio nulla
+                            }
                         }
-
-                        if(studyCourseWithName!= null ){
-
-                            //concateno al messaggio di prima(se esiste) il messaggio di errore di nome fia' esistente
-                            datamodel.put("message", datamodel.get("message") + "Error: Existing Name." );
-                        }
-
-                        //setto l'utente in sessione
-                        this.datamodel.put("user", sessionManager.getUser(request));
-
-                        //lancio template con messaggi di errore
-                        TemplateController.process("study_course_mod_adm.ftl", datamodel,response,getServletContext());
-                        return;
 
                     }
 
+                    System.out.println("Sono uscito dai controlli su nome e codice");
+
 
                     //se i corsi di studi sono diversi eseguo un update
-                    if( !studyCourse.equals(studyCoursePrecedente)){
+                    if (!studyCourse.equals(studyCoursePrecedente)) {
+
+                        System.out.println("Corso di Studio diverso da prima");
 
                         //eseguo update del corso di studi
                         studyCourseDao.storeStudyCourse(studyCourse);
 
                         logManager.addLog(sessionManager.getUser(request), "Study Course changed. BEFORE: " + studyCoursePrecedente +
-                                                                                                            ". AFTER: " + studyCourse, ds);
+                                ". AFTER: " + studyCourse, ds);
 
-                    }//se i corsi sono uguali non faccio nulla
+                        //se i corsi sono uguali non faccio nulla
+                    }else{
+                        System.out.println("Non ho modificato il corso");
+                    }
 
 
                     /*
@@ -233,11 +267,11 @@ public class AdmModStudyCourse extends BaseController{
                     //inizializzo un dao dei Corsi per estrarre tutti i corsi
                     CourseDao courseDao = new CourseDaoImpl(ds);
                     courseDao.init();
-                    List<Course> allCourses = courseDao.getCourses();
-                    List<Course> courseListPrima = courseDao.getCourseByStudyCourse(studyCourse);
+                    List <Course> allCourses = courseDao.getCourses();
+                    List <Course> courseListPrima = courseDao.getCourseByStudyCourse(studyCourse);
 
                     //lista rappresentante i nomi dei corsi ricevuti dalla form
-                    List<String> nameCoursesDopo = new ArrayList <>();
+                    List <String> nameCoursesDopo = new ArrayList <>();
 
                     //ciclo sulla lista di tutti i corsi per estrarre i corsi con i vari dati dalla form
                     for (Course course : allCourses) {
@@ -273,7 +307,7 @@ public class AdmModStudyCourse extends BaseController{
 
                             //aggiungo il gruppo all'utente
 
-                            studyCourseDao.insertCourseStudyCourseConnection(course, studyCourse, "cfuType"+course.getName());
+                            studyCourseDao.insertCourseStudyCourseConnection(course, studyCourse, "cfuType" + course.getName());
 
                             courseCambiati = true;
                         }
@@ -303,7 +337,7 @@ public class AdmModStudyCourse extends BaseController{
                     this.datamodel.put("user", sessionManager.getUser(request));
 
                     //lancio il template
-                    TemplateController.process("study_course_mod_adm.ftl", datamodel,response,getServletContext());
+                    TemplateController.process("study_course_mod_adm.ftl", datamodel, response, getServletContext());
 
 
                     //chiudo i vari dao
@@ -323,7 +357,7 @@ public class AdmModStudyCourse extends BaseController{
                 createPreviousPageAndRedirectToLogin(request,response,"AdmModStudyCourse");
             }
 
-        } catch (DaoException e) {
+        } catch (DaoException | NullPointerException e) {
             e.printStackTrace();
             //in caso di dao exception ecc. lancio il template di errore
             this.processError(request, response);

@@ -255,7 +255,7 @@ public class AddMaterial extends BaseController {
                     //inserisco nel db il materiale
                     int idMaterial = materialDao.storeMaterial(material);
 
-                    //setto l;id del materiale dopo averlo appena inserito
+                    //setto l'id del materiale dopo averlo appena inserito
                     material.setId(idMaterial);
 
                     //aggiungo la connessione tra corso e materiale
