@@ -1,51 +1,38 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="it">
 <head>
-    <title>gdellapeProject - List Your Course</title>
+    <title>Modifica corso</title>
 
-
+    <!--librerie-->
+<#include "import.ftl">
 </head>
 <body>
+    <!--menù navigazione-->
+    <#include "navbar.ftl">
 
-<div class="create_user_form">
-    <h1><a href="create_user">PortaleDell'Universita'</a></h1>
-    <div class="create-user-button">
+    <div class="container">
+        <div class="title"> Modifica corso</div>
 
         <p><#if message??>${message}<#else></#if></p>
 
-        <h2>Create Course</h2>
-        <form method="POST" action="CreateCourse">
-            <div class="col-md-6">
+        <div class="w3layouts-grids">
 
-                <div class="create-group-name">
-                    Name
-                    <input type="text" name="name" >
-                    <i class="fa fa-lock"></i>
-                </div>
-
-                <div class="create-group-description">
-                    Code
-                    <input type="text" name="code" >
-                    <i class="fa fa-lock"></i>
-                </div>
-
-                <div class="create-group-description">
-                    Year(Prima parte dell'anno accademico)
-                    <input type="number" name="year" >
-                    <i class="fa fa-lock"></i>
-                </div>
-
+            <div class="col-md-8 contact-form">
+                <form action="CreateCourse" method="post">
+                    <input name="Name" placeholder="nome" required="" type="text">
+                    <input name="code" placeholder="codice" required="" type="text">
+                <#--Year(Prima parte dell'anno accademico)-->
+                    <input name="year" placeholder="anno" required="" type="number">
+                    <div class="clearfix"> </div>
+                    <input value="modifica corso" type="submit">
+                </form>
             </div>
-            <div class="col-md-6 login-do">
-                <label class="hvr-shutter-in-horizontal login-sub">
-                    <input type="submit" value="Create course">
-                </label>
-            </div>
-
             <div class="clearfix"> </div>
-        </form>
-    </div>
-</div>
+        </div>
 
+    </div>
+
+    <!--modulo contatti, email, conclusione-->
+    <#include "tail.ftl">
 </body>
 </html>

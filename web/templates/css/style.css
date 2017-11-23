@@ -1289,9 +1289,9 @@ input.phone {
     font-size: .9em;
     margin: 1em 0 0 0;
     -webkit-appearance: none;
-    background: #e53238;
+    background: #0064d2;
     transition: 0.5s all;
-    border: 1px solid #e53238;
+    border: 1px solid #0064d2;
     -webkit-transition: 0.5s all;
     transition: 0.5s all;
     -moz-transition: 0.5s all;
