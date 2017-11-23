@@ -1,33 +1,46 @@
 <!DOCTYPE html>
-<html lang="it" xmlns="http://www.w3.org/1999/html">
+<html lang="it">
 <head>
-    <title>Lista Corsi di studio</title>
+    <title>Lista corsi</title>
 
-<#include "import.ftl">
-
+    <!--librerie-->
+    <#include "import.ftl">
 </head>
 <body>
+    <!--menù navigazione-->
+    <#include "navbar.ftl">
 
-<#include "navbar.ftl">
-<h1>Aggiungi materia</h1>
+    <div class="container">
+        <div class="title"> Lista corsi</div>
 
-<div class="container">
+        <p><#if message??>${message}<#else></#if></p>
 
-    <p><#if message??>${message}<#else></#if></p>
+        <table class="responsive">
+            <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
 
-<#list courses as course>
+            <thead>
+            <tr>
+                <th>nome materia</th>
+                <th>codice materia</th>
+                <th> - </th>
+            </tr>
+            </thead>
 
-    <p>Name Course: ${course.name}</p>
-    <p>Code Course: ${course.code}</p>
+            <tbody>
+            <#list courses as course>
+            <tr>
+                <td>${course.name}</td>
+                <td>${course.code}</td>
+                <td>
+                    <a href="ModCourse?id=${course.idCourse}">modifica</a>
+                </td>
+            </tr>
+            </#list>
+            </tbody>
+        </table>
+    </div>
 
-    <a href="ModCourse?id=${course.idCourse}">Mod Course</a>
-</#list>
-
-    <div class="clearfix"> </div>
-
-</div>
-
-<!--modulo contatti, email, conclusione-->
-<#include "tail.ftl">
+    <!--modulo contatti, email, conclusione-->
+    <#include "tail.ftl">
 </body>
 </html>
