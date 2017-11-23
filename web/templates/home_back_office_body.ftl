@@ -17,11 +17,12 @@
 
     <a href="/admGetListStudyCourse">
     <section class="flat">
-        <button>Lista corsi</button>
+        <button>Lista corsi di studio</button>
     </section>
     </a>
 
+    <a href="/ListCourse">
     <section class="flat">
-        <button>Button1</button>
+        <button>Lista corsi</button>
     </section>
 </div>
