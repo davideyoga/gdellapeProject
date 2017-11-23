@@ -1,0 +1,118 @@
+package controller;
+
+import dao.exception.DaoException;
+import dao.implementation.CourseDaoImpl;
+import dao.implementation.StudyCourseDaoImpl;
+import dao.implementation.UserDaoImpl;
+import dao.interfaces.CourseDao;
+import dao.interfaces.StudyCourseDao;
+import dao.interfaces.UserDao;
+import model.Course;
+import model.StudyCourse;
+import model.User;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.List;
+
+/**
+ * @author Davide Micarelli
+ * Estrae il corso da chiamata get tramite l'id passato,
+ * estrae i corsi borrowed ecc..
+ * estrae docenti,
+ * estrae corsi di studio a cui e' collegato
+ */
+public class CourseProfile extends BaseController {
+
+    protected void processTemplate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+        //lancio template appropriato
+        processTemplate(request, response, "course_profile", datamodel);
+
+    }
+
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+        try {
+
+            //estraggo il corso tramite l'id
+            if(request.getParameter("id")!=null){
+
+                //inizilizzo i dao
+                CourseDao courseDao = new CourseDaoImpl(ds);
+                courseDao.init();
+
+                Course course = courseDao.getCourseById(Integer.parseInt(request.getParameter("id")));
+
+                if(course==null || course.getIdCourse() == 0){
+
+                    courseDao.destroy();
+                    this.processError(request, response);
+
+                    //se va tutto bene
+                }else{
+
+                    UserDao userDao = new UserDaoImpl(ds);
+                    userDao.init();
+
+                    StudyCourseDao studyCourseDao = new StudyCourseDaoImpl(ds);
+                    studyCourseDao.init();
+
+
+                    //estraggo i corsi mutuati ecc..
+                    List<Course> listBorrowed = courseDao.getCourseBorrowed(course);
+                    List<Course> listModulated = courseDao.getCourseModulated(course);
+                    List<Course> listPreparatory = courseDao.getCoursePreparatory(course);
+
+                    //estraggo i docenti che possiedono il corso
+                    List<User> listDocent = userDao.getUserByCourse(course);
+
+                    //estraggo i corsi di studio in cui il corso e' fruibile
+                    List<StudyCourse> listStudyCourse = studyCourseDao.getStudyCourseByCourse(course);
+
+                    //inserisco tutto nel datamodel
+                    datamodel.put("course",course);
+                    datamodel.put("listStudyCourse",listStudyCourse);
+                    datamodel.put("listBorrowed",listBorrowed);
+                    datamodel.put("listModulated",listModulated);
+                    datamodel.put("listPreparatory",listPreparatory);
+                    datamodel.put("listDocent",listDocent);
+
+
+                    //chiudo i dao
+                    userDao.destroy();
+                    studyCourseDao.destroy();
+                    courseDao.destroy();
+
+                    //lancio il processo template
+                    this.processTemplate(request, response);
+
+                }
+
+
+            }else{
+                this.processError(request, response);
+            }
+
+        } catch (DaoException | NumberFormatException e) {
+
+            e.printStackTrace();
+
+            this.processError(request, response);
+        }
+
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        this.processRequest(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        this.processRequest(req, resp);
+    }
+}

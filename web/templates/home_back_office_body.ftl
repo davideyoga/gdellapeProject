@@ -3,9 +3,11 @@
         Home BackOffice
     </div>
 
+    <a href="/CreateUser">
     <section class="flat">
-        <button>giampaolo</button>
+        <button>aggiungi utente</button>
     </section>
+    </a>
 
     <a href="/admGetListUser">
     <section class="flat">
