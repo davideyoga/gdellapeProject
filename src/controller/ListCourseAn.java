@@ -43,7 +43,7 @@ public class ListCourseAn extends BaseController {
         datamodel.put("listCourse", listCourse);
 
         //lancio messaggio di errore
-        TemplateController.process("home.ftl", datamodel, response, getServletContext());
+        TemplateController.process("course_list.ftl", datamodel, response, getServletContext());
 
     }
 
