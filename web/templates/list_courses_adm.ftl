@@ -1,29 +1,33 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>gdellapeProject - List Your Course</title>
+    <title>Lista Corsi di studio</title>
 
-<#--questa va sistemata per l'admin, per mo fa le cose base-->
+<#include "import.ftl">
+
 </head>
 <body>
 
-<div>
-    <h1><a href="profile">PortaleDell'Universita' </a></h1>
-    <div>
+<#include "navbar.ftl">
+<h1>Aggiungi materia</h1>
 
-        <p><#if message??>${message}<#else></#if></p>
+<div class="container">
 
-    <#list courses as course>
+    <p><#if message??>${message}<#else></#if></p>
 
-        <p>Name Course: ${course.name}</p>
-        <p>Code Course: ${course.code}</p>
+<#list courses as course>
 
-        <a href="ModCourse?id=${course.idCourse}">Mod Course</a>
+    <p>Name Course: ${course.name}</p>
+    <p>Code Course: ${course.code}</p>
 
-    </#list>
+    <a href="ModCourse?id=${course.idCourse}">Mod Course</a>
+</#list>
 
-    </div>
+    <div class="clearfix"> </div>
+
 </div>
 
+<!--modulo contatti, email, conclusione-->
+<#include "tail.ftl">
 </body>
 </html>
