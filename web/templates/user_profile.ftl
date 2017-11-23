@@ -21,7 +21,7 @@
         <thead>
         <tr>
             <th>${userCurrent.name} ${userCurrent.surname}</th>
-            <th> </th>
+            <th> - </th>
         </tr>
         </thead>
 
