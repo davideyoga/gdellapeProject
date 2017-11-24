@@ -15,7 +15,18 @@
 
 <div class="container">
 <#--giovanni-->
-    <p><#if message??>${message}<#else></#if></p>
+
+<#if message??>
+    <div class="title">
+        <h2>ATTENZIONE</h2>
+            <div class="modalContent">
+                <p>${message}</p>
+            </div>
+    </div>
+<#else>
+
+</#if>
+
 
     <div class="w3layouts-grids">
 
