@@ -15,35 +15,24 @@
 
 <div class="container">
 
-        <p><#if message??>${message}<#else></#if></p>
+    <p><#if message??>${message}<#else></#if></p>
 
-        <h2>Create Course</h2>
+    <div class="w3layouts-grids">
+
+        <div class="col-md-8 contact-form">
         <form method="POST" action="CreateCourse">
-            <div class="col-md-6">
+            <p>Nome</p>
+            <input type="text" name="name" >
 
-                <div class="create-group-name">
-                    Name
-                    <input type="text" name="name" >
-                    <i class="fa fa-lock"></i>
-                </div>
-
-                <div class="create-group-description">
-                    Code
-                    <input type="text" name="code" >
-                    <i class="fa fa-lock"></i>
-                </div>
-
-            </div>
-            <div class="col-md-6 login-do">
-                <label class="hvr-shutter-in-horizontal login-sub">
-                    <input type="submit" value="Create course">
-                </label>
-            </div>
+            <p>Codice</p>
+            <input type="text" name="code" >
 
             <div class="clearfix"> </div>
+
+            <input type="submit" value="Crea corso">
         </form>
+        </div>
     </div>
-</div>
 </div>
 
 <!--modulo contatti, email, conclusione-->

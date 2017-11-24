@@ -11,7 +11,9 @@
     <#include "navbar.ftl">
 
     <div class="container">
-        <div class="title"> Modifica corso</div>
+        <div class="title">
+            Modifica dati ${course.name}, codice corso: <#if course.code??>${course.code}<#else></#if>
+        </div>
 
         <p><#if message??>${message}<#else></#if></p>
 
@@ -19,10 +21,9 @@
 
             <div class="col-md-8 contact-form">
                 <form action="CreateCourse" method="post">
-                    <input name="Name" placeholder="nome" required="" type="text">
-                    <input name="code" placeholder="codice" required="" type="text">
+                    <input name="Name" value="<#if course.name??>${course.name}<#else></#if>" required="" type="text">
                 <#--Year(Prima parte dell'anno accademico)-->
-                    <input name="year" placeholder="anno" required="" type="number">
+                    <input name="year" value="<#if course.year??>${course.year}<#else></#if>" required="" type="text">
                     <div class="clearfix"> </div>
                     <input value="modifica corso" type="submit">
                 </form>
