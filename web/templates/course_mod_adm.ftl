@@ -21,8 +21,10 @@
 
             <div class="col-md-8 contact-form">
                 <form action="CreateCourse" method="post">
+                    <p>Nome</p>
                     <input name="Name" value="<#if course.name??>${course.name}<#else></#if>" required="" type="text">
-                <#--Year(Prima parte dell'anno accademico)-->
+                    <p>Anno</p>
+                    <#--Year(Prima parte dell'anno accademico)-->
                     <input name="year" value="<#if course.year??>${course.year}<#else></#if>" required="" type="text">
                     <div class="clearfix"> </div>
                     <input value="modifica corso" type="submit">
