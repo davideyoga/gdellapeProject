@@ -14,7 +14,7 @@
         <div class="title">
             Modifica dati ${course.name}, codice corso: <#if course.code??>${course.code}<#else></#if>
         </div>
-
+<#--giovanni-->
         <p><#if message??>${message}<#else></#if></p>
 
         <div class="w3layouts-grids">
