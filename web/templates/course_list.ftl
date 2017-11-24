@@ -30,12 +30,12 @@
             </thead>
 
             <tbody>
-            <#list courses as course>
+            <#list listCourse as course>
             <tr>
                 <td>${course.code}</td>
                 <td>${course.name}</td>
                 <td>
-                    <#--<a href="StudyCourseProfile?code=${course.code}">Leggi di piu'</a>-->
+                    <a href="StudyCourseProfile?code=${course.code}">Leggi di piu'</a>
                 </td>
             </tr>
             </#list>

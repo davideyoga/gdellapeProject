@@ -25,4 +25,13 @@
     <section class="flat">
         <button>Lista corsi</button>
     </section>
+    </a>
+
+    <a href="/createCourse">
+    <section class="flat">
+        <button>Crea corso</button>
+    </section>
+    </a>
+
+
 </div>

@@ -371,6 +371,7 @@ public class ListCourseAn extends BaseController {
 
             System.out.println();
 
+            this.processTemplate(request,response,listCourse);
 
 
 
