@@ -6,9 +6,9 @@
     </div>
 
 
-    <div class="w3ls-heading">
+    <div class="w3ls-heading personal">
         <h3>Sezione Utenti</h3>
-        <p class="sub"></p>
+
     </div>
         <a href="/CreateUser">
         <section class="flat">
@@ -24,9 +24,9 @@
 
     <div class="clearfix"> </div>
 
-    <div class="w3ls-heading">
+    <div class="w3ls-heading personal">
         <h3>Sezione percorsi di laurea</h3>
-        <p class="sub"></p>
+
     </div>
         <a href="/createStudyCourse">
             <section class="flat">
@@ -41,9 +41,9 @@
 
     <div class="clearfix"> </div>
 
-    <div class="w3ls-heading">
+    <div class="w3ls-heading personal">
         <h3>Sezione percorsi di laurea</h3>
-        <p class="sub"></p>
+
     </div>
         <a href="/createCourse">
         <section class="flat">

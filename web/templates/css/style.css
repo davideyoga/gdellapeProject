@@ -18,6 +18,10 @@ html, body{
 #spaziatura1{
     padding-right: 5px;
 }
+
+.personal{
+    padding-top: 2em;
+}
 /*fino qua*/
 
 section.flat button {
