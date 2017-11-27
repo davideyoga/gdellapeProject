@@ -14,7 +14,6 @@
 </div>
 
 <div class="container">
-<#--giovanni-->
 
 <#if message??>
     <div class="title">

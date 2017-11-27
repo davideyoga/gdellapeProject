@@ -45,5 +45,7 @@
 </div>
 
 
+<!--modulo contatti, email, conclusione-->
+<#include "tail.ftl">
 </body>
 </html>
