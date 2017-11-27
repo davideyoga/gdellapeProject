@@ -2,7 +2,7 @@
 
     <div class="w3ls-heading">
         <h1>Home BackOffice</h1>
-        <p class="sub">questo è il bec offis</p>
+        <p class="sub">benvenuto ${user.name}</p>
     </div>
 
 
@@ -19,6 +19,12 @@
         <a href="/admGetListUser">
         <section class="flat">
             <button>Lista utenti</button>
+        </section>
+        </a>
+
+        <a href="">
+        <section class="flat">
+            <button>Modifica utenti</button>
         </section>
         </a>
 
@@ -39,6 +45,12 @@
         </section>
         </a>
 
+        <a href="">
+        <section class="flat">
+            <button>Modifica corsi</button>
+        </section>
+        </a>
+
     <div class="clearfix"> </div>
 
     <div class="w3ls-heading personal">
@@ -53,6 +65,11 @@
         <a href="/ListCourse">
         <section class="flat">
             <button>Lista insegnamenti</button>
+        </section>
+        </a>
+        <a href="">
+        <section class="flat">
+            <button>Modifica insegnamenti</button>
         </section>
         </a>
 

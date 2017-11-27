@@ -87,6 +87,9 @@ public class CreateUser extends BaseController {
                 //se l'utente in sessione possiede il servizio createUser...
                 if (((List <Service>) request.getSession().getAttribute("services")).contains(createUser)) {
 
+
+                    this.datamodel.put("message", null);
+
                     //setto l'utente in sessione
                     this.datamodel.put("user", sessionManager.getUser(request));
 
