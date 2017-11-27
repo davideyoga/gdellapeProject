@@ -1,37 +1,59 @@
 <div class="container">
-    <div class="title">
-        Home BackOffice
+
+    <div class="w3ls-heading">
+        <h1>Home BackOffice</h1>
+        <p class="sub">questo è il bec offis</p>
     </div>
 
-    <a href="/CreateUser">
-    <section class="flat">
-        <button>aggiungi utente</button>
-    </section>
-    </a>
 
-    <a href="/admGetListUser">
-    <section class="flat">
-        <button> lista utenti</button>
-    </section>
-    </a>
+    <div class="w3ls-heading">
+        <h3>Sezione Utenti</h3>
+        <p class="sub"></p>
+    </div>
+        <a href="/CreateUser">
+        <section class="flat">
+            <button>Crea nuovo utente</button>
+        </section>
+        </a>
 
-    <a href="/admGetListStudyCourse">
-    <section class="flat">
-        <button>Lista corsi di studio</button>
-    </section>
-    </a>
+        <a href="/admGetListUser">
+        <section class="flat">
+            <button>Lista utenti</button>
+        </section>
+        </a>
 
-    <a href="/ListCourse">
-    <section class="flat">
-        <button>Lista corsi</button>
-    </section>
-    </a>
+    <div class="clearfix"> </div>
 
-    <a href="/createCourse">
-    <section class="flat">
-        <button>Crea corso</button>
-    </section>
-    </a>
+    <div class="w3ls-heading">
+        <h3>Sezione percorsi di laurea</h3>
+        <p class="sub"></p>
+    </div>
+        <a href="/createStudyCourse">
+            <section class="flat">
+                <button>Crea Percorso di laurea</button>
+            </section>
+        </a>
+        <a href="/admGetListStudyCourse">
+        <section class="flat">
+            <button>Lista corsi di laurea</button>
+        </section>
+        </a>
 
+    <div class="clearfix"> </div>
+
+    <div class="w3ls-heading">
+        <h3>Sezione percorsi di laurea</h3>
+        <p class="sub"></p>
+    </div>
+        <a href="/createCourse">
+        <section class="flat">
+            <button>Crea insegnamento</button>
+        </section>
+        </a>
+        <a href="/ListCourse">
+        <section class="flat">
+            <button>Lista insegnamenti</button>
+        </section>
+        </a>
 
 </div>

@@ -64,8 +64,8 @@
                             <li class="active">
                                 <a href="/home">Home</a></li>
                             <li><a href="/ListStudyCourses" class="hvr-rectangle-out">Lauree</a></li>
-                            <li><a href="gianni" class="hvr-rectangle-out">Docenti</a></li>
-                            <li><a href="#team" class="hvr-rectangle-out">Facoltà</a></li>
+                            <li><a href="/ListCourseAn" class="hvr-rectangle-out">Corsi</a></li>
+                            <li><a href="#team" class="hvr-rectangle-out">Docenti</a></li>
                             <li><a href="#news" class="hvr-rectangle-out">Notizie</a></li>
                             <li><a href="#gallery" class="hvr-rectangle-out">Servizi</a></li>
                             <li><a href="#contact" class="hvr-rectangle-out">Contatti</a></li>
