@@ -17,7 +17,7 @@
                                     <a href="/homeBackOffice" class="dimension">BackOffice <span class="glyphicon glyphicon-cog white_color pull-right"></span></a></li>
 
                                 <li class="dimension">
-                                    <a href="#" class="dimension">Profilo<span class="glyphicon glyphicon-stats pull-right"></span></a></li>
+                                    <a href="UserProfile?email=${user.email}" class="dimension">Profilo<span class="glyphicon glyphicon-stats pull-right"></span></a></li>
 
                                 <li class="dimension">
                                     <a href="#" class="dimension">Favourites <span class="glyphicon glyphicon-heart red_color pull-right"></span></a></li>
