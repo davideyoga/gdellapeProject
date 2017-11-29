@@ -8,8 +8,8 @@
 
     <div class="w3ls-heading personal">
         <h3>Sezione Utenti</h3>
-
     </div>
+
         <a href="/CreateUser">
         <section class="flat">
             <button>Crea nuovo utente</button>
@@ -54,7 +54,7 @@
     <div class="clearfix"> </div>
 
     <div class="w3ls-heading personal">
-        <h3>Sezione percorsi di laurea</h3>
+        <h3>Sezione Insegnamenti</h3>
 
     </div>
         <a href="/createCourse">

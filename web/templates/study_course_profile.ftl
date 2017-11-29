@@ -66,18 +66,33 @@
                     <td colspan="3">${studyCourse.language_ita}</td>
             </tr>
             <br>
+        </table>
             <!--Tutta la descrizione del corso, per prendere spunto guardare user_profile.ftl-->
     <#--commento cmmento-->
             <#--<p>CORSI APPARTENENTI AL CORSO DI STUDI (DA SCRIVERE IN INGLESE)</p>-->
-            <br>
-            <#list courses as course>
-            <br>
-            <p>Course name: ${course.name}</p>
-            <p>AGGIUNGERE LINK AL CORSO </p>
+        <br>
+        <br>
+        <br>
 
-            </#list>
+        <#list courses>
+            <table class="responsive">
+                <thead>
+                <tr>
+                    <th colspan="3">Insegnamenti associati a ${studyCourse.name}</th>
+                </tr>
+                </thead>
+            <#items as  course>
+            <tr>
+                <td>Nome corso</td>
+                <td >${course.name}</td>
+                <td ><a href="StudyCourseProfile?code=${course.code}">Leggi di piu'</a></td>
+            </tr>
 
+            </#items>
         </table>
+        <#else>
+            Attualmente non ci sono insegnamenti associati al corso di studi
+        </#list>
 
         <br>
         <div class="title">Descrizione Corso di Studi:</div>
