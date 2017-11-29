@@ -7,3 +7,5 @@ controllare utenti che l'admin può cancellare
 messaggio persiste, da resettare il contenuto
 
 fare 2 tipi di messaggio: "messageSucces" e "messageError" nelle servlet: -CreateUser
+
+servlet user profile non controlla chi accede, posso accedere al profilo di chiunque
