@@ -183,7 +183,7 @@
     <!-- Servlet di DeleteUser -->
     <servlet>
         <servlet-name>DeleteUser</servlet-name>
-        <servlet-class>controller.adm.DeleteUser</servlet-class>
+        <servlet-class>controller.adm.user.DeleteUser</servlet-class>
         </servlet>
     <servlet-mapping>
         <servlet-name>DeleteUser</servlet-name>
