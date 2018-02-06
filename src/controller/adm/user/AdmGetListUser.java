@@ -96,6 +96,7 @@ public class AdmGetListUser extends BaseController {
 
         } catch (Exception e) {
             //in caso di dao exception ecc. lancio il template di errore
+            System.out.println(e.getMessage());
             this.processError(request, response);
         }
     }
