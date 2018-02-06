@@ -1,4 +1,4 @@
-package controller.adm;
+package controller.adm.book;
 
 import controller.BaseController;
 import controller.utility.SecurityLayer;

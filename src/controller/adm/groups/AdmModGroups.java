@@ -1,4 +1,4 @@
-package controller.adm;
+package controller.adm.groups;
 
 
 import controller.BaseController;

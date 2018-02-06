@@ -74,7 +74,7 @@
     <!-- Servlet di ProfileManager -->
     <servlet>
         <servlet-name>ProfileManagement</servlet-name>
-        <servlet-class>controller.adm.ProfileManagement</servlet-class>
+        <servlet-class>controller.adm.user.ProfileManagement</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ProfileManagement</servlet-name>
@@ -86,7 +86,7 @@
     <!-- Servlet di CreateUser -->
     <servlet>
         <servlet-name>CreateUser</servlet-name>
-        <servlet-class>controller.adm.CreateUser</servlet-class>
+        <servlet-class>controller.adm.user.CreateUser</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CreateUser</servlet-name>
@@ -98,7 +98,7 @@
     <!-- Servlet di AdmGetListUser -->
     <servlet>
         <servlet-name>AdmGetListUser</servlet-name>
-        <servlet-class>controller.adm.AdmGetListUser</servlet-class>
+        <servlet-class>controller.adm.user.AdmGetListUser</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AdmGetListUser</servlet-name>
@@ -110,7 +110,7 @@
     <!-- Servlet di AdmGetListUser -->
     <servlet>
         <servlet-name>AdmModUser</servlet-name>
-        <servlet-class>controller.adm.AdmModUser</servlet-class>
+        <servlet-class>controller.adm.user.AdmModUser</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AdmModUser</servlet-name>
@@ -122,7 +122,7 @@
     <!-- Servlet di AdmGetListGroups -->
     <servlet>
         <servlet-name>AdmGetListGroups</servlet-name>
-        <servlet-class>controller.adm.AdmGetListGroups</servlet-class>
+        <servlet-class>controller.adm.groups.AdmGetListGroups</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AdmGetListGroups</servlet-name>
@@ -135,7 +135,7 @@
     <!-- Servlet di AdmModGroups -->
     <servlet>
         <servlet-name>AdmModGroups</servlet-name>
-        <servlet-class>controller.adm.AdmModGroups</servlet-class>
+        <servlet-class>controller.adm.groups.AdmModGroups</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AdmModGroups</servlet-name>
@@ -159,7 +159,7 @@
     <!-- Servlet di CreateGroups -->
     <servlet>
         <servlet-name>CreateGroups</servlet-name>
-        <servlet-class>controller.adm.CreateGroups</servlet-class>
+        <servlet-class>controller.adm.groups.CreateGroups</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CreateGroups</servlet-name>
@@ -171,7 +171,7 @@
     <!-- Servlet di DeleteGroups -->
     <servlet>
         <servlet-name>DeleteGroups</servlet-name>
-        <servlet-class>controller.adm.DeleteGroups</servlet-class>
+        <servlet-class>controller.adm.groups.DeleteGroups</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DeleteGroups</servlet-name>
@@ -256,7 +256,7 @@
     <!-- Servlet di AdmGetListStudyCourse -->
     <servlet>
         <servlet-name>AdmGetListStudyCourse</servlet-name>
-        <servlet-class>controller.adm.AdmGetListStudyCourse</servlet-class>
+        <servlet-class>controller.adm.studyCourse.AdmGetListStudyCourse</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AdmGetListStudyCourse</servlet-name>
@@ -268,7 +268,7 @@
     <!-- Servlet di AdmModStudyCourse -->
     <servlet>
         <servlet-name>AdmModStudyCourse</servlet-name>
-        <servlet-class>controller.adm.AdmModStudyCourse</servlet-class>
+        <servlet-class>controller.adm.studyCourse.AdmModStudyCourse</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AdmModStudyCourse</servlet-name>
@@ -280,7 +280,7 @@
     <!-- Servlet di  DeleteStudyCourse-->
     <servlet>
         <servlet-name>DeleteStudyCourse</servlet-name>
-        <servlet-class>controller.adm.DeleteStudyCourse</servlet-class>
+        <servlet-class>controller.adm.studyCourse.DeleteStudyCourse</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DeleteStudyCourse</servlet-name>
@@ -304,7 +304,7 @@
     <!-- Servlet di  CreateStudyCourse-->
     <servlet>
         <servlet-name>CreateStudyCourse</servlet-name>
-        <servlet-class>controller.adm.CreateStudyCourse</servlet-class>
+        <servlet-class>controller.adm.studyCourse.CreateStudyCourse</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CreateStudyCourse</servlet-name>
@@ -316,7 +316,7 @@
     <!-- Servlet di  CreateCourse-->
     <servlet>
         <servlet-name>CreateCourse</servlet-name>
-        <servlet-class>controller.adm.CreateCourse</servlet-class>
+        <servlet-class>controller.adm.course.CreateCourse</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CreateCourse</servlet-name>
@@ -341,7 +341,7 @@
     <!-- Servlet di  ModAssociationStudyCourseWithCourse-->
     <servlet>
         <servlet-name>ModAssociationStudyCourseWithCourse</servlet-name>
-        <servlet-class>controller.adm.ModAssociationStudyCourseWithCourse</servlet-class>
+        <servlet-class>controller.adm.studyCourse.ModAssociationStudyCourseWithCourse</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ModAssociationStudyCourseWithCourse</servlet-name>
@@ -354,7 +354,7 @@
     <!-- Servlet di  ListCourse-->
     <servlet>
         <servlet-name>ListCourse</servlet-name>
-        <servlet-class>controller.adm.ListCourse</servlet-class>
+        <servlet-class>controller.adm.course.ListCourse</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ListCourse</servlet-name>
@@ -367,7 +367,7 @@
     <!-- Servlet di  ModCourse-->
     <servlet>
         <servlet-name>ModCourse</servlet-name>
-        <servlet-class>controller.adm.ModCourse</servlet-class>
+        <servlet-class>controller.adm.course.ModCourse</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ModCourse</servlet-name>
@@ -379,7 +379,7 @@
     <!-- Servlet di  ModAdmCourse-->
     <servlet>
         <servlet-name>ModAdmCourse</servlet-name>
-        <servlet-class>controller.adm.ModAdmCourse</servlet-class>
+        <servlet-class>controller.adm.course.ModAdmCourse</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ModAdmCourse</servlet-name>
@@ -392,7 +392,7 @@
     <!-- Servlet di  ModAssociationCourseWithUser-->
     <servlet>
         <servlet-name>ModAssociationCourseWithUser</servlet-name>
-        <servlet-class>controller.adm.ModAssociationCourseWithUser</servlet-class>
+        <servlet-class>controller.adm.course.ModAssociationCourseWithUser</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ModAssociationCourseWithUser</servlet-name>
@@ -405,7 +405,7 @@
     <!-- Servlet di  AdmModCourse-->
     <servlet>
         <servlet-name>AdmModCourse</servlet-name>
-        <servlet-class>controller.adm.AdmModCourse</servlet-class>
+        <servlet-class>controller.adm.course.AdmModCourse</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AdmModCourse</servlet-name>
@@ -428,7 +428,7 @@
     <!-- Servlet di  AddMaterial-->
     <servlet>
         <servlet-name>AddMaterial</servlet-name>
-        <servlet-class>controller.adm.AddMaterial</servlet-class>
+        <servlet-class>controller.adm.material.AddMaterial</servlet-class>
 
         <multipart-config>
             <!--
@@ -465,7 +465,7 @@
     <!-- Servlet di  ListMaterialNotAnonymous-->
     <servlet>
         <servlet-name>ListMaterialNotAnonymous</servlet-name>
-        <servlet-class>controller.adm.ListMaterialNotAnonymous</servlet-class>
+        <servlet-class>controller.adm.material.ListMaterialNotAnonymous</servlet-class>
 
     </servlet>
     <servlet-mapping>
@@ -478,7 +478,7 @@
     <!-- Servlet di  ModCourseRelation-->
     <servlet>
         <servlet-name>ModCourseRelation</servlet-name>
-        <servlet-class>controller.adm.ModCourseRelation</servlet-class>
+        <servlet-class>controller.adm.course.ModCourseRelation</servlet-class>
 
     </servlet>
     <servlet-mapping>
@@ -491,7 +491,7 @@
     <!-- Servlet di  UpdateCourse-->
     <servlet>
         <servlet-name>UpdateCourse</servlet-name>
-        <servlet-class>controller.adm.UpdateCourse</servlet-class>
+        <servlet-class>controller.adm.course.UpdateCourse</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UpdateCourse</servlet-name>
@@ -503,7 +503,7 @@
     <!-- Servlet di  AddBook-->
     <servlet>
         <servlet-name>AddBook</servlet-name>
-        <servlet-class>controller.adm.AddBook</servlet-class>
+        <servlet-class>controller.adm.book.AddBook</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AddBook</servlet-name>

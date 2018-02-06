@@ -1,4 +1,4 @@
-package controller.adm;
+package controller.adm.user;
 
 import controller.BaseController;
 import dao.exception.DaoException;
@@ -25,6 +25,12 @@ import java.util.Map;
 
 /**
  * @author Davide Micarelli
+ *
+ * TEMPLATE LANCIATO: user_list_adm.ftl
+ *
+ * PARAMETRI DA PASSARE: niente
+ *
+ *
  */
 
 public class AdmGetListUser extends BaseController {

@@ -1,4 +1,4 @@
-package controller.adm;
+package controller.adm.user;
 
 import controller.BaseController;
 import controller.logController.LogException;
@@ -28,6 +28,11 @@ import java.util.Map;
 
 /**
  * @author Davide Micarelli
+ *
+ * TEMPLATE LANCIATO: user_mod.ftl
+ *
+ * PARAMETRI DA PASSARE:
+ * id: id dell'utente che si intende modificare
  */
 public class AdmModUser extends BaseController {
 

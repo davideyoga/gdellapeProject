@@ -1,4 +1,4 @@
-package controller.adm;
+package controller.adm.user;
 
 import controller.BaseController;
 import controller.logController.LogException;

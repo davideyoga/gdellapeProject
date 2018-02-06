@@ -1,4 +1,4 @@
-package controller.adm;
+package controller.adm.book;
 
 import controller.BaseController;
 import controller.utility.SecurityLayer;
@@ -17,12 +17,11 @@ import java.io.IOException;
 
 /**
  * @author Davide Micarelli
+ * aggiunge libro con ajax
  */
-public class  RemoveBook extends BaseController {
+public class AddBookByExisting extends BaseController {
 
-
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
@@ -51,8 +50,8 @@ public class  RemoveBook extends BaseController {
                 //se esiste sia il libro che il corso
                 if(book != null && course != null){
 
-                    //elimino il collegamento tra libro e corso
-                    bookDao.deleteLinkToCourseBook(course, book);
+                    //aggiungo al il libro al corso
+                    bookDao.addLinkBookToCourse(course, book);
 
                     //torno OK alla chiamata servlet se arrivo alla fine senza problemi
                     response.getWriter().write("OK");
@@ -77,7 +76,6 @@ public class  RemoveBook extends BaseController {
             }
 
         }
-
     }
 
     @Override
@@ -89,4 +87,6 @@ public class  RemoveBook extends BaseController {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processRequest(req, resp);
     }
+
+
 }

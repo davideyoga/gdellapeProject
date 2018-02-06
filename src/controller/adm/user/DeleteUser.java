@@ -20,6 +20,11 @@ import java.util.Map;
 
 /**
  * @author Davide Micarelli
+ * Riceve dalla lista degli utenti una chiamata get con l'id del gruppo da eliminare
+ * Una volta eliminato utente con id passato richiama servlet AdmGetListUser
+ *
+ * PARAMETRI RICHIESTI:
+ * id: id dell'utente da eliminare
  */
 public class DeleteUser extends BaseController {
 
