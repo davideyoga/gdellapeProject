@@ -77,6 +77,8 @@ public class AdmGetListUser extends BaseController {
 
                     //lancio il template con gli utenti caricati
                     datamodel.put("users", userList);
+
+
                     TemplateController.process("user_list_adm.ftl", datamodel, response, getServletContext());
 
 
