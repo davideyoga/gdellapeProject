@@ -524,4 +524,16 @@
     </servlet-mapping>
     <!-- Fine Servlet di ListCourseAn -->
 
+    <!-- Servlet di CourseProfile -->
+    <servlet>
+        <servlet-name>CourseProfile</servlet-name>
+        <servlet-class>controller.CourseProfile</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CourseProfile</servlet-name>
+        <url-pattern>/CourseProfile</url-pattern>
+        <url-pattern>/courseProfile</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di CourseProfile -->
+
 </web-app>

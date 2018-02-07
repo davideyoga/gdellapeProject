@@ -24,6 +24,13 @@ import java.util.List;
  * estrae i corsi borrowed ecc..
  * estrae docenti,
  * estrae corsi di studio a cui e' collegato
+ *
+ *  ("course",course);
+ *  ("listStudyCourse",listStudyCourse);
+    ("listBorrowed",listBorrowed); MUTUATO
+    ("listModulated",listModulated); MODULATO
+    ("listPreparatory",listPreparatory); PROPEDEUTICO
+    ("listDocent",listDocent);
  */
 public class CourseProfile extends BaseController {
 
@@ -80,6 +87,8 @@ public class CourseProfile extends BaseController {
                     datamodel.put("listModulated",listModulated);
                     datamodel.put("listPreparatory",listPreparatory);
                     datamodel.put("listDocent",listDocent);
+
+                    System.out.println(datamodel);
 
 
                     //chiudo i dao
