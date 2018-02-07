@@ -10,6 +10,7 @@ import dao.interfaces.UserDao;
 import model.Course;
 import model.StudyCourse;
 import model.User;
+import view.TemplateController;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +30,7 @@ public class CourseProfile extends BaseController {
     protected void processTemplate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
         //lancio template appropriato
-        processTemplate(request, response, "course_profile", datamodel);
+        processTemplate(request, response, "course_profile.ftl", datamodel);
 
     }
 
@@ -37,7 +38,6 @@ public class CourseProfile extends BaseController {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
         try {
-
             //estraggo il corso tramite l'id
             if(request.getParameter("id")!=null){
 
@@ -89,7 +89,6 @@ public class CourseProfile extends BaseController {
 
                     //lancio il processo template
                     this.processTemplate(request, response);
-
                 }
 
 

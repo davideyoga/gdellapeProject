@@ -35,7 +35,7 @@
                 <td>${course.code}</td>
                 <td>${course.name}</td>
                 <td>
-                    <a href="StudyCourseProfile?code=${course.code}">Leggi di piu'</a>
+                    <a href="CourseProfile?id=${course.id}">Leggi di piu'</a>
                 </td>
             </tr>
             </#list>
