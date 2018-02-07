@@ -117,6 +117,7 @@ public class BaseController extends HttpServlet {
         if( request.getParameter("lng") == null ){
 
             templateName = templateName+".ftl";
+
             TemplateController.process(templateName, datamodel, response, getServletContext());
         }else {
             if (request.getParameter("lng").equals("IT")) {
