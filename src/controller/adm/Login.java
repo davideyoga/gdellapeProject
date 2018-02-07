@@ -56,6 +56,8 @@ public class Login extends BaseController {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        datamodel.put("message", null);
+
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
@@ -135,6 +137,7 @@ public class Login extends BaseController {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        datamodel.put("message", null);
 
         this.datamodel.put("user", sessionManager.getUser(request));
 
