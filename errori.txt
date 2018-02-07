@@ -12,3 +12,9 @@ Errore da sistemare sulla pagina StudyCourseProfile?code=01
 		log dell' errore mandato in foto
 
 servlet user profile non controlla chi accede, posso accedere al profilo di chiunque
+
+
+
+
+
+SISTEMARE I LOG, CHE SI LEGGANO IN MODO PIÙ DECENTE
