@@ -172,7 +172,8 @@ public class ModAdmCourse extends BaseController {
                             datamodel.put("message", "Update Successful");
 
                             //inserisco un log di avvenuta modofica
-                            logManager.addLog(sessionManager.getUser(request), "COURSE MODIFIED: BEFORE: " + courseById + ". AFTER: " + courseByForm, ds);
+                            logManager.addLog(sessionManager.getUser(request), "USER: " + sessionManager.getUser(request).toStringForLog() +
+                                    "HAS CHANGED: " + courseByForm.toStringForLog(), ds);
 
                         }else {
 

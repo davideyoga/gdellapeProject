@@ -186,8 +186,8 @@ public class ModCourse extends BaseController {
                             datamodel.put("message", "Course Modified");
 
                             //inserisco un log
-                            logManager.addLog(sessionManager.getUser(request), "UPDATE COURSE: BEFORE: " + courseById +
-                                    ". AFTER: " + courseByForm, ds);
+                            logManager.addLog(sessionManager.getUser(request), "USER: " + sessionManager.getUser(request).toStringForLog() +
+                                    "HAS CHANGED: " + courseById.toStringForLog(), ds);
 
                             //se non sono state effettuate modifiche
                         }else{

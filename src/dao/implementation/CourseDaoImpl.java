@@ -819,7 +819,7 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
             }
 
         } catch (SQLException e) {
-            throw new SelectDaoException("Error getCourseModulated", e);
+            throw new SelectDaoException("Error getCourseBorrowed", e);
         }
 
         return courses;

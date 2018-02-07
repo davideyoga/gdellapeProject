@@ -5,6 +5,7 @@ import controller.logController.LogException;
 import dao.exception.DaoException;
 import dao.implementation.CourseDaoImpl;
 import dao.interfaces.CourseDao;
+import model.Course;
 import model.Service;
 
 import javax.servlet.ServletException;
@@ -52,11 +53,13 @@ public class DeleteCourse extends BaseController {
                         return;
                     }
 
+                    Course course = courseDao.getCourseById(Integer.parseInt(request.getParameter("id")));
+
                     //elimino il corso con id = a quello del parametro get passato
-                    courseDao.deleteCourse(courseDao.getCourseById(Integer.parseInt(request.getParameter("id"))));
+                    courseDao.deleteCourse(course);
 
                     //aggiungo un log di eliminazione del corso
-                    logManager.addLog(sessionManager.getUser(request), "DELETE COURSE: " + courseDao.getCourseById(Integer.parseInt(request.getParameter("id"))), ds);
+                    logManager.addLog(sessionManager.getUser(request),"USER: " + sessionManager.getUser(request).toStringForLog() + "DELETE COURSE: " + course.toStringForLog(), ds);
 
                     //lancio la servlet della lista dei corsi
                     response.sendRedirect("ListCourse");
@@ -72,7 +75,7 @@ public class DeleteCourse extends BaseController {
                 createPreviousPageAndRedirectToLogin(request, response, "ListCourse");
             }
 
-        } catch (DaoException e) {
+        } catch (DaoException | NumberFormatException e) {
             e.printStackTrace();
 
             //in caso di dao exception ecc. lancio il template di errore
@@ -86,6 +89,7 @@ public class DeleteCourse extends BaseController {
 
             //lancio la servlet della lista dei corsi
             response.sendRedirect("ListCourse");
+
         }
     }
 

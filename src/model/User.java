@@ -164,4 +164,11 @@ public class User{
     public void setPassword(String password) {
         this.password = password;
     }
+
+
+    public String toStringForLog(){
+
+        return "SURNAME: " + surname + ", NAME: " + name + ", EMAIL: " + email  ;
+
+    }
 }

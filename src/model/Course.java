@@ -466,4 +466,16 @@ public class Course {
                 ", external_material_eng='" + external_material_eng + '\'' +
                 '}';
     }
+
+    /**
+     * @return Stringa che descrive id, nome e codice
+     */
+    public String toStringForLog(){
+
+        String logDescriptor = "ID: " + idCourse + ", NAME: " + name + ", CODE: " + code;
+
+        return logDescriptor;
+
+    }
+
 }

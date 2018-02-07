@@ -1,6 +1,7 @@
 package controller.adm.course;
 
 import controller.BaseController;
+import controller.logController.LogException;
 import dao.exception.DaoException;
 import dao.implementation.CourseDaoImpl;
 import dao.implementation.UserDaoImpl;
@@ -235,6 +236,10 @@ public class ModAssociationCourseWithUser extends BaseController {
                     //setto l'utente in sessione
                     this.datamodel.put("user", sessionManager.getUser(request));
 
+                    //inserisco un log
+                    logManager.addLog(sessionManager.getUser(request), "USER: " + sessionManager.getUser(request).toStringForLog() +
+                            "HAS CHANGED THE CONNECTION BETWEEN USERS AND THE COURSE: " + course.toStringForLog(), ds);
+
                     //lancio il template
                     TemplateController.process("mod_association_course_with_user.ftl", datamodel, response, getServletContext());
 
@@ -258,6 +263,12 @@ public class ModAssociationCourseWithUser extends BaseController {
 
             //lancio il template di errore
             this.processError(request, response);
+        }
+        //Se c'e' un errore al log nn faccio nulla
+        catch (LogException e) {
+            e.printStackTrace();
+
+            TemplateController.process("mod_association_course_with_user.ftl", datamodel, response, getServletContext());
         }
 
     }

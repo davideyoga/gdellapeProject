@@ -160,7 +160,8 @@ public class AdmModCourse extends BaseController {
                                 datamodel.put("course", courseAfter);
 
                                 //inserisco un log
-                                logManager.addLog(sessionManager.getUser(request), "COURSE: " + courseBefore+ " IT'S CHANGE: " + courseAfter, ds);
+                                logManager.addLog(sessionManager.getUser(request), "USER: " + sessionManager.getUser(request).toStringForLog() +
+                                                                                    "HAS CHANGED: " + courseAfter.toStringForLog(), ds);
 
                                 //se i corsi sono uguali
                             } else {
