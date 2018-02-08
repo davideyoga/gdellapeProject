@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" xmlns="http://www.w3.org/1999/html">
 <head>
 <#--sono le informazioni specifiche della materia-->
     <title>
@@ -14,88 +14,142 @@
 <#include "navbar.ftl">
 
 <div class="container">
-
     <p><#if message??>${message}<#else></#if></p>
+    <div class="title personal-title align_left" >
+        dettagli corso
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-xs-12 fa-border-course background">
+            <div class="col-md-2 col-xs-4">
+                <div class="contact-info-right">
+                <h5>Nome corso: </h5>
 
-    <table class="responsive">
-        <thead>
-        <tr>
-            <th colspan="4">Infomazioni su ${studyCourse.name}</th>
-        </tr>
-        </thead>
-        <tr>
-            <td>Nome corso</td>
-            <td colspan="3">${studyCourse.name}</td>
+                <p>Codice: <br>
+                </p>
 
-            <td>Codice corso</td>
-            <td colspan="3">${studyCourse.code}</td>
-        </tr>
-        <tr>
-            <td>Anno Accademico</td>
-            <td><a href="StudyCourseProfile?code=${studyCourse.code}&age=${(currentFirstYear - 1)?string.computer}&<#if lng == 'IT'>lng=EN<#elseif lng == 'EN'>lng=IT<#else>lng=EN</#if>&code=${studyCourse.code} ">Previous year</a></td>
-            <td>${accademicYear}</td>
-            <td><a href="StudyCourseProfile?code=${studyCourse.code}&age=${(currentFirstYear + 1)?string.computer}&<#if lng == 'IT'>lng=EN<#elseif lng == 'EN'>lng=IT<#else>lng=EN</#if>&code=${studyCourse.code} ">Next year</a></td>
-        </tr>
-        <tr>
-            <td>Durata:</td>
-            <td colspan="3">${studyCourse.duration} anni</td>
-        </tr>
-    <#--<tr>-->
-    <#--<td>Classe:</td>-->
-    <#--<td><#if studyCourse.classes??> ${studyCourse.classes} <#else>Non presente</#if></td>-->
-    <#--</tr>-->
-    <#--<tr>-->
-    <#--<td>Posti</td>-->
-    <#--<td>${studyCourse.seat}</td>-->
-    <#--</tr>-->
-        <tr>
-            <td>Dipartimento</td>
-            <td colspan="3">${studyCourse.department_ita}</td>
-        </tr>
-        <tr>
-            <td>Livello EQF</td>
-            <td colspan="3">${studyCourse.level_ita}</td>
-        </tr>
-        <tr>
-            <td>Access type</td>
-            <td colspan="3">${studyCourse.accessType_ita}</td>
-        </tr>
-        <tr>
-            <td>Lingua corso</td>
-            <td colspan="3">${studyCourse.language_ita}</td>
-        </tr>
-        <br>
-    </table>
-    <!--Tutta la descrizione del corso, per prendere spunto guardare user_profile.ftl-->
-<#--commento cmmento-->
-<#--<p>CORSI APPARTENENTI AL CORSO DI STUDI (DA SCRIVERE IN INGLESE)</p>-->
-    <br>
-    <br>
-    <br>
+                <p>Tipo: <br>
+                </p>
 
-<#list courses>
-    <table class="responsive">
-        <thead>
-        <tr>
-            <th colspan="3">Insegnamenti associati a ${studyCourse.name}</th>
-        </tr>
-        </thead>
-        <#items as  course>
-            <tr>
-                <td>Nome corso</td>
-                <td >${course.name}</td>
-                <td ><a href="StudyCourseProfile?code=${course.code}">Leggi di piu'</a></td>
-            </tr>
+                <p>Anno: <br>
+                </p>
 
-        </#items>
-    </table>
-<#else>
-    Attualmente non ci sono insegnamenti associati al corso di studi
-</#list>
+                <p>Cfu: <br>
+                </p>
 
-    <br>
-    <div class="title">Descrizione Corso di Studi:</div>
-${studyCourse.description_ita}
+                <p>Settore: <br>
+                </p>
+
+                <p>Lingua: <br>
+                </p>
+
+                <p>Semestre: <br>
+                </p>
+
+                </div>
+            </div>
+            <div class="col-md-10 col-xs-4">
+                <div class="contact-info-right">
+                <h5>${course.name}</h5>
+
+                <p>${course.code}<br>
+                </p>
+
+                <p>${course.type}<br>
+                </p>
+
+                <p>${course.year}<br>
+                </p>
+
+                <p>${course.cfu}<br>
+                </p>
+
+                <p>${course.sector}<br>
+                </p>
+
+                <p>${course.language}<br>
+                </p>
+
+                <p>${course.semester}<br>
+                </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <#--Prerequisiti-->
+    <div class="row">
+        <div class="col-md-12 col-xs-12 fa-border-course background">
+            <div class="contact-info-right">
+                <h5>Prerequisiti: </h5>
+            <p>${course.prerequisite_ita}<br>
+            </p>
+            </div>
+
+        </div>
+    </div>
+
+    <#--Obiettivi-->
+    <div class="row">
+        <div class="col-md-12 col-xs-12 fa-border-course background">
+            <div class="contact-info-right">
+                <h5>Obiettivi: </h5>
+                <p>${course.goals_ita}<br>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <#--Modalità d'esame-->
+    <div class="row">
+        <div class="col-md-12 col-xs-12 fa-border-course background">
+            <div class="contact-info-right">
+                <h5>Modalità d'esame: </h5>
+                <p>${course.exame_mode_ita}<br>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <#--Modalità d'insegnamento-->
+    <div class="row">
+        <div class="col-md-12 col-xs-12 fa-border-course background">
+            <div class="contact-info-right">
+                <h5>Modalità d'insegnamento: </h5>
+                <p>${course.teaching_mode_ita}<br>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <#--Sillabo-->
+    <div class="row">
+        <div class="col-md-12 col-xs-12 fa-border-course background">
+            <div class="contact-info-right">
+                <h5>Sillabo: </h5>
+                <p>${course.syllabus_ita}<br>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <#--Note-->
+    <div class="row">
+        <div class="col-md-12 col-xs-12 fa-border-course background">
+            <div class="contact-info-right">
+                <h5>Note: </h5>
+                <p>${course.note_ita}<br>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
 
 </div>
 
