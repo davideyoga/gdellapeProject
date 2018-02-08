@@ -22,6 +22,9 @@ import java.util.List;
  * @authorDavide Micarelli
  * ModCourse e' la servlet per la modifica dei corsi da parte dei docenti, non gli e' permesso modificare varie impostazioni
  * DA QUESTA SERVLET NON E' PERMESSA LA MODIFICA DI UN CORSO SE DI UN ANNO PRECEDENTE
+ *
+ * NOTA IMPORTANTE: se l'utente e' un admin e un docente, non gli viene permesso l'accesso al corso a meno che non sia di sua proprieta',
+ *                  nel caso si voglia modificare il corso da un admin usare ModAdmCourse
  */
 public class ModCourse extends BaseController {
 
@@ -58,6 +61,7 @@ public class ModCourse extends BaseController {
                 //estraggo il corso con id = al quello contenuto nella richiesta get
                 Course courseById = courseDao.getCourseById(Integer.parseInt(request.getParameter("id")));
 
+                System.out.println("courseById.getYear()"+courseById.getYear());
 
                 //se il corso non esiste
                 if(courseById == null || courseById.getIdCourse() <= 0 ){
@@ -73,11 +77,12 @@ public class ModCourse extends BaseController {
                 if (((List <Service>) request.getSession().getAttribute("services")).contains(modCourse) ||
                         courseListUser.contains(courseById)) {
 
-                    new AccademicYear(Calendar.getInstance()).getFirstYear();
+                    AccademicYear attuale = new AccademicYear(Calendar.getInstance());
 
+                    AccademicYear accademicYear = new AccademicYear("2016/2017");
 
                     //se il corso risulta essere di questo anno accademico (cosa buona)
-                    if( (new AccademicYear(Calendar.getInstance())).equals(new AccademicYear(courseById.getYear()))) {
+                    if(attuale.equals(accademicYear)) {
 
 
                         //inserisco nella sessione dell'utente l'id del corso (per la futura richiesta post)

@@ -232,7 +232,7 @@ public class AddMaterial extends BaseController {
 
 
                     /*
-                        INIZIO INSERIMENTO DATIO DB
+                        INIZIO INSERIMENTO DATI DB
                      */
                     //inserisco i dati del file nel db
                     MaterialDao materialDao = new MaterialDaoImpl(ds);
