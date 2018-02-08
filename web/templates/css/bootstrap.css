@@ -6589,4 +6589,10 @@ button.close {
     display: none !important;
   }
 }
+
+/*roba aggiunta da noi*/
+.personal-title { margin-top:20px !important;
+                  font-size: 2em !important;}
+
+
 /*# sourceMappingURL=bootstrap.css.map */

@@ -64,6 +64,14 @@
   border: solid 0.08em #eeeeee;
   border-radius: .1em;
 }
+
+.fa-border-course {
+  padding: .2em .25em .15em;
+  border: solid 0.1em #0064d2;
+  border-radius: .1em;
+  margin-bottom: 2em;
+}
+
 .fa-pull-left {
   float: left;
 }
