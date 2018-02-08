@@ -19,8 +19,8 @@
         dettagli corso
     </div>
     <div class="row">
-        <div class="col-md-12 col-xs-12 fa-border-course">
-            <div class="col-md-3 col-xs-4">
+        <div class="col-md-12 col-xs-12 fa-border-course background">
+            <div class="col-md-2 col-xs-4">
                 <div class="contact-info-right">
                 <h5>Nome corso: </h5>
 
@@ -47,7 +47,7 @@
 
                 </div>
             </div>
-            <div class="col-md-9 col-xs-4">
+            <div class="col-md-10 col-xs-4">
                 <div class="contact-info-right">
                 <h5>${course.name}</h5>
 
@@ -79,7 +79,7 @@
 
     <#--Prerequisiti-->
     <div class="row">
-        <div class="col-md-12 col-xs-12 fa-border-course">
+        <div class="col-md-12 col-xs-12 fa-border-course background">
             <div class="contact-info-right">
                 <h5>Prerequisiti: </h5>
             <p>${course.prerequisite_ita}<br>
@@ -91,7 +91,7 @@
 
     <#--Obiettivi-->
     <div class="row">
-        <div class="col-md-12 col-xs-12 fa-border-course">
+        <div class="col-md-12 col-xs-12 fa-border-course background">
             <div class="contact-info-right">
                 <h5>Obiettivi: </h5>
                 <p>${course.goals_ita}<br>
@@ -103,7 +103,7 @@
 
     <#--Modalità d'esame-->
     <div class="row">
-        <div class="col-md-12 col-xs-12 fa-border-course">
+        <div class="col-md-12 col-xs-12 fa-border-course background">
             <div class="contact-info-right">
                 <h5>Modalità d'esame: </h5>
                 <p>${course.exame_mode_ita}<br>
@@ -115,7 +115,7 @@
 
     <#--Modalità d'insegnamento-->
     <div class="row">
-        <div class="col-md-12 col-xs-12 fa-border-course">
+        <div class="col-md-12 col-xs-12 fa-border-course background">
             <div class="contact-info-right">
                 <h5>Modalità d'insegnamento: </h5>
                 <p>${course.teaching_mode_ita}<br>
@@ -127,7 +127,7 @@
 
     <#--Sillabo-->
     <div class="row">
-        <div class="col-md-12 col-xs-12 fa-border-course">
+        <div class="col-md-12 col-xs-12 fa-border-course background">
             <div class="contact-info-right">
                 <h5>Sillabo: </h5>
                 <p>${course.syllabus_ita}<br>
@@ -139,7 +139,7 @@
 
     <#--Note-->
     <div class="row">
-        <div class="col-md-12 col-xs-12 fa-border-course">
+        <div class="col-md-12 col-xs-12 fa-border-course background">
             <div class="contact-info-right">
                 <h5>Note: </h5>
                 <p>${course.note_ita}<br>

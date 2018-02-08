@@ -22,6 +22,11 @@ html, body{
 .personal{
     padding-top: 2em;
 }
+
+.background{
+    /*background-color: #b9d8dd;*/
+    background-color: whitesmoke;
+}
 /*fino qua*/
 
 section.flat button {
