@@ -37,8 +37,6 @@ public class Course {
     String lifelog_learning_skills_eng;
     String external_material_ita;
     String external_material_eng;
-    String type_ita;
-    String type_eng;
 
     public Course(DaoData daoData) {
         this.idCourse = 0;
@@ -73,8 +71,6 @@ public class Course {
         this.lifelog_learning_skills_eng = null;
         this.external_material_ita = null;
         this.external_material_eng = null;
-        this.type_ita = null;
-        this.type_eng = null;
     }
 
     public int getIdCourse() {
@@ -333,23 +329,6 @@ public class Course {
         this.external_material_eng = external_material_eng;
     }
 
-    public String getType_eng() {
-        return type_eng;
-    }
-
-    public void setType_eng(String type_eng) {
-        this.type_eng = type_eng;
-    }
-
-    public String getType_ita() {
-        return type_ita;
-    }
-
-    public void setType_ita(String type_ita) {
-        this.type_eng = type_ita;
-    }
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -485,8 +464,6 @@ public class Course {
                 ", lifelog_learning_skills_eng='" + lifelog_learning_skills_eng + '\'' +
                 ", external_material_ita='" + external_material_ita + '\'' +
                 ", external_material_eng='" + external_material_eng + '\'' +
-                ", type_eng='" + type_eng + '\'' +
-                ", type_ita='" + type_ita + '\'' +
                 '}';
     }
 
