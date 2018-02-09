@@ -47,6 +47,8 @@ public class AccademicYear {
      */
     public AccademicYear(String accademicYear) throws AccademicYearException{
 
+
+
         try {
             //estraggo il primo anno (primi 4 caratteri seguiti da uno /)
             //non uso espressione regolare per la semplicita' delloperazione
@@ -64,19 +66,19 @@ public class AccademicYear {
             for (int x = 5; x < 9; x++) {
 
                 secondYear = secondYear + accademicYear.charAt(x);
-
             }
 
             //controllo se la stringa passata corrisponde ad un anno accademico
             if (Integer.parseInt(firstYear) == Integer.parseInt(secondYear) - 1 && accademicYear.length() == 9 &&
                     accademicYear.charAt(4) == '/') {
 
-                //inizializzo l'anno accademico con il primo nuemro
-                new AccademicYear(firstYear);
+                //inizializzo l'anno accademico con il primo numero
+                new AccademicYear(Integer.parseInt(firstYear));
 
             } else {
                 throw new AccademicYearException("Error in AccademicYear(String accademicYear)");
             }
+
 
             //se i primi e gli ultimi 4 caratteri non sono numeri
         }catch (NumberFormatException e){
