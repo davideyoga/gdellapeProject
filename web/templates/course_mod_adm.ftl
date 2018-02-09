@@ -14,8 +14,8 @@
 
                 <form action="ModAdmCourse" method="post">
                     <p>Nome</p>
-                    <input name="Name" value="<#if course.name??>${course.name}<#else></#if>" required="" type="text">
-                    <input name="Code" value="<#if course.code??>${course.code}<#else></#if>" required="" type="text">
+                    <input name="name" value="<#if course.name??>${course.name}<#else></#if>" required="" type="text">
+                    <input name="code" value="<#if course.code??>${course.code}<#else></#if>" required="" type="text">
                     <p>Anno</p>
                     <#--Year(Prima parte dell'anno accademico)-->
                     <#--<input name="year" value="<#if course.year??>${course.year}<#else></#if>" required="" type="numeric">-->

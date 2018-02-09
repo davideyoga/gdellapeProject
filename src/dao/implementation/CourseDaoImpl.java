@@ -131,7 +131,7 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
                     "lifelog_learning_skills_eng=?"+
                     "external_material_ita=?"+
                     "external_material_eng=?" +
-                    "whre id=?");
+                    "where id=?");
 
 
             this.deleteCourseById = connection.prepareStatement("DELETE FROM course" +
