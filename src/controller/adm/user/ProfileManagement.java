@@ -21,6 +21,8 @@ import java.util.Map;
 
 /**
  * @author Davide Micarelli
+ * DA SISTEMARE: CONTROLLARE CHE TUTTI I CAMPI CHE VNEGONO USATI VENGANO EFFETTIVAMENTE PASSATI ALLA SERVLET
+ *
  */
 public class ProfileManagement extends BaseController {
 
@@ -43,7 +45,7 @@ public class ProfileManagement extends BaseController {
         this.datamodel.put("user", sessionManager.getUser(request));
 
         //se richiesta get lancio il template di profilo con i dati dell'utente in sessione
-        TemplateController.process("profile.ftl", datamodel, response, getServletContext());
+        TemplateController.process("user_profile.ftl", datamodel, response, getServletContext());
 
     }
 
@@ -111,7 +113,7 @@ public class ProfileManagement extends BaseController {
                     //setto l'utente in sessione
                     this.datamodel.put("user", sessionManager.getUser(request));
 
-                    TemplateController.process("profile.ftl", datamodel, response, getServletContext());
+                    TemplateController.process("user_profile.ftl", datamodel, response, getServletContext());
 
 
                 }else {//se le password inserite sono corrette:
@@ -126,7 +128,7 @@ public class ProfileManagement extends BaseController {
                         //setto l'utente in sessione
                         this.datamodel.put("user", sessionManager.getUser(request));
 
-                        TemplateController.process("profile.ftl", datamodel, response, getServletContext());
+                        TemplateController.process("user_profile.ftl", datamodel, response, getServletContext());
 
 
                         /*
@@ -164,7 +166,7 @@ public class ProfileManagement extends BaseController {
                         this.datamodel.put("user", sessionManager.getUser(request));
 
                         //lancio tameplate
-                        TemplateController.process("profile.ftl", datamodel, response, getServletContext());
+                        TemplateController.process("user_profile.ftl", datamodel, response, getServletContext());
                     }
                 }
 
@@ -202,7 +204,7 @@ public class ProfileManagement extends BaseController {
                 this.datamodel.put("user", sessionManager.getUser(request));
 
                 //lancio il template di profilo con i dati dell'utente in sessione ed il messaggio di errore del log
-                TemplateController.process("profile.ftl", datamodel, response, getServletContext());
+                TemplateController.process("user_profile.ftl", datamodel, response, getServletContext());
 
             }
             /*
