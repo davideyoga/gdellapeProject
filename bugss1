@@ -1,0 +1,14 @@
+CreateUser: lasciare vuote caselles
+
+Aggiunta e mod curriculum
+ModCourse quando modificato ti rida' quello vecchio
+
+Errore creazione corso di laurea
+
+Togliere pulsante Modifica Utente e ModificaCorso nella home del backOffice
+
+ListCourse: Inserire pulsante elimina corso 
+
+Filtrare pulsanti da back office a sen=cinda del gruppo di appartenenza e i servizi collegati
+
+admGetListUser: se non ha il permesso di mod user non deve neanche accedere
