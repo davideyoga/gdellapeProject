@@ -99,39 +99,41 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
                     " FROM course" +
                     " WHERE semester = ?");
 
-            this.updateCourse = connection.prepareStatement("UPDATE USER " +
-                    "SET code = ?," +
-                    "name = ?," +
-                    "year = ?," +
-                    "cfu = ?,"+
-                    "sector = ?,"+
-                    "language = ?,"+
-                    "semester = ?,"+
-                    "prerequisite_ita = ?"+
-                    "prerequisite_eng = ?"+
-                    "goals_ita = ?"+
-                    "goals_eng = ?"+
-                    "exame_mode_ita = ?"+
-                    "exam_mode_eng = ?"+
-                    "teaching_mode_ita=?"+
-                    "teaching_mode_eng=?"+
-                    "syllabus_ita=?"+
-                    "syllabus_eng=?"+
-                    "note_ita=?"+
-                    "note_eng=?"+
-                    "knowledge_ita=?"+
-                    "knowledge_eng=?"+
-                    "application_ita=?"+
-                    "application_eng=?"+
-                    "evaluation_ita=?"+
-                    "evaluation_eng=?"+
-                    "communication_ita=?"+
-                    "communication_eng=?"+
-                    "lifelog_learning_skills_ita=?"+
-                    "lifelog_learning_skills_eng=?"+
-                    "external_material_ita=?"+
-                    "external_material_eng=?" +
-                    "where id=?");
+            this.updateCourse = connection.prepareStatement("UPDATE course " +
+                    "SET code=?," +
+                    "name=?," +
+                    "year=?," +
+                    "cfu=?,"+
+                    "sector=?,"+
+                    "language=?,"+
+                    "semester=?,"+
+                    "prerequisite_ita=?,"+
+                    "prerequisite_eng=?,"+
+                    "goals_ita=?,"+
+                    "goals_eng=?,"+
+                    "exame_mode_ita=?,"+
+                    "exame_mode_eng=?,"+
+                    "teaching_mode_ita=?,"+
+                    "teaching_mode_eng=?,"+
+                    "syllabus_ita=?,"+
+                    "syllabus_eng=?,"+
+                    "note_ita=?,"+
+                    "note_eng=?,"+
+                    "knowledge_ita=?,"+
+                    "knowledge_eng=?,"+
+                    "application_ita=?,"+
+                    "application_eng=?,"+
+                    "evaluation_ita=?,"+
+                    "evaluation_eng=?,"+
+                    "communication_ita=?,"+
+                    "communication_eng=?,"+
+                    "lifelog_learning_skills_ita=?,"+
+                    "lifelog_learning_skills_eng=?,"+
+                    "external_material_ita=?,"+
+                    "external_material_eng=? " +
+                    "WHERE id=?");
+
+
 
 
             this.deleteCourseById = connection.prepareStatement("DELETE FROM course" +
@@ -445,7 +447,7 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
     @Override
     public Course storeCourse(Course course) throws DaoException {
         try {
-            //se il corso non presenta l'id egesuo una insert
+            //se il corso non presenta l'id eseguo una insert
             if (course.getIdCourse() <= 0) {
 
                 this.insertCourse.setString(1, course.getCode());
@@ -515,6 +517,10 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
                 this.updateCourse.setString(29,course.getLifelog_learning_skills_eng());
                 this.updateCourse.setString(30, course.getExternal_material_ita());
                 this.updateCourse.setString(31,course.getExternal_material_eng());
+
+                System.out.println("id corso: " + course.getIdCourse());
+
+                this.updateCourse.setInt(32,course.getIdCourse());
 
                 this.updateCourse.executeUpdate();
 

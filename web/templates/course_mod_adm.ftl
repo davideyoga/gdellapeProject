@@ -62,10 +62,10 @@
                 </div>
                 <div class="col-md-10 col-xs-4">
                     <div class="contact-info-right">
-                        <form action="CreateCourse" method="post">
-                            <input name="Name" value="<#if course.name??>${course.name}<#else></#if>" required="" type="text">
-                            <input value="modifica corso" type="submit">
-                        </form>
+                        <#--<form action="CreateCourse" method="post">-->
+                            <#--<input name="Name" value="<#if course.name??>${course.name}<#else></#if>" required="" type="text">-->
+                            <#--<input value="modifica corso" type="submit">-->
+                        <#--</form>-->
 
                         <p>${course.code}<br>
                         </p>
