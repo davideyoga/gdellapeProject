@@ -40,11 +40,11 @@ public class AdmGetListStudyCourse extends BaseController {
             if(sessionManager.isValid(request)) {
 
                 //estraggo il servizio di creazione degli utenti
-                Service modUser = this.getServiceAndCreate(request, response, ds, "modStudyCourse", "Permissed for modification Study Course",
+                Service viewUser = this.getServiceAndCreate(request, response, ds, "viewStudyCourse", "Permitted for view Study Course",
                         datamodel, getServletContext());
 
                 //se l'utente ha il permesso
-                if (((List <Service>) request.getSession().getAttribute("services")).contains(modUser)) {
+                if (((List <Service>) request.getSession().getAttribute("services")).contains(viewUser)) {
 
                     //inizializzo il dao
                     StudyCourseDao studyCourseDao = new StudyCourseDaoImpl(ds);

@@ -51,7 +51,7 @@ public class AdmGetListUser extends BaseController {
             if (this.sessionManager.isValid(request)) {
 
                 //estraggo il servizio di creazione degli utenti
-                Service modUser = this.getServiceAndCreate(request, response, ds, "modUser", "Permissed for modification User",
+                Service modUser = this.getServiceAndCreate(request, response, ds, "viewUser", "Permitted for view User",
                         datamodel, getServletContext());
 
                 //se l'utente in sessione possiede il servizio modUser...

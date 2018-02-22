@@ -25,7 +25,7 @@ public class ListCourse extends BaseController {
      * Controlla la validita' della sessione con il metodo isHardValid,
      * Esegue un check se l'utente puo' accedere a tutti i corsi oppure solo ai suoi,
      * Se puo' accedere solo ai suoi corsi, carica i corsi dell'anno specificato dalla richiesta get (se non presente lancia i corsi di questo anno accademico)
-     * Se puo' accedere a tuti i corsi, carica tutti i corsi dell'anno accademico (come sopra)
+     * Se puo' accedere a tutti i corsi, carica tutti i corsi dell'anno accademico (come sopra)
      * Infine lancia il template approprioato al tipo di gruppo a cui l'utente appartiene
      *
      * PARAMETRI GET:
