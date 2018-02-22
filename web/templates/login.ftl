@@ -16,6 +16,7 @@
             <!-- Modal content-->
 
                 <div class="modal-header">
+                    <p><#if message??>${message}<#else></#if></p>
 
 
                     <div class="signin-form profile">

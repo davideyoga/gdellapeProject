@@ -79,7 +79,7 @@ public class ModAdmCourse extends BaseController {
                 if (((List <Service>) request.getSession().getAttribute("services")).contains(modAllCourse)){
 
                     //inserisco nella sessione dell'utente l'id del corso (per la futura richiesta post)
-                    request.getSession().setAttribute("idCourseToModify", courseById);
+                    request.getSession().setAttribute("idCourseToModify", courseById.getIdCourse());
 
                     //lancio il template con il corso caricato
                     datamodel.put("course", courseById);
@@ -131,9 +131,12 @@ public class ModAdmCourse extends BaseController {
                     response.sendRedirect("Error");
                     return;
                 }
+                int idCoureToModify = (Integer) request.getSession().getAttribute("idCourseToModify");
+
+                System.out.println("idCourseToModify: " + idCoureToModify);
 
                 //estraggo il corso con id presente nella sessione
-                Course courseById = courseDao.getCourseById((Integer) request.getSession().getAttribute("idCourseToModify"));
+                Course courseById = courseDao.getCourseById(idCoureToModify);
 
                 //se il corso estratto non esiste
                 if(courseById == null || courseById.getIdCourse()<=0){
