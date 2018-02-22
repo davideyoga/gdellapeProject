@@ -44,6 +44,8 @@ public class UserProfile extends BaseController {
 
             User user = userDao.getUserByEmail(request.getParameter("email"));
 
+            userDao.destroy();
+
             //se l'utente esiste nel sistema
             if(!(user == null) && user.getId()>0){
 
