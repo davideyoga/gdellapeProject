@@ -79,11 +79,7 @@ public class ModCourse extends BaseController {
 
                     AccademicYear attuale = new AccademicYear(Calendar.getInstance());
 
-                    System.out.println("INIZIO:");
-
                     AccademicYear accademicYear = new AccademicYear(courseById.getYear());
-
-                    System.out.println("accademicYear: " + accademicYear.getFirstYear());
 
                     //se il corso risulta essere di questo anno accademico (cosa buona)
                     if(attuale.equals(accademicYear)) {
