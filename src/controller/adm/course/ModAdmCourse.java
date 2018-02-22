@@ -79,7 +79,7 @@ public class ModAdmCourse extends BaseController {
                 if (((List <Service>) request.getSession().getAttribute("services")).contains(modAllCourse)){
 
                     //inserisco nella sessione dell'utente l'id del corso (per la futura richiesta post)
-                    request.getSession().setAttribute("idCourseToModify", courseById);
+                    request.getSession().setAttribute("idCourseToModify", courseById.getIdCourse());
 
                     //lancio il template con il corso caricato
                     datamodel.put("course", courseById);
@@ -153,13 +153,25 @@ public class ModAdmCourse extends BaseController {
                     Course courseByForm = courseDao.getCourse();
                     courseByForm = this.getCourseByForm(request, courseByForm, 0);
 
+                    Course courseWithName = null;
+                    Course courseWithCode = null;
+
                     //controllo se il corso e' stato modificato
                     if(!courseByForm.equals(courseById)){
 
-                        //controllo se il corso non ha omonimie di nome o codice
-                        //estraggo i corsi con stesso nome e codice
-                        Course courseWithName = courseDao.getCourseByName(courseByForm.getName());
-                        Course courseWithCode = courseDao.getCourseByCode(courseByForm.getCode());
+                        //se ho modificato il nome estraggo corsi con stesso nome per evitare omonimie
+                        if(!courseById.getName().equals(courseByForm.getName())){
+
+                            courseWithName = courseDao.getCourseByName(courseByForm.getName());
+
+                        }
+
+                        //se ho modificato il codice estraggo corsi con stesso codice per evitare omonimie
+                        if(!courseById.getCode().equals(courseByForm.getCode())){
+
+                            courseWithCode = courseDao.getCourseByCode(courseByForm.getCode());
+
+                        }
 
                         //se non esistono corsi con stesso nome e codice
                         if(courseWithName == null && courseWithCode == null){
