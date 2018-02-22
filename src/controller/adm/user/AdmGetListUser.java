@@ -69,7 +69,7 @@ public class AdmGetListUser extends BaseController {
                     userList = userDao.getUsers();
 
                     //chiudo il dao
-                    userDao.close();
+                    userDao.destroy();
                     userDao = null;
 
                     //setto l'utente in sessione
