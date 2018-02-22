@@ -80,7 +80,7 @@ public class ModCourse extends BaseController {
                     AccademicYear attuale = new AccademicYear(Calendar.getInstance());
 
                     AccademicYear accademicYear = new AccademicYear(courseById.getYear());
-
+                    System.out.println("attuale" + attuale+ "\n " + "accademico" + accademicYear + "\ncourseid" + courseById.getYear());
                     //se il corso risulta essere di questo anno accademico (cosa buona)
                     if(attuale.equals(accademicYear)) {
 
@@ -98,13 +98,14 @@ public class ModCourse extends BaseController {
 
                         //se il corso non e' di questo anno accademico (il docente non puo' modificare un anno accademico che non sia quello attuale)
                     }else{
-
+                        System.out.println("anno");
                         //lancio il messaggio di servizio non permesso
                         this.processNotPermitted(request, response);
 
                     }
                     //se l'utente non puo' modificare il corso
                 } else {
+                    System.out.println("permesso");
                     //lancio il messaggio di servizio non permesso
                     this.processNotPermitted(request, response);
                 }

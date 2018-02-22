@@ -1,76 +1,151 @@
 <div class="container">
+    <p><#if message??>${message}<#else></#if></p>
 
     <div class="w3ls-heading">
         <h1>Home BackOffice</h1>
-        <p class="sub">benvenuto ${user.name}</p>
+        <h3>Benvenuto ${user.name}</h3>
     </div>
 
-
-    <div class="w3ls-heading personal">
-        <h3>Sezione Utenti</h3>
+    <div class="row">
+        <div class="col-md-12 col-xs-12 fa-border-course">
+            <div class="w3ls-heading personal2">
+                <h3>Sezione Utenti</h3>
+            </div>
+            <div class="">
+                <#list services as service>
+                    <#if service.name == 'createUser'>
+                        <#assign createUser= true>
+                    </#if>
+                </#list>
+                <#if createUser>
+                    <a href="/CreateUser">
+                        <section class="flat">
+                            <button>Crea nuovo utente</button>
+                        </section>
+                    </a>
+                </#if>
+                <#list services as service>
+                    <#if service.name == 'viewUser'>
+                        <#assign viewUser= true>
+                    </#if>
+                </#list>
+                <#if viewUser>
+                <a href="/admGetListUser">
+                    <section class="flat">
+                        <button>Lista utenti</button>
+                    </section>
+                </a>
+                </#if>
+            </div>
+        </div>
     </div>
-
-        <a href="/CreateUser">
-        <section class="flat">
-            <button>Crea nuovo utente</button>
-        </section>
-        </a>
-
-        <a href="/admGetListUser">
-        <section class="flat">
-            <button>Lista utenti</button>
-        </section>
-        </a>
-
-        <a href="">
-        <section class="flat">
-            <button>Modifica utenti</button>
-        </section>
-        </a>
 
     <div class="clearfix"> </div>
 
-    <div class="w3ls-heading personal">
-        <h3>Sezione percorsi di laurea</h3>
+    <div class="row">
+        <div class="col-md-12 col-xs-12 fa-border-course">
+            <div class="w3ls-heading personal">
+                <h3>Sezione percorsi di laurea</h3>
+            </div>
+            <div class="">
+                <#list services as service>
+                    <#if service.name == 'createStudyCourse'>
+                        <#assign createStudyCourse= true>
+                    </#if>
+                </#list>
+                <#if createStudyCourse>
+                <a href="/createStudyCourse">
+                    <section class="flat">
+                        <button>Crea Percorso di laurea</button>
+                    </section>
+                </a>
+                </#if>
 
+                <#list services as service>
+                    <#if service.name == 'viewStudyCourse'>
+                        <#assign viewStudyCourse= true>
+                    </#if>
+                </#list>
+                <#if viewStudyCourse>
+                <a href="/admGetListStudyCourse">
+                    <section class="flat">
+                        <button>Lista corsi di laurea</button>
+                    </section>
+                </a>
+                </#if>
+            </div>
+        </div>
     </div>
-        <a href="/createStudyCourse">
-            <section class="flat">
-                <button>Crea Percorso di laurea</button>
-            </section>
-        </a>
-        <a href="/admGetListStudyCourse">
-        <section class="flat">
-            <button>Lista corsi di laurea</button>
-        </section>
-        </a>
-
-        <a href="">
-        <section class="flat">
-            <button>Modifica corsi</button>
-        </section>
-        </a>
 
     <div class="clearfix"> </div>
 
-    <div class="w3ls-heading personal">
-        <h3>Sezione Insegnamenti</h3>
-
+    <div class="row">
+        <div class="col-md-12 col-xs-12 fa-border-course">
+            <div class="w3ls-heading personal">
+                <h3>Sezione Insegnamenti</h3>
+            </div>
+            <div class="">
+                <#list services as service>
+                    <#if service.name == 'createCourse'>
+                        <#assign createCourse= true>
+                    </#if>
+                </#list>
+                <#if createCourse>
+                <a href="/createCourse">
+                    <section class="flat">
+                        <button>Crea insegnamento</button>
+                    </section>
+                </a>
+                </#if>
+                <#list services as service>
+                    <#if service.name == 'modCourse'>
+                        <#assign modCourse= true>
+                    </#if>
+                </#list>
+                <#if modCourse>
+                <a href="/ListCourse">
+                    <section class="flat">
+                        <button>Lista insegnamenti</button>
+                    </section>
+                </a>
+                </#if>
+            </div>
+        </div>
     </div>
-        <a href="/createCourse">
-        <section class="flat">
-            <button>Crea insegnamento</button>
-        </section>
-        </a>
-        <a href="/ListCourse">
-        <section class="flat">
-            <button>Lista insegnamenti</button>
-        </section>
-        </a>
-        <a href="">
-        <section class="flat">
-            <button>Modifica insegnamenti</button>
-        </section>
-        </a>
+
+    <div class="row">
+        <div class="col-md-12 col-xs-12 fa-border-course">
+            <div class="w3ls-heading personal">
+                <h3>Sezione Gruppi</h3>
+            </div>
+            <div class="">
+                <a href="/createGroups">
+                    <section class="flat">
+                        <button>Crea Gruppo</button>
+                    </section>
+                </a>
+                <a href="/AdmGetListGroups">
+                    <section class="flat">
+                        <button>Lista Gruppi</button>
+                    </section>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-xs-12 fa-border-course">
+            <div class="w3ls-heading personal">
+                <h3>Log</h3>
+            </div>
+            <div class="">
+                <a href="/GetAllLog">
+                    <section class="flat">
+                        <button>Visualizza Log</button>
+                    </section>
+                </a>
+            </div>
+        </div>
+    </div>
 
 </div>
