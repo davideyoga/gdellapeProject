@@ -51,11 +51,11 @@ public class AdmGetListUser extends BaseController {
             if (this.sessionManager.isValid(request)) {
 
                 //estraggo il servizio di creazione degli utenti
-                Service modUser = this.getServiceAndCreate(request, response, ds, "viewUser", "Permitted for view User",
+                Service viewUser = this.getServiceAndCreate(request, response, ds, "viewUser", "Permitted for view User",
                         datamodel, getServletContext());
 
                 //se l'utente in sessione possiede il servizio modUser...
-                if (((List <Service>) request.getSession().getAttribute("services")).contains(modUser)) {
+                if (((List <Service>) request.getSession().getAttribute("services")).contains(viewUser)) {
 
                     //inizializzo la lista di tutti gli utenti
                     List <User> userList = new ArrayList <>();
