@@ -154,7 +154,9 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
             ResultSet rs = this.selectUserByEmail.executeQuery();
 
             if(rs.next()){
+
                 user = this.generateUser(rs);
+
             }else{
                 return null;
             }
