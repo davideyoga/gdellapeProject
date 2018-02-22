@@ -13,7 +13,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <link href="/templates/css/modal.css" rel="stylesheet" type="text/css" media="all"/>
 <!-- js -->
 <script type="text/javascript" src="templates/js/jquery-2.1.4.min.js"></script>
-<script type="text/javascript" src="templates/js/yeahboi.js"></script>
+<script type="text/javascript" src="templates/js/giorgio.js"></script>
 <!-- //js -->
 <!-- pop-up-box -->
 <link href="/templates/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />

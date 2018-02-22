@@ -45,7 +45,7 @@
         </section>
         </a>
 
-        <a href="">
+        <a href="/admModCourse">
         <section class="flat">
             <button>Modifica corsi</button>
         </section>

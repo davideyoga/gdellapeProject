@@ -114,6 +114,14 @@ p,ul li,ol li{
 	margin:0;
 	font-size:14px;
 }
+
+form.p.input{
+    margin:15px;
+    font-size:14px;
+    height:10px;
+}
+
+
 h1,h2,h3,h4,h5,h6{
     font-family: 'Prata', serif;
 	font-family: 'Noto Serif', serif;
