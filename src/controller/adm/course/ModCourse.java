@@ -61,8 +61,6 @@ public class ModCourse extends BaseController {
                 //estraggo il corso con id = al quello contenuto nella richiesta get
                 Course courseById = courseDao.getCourseById(Integer.parseInt(request.getParameter("id")));
 
-                System.out.println("courseById.getYear()"+courseById.getYear());
-
                 //se il corso non esiste
                 if(courseById == null || courseById.getIdCourse() <= 0 ){
                     response.sendRedirect("Error");
