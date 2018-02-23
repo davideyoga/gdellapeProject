@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>Lista Corsi di studio</title>
+    <title>Creazione Corso</title>
 
 <#include "import.ftl">
 
@@ -10,7 +10,7 @@
 
 <#include "navbar.ftl">
 <div class="title">
-    Aggiungi materia
+    Creazione di un nuovo corso
 </div>
 
 <div class="container">
@@ -27,20 +27,49 @@
 </#if>
 
 
-    <div class="w3layouts-grids">
+    <div class="row">
 
-        <div class="col-md-8 contact-form">
-        <form method="POST" action="CreateCourse">
-            <p>Nome</p>
-            <input type="text" name="name" >
+        <div class="col-md-12 col-xs-12 contact-form">
 
-            <p>Codice</p>
-            <input type="text" name="code" >
+            <form action="CreateCourse" method="POST">
+                <div class="form-group">
+                    <label for="codice">Codice:</label>
+                    <input type="number" class="form-control" id="codice">
+                </div>
+                <div class="form-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" class="form-control" id="nome">
+                </div>
+                <div class="form-group">
+                    <label for="cfu">Cfu:</label>
+                    <input type="number" class="form-control" id="cfu">
+                </div>
+                <div class="form-group">
+                    <label for="settore">Settore:</label>
+                    <input type="text" class="form-control" id="settore">
+                </div>
+                <div class="form-group">
+                    <label for="lingua">Lingua:</label>
+                    <input type="text" class="form-control" id="lingua">
+                </div>
+                <#--<div class="checkbox">-->
+                    <#--<label><input type="checkbox"> Remember me</label>-->
+                <#--</div>-->
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
 
-            <div class="clearfix"> </div>
 
-            <input type="submit" value="Crea corso">
-        </form>
+            <form  action="CreateCourse">
+                <p>Nome</p>
+                <input type="text" name="name" >
+
+                <p>Codice</p>
+                <input type="text" name="code" >
+
+                <div class="clearfix"> </div>
+
+                <input type="submit" value="Crea corso">
+            </form>
         </div>
     </div>
 </div>

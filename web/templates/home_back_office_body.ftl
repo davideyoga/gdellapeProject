@@ -119,33 +119,54 @@
                 <h3>Sezione Gruppi</h3>
             </div>
             <div class="">
+                <#list services as service>
+                    <#if service.name == 'createGroup'>
+                        <#assign createGroup = true>
+                    </#if>
+                </#list>
+                <#if createGroup>
                 <a href="/createGroups">
                     <section class="flat">
                         <button>Crea Gruppo</button>
                     </section>
                 </a>
+                </#if>
+                <#list services as service>
+                    <#if service.name == 'modGroups'>
+                        <#assign modGroups = true>
+                    </#if>
+                </#list>
+                <#if modGroups>
                 <a href="/AdmGetListGroups">
                     <section class="flat">
                         <button>Lista Gruppi</button>
                     </section>
                 </a>
+                </#if>
             </div>
         </div>
     </div>
+    <#list services as service>
+        <#if service.name == 'logView'>
+            <#assign logView = true>
+        </#if>
+    </#list>
+    <#if logView>
+        <div class="row">
+            <div class="col-md-12 col-xs-12 fa-border-course">
+                <div class="w3ls-heading personal">
+                    <h3>Log</h3>
+                </div>
+                <div class="">
 
-    <div class="row">
-        <div class="col-md-12 col-xs-12 fa-border-course">
-            <div class="w3ls-heading personal">
-                <h3>Log</h3>
-            </div>
-            <div class="">
-                <a href="/GetAllLog">
-                    <section class="flat">
-                        <button>Visualizza Log</button>
-                    </section>
-                </a>
+                    <a href="/GetAllLog">
+                        <section class="flat">
+                            <button>Visualizza Log</button>
+                        </section>
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
+    </#if>
 
 </div>
