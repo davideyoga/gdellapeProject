@@ -95,7 +95,9 @@ public class CreateCourse extends BaseController {
                     //estraggo i dati dalla form con cui ci riempio course, gli setto id a 0
                     course = this.getCourseByForm(request, course, 0);
 
+                    //setto anno accademico corrente
                     course.setYear(new AccademicYear(Calendar.getInstance()).toString());
+
 
                     //estraggo i corsi con lo stesso nome e con con lo stesso codice
                     Course courseWithName = courseDao.getCourseByName(course.getName());
