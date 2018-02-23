@@ -17,6 +17,8 @@ public class AccademicYear {
         this.firstYear = firstYear;
         this.secondYear = firstYear + 1;
 
+        System.out.println("toString: " + this.toString());
+
     }
 
     public AccademicYear(Calendar calendar){
@@ -47,11 +49,11 @@ public class AccademicYear {
      */
     public AccademicYear(String accademicYear) throws AccademicYearException{
 
-
+        System.out.println("accademicYear:" + accademicYear);
 
         try {
             //estraggo il primo anno (primi 4 caratteri seguiti da uno /)
-            //non uso espressione regolare per la semplicita' delloperazione
+            //non uso espressione regolare per la semplicita' dell'operazione
 
             String firstYear = new String();
 
@@ -72,8 +74,10 @@ public class AccademicYear {
             if (Integer.parseInt(firstYear) == Integer.parseInt(secondYear) - 1 && accademicYear.length() == 9 &&
                     accademicYear.charAt(4) == '/') {
 
-                //inizializzo l'anno accademico con il primo numero
-                new AccademicYear(Integer.parseInt(firstYear));
+                System.out.println("firsYear: " + firstYear);
+
+                this.firstYear = Integer.parseInt(firstYear);
+                this.secondYear = Integer.parseInt(secondYear);
 
             } else {
                 throw new AccademicYearException("Error in AccademicYear(String accademicYear)");
