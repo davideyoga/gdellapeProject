@@ -78,6 +78,9 @@ public class AdmModCourse extends BaseController {
                     //setto l'utente in sessione
                     this.datamodel.put("user", sessionManager.getUser(request));
 
+                    //setto i servizi a cui ha accesso l'utente
+                    this.datamodel.put("services", request.getSession().getAttribute("services"));
+
                     TemplateController.process("course_mod.ftl", datamodel, response, getServletContext());
 
                     //se l'utente non ha il permesso per accedere a tale servizio
@@ -173,6 +176,9 @@ public class AdmModCourse extends BaseController {
 
                             //setto l'utente in sessione
                             this.datamodel.put("user", sessionManager.getUser(request));
+
+                            //setto i servizi a cui ha accesso l'utente
+                            this.datamodel.put("services", request.getSession().getAttribute("services"));
 
                             //lancio il template
                             TemplateController.process("course_mod.ftl", datamodel, response, getServletContext());
