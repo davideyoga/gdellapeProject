@@ -21,7 +21,7 @@
     DeleteMaterial (ajax)
     
 7)Creare corso:
-    CreateCourse
+    CreateCourse -------manca solo il caricamento del materiale esterno
     
 8)ELiminare corso:
     DeleteCourse

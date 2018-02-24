@@ -36,19 +36,11 @@
         </div>
 
         <div class="clearfix"></div>
-        </div>
+    </div>
 
     <div class="container">
         <div class="w3layouts_agileits_nav_section">
             <nav class="navbar navbar-default">
-                <div class="navbar-header navbar-left">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="w3ls__agileinfo_search">
                     <form action="#" method="post">
@@ -65,7 +57,7 @@
                                 <a href="/home">Home</a></li>
                             <li><a href="/ListStudyCourses" class="hvr-rectangle-out">Lauree</a></li>
                             <li><a href="/ListCourseAn" class="hvr-rectangle-out">Corsi</a></li>
-                            <li><a href="#team" class="hvr-rectangle-out">Docenti</a></li>
+                            <li><a href="/ListUser" class="hvr-rectangle-out">Docenti</a></li>
                             <li><a href="#news" class="hvr-rectangle-out">Notizie</a></li>
                             <li><a href="#gallery" class="hvr-rectangle-out">Servizi</a></li>
                             <li><a href="#contact" class="hvr-rectangle-out">Contatti</a></li>
