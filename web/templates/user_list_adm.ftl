@@ -15,7 +15,8 @@
     </div>
         <p><#if message??>${message}<#else></#if></p>
 
-        <table class="responsive">
+    <div class="table-responsive" >
+        <table class="table table-hover table-bordered table-striped">
 
             <thead>
             <tr>
@@ -37,6 +38,7 @@
             </#list>
             </tbody>
         </table>
+        </div>
 </div>
 <#include "tail.ftl">
 

@@ -95,7 +95,7 @@
         </table>
             </div>
         <#else>
-            Attualmente non ci sono insegnamenti associati al corso di studi
+            <h3>Attualmente non ci sono insegnamenti associati al corso di studi</h3>
         </#list>
 
         <br>
