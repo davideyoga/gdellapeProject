@@ -7,146 +7,139 @@
 
 </head>
 <body>
-
 <#include "navbar.ftl">
-<div class="container">
-    <div class="title">
-        Lista utenti
-    </div>
-    <p><#if message??>${message}<#else></#if></p>
 
-<div class="profile_form">
-    <h1><a href="profile">Portale Dell'Universita' </a></h1>
-    <div class="profile-button">
+<form action="AdmModStudyCourse" method="POST" id="mod" class="my-form" >
 
-        <p><#if message??>${message}<#else></#if></p>
+    <div class="row">
+        <div class="col-md-2 col-xs-2 my-menu">
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active"><a data-toggle="pill" href="#base">Dati di base</a></li>
+                <li><a data-toggle="pill" href="#extra_it">Informazioni aggiuntive</a></li>
+                <li><a data-toggle="pill" href="#extra_en">Informazioni in inglese</a></li>
+                <li><a data-toggle="pill" href="#association">Associazioni</a></li>
+            </ul>
+            <br>
+            <button type="submit" form="mod" class="btn btn-default">Modifica corso di Laurea</button>
+        </div>
 
 
-        <h2>Mod ${studyCourse.name}</h2>
-        <form method="POST" action="AdmModStudyCourse">
-            <div class="col-md-6">
-
-                <div class="profile-form-email">
-                    Name
-                    <input type="text" value= "<#if studyCourse.name??>${studyCourse.name}<#else></#if>" name="name" >
-                    <i class="fa fa-lock"></i>
+        <div class="container">
+            <div class="title">
+                Modifica dati della laurea: ${studyCourse.name}
+            </div>
+            <#if message??>
+                <div class="title">
+                    <h2>ATTENZIONE</h2>
+                    <div class="modalContent">
+                        <p>${message}</p>
+                    </div>
                 </div>
+            <#else>
 
-                <div class="profile-form-password">
-                    Code
-                    <input type="number" value= "<#if studyCourse.code??>${studyCourse.code}<#else></#if>" name="code" >
-                    <i class="fa fa-lock"></i>
-                </div>
+            </#if>
 
-                <div class="profile-form-ripetere-password">
-                    Description Ita
-                    <input type="text" value= "<#if studyCourse.description_ita??>${studyCourse.description_ita}<#else></#if>" name="description_ita">
-                    <i class="fa fa-lock"></i>
-                </div>
-
-                <div class="profile-form-surname">
-                    Description Eng
-                    <input type="text" value="<#if studyCourse.description_eng??>${studyCourse.description_eng}<#else></#if>" name="description_eng">
-                    <i class="fa fa-envelope"></i>
-                </div>
-
-                <div class="profile-form-name">
-                    department_ita
-                    <input type="text" value= "<#if studyCourse.department_ita??>${studyCourse.department_ita}<#else></#if>" name="department_ita">
-                    <i class="fa fa-lock"></i>
-                </div>
+            <div class="col-md-12 col-xs-12">
+                <div class="tab-content" >
 
 
-                <div class="profile-form-number">
-                    department_eng
-                    <input type="text" value= "<#if studyCourse.department_eng??>${studyCourse.department_eng}<#else></#if>" name="department_eng">
-                    <i class="fa fa-lock"></i>
-                </div>
-
-                <div class="profile-form-curriculum_ita">
-                    level_ita
-                    <input type="text" value= "<#if studyCourse.level_ita??>${studyCourse.level_ita}<#else></#if>" name="level_ita">
-                </div>
-
-                <div class="profile-form-curriculum_eng">
-                    level_eng
-                    <input type="text" value= "<#if studyCourse.level_eng??>${studyCourse.level_eng}<#else></#if>" name="level_eng">
-                    <i class="fa fa-lock"></i>
-                </div>
-
-                <div class="profile-form-receprion_hours_ita">
-                    duration
-                    <input type="text" value= "<#if studyCourse.duration??>${studyCourse.duration}<#else></#if>" name="duration">
-                    <i class="fa fa-lock"></i>
-                </div>
-
-                <div class="profile-form-receprion_hours_eng">
-                    class
-                    <input type="number" value="<#if studyCourse.class??>${studyCourse.class}<#else></#if>" name="class">
-                    <i class="fa fa-lock"></i>
-                </div>
+                    <div id="base" class="tab-pane fade in active">
+                        <div class="form-group">
+                            <label for="cod">Codice:</label>
+                            <input type="text" class="form-control" id="cod" name="code" value="<#if studyCourse.code??>${studyCourse.code}<#else></#if>">
+                        </div>
+                        <div class="form-group">
+                            <label for="nome">Nome:</label>
+                            <input type="text" class="form-control" id="nome" name="name" value="<#if studyCourse.name??>${studyCourse.name}<#else></#if>">
+                        </div>
+                        <div class="form-group">
+                            <label for="dur">Durata:</label>
+                            <input type="number" min="1" max="10" class="form-control" id="dur" name="duration" value= "<#if studyCourse.duration??>${studyCourse.duration}<#else></#if>">
+                        </div>
+                        <div class="form-group">
+                            <label for="class">Classe:</label>
+                            <input type="text" class="form-control" id="class" name="class" value="<#if studyCourse.class??>${studyCourse.class}<#else></#if>">
+                        </div>
+                        <div class="form-group">
+                            <label for="seat">posti disponibili:</label>
+                            <input type="text" class="form-control" id="seat" name="seat" value="<#if studyCourse.seat??>${studyCourse.seat}<#else></#if>">
+                        </div>
+                    </div>
+                <#--end access-->
 
 
-                <div class="profile-form-receprion_hours_eng">
-                    seat
-                    <input type="text" value=   "<#if studyCourse.seat??>${studyCourse.seat}<#else></#if>" name="seat">
-                    <i class="fa fa-lock"></i>
-                </div>
-
-                <div class="profile-form-receprion_hours_eng">
-                    accessType_ita
-                    <input type="text" value=   "<#if studyCourse.accessType_ita??>${studyCourse.accessType_ita}<#else></#if>" name="accessType_ita">
-                    <i class="fa fa-lock"></i>
-                </div>
-
-                <div class="profile-form-receprion_hours_eng">
-                    accessType_eng
-                    <input type="text" value=   "<#if studyCourse.accessType_eng??>${studyCourse.accessType_eng}<#else></#if>" name="accessType_eng">
-                    <i class="fa fa-lock"></i>
-                </div>
-
-
-                <div class="profile-form-receprion_hours_eng">
-                    language_ita
-                    <input type="text" value=   "<#if studyCourse.language_ita??>${studyCourse.language_ita}<#else></#if>" name="language_ita">
-                    <i class="fa fa-lock"></i>
-                </div>
-
-                <div class="profile-form-receprion_hours_eng">
-                    language_eng
-                    <input type="text" value=   "<#if studyCourse.language_eng??>${studyCourse.language_eng}<#else></#if>" name="language_eng">
-                    <i class="fa fa-lock"></i>
-                </div>
+                    <div id="extra_it" class="tab-pane fade">
+                        <div class="form-group">
+                            <label for="lang">Lingua:</label>
+                            <input type="text" class="form-control" id="lang" name="language_ita" value="<#if studyCourse.language_ita??>${studyCourse.language_ita}<#else></#if>">
+                        </div>
+                        <div class="form-group">
+                            <label for="descr_it">Descrizione:</label>
+                            <textarea class="form-control" rows="5" id="descr_it" name="descpription_ita"><#if studyCourse.description_ita??>${studyCourse.description_ita}<#else></#if></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="dep_it">Dipartimento:</label>
+                            <input type="text" class="form-control" id="dep_it" name="department_ita" value="<#if studyCourse.department_ita??>${studyCourse.department_ita}<#else></#if>">
+                        </div>
+                        <div class="form-group">
+                            <label for="level_it">Livello:</label>
+                            <input type="text" class="form-control" id="level_it" name="level_ita" value="<#if studyCourse.level_ita??>${studyCourse.level_ita}<#else></#if>">
+                        </div>
+                        <div class="form-group">
+                            <label for="acc_type_it">Modalità d'accesso:</label>
+                            <input type="text" class="form-control" id="acc_type_it" name="access_type_ita" value="<#if studyCourse.accessType_ita??>${studyCourse.accessType_ita}<#else></#if>">
+                        </div>
+                    </div>
+                <#--end extra_it-->
 
 
-                <a href="ModAssociationStudyCourseWithCourse?idStudyCourse=${studyCourse.id}">Mod Association With Course</a>
+                    <div id="extra_en" class="tab-pane fade">
+                        <div class="form-group">
+                            <label for="lang_en">Language:</label>
+                            <input type="text" class="form-control" id="lang_en" name="language_eng" value="<#if studyCourse.language_eng??>${studyCourse.language_eng}<#else></#if>">
+                        </div>
+                        <div class="form-group">
+                            <label for="descr_en">Description:</label>
+                            <textarea class="form-control" rows="5" id="descr_en" name="descpription_eng"><#if studyCourse.description_eng??>${studyCourse.description_eng}<#else></#if></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="dep_en">Department:</label>
+                            <input type="text" class="form-control" id="dep_en" name="department_eng" value="<#if studyCourse.department_eng??>${studyCourse.department_eng}<#else></#if>">
+                        </div>
+                        <div class="form-group">
+                            <label for="level_en">Level:</label>
+                            <input type="text" class="form-control" id="level_en" name="level_eng" value="<#if studyCourse.level_eng??>${studyCourse.level_eng}<#else></#if>">
+                        </div>
+                        <div class="form-group">
+                            <label for="acc_type_en">Access type:</label>
+                            <input type="text" class="form-control" id="acc_type_en" name="access_type_eng" value="<#if studyCourse.accessType_eng??>${studyCourse.accessType_eng}<#else></#if>">
+                        </div>
+                    </div>
+                <#--end extra_en-->
 
 
-                <!--CICLO SUI CORSI-->
-
-                <!--CICLO TUTTI I CORSI-->
-                <!--se il corso e' contenuto nei corsi del corso di studi allora il checkbox sara' spuntato-->
-
-            <#list listCourses as course>
-
-                <input type="checkbox" name="${course.name}" value="${course.name}" <#if listCourseByStudyCourse?seq_contains(course) >checked<#else></#if> > ${course.name} <br>
-
-            </#list>
+                    <div id="association" class="tab-pane fade">
+                        <a href="ModAssociationStudyCourseWithCourse?idStudyCourse=${studyCourse.id}">Mod Association With Course</a>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Attualmente il corso di laurea include i seguenti corsi</div>
+                            <div class="panel-body">
+                                <#list listCourses as course>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" value="${course.name}" <#if listCourseByStudyCourse?seq_contains(course) >checked<#else></#if>>${course.name}</label>
+                                    </div>
+                                </#list>
+                            </div>
+                        </div>
+                    </div>
 
             </div>
-            <div class="col-md-6 login-do">
-                <label class="hvr-shutter-in-horizontal login-sub">
-                    <input type="submit" value="Update">
-                </label>
-            </div>
-
-            <div class="clearfix"> </div>
-        </form>
+        </div>
     </div>
-</div>
+    </div>
+
+</form>
 
 
 <#include "tail.ftl">
-
 </body>
 </html>
