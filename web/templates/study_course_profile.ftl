@@ -17,7 +17,8 @@
 
         <p><#if message??>${message}<#else></#if></p>
 
-        <table class="responsive">
+        <div class="table-responsive" >
+            <table class="table table-hover table-bordered table-striped">
             <thead>
                 <tr>
                     <th colspan="4">Infomazioni su ${studyCourse.name}</th>
@@ -67,6 +68,7 @@
             </tr>
             <br>
         </table>
+        </div>
             <!--Tutta la descrizione del corso, per prendere spunto guardare user_profile.ftl-->
     <#--commento cmmento-->
             <#--<p>CORSI APPARTENENTI AL CORSO DI STUDI (DA SCRIVERE IN INGLESE)</p>-->
@@ -75,7 +77,8 @@
         <br>
 
         <#list courses>
-            <table class="responsive">
+            <div class="table-responsive" >
+            <table class="table table-hover table-bordered table-striped">
                 <thead>
                 <tr>
                     <th colspan="3">Insegnamenti associati a ${studyCourse.name}</th>
@@ -85,11 +88,12 @@
             <tr>
                 <td>Nome corso</td>
                 <td >${course.name}</td>
-                <td ><a href="StudyCourseProfile?code=${course.code}">Leggi di piu'</a></td>
+                <td ><a href="CourseProfile?id=${course.idCourse}">Leggi di piu'</a></td>
             </tr>
 
             </#items>
         </table>
+            </div>
         <#else>
             Attualmente non ci sono insegnamenti associati al corso di studi
         </#list>
