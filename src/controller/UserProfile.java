@@ -58,6 +58,8 @@ public class UserProfile extends BaseController {
                 //setto l'utente in sessione
                 this.datamodel.put("user", request.getSession().getAttribute("user"));
 
+                System.out.println(datamodel.get("user"));
+
                 //lancia il template appropriato alla lingua selezionata dall'utente
                 this.processTemplate(request, response, "user_profile", datamodel);
 

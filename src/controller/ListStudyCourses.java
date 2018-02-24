@@ -58,6 +58,7 @@ public class ListStudyCourses extends BaseController {
 
         } catch (DaoException e) {
             //lancio messaggio di errore
+            System.out.println(e.getMessage());
             TemplateController.process("error.ftl", datamodel, response, getServletContext());
         }
 

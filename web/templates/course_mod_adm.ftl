@@ -20,7 +20,7 @@
                     <#--Year(Prima parte dell'anno accademico)-->
                     <#--<input name="year" value="<#if course.year??>${course.year}<#else></#if>" required="" type="numeric">-->
                     <div class="clearfix"> </div>
-                    <input value="modifica corso" type="submit">
+                    <input value="modifica corso" type="submit" >
                 </form>
             <div class="clearfix"> </div>
 

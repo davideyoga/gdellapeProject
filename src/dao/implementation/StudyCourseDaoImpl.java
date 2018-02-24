@@ -345,6 +345,7 @@ public class StudyCourseDaoImpl extends DaoDataMySQLImpl implements StudyCourseD
             studyCourse.setLanguage_eng(stripSlashes(rs.getString("language_eng")));
 
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
             throw new GenerateDaoException("Error generateStudyCourse", e);
         }
 

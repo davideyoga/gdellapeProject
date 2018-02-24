@@ -75,7 +75,7 @@
 
             <div class="align_left">
                 <label>Reception Hours in English</label>
-                <input type="text" value="<#if usermod.receprion_hours_ita??>${usermod.receprion_hours_ita}<#else></#if>" name="receprion_hours_eng"/>
+                <input type="text" value="<#if usermod.receprion_hours_eng??>${usermod.receprion_hours_eng}<#else></#if>" name="receprion_hours_eng"/>
                 <i class="fa fa-lock"></i>
             </div>
 
