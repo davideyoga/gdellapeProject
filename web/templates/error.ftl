@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Not Permitted</title>
+    <title>Error</title>
 
 
     <!-- Custom Theme files -->
@@ -22,14 +22,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- main -->
 <a href="/home">
     <div class="main">
-        <h1> Not Permitted </h1>
+        <h1> Errore </h1>
         <div class="error-page">
             <div class="error-page-left">
-                <h2>401 </h2>
+                <h2>500 </h2>
             </div>
             <div class="error-page-left">
                 <h3>Oops ...</h3>
-                <p>you have not permission</p>
+                <p>Internal Server Error</p>
 
             </div>
             <div class="clear"> </div>

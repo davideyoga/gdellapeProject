@@ -23,7 +23,7 @@
 7)Creare corso:
     CreateCourse -------manca solo il caricamento del materiale esterno
     
-8)ELiminare corso:
+8)Eliminare corso:
     DeleteCourse
     
 9)Aggiornare Corso (prendo un corso di un anno precedente e lo COPIO all'anno corrente)
