@@ -536,4 +536,17 @@
     </servlet-mapping>
     <!-- Fine Servlet di CourseProfile -->
 
+
+    <!-- Servlet di DownloadMaterial -->
+    <servlet>
+        <servlet-name>DownloadMaterial</servlet-name>
+        <servlet-class>controller.DownloadMaterial</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DownloadMaterial</servlet-name>
+        <url-pattern>/DownloadMaterial</url-pattern>
+        <url-pattern>/downloadMaterial</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di CourseProfile -->
+
 </web-app>

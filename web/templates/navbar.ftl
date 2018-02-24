@@ -36,7 +36,7 @@
         </div>
 
         <div class="clearfix"></div>
-        </div>
+    </div>
 
     <div class="container">
         <div class="w3layouts_agileits_nav_section">

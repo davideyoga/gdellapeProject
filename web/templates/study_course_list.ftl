@@ -8,41 +8,47 @@
 </head>
 <body>
 
-<#include "navbar.ftl">
-<div class="title">
-    Lista Corsi di studio
-</div>
+    <#include "navbar.ftl">
+    <div class="title">
+        Lista Corsi di studio
+    </div>
 
-<div class="container">
+    <div class="container">
 
-    <!--Eventuale messaggio di errore-->
-    <p><#if message??>${message}<#else></#if></p>
+        <!--Eventuale messaggio di errore-->
+        <p>
+            <#if message??>
+                ${message}
+            <#else>
 
-    <table class="responsive">
-        <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
+            </#if>
+        </p>
 
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover">
 
-            <thead>
-            <tr>
-                <th>Codice Corso di studio</th>
-                <th>Nome Corso di studio </th>
-                <th> - </th>
-            </tr>
-            </thead>
+                <thead>
+                <tr>
+                    <th>Codice Corso di studio</th>
+                    <th>Nome Corso di studio </th>
+                    <th> - </th>
+                </tr>
+                </thead>
 
-            <tbody>
-                <#list studyCourses as studyCourse>
-                    <tr>
-                        <td>${studyCourse.code}</td>
-                        <td>${studyCourse.name}</td>
-                        <td>
-                            <a href="StudyCourseProfile?code=${studyCourse.code}">Leggi di piu'</a>
-                        </td>
-                    </tr>
-                </#list>
-            </tbody>
-    </table>
-</div>
+                <tbody>
+                    <#list studyCourses as studyCourse>
+                        <tr>
+                            <td>${studyCourse.code}</td>
+                            <td>${studyCourse.name}</td>
+                            <td>
+                                <a href="StudyCourseProfile?code=${studyCourse.code}">Leggi di piu'</a>
+                            </td>
+                        </tr>
+                    </#list>
+                </tbody>
+        </table>
+    </div>
+    </div>
 
 
 <!--modulo contatti, email, conclusione-->
