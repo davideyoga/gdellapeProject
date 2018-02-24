@@ -133,7 +133,7 @@ public class CreateGroups extends BaseController {
                             groupsDao.storeGroups(groups);
 
                             //aggiungo un log di avvenuta creazioendi un gruppo
-                            logManager.addLog(sessionManager.getUser(request),"GROUP CREATED: " + groups + " BY: " + sessionManager.getUser(request), ds);
+                            logManager.addLog(sessionManager.getUser(request),"GROUP CREATED: " + groups.toStringForLog() + " BY: " + sessionManager.getUser(request).toStringForLog(), ds);
 
                             //se la mail e' gia presente nel database
                         } else {

@@ -14,10 +14,15 @@ public class Groups{
         this.description = null;
     }
 
+    public String toStringForLog() {
+        return "NAME='" + name +
+                ", DESCRIPTION='" + description;
+    }
+
     @Override
     public String toString() {
         return "Groups{" +
-                "idCourse=" + id +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 '}';

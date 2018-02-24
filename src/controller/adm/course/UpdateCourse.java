@@ -1,6 +1,7 @@
 package controller.adm.course;
 
 import controller.BaseController;
+import controller.logController.LogException;
 import controller.utility.AccademicYear;
 import controller.utility.SecurityLayer;
 import dao.exception.DaoException;
@@ -178,6 +179,9 @@ public class UpdateCourse extends BaseController {
                             //chiudo il dao
                             courseDao.destroy();
 
+                            //aggiungo log Update del corso
+                            logManager.addLog(sessionManager.getUser(request), "USER:" + sessionManager.getUser(request).toStringForLog() +  "HAS UPDATED A COURSE: " + courseById.toStringForLog() , ds);
+
                             //lancio la servlet della lista dei corsi
                             response.sendRedirect("ListCourse");
                             return;
@@ -226,6 +230,13 @@ public class UpdateCourse extends BaseController {
             e.printStackTrace();
 
             this.processError(request, response);
+
+            this.processError(request, response);
+        } catch (LogException e) {
+            e.printStackTrace();
+
+            //lancio la servlet della lista dei corsi
+            response.sendRedirect("ListCourse");
         }
     }
 }

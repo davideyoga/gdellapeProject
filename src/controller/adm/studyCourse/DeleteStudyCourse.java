@@ -59,7 +59,7 @@ public class DeleteStudyCourse extends BaseController {
                     studyCourseDao.deleteStudyCourse(studyCourseDao.getStudyCourseById(Integer.parseInt(request.getParameter("id"))));
 
                     //aggiungo un log di avvenuta eliminazione del gruppo
-                    logManager.addLog(sessionManager.getUser(request),"STUDY COURSE DELETED: " + studyCourseDao.getStudyCourseById(Integer.parseInt(request.getParameter("id"))) + " BY: " + sessionManager.getUser(request), ds);
+                    logManager.addLog(sessionManager.getUser(request),"STUDY COURSE DELETED: " + studyCourseDao.getStudyCourseById(Integer.parseInt(request.getParameter("id"))).toStringForLog() + " BY: " + sessionManager.getUser(request).toStringForLog(), ds);
 
 
                     //chiudo il dao
