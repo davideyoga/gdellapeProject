@@ -21,7 +21,8 @@
             <ul class="nav nav-pills nav-stacked">
                 <li class="active"><a data-toggle="pill" href="#access">Dati di accesso</a></li>
                 <li><a data-toggle="pill" href="#anag">Anagrafica</a></li>
-                <li><a data-toggle="pill" href="#extra">Informazioni aggiuntive</a></li>
+                <li><a data-toggle="pill" href="#curr">Curriculum</a></li>
+                <li><a data-toggle="pill" href="#ric">Ricevimento</a></li>
                 <li><a data-toggle="pill" href="#perm">Permessi</a></li>
             </ul>
             <br>
@@ -68,54 +69,44 @@
                             <label for="cognome">Cognome:</label>
                             <input type="text" class="form-control" id="cognome" name="surname" placeholder="Cognome">
                         </div>
-                    </div>
-                <#--end aggiuntive-->
-
-
-                    <div id="dub" class="tab-pane fade">
                         <div class="form-group">
-                            <label for="know">Risultati di apprendimento:</label>
-                            <textarea class="form-control" rows="5" id="know" name="knowledge_ita"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="appl">Campi d'utilizzo:</label>
-                            <textarea class="form-control" rows="5" id="appl" name="application_ita"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="eva">Capacità di giudizio:</label>
-                            <textarea class="form-control" rows="5" id="eva" name="evaluation_ita"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="comu">Capacità di comunicazione:</label>
-                            <textarea class="form-control" rows="5" id="comu" name="communication_ita"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="lifelog">Lifelog learning skills:</label>
-                            <textarea class="form-control" rows="5" id="lifelog" name="lifelog_learning_skills_ita"></textarea>
+                            <label for="numer">Numero:</label>
+                            <input type="text" class="form-control" id="numer" name="number" placeholder="Numero">
                         </div>
                     </div>
-                <#--end dub-->
+                <#--end anag-->
 
 
-                    <div id="notes_page" class="tab-pane fade">
+                    <div id="curr" class="tab-pane fade">
                         <div class="form-group">
-                            <label for="note">Note (in italiano):</label>
-                            <textarea class="form-control" rows="5" id="note" name="note_ita"></textarea>
+                            <label for="curr_it">Curriculum:</label>
+                            <textarea class="form-control" rows="5" id="curr_it" name="curriculum_ita"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="notes">Notes (english):</label>
-                            <textarea class="form-control" rows="5" id="notes" name="note_eng"></textarea>
+                            <label for="curr_en">Curriculum inglese:</label>
+                            <textarea class="form-control" rows="5" id="curr_en" name="curriculum_eng"></textarea>
                         </div>
                     </div>
-                    <div id="ext_mat" class="tab-pane fade">
+                <#--end curr-->
+
+
+                    <div id="ric" class="tab-pane fade">
                         <div class="form-group">
-                            <label for="material">Materiale disponibile:</label>
-                            <textarea class="form-control" rows="5" id="material" name="external_material_ita"></textarea>
+                            <label for="receprion_ita">Orario di ricevimento:</label>
+                            <textarea class="form-control" rows="5" id="receprion_ita" name="receprion_hours_ita"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="material_en">External material:</label>
-                            <textarea class="form-control" rows="5" id="material_en" name="external_material_eng"></textarea>
+                            <label for="receprion_eng">Orario di ricevimento:</label>
+                            <textarea class="form-control" rows="5" id="receprion_eng" name="receprion_hours_eng"></textarea>
                         </div>
+
+                    </div>
+
+
+                    <div id="perm" class="tab-pane fade">
+                        <#list listGroups as group>
+
+                        </#list>
                     </div>
                 </div>
             <#--end ext_mat-->
