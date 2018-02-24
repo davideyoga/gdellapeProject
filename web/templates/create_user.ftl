@@ -105,7 +105,9 @@
 
                     <div id="perm" class="tab-pane fade">
                         <#list listGroups as group>
-
+                            <div class="checkbox">
+                                <label><input type="checkbox" value="${groups.name}"> ${groups.name}</label>
+                            </div>
                         </#list>
                     </div>
                 </div>
