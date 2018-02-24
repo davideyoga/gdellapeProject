@@ -3472,6 +3472,7 @@ tbody.collapse.in {
   font-weight: normal;
   line-height: 1.42857143;
   color: #333;
+    background-color: white;
   /*white-space: nowrap;*/
 }
 .dropdown-menu > li > a:hover,
@@ -4008,7 +4009,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
   color: #fff;
-  background-color: #337ab7;
+  background-color: #0064d2;;
 }
 .nav-stacked > li {
   float: none;
@@ -5315,7 +5316,7 @@ a.list-group-item-danger.active:focus {
 .panel {
   margin-bottom: 20px;
   background-color: #fff;
-  border: 1px solid transparent;
+  /*border: 1px solid transparent;*/
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
           box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
@@ -6593,5 +6594,9 @@ button.close {
 /*roba aggiunta da noi*/
 .personal-title { margin-top:20px !important;
                   font-size: 2em !important;}
+
+.my {
+  background: #c0deed;
+}
 
 /*# sourceMappingURL=bootstrap.css.map */
