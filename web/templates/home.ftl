@@ -6,7 +6,7 @@
     <!--librerie-->
     <#include "import.ftl">
 </head>
-<body>
+<body onload="prova()">
     <!--menù navigazione-->
     <#include "navbar.ftl">
 
@@ -16,4 +16,3 @@
     <#include "tail.ftl">
 </body>
 </html>
-
