@@ -42,7 +42,7 @@
             </#if>
 
             <div class="col-md-12 col-xs-12">
-                <div class="tab-content">
+                <div class="tab-content" >
 
 
                     <div id="access" class="tab-pane fade in active">
