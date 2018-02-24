@@ -18,7 +18,8 @@
     <!--Eventuale messaggio di errore-->
     <p><#if message??>${message}<#else></#if></p>
 
-    <table class="responsive">
+    <div class="table-responsive" >
+        <table class="table table-hover table-bordered table-striped">
         <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
 
 
@@ -42,6 +43,7 @@
         </#list>
         </tbody>
     </table>
+    </div>
 </div>
 <#include "tail.ftl">
 
