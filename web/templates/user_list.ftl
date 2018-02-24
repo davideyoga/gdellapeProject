@@ -11,33 +11,47 @@
 <!--menù navigazione-->
 <#include "navbar.ftl">
 
-<p><#if message??>${message}<#else></#if></p>
-<div class="container">
+    <div class="title" >
+        Lista Docenti
+    </div>
 
-    <table class="responsive">
-        <!--Come un for-each, cicla sulla lista di users estraendo ogni volta l'utente della lista-->
+    <div class="container">
+        <!--Eventuale messaggio di errore-->
+        <p>
+            <#if message??>
+                ${message}
+            <#else>
 
-        <thead>
-        <tr>
-            <th>Nome Docente</th>
-            <th>Email</th>
-            <th> - </th>
-        </tr>
-        </thead>
+            </#if>
+        </p>
 
-        <tbody>
-        <#list users as user>
-        <tr>
-            <td>${user.name} ${user.surname}</td>
-            <td>${user.email}</td>
-            <td>
-                <a href="UserProfile?email=${user.email}">Leggi di piu'</a>
-            </td>
-        </tr>
-        </#list>
-        </tbody>
-    </table>
-</div>
+        <div class="table-responsive" >
+            <table class="table table-hover table-bordered table-striped">
+            <!--Come un for-each, cicla sulla lista di users estraendo ogni volta l'utente della lista-->
+
+            <thead>
+            <tr>
+                <th>Nome Docente</th>
+                <th>Email</th>
+                <th> - </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <#list users as user>
+            <tr>
+                <td>${user.name} ${user.surname}</td>
+                <td>${user.email}</td>
+                <td>
+                    <a href="UserProfile?email=${user.email}">Leggi di piu'</a>
+                </td>
+            </tr>
+            </#list>
+            </tbody>
+        </table>
+    </div>
+    </div>
+
 <!--modulo contatti, email, conclusione-->
 <#include "tail.ftl">
 </body>

@@ -41,14 +41,6 @@
     <div class="container">
         <div class="w3layouts_agileits_nav_section">
             <nav class="navbar navbar-default">
-                <div class="navbar-header navbar-left">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="w3ls__agileinfo_search">
                     <form action="#" method="post">
