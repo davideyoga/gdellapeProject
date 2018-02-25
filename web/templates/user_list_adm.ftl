@@ -33,7 +33,7 @@
                 <td>${utente.id}</td>
                 <td>${utente.email}</td>
                 <td><a href="AdmModUser?id=${utente.id}">Modifica utente</a></td>
-                <td><a href="DeleteUser?id=${utente.id}" onclick="return ConfirmDelete()">Cancella Utente</a></td>
+                <td><a href="DeleteUser?id=${utente.id}" onclick="return ConfirmDelete(${utente.surname},${utente.name})">Cancella Utente</a></td>
             </tr>
             </#list>
             </tbody>
