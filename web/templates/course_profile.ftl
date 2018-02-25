@@ -226,7 +226,7 @@
             </div> <#--div panel-group-->
         </div> <#--div id basic-->
 
-        <div id="dublin" class="tab-pane fade in active">
+        <div id="dublin" class="tab-pane fade">
             <div class="panel-group">
 
                 <#--Risultati di apprendimento-->
@@ -247,6 +247,7 @@
                         </div>
                     </div>
 
+                <#--Campi d'utilizzo-->
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
@@ -263,6 +264,60 @@
                         </div>
                     </div>
                 </div>
+
+                    <#--Capacità di giudizio-->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#eva">Capacità di giudizio</a>
+                            </h4>
+                        </div>
+                        <div id="eva" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12">
+                                        <#if course.evaluation_ita??>${course.evaluation_ita}</#if>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <#--Capacità di comunicazione-->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#comu">Capacità di comunicazione</a>
+                            </h4>
+                        </div>
+                        <div id="comu" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12">
+                                        <#if course.communication_ita??>${course.communication_ita}</#if>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <#--Lifelog learning skills-->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#comu">Lifelog learning skills</a>
+                            </h4>
+                        </div>
+                        <div id="comu" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12">
+                                        <#if course.lifelog_learning_skills_ita??>${course.lifelog_learning_skills_ita}</#if>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
             </div> <#--div panel-group-->
         </div> <#--div id dublin-->
