@@ -124,7 +124,7 @@ public class AdmModGroups extends BaseController {
                         //effettuo l'update
                         groupsDao.storeGroups(groupsDaForm);
 
-                        logManager.addLog(sessionManager.getUser(request), "GROUPS: " + groupsPrimaDelleModifiche + " IT'S CHANGE: " + groupsDaForm, ds);
+                        logManager.addLog(sessionManager.getUser(request), "GROUPS: " + groupsPrimaDelleModifiche.toStringForLog() + " IT'S CHANGE IN: " + groupsDaForm.toStringForLog(), ds);
 
                     }
                     //se non e' cambiato non faccio nulla
@@ -208,7 +208,7 @@ public class AdmModGroups extends BaseController {
                     if (serviziCambiati == true) {
 
                         //aggiungo log di modifica associazioni con i servizi
-                        logManager.addLog(sessionManager.getUser(request), "GROUPS: " + groupsDaForm + " HAS SUBMITTED CHANGES TO ASSOCIATED SERVICE", ds);
+                        logManager.addLog(sessionManager.getUser(request), "GROUPS: " + groupsDaForm.toStringForLog() + " HAS SUBMITTED CHANGES TO ASSOCIATED SERVICE", ds);
 
                     }
 

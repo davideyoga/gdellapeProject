@@ -247,8 +247,8 @@ public class AdmModStudyCourse extends BaseController{
                         //eseguo update del corso di studi
                         studyCourseDao.storeStudyCourse(studyCourse);
 
-                        logManager.addLog(sessionManager.getUser(request), "Study Course changed. BEFORE: " + studyCoursePrecedente +
-                                ". AFTER: " + studyCourse, ds);
+                        logManager.addLog(sessionManager.getUser(request), "STUDY COURSE CHANGED, BEFORE: " + studyCoursePrecedente.toStringForLog() +
+                                "BY" + sessionManager.getUser(request).toStringForLog(), ds);
 
                         //se i corsi sono uguali non faccio nulla
                     }else{
@@ -319,7 +319,8 @@ public class AdmModStudyCourse extends BaseController{
                     if (courseCambiati == true) {
 
                         //aggiungo log di modifica associazioni con i gruppi
-                        logManager.addLog(sessionManager.getUser(request), "USER: " + sessionManager.getUser(request) + " HAS SUBMITTED CHANGES TO ASSOCIATED STUDY COURSE WITH COURSE", ds);
+                        logManager.addLog(sessionManager.getUser(request), "USER: " + sessionManager.getUser(request).toStringForLog() +
+                                " HAS SUBMITTED CHANGES TO ASSOCIATED STUDY COURSE: " + studyCourse.toStringForLog() + " WITH COURSE", ds);
 
                     }
 

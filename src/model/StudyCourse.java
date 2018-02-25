@@ -245,4 +245,9 @@ public class StudyCourse {
         result = 31 * result + (getLanguage_eng() != null ? getLanguage_eng().hashCode() : 0);
         return result;
     }
+
+    public String toStringForLog() {
+        return  "NAME=" + name +
+                ", CODE=" + code ;
+    }
 }

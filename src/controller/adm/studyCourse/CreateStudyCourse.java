@@ -164,7 +164,7 @@ public class CreateStudyCourse extends BaseController {
                     studyCourseDao.storeStudyCourse(studyCourseByForm);
 
                     //aggiungo un log di avvenuta creazione del corso di studi
-                    logManager.addLog(sessionManager.getUser(request),"STUDY COURSES CREATED: " + studyCourseByForm, ds);
+                    logManager.addLog(sessionManager.getUser(request),"STUDY COURSES CREATED: " + studyCourseByForm.toStringForLog(), ds);
 
 
                     //inserisco il messaggio corso di studi creato

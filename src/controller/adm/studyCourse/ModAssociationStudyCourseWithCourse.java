@@ -385,7 +385,8 @@ public class ModAssociationStudyCourseWithCourse extends BaseController {
 
                     //se ho effettuato delle modifiche aggiungo un log
                     if(serviziCambiati == true){
-                        logManager.addLog(sessionManager.getUser(request),"MODIFIED ASSOCIATION BETWEEN COURSE AND THIS STUDY COURSE:" + studyCourse, ds);
+                        logManager.addLog(sessionManager.getUser(request),"USER" + sessionManager.getUser(request).toStringForLog() +
+                                                                            "MODIFIED ASSOCIATION BETWEEN COURSE AND THIS STUDY COURSE:" + studyCourse.toStringForLog(), ds);
                     }
 
                     //chiudo i dao
