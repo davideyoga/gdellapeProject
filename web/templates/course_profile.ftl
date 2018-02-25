@@ -27,9 +27,6 @@
                 <p>Codice: <br>
                 </p>
 
-                <p>Tipo: <br>
-                </p>
-
                 <p>Anno: <br>
                 </p>
 
@@ -52,9 +49,6 @@
                 <h5>${course.name}</h5>
 
                 <p>${course.code}<br>
-                </p>
-
-                <p>${course.type}<br>
                 </p>
 
                 <p>${course.year}<br>
@@ -152,6 +146,7 @@
     <div class="clearfix"></div>
 
 </div>
+
 
 <#include "tail.ftl">
 
