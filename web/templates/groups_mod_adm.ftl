@@ -10,7 +10,7 @@
 
 <#include "navbar.ftl">
 <div class="title">
-    Modifica del gruppo
+    Modifica del gruppo <#if groups.name??>${groups.name}<#else></#if>
 </div>
 
 
