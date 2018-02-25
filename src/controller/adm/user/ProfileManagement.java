@@ -45,7 +45,7 @@ public class ProfileManagement extends BaseController {
         this.datamodel.put("user", sessionManager.getUser(request));
 
         //se richiesta get lancio il template di profilo con i dati dell'utente in sessione
-        TemplateController.process("user_profile.ftl", datamodel, response, getServletContext());
+        TemplateController.process("user_profile_management.ftl", datamodel, response, getServletContext());
 
     }
 
