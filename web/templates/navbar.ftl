@@ -27,6 +27,7 @@
                         <li id="spaziatura1">
                             <a href="login">Login </a></li>
                     </#if>
+                    <#if lng??><#else ><#assign lng = 'IT'></#if>
                     <li><a href="Home?<#if lng == 'IT'>lng=EN<#elseif lng == 'EN'>lng=IT<#else>lng=EN</#if>">English<img src="images/blank.gif" class="flag flag-gb" alt="" /></a></li>
             </ul>
 

@@ -30,9 +30,9 @@
     UpdateCourse
     
 10)Modificare Corso
-    ModCourse
+    ModCourse -------manca solo il caricamento del materiale esterno
    
-11)Aggiungere e Rimuovere corso
+11)Aggiungere e Rimuovere associazione corso
     ModAssociationCourseWithUser
   
 12)Aggiungere e Rimuovere Corsi ad un corso di studio
@@ -67,10 +67,14 @@
     
 22)Creare Corso Di Studio
     CreateStudyCourse
-    
-23)Creare Utente
-    CreateUser
-    
+
+**************************
+**********FATTO***********
+23)Creare Utente        **
+    CreateUser          **
+**************************
+**************************
+
 24)Cancellare Corso
     DeleteCourse
     
