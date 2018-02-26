@@ -128,7 +128,7 @@
                     <#--</div>-->
                 <#--<#else>-->
                     <#--<h3>Attualmente questo docente non ha corsi associati</h3>-->
-                <#--</#list>-->
+                <#--</#list> -->
 
             </div> <#--div panel-group-->
         </div> <#--div id course-->
