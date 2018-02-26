@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <title>Home</title>
+    <title>Lista docenti</title>
 
     <!--librerie-->
 <#include "import.ftl">

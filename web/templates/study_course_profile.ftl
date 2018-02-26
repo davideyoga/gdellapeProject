@@ -10,11 +10,17 @@
 
 </head>
 <body>
-
-    <#include "navbar.ftl">
+<#include "navbar.ftl">
 
 <div class="container">
+    <div class="center-block">
+        <div class="w3ls-heading page-header">
+            <h3>Infomazioni sul corso di studi in ${studyCourse.name}</h3>
+        </div>
+    </div>
+</div>
 
+<div class="container">
     <div>
         <#if message??>
             <div class="jumbotron">
@@ -23,10 +29,9 @@
         <#else>
         </#if>
     </div>
+</div>
 
-    <div class="page-header personal-title">
-        Infomazioni sul corso di studi in ${studyCourse.name}
-    </div>
+<div class="container">
 
     <div class="text-center">
         <h4>Anno Accademico di riferimento</h4>

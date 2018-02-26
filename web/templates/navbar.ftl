@@ -13,6 +13,7 @@
                         <li class="dropdown" id="spaziatura">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#" > ${user.name} <span class="glyphicon glyphicon-user white_color"></span></a>
                             <ul class="dropdown-menu">
+
                                 <li class="dimension">
                                     <a href="/homeBackOffice" class="dimension">BackOffice <span class="glyphicon glyphicon-cog white_color pull-right"></span></a></li>
 
@@ -27,8 +28,8 @@
                         <li id="spaziatura1">
                             <a href="login">Login </a></li>
                     </#if>
-                    <#if lng??><#else ><#assign lng = 'IT'></#if>
-                    <li><a href="Home?<#if lng == 'IT'>lng=EN<#elseif lng == 'EN'>lng=IT<#else>lng=EN</#if>">English<img src="images/blank.gif" class="flag flag-gb" alt="" /></a></li>
+            <#--<#if lng??><#else ><#assign lng = 'IT'></#if>-->
+                <li><a href="Home?<#if lng == 'IT'>lng=EN<#elseif lng == 'EN'>lng=IT<#else>lng=EN</#if>">English<img src="images/blank.gif" class="flag flag-gb" alt="" /></a></li>
             </ul>
 
         </div>

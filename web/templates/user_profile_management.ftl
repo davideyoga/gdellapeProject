@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <title>Home</title>
+    <title>Profilo Utente</title>
 
     <!--librerie-->
 <#include "import.ftl">
@@ -11,6 +11,24 @@
 <!--menù navigazione-->
 <#include "navbar.ftl">
 
+<div class="container">
+    <div class="center-block">
+        <div class="w3ls-heading page-header">
+            <h3>Profilo ${userCurrent.name} ${userCurrent.surname}</h3>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div>
+        <#if message??>
+            <div class="jumbotron">
+                ${message}
+            </div>
+        <#else>
+        </#if>
+    </div>
+</div>
 
 <form action="ProfileManagement" method="POST" id="mod" class="my-form" >
 
@@ -28,19 +46,6 @@
 
 
         <div class="container">
-            <div class="title">
-                Profilo ${userCurrent.name} ${userCurrent.surname}
-            </div>
-            <#if message??>
-                <div class="title">
-                    <h2>ATTENZIONE</h2>
-                    <div class="modalContent">
-                        <p>${message}</p>
-                    </div>
-                </div>
-            <#else>
-
-            </#if>
 
             <div class="col-md-12 col-xs-12">
                 <div class="tab-content" >

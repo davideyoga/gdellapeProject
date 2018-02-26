@@ -1,28 +1,32 @@
 <!-- Footer -->
 <div class="footer w3ls">
     <div class="container">
+    <#if user??>
+
+    <#else>
         <div class="newsletter-agile">
             <form action="#" method="post">
-                <p>Send us Your Mail, we'll make sure You Never Miss a Thing!</p>
-                <p>Inserisci la tua mail, faremo in modo di non farti perdere nessuna novit&agrave</p>
-                <input type="email" name="email" size="30" required="" placeholder="Inserisci la tua mail qui t...">
-                <input type="submit" value="Subscribe">
+                <p>Send us an E-mail, you won't miss a news!</p>
+                <input type="email" name="email" size="30" required="" placeholder="E-mail...">
+                <input type="submit" value="Sign-in">
             </form>
         </div>
+    </#if>
+
         <div class="footer-main">
             <div class="footer-top">
                 <div class="col-md-4 ftr-grid fg1">
-                    <h3><a href="index.html"><span>U</span>niversit&agrave</a></h3>
+                    <h3><a href="/home"><span>U</span>niversit&agrave</a></h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adip magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
                 </div>
                 <div class="col-md-4 ftr-grid fg2 mid-gd">
-                    <h3>Our Address</h3>
+                    <h3>How to reach us</h3>
                     <div class="ftr-address">
                         <div class="local">
                             <i class="fa fa-map-marker" aria-hidden="true"></i>
                         </div>
                         <div class="ftr-text">
-                            <p>Lorem ipsum dolor sit amet.</p>
+                            <p>Address</p>
                         </div>
                         <div class="clearfix"> </div>
                     </div>
@@ -31,7 +35,7 @@
                             <i class="fa fa-phone" aria-hidden="true"></i>
                         </div>
                         <div class="ftr-text">
-                            <p>+1 (512) 154 8176</p>
+                            <p>+00 0123456789</p>
                         </div>
                         <div class="clearfix"> </div>
                     </div>
@@ -40,13 +44,13 @@
                             <i class="fa fa-envelope" aria-hidden="true"></i>
                         </div>
                         <div class="ftr-text">
-                            <p><a href="mailto:info@example.com">info@example.com</a></p>
+                            <p><a href="mailto:info@example.com">email@example.com</a></p>
                         </div>
                         <div class="clearfix"> </div>
                     </div>
                 </div>
                 <div class="col-md-4 ftr-grid fg2">
-                    <h3>Keep In Touch With Us</h3>
+                    <h3>Follow us</h3>
                     <div class="right-w3l">
                         <ul class="top-links">
                             <li><a href="#"><i class="fa fa-facebook facebook-color" aria-hidden="true"></i></a></li>
@@ -72,10 +76,11 @@
 
 </div>
 <!-- Footer -->
+
 <!--//pop-up-box -->
-<script type="text/javascript" src="templates/js/jquery-2.1.4.min.js"></script>
-<!--pop-up-box -->
-<script src="templates/js/jquery.magnific-popup.js" type="text/javascript"></script>
+<script src="/templates/js/jquery.magnific-popup.js" type="text/javascript"></script>
+
+
 <script>
     $(document).ready(function() {
         $('.popup-with-zoom-anim').magnificPopup({
@@ -95,8 +100,8 @@
 <!-- //pop-up-box -->
 
 <!-- //js -->
-<script type="text/javascript" src="templates/js/move-top.js"></script>
-<script type="text/javascript" src="templates/js/easing.js"></script>
+<script type="text/javascript" src="/templates/js/move-top.js"></script>
+<script type="text/javascript" src="/templates/js/easing.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         $(".scroll").click(function(event){
@@ -107,37 +112,7 @@
 </script>
 <!-- start-smoth-scrolling -->
 
-<script src="templates/js/jzBox.js"></script>
-
-<#--<!-- Countdown-Timer-JavaScript &ndash;&gt;-->
-<#--<script src="templates/js/simplyCountdown.js"></script>-->
-<#--<script>-->
-    <#--var d = new Date(new Date().getTime() + 948 * 120 * 120 * 2000);-->
-
-    <#--// default example-->
-    <#--simplyCountdown('.simply-countdown-one', {-->
-        <#--year: d.getFullYear(),-->
-        <#--month: d.getMonth() + 1,-->
-        <#--day: d.getDate()-->
-    <#--});-->
-
-    <#--// inline example-->
-    <#--simplyCountdown('.simply-countdown-inline', {-->
-        <#--year: d.getFullYear(),-->
-        <#--month: d.getMonth() + 1,-->
-        <#--day: d.getDate(),-->
-        <#--inline: true-->
-    <#--});-->
-
-    <#--//jQuery example-->
-    <#--$('#simply-countdown-losange').simplyCountdown({-->
-        <#--year: d.getFullYear(),-->
-        <#--month: d.getMonth() + 1,-->
-        <#--day: d.getDate(),-->
-        <#--enableUtc: false-->
-    <#--});-->
-<#--</script>-->
-<#--<!-- //Countdown-Timer-JavaScript &ndash;&gt;-->
+<script src="/templates/js/jzBox.js"></script>
 
 <!-- smooth scrolling -->
 <script type="text/javascript">
@@ -153,6 +128,7 @@
         $().UItoTop({ easingType: 'easeOutQuart' });
     });
 </script>
+
 <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 <!-- //smooth scrolling -->
-<script type="text/javascript" src="templates/js/bootstrap.js"></script>
+<script type="text/javascript" src="/templates/js/bootstrap.js"></script>

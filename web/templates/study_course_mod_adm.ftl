@@ -9,6 +9,25 @@
 <body>
 <#include "navbar.ftl">
 
+<div class="container">
+    <div class="center-block">
+        <div class="w3ls-heading page-header">
+            <h3>Modifica dati della laurea: ${studyCourse.name}</h3>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div>
+        <#if message??>
+            <div class="jumbotron">
+                ${message}
+            </div>
+        <#else>
+        </#if>
+    </div>
+</div>
+
 <form action="AdmModStudyCourse" method="POST" id="mod" class="my-form" >
 
     <div class="row">
@@ -25,19 +44,6 @@
 
 
         <div class="container">
-            <div class="title">
-                Modifica dati della laurea: ${studyCourse.name}
-            </div>
-            <#if message??>
-                <div class="title">
-                    <h2>ATTENZIONE</h2>
-                    <div class="modalContent">
-                        <p>${message}</p>
-                    </div>
-                </div>
-            <#else>
-
-            </#if>
 
             <div class="col-md-12 col-xs-12">
                 <div class="tab-content" >
@@ -132,9 +138,9 @@
                         </div>
                     </div>
 
+                </div>
             </div>
         </div>
-    </div>
     </div>
 
 </form>

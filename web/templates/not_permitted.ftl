@@ -6,7 +6,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 
 
-<#--non so se viene mai usata perà ci sta-->
+<#--non so se viene mai usata però ci sta-->
 <!DOCTYPE html>
 <html>
 <head>

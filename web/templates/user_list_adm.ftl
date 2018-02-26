@@ -1,19 +1,34 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <title>Home</title>
+    <title>Lista utenti</title>
 
 <#include "import.ftl">
 
 </head>
 <body>
-
 <#include "navbar.ftl">
+
 <div class="container">
-    <div class="title">
-        Lista utenti
+    <div class="center-block">
+        <div class="w3ls-heading page-header">
+            <h3>Lista utenti</h3>
+        </div>
     </div>
-        <p><#if message??>${message}<#else></#if></p>
+</div>
+
+<div class="container">
+    <div>
+        <#if message??>
+            <div class="jumbotron">
+                ${message}
+            </div>
+        <#else>
+        </#if>
+    </div>
+</div>
+
+<div class="container">
 
     <div class="table-responsive" >
         <table class="table table-hover table-bordered table-striped">
@@ -38,7 +53,7 @@
             </#list>
             </tbody>
         </table>
-        </div>
+    </div>
 </div>
 <#include "tail.ftl">
 

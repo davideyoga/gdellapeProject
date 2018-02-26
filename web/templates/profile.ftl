@@ -7,15 +7,28 @@
 
 </head>
 <body>
-
 <#include "navbar.ftl">
+
 <div class="container">
-
-    <div class="title">
-        Modifica dati ${user.name} ${user.surname}
+    <div class="center-block">
+        <div class="w3ls-heading page-header">
+            <h3>Modifica dati ${user.name} ${user.surname}</h3>
+        </div>
     </div>
+</div>
 
-    <p><#if message??>${message}<#else></#if></p>
+<div class="container">
+    <div>
+        <#if message??>
+            <div class="jumbotron">
+                ${message}
+            </div>
+        <#else>
+        </#if>
+    </div>
+</div>
+
+<div class="container">
 
     <form method="POST" action="AdmModUser">
         <div class="col-md-6">

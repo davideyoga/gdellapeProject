@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <title>Pagina Docente</title>
+    <title>Profilo Utente</title>
 
     <!--librerie-->
 <#include "import.ftl">
@@ -10,6 +10,14 @@
 <body>
 <!--menù navigazione-->
 <#include "navbar.ftl">
+
+<div class="container">
+    <div class="center-block">
+        <div class="w3ls-heading page-header">
+            <h3>${userCurrent.name} ${userCurrent.surname}</h3>
+        </div>
+    </div>
+</div>
 
 <div class="container">
     <div>
@@ -23,10 +31,6 @@
 </div>
 
 <div class="container">
-
-    <div class="page-header personal-title">
-        ${userCurrent.name} ${userCurrent.surname}
-    </div>
 
     <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#cont">Contatti</a></li>

@@ -7,8 +7,26 @@
 
 </head>
 <body>
-
 <#include "navbar.ftl">
+
+<div class="container">
+    <div class="center-block">
+        <div class="w3ls-heading page-header">
+            <h3>Modifica dati ${usermod.name} ${usermod.surname}</h3>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div>
+        <#if message??>
+            <div class="jumbotron">
+                ${message}
+            </div>
+        <#else>
+        </#if>
+    </div>
+</div>
 
 <form action="AdmModUser" method="POST" id="mod" class="my-form" >
 
@@ -27,19 +45,6 @@
 
 
         <div class="container">
-            <div class="title">
-                Modifica dati ${usermod.name} ${usermod.surname}
-            </div>
-            <#if message??>
-                <div class="title">
-                    <h2>ATTENZIONE</h2>
-                    <div class="modalContent">
-                        <p>${message}</p>
-                    </div>
-                </div>
-            <#else>
-
-            </#if>
 
             <div class="col-md-12 col-xs-12">
                 <div class="tab-content" >
@@ -83,12 +88,12 @@
                         <div class="form-group">
                             <label for="curr_it">Curriculum:</label>
                             <textarea class="form-control" rows="5" id="curr_it" name="curriculum_ita"></textarea>
-                            <#--value="<#if usermod.curriculum_ita??>${usermod.curriculum_ita}<#else></#if>"-->
+                        <#--value="<#if usermod.curriculum_ita??>${usermod.curriculum_ita}<#else></#if>"-->
                         </div>
                         <div class="form-group">
                             <label for="curr_en">Curriculum inglese:</label>
                             <textarea class="form-control" rows="5" id="curr_en" name="curriculum_eng"></textarea>
-                            <#--value="<#if usermod.curriculum_eng??>${usermod.curriculum_eng}<#else></#if>"-->
+                        <#--value="<#if usermod.curriculum_eng??>${usermod.curriculum_eng}<#else></#if>"-->
                         </div>
                     </div>
                 <#--end curr-->

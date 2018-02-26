@@ -7,8 +7,18 @@
 
 </head>
 <body>
-
 <#include "navbar_en.ftl">
+
+<div class="container">
+    <div>
+        <#if message??>
+            <div class="jumbotron">
+                ${message}
+            </div>
+        <#else>
+        </#if>
+    </div>
+</div>
 
 <!-- Modal1 -->
 
@@ -19,14 +29,14 @@
 
 
         <div class="signin-form profile">
-            <h3 class="agileinfo_sign">Accedi</h3>
+            <h3 class="agileinfo_sign">Log-In</h3>
             <div class="login-form">
                 <form action="#" method="post">
                     <input type="text" name="email" placeholder="E-mail" required="">
                     <input type="password" name="password" placeholder="Password" required="">
                     <div class="tp">
                     <#--bottone per login-->
-                        <input type="submit" value="Accedi">
+                        <input type="submit" value="Log-In">
                     </div>
                 </form>
             </div>
@@ -37,7 +47,6 @@
                     <li><a href="#"><i class="fa fa-rss"></i></a></li>
                 </ul>
             </div>
-            <p><a href="#" data-toggle="modal" data-target="#myModal3" > Non hai un account?</a></p>
         </div>
     </div>
 
