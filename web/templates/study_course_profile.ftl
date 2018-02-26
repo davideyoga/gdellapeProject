@@ -2,9 +2,7 @@
 <html lang="it">
 <head>
 <#--sono le informazioni specifiche del corso di studi-->
-    <title>
-        Home
-    </title>
+    <title>Corso di studio</title>
 
     <#include "import.ftl">
 
