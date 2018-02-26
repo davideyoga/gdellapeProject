@@ -1,10 +1,47 @@
 <div class="container">
-    <p><#if message??>${message}<#else></#if></p>
+    <div>
+        <#if message??>
+            <div class="jumbotron">
+                ${message}
+            </div>
+        <#else>
+        </#if>
+    </div>
 
-    <div class="w3ls-heading">
+    <div class="w3ls-heading page-header">
         <h1>Home BackOffice</h1>
         <h3>Benvenuto ${user.name}</h3>
     </div>
+
+    <#list services as service>
+        <#if service.name == 'createUser'>
+            <#assign createUser= true>
+        </#if>
+        <#if service.name == 'viewUser'>
+            <#assign viewUser= true>
+        </#if>
+        <#if service.name == 'createStudyCourse'>
+            <#assign createStudyCourse= true>
+        </#if>
+        <#if service.name == 'viewStudyCourse'>
+            <#assign viewStudyCourse= true>
+        </#if>
+        <#if service.name == 'createCourse'>
+            <#assign createCourse= true>
+        </#if>
+        <#if service.name == 'modCourse'>
+            <#assign modCourse= true>
+        </#if>
+        <#if service.name == 'createGroup'>
+            <#assign createGroup = true>
+        </#if>
+        <#if service.name == 'modGroups'>
+            <#assign modGroups = true>
+        </#if>
+        <#if service.name == 'logView'>
+            <#assign logView = true>
+        </#if>
+    </#list>
 
     <div class="row">
         <div class="col-md-12 col-xs-12 fa-border-course">
@@ -12,11 +49,7 @@
                 <h3>Sezione Utenti</h3>
             </div>
             <div class="">
-                <#list services as service>
-                    <#if service.name == 'createUser'>
-                        <#assign createUser= true>
-                    </#if>
-                </#list>
+
                 <#if createUser>
                     <a href="/CreateUser">
                         <section class="flat">
@@ -24,11 +57,7 @@
                         </section>
                     </a>
                 </#if>
-                <#list services as service>
-                    <#if service.name == 'viewUser'>
-                        <#assign viewUser= true>
-                    </#if>
-                </#list>
+
                 <#if viewUser>
                 <a href="/admGetListUser">
                     <section class="flat">
@@ -48,11 +77,6 @@
                 <h3>Sezione percorsi di laurea</h3>
             </div>
             <div class="">
-                <#list services as service>
-                    <#if service.name == 'createStudyCourse'>
-                        <#assign createStudyCourse= true>
-                    </#if>
-                </#list>
                 <#if createStudyCourse>
                 <a href="/createStudyCourse">
                     <section class="flat">
@@ -61,11 +85,6 @@
                 </a>
                 </#if>
 
-                <#list services as service>
-                    <#if service.name == 'viewStudyCourse'>
-                        <#assign viewStudyCourse= true>
-                    </#if>
-                </#list>
                 <#if viewStudyCourse>
                 <a href="/admGetListStudyCourse">
                     <section class="flat">
@@ -85,11 +104,7 @@
                 <h3>Sezione Insegnamenti</h3>
             </div>
             <div class="">
-                <#list services as service>
-                    <#if service.name == 'createCourse'>
-                        <#assign createCourse= true>
-                    </#if>
-                </#list>
+
                 <#if createCourse>
                 <a href="/createCourse">
                     <section class="flat">
@@ -97,11 +112,7 @@
                     </section>
                 </a>
                 </#if>
-                <#list services as service>
-                    <#if service.name == 'modCourse'>
-                        <#assign modCourse= true>
-                    </#if>
-                </#list>
+
                 <#if modCourse>
                 <a href="/ListCourse">
                     <section class="flat">
@@ -119,11 +130,7 @@
                 <h3>Sezione Gruppi</h3>
             </div>
             <div class="">
-                <#list services as service>
-                    <#if service.name == 'createGroup'>
-                        <#assign createGroup = true>
-                    </#if>
-                </#list>
+
                 <#if createGroup>
                 <a href="/createGroups">
                     <section class="flat">
@@ -131,11 +138,7 @@
                     </section>
                 </a>
                 </#if>
-                <#list services as service>
-                    <#if service.name == 'modGroups'>
-                        <#assign modGroups = true>
-                    </#if>
-                </#list>
+
                 <#if modGroups>
                 <a href="/AdmGetListGroups">
                     <section class="flat">
@@ -146,11 +149,7 @@
             </div>
         </div>
     </div>
-    <#list services as service>
-        <#if service.name == 'logView'>
-            <#assign logView = true>
-        </#if>
-    </#list>
+
     <#if logView>
         <div class="row">
             <div class="col-md-12 col-xs-12 fa-border-course">

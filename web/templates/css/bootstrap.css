@@ -6615,4 +6615,9 @@ button.close {
   background: #c0deed;
 }
 
+.my-row{
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
 /*# sourceMappingURL=bootstrap.css.map */
