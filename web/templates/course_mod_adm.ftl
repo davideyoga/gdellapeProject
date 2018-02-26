@@ -8,7 +8,27 @@
 </head>
 <body>
 <!--menù navigazione-->
-    <#include "navbar.ftl">
+<#include "navbar.ftl">
+
+<div class="container">
+    <div class="center-block">
+        <div class="w3ls-heading page-header">
+            <h3>Modifica corso <#if course.name??>${course.name}<#else></#if></h3>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <#if message??>
+        <div class="title">
+            <h2>ATTENZIONE</h2>
+            <div class="modalContent">
+                <p>${message}</p>
+            </div>
+        </div>
+    <#else>
+    </#if>
+</div>
+
 
 <form action="ModAdmCourse" method="POST" id="mod" class="my-form" >
 <#--<div class="row" style="border: #00d21f 5px solid">-->
@@ -43,16 +63,6 @@
 
 
         <div class="container">
-        <#if message??>
-            <div class="title">
-                <h2>ATTENZIONE</h2>
-                <div class="modalContent">
-                    <p>${message}</p>
-                </div>
-            </div>
-        <#else>
-
-        </#if>
 
             <div class="col-md-12 col-xs-12">
                 <div class="tab-content">
