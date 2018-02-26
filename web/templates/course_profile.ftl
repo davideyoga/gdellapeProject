@@ -10,8 +10,15 @@
 
 </head>
 <body>
-
 <#include "navbar.ftl">
+
+<div class="container">
+    <div class="center-block">
+        <div class="w3ls-heading page-header">
+            <h3>Dettagli <#if course.name??>${course.name}<#else> corso</#if></h3>
+        </div>
+    </div>
+</div>
 
 <div class="container">
     <div>
@@ -25,11 +32,6 @@
 </div>
 
 <div class="container">
-
-    <div class="page-header personal-title">
-        dettagli corso
-    </div>
-
     <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#basic">Dati di base</a></li>
         <li><a data-toggle="tab" href="#dublin">Descrittori di Dublino</a></li>

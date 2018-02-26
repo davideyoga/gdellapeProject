@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <title>Home</title>
+    <title>Curriculum</title>
 
     <!--librerie-->
 <#include "import.ftl">
@@ -10,7 +10,24 @@
 <!--menù navigazione-->
 <#include "navbar.ftl">
 
-<p><#if message??>${message}<#else></#if></p>
+<div class="container">
+    <div class="center-block">
+        <div class="w3ls-heading page-header">
+            <h3>Curriculum</h3>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div>
+        <#if message??>
+            <div class="jumbotron">
+                ${message}
+            </div>
+        <#else>
+        </#if>
+    </div>
+</div>
 
 <div class="container">
     ${user.curriculum_ita}

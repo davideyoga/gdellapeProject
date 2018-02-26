@@ -7,12 +7,26 @@
 
 </head>
 <body>
-
 <#include "navbar.ftl">
-<div class="title">
-    Creazione di un nuovo gruppo
+
+<div class="container">
+    <div class="center-block">
+        <div class="w3ls-heading page-header">
+            <h3>Creazione di un nuovo gruppo</h3>
+        </div>
+    </div>
 </div>
 
+<div class="container">
+    <div>
+        <#if message??>
+            <div class="jumbotron">
+                ${message}
+            </div>
+        <#else>
+        </#if>
+    </div>
+</div>
 
 <form action="CreateGroups" method="POST" id="create" class="my-form" >
 <#--<div class="row" style="border: #00d21f 5px solid">-->

@@ -7,12 +7,26 @@
 
 </head>
 <body>
-
 <#include "navbar.ftl">
-<div class="title">
-    Creazione Corso di Laurea
+
+<div class="container">
+    <div class="center-block">
+        <div class="w3ls-heading page-header">
+            <h3>Creazione Corso di Laurea</h3>
+        </div>
+    </div>
 </div>
 
+<div class="container">
+    <div>
+        <#if message??>
+            <div class="jumbotron">
+                ${message}
+            </div>
+        <#else>
+        </#if>
+    </div>
+</div>
 
 <form action="CreateStudyCourse" method="POST" id="create" class="my-form" >
 <#--<div class="row" style="border: #00d21f 5px solid">-->
@@ -22,7 +36,7 @@
                 <li class="active"><a data-toggle="pill" href="#base">Dati di base</a></li>
                 <li><a data-toggle="pill" href="#extra_it">Informazioni aggiuntive</a></li>
                 <li><a data-toggle="pill" href="#extra_en">Informazioni in inglese</a></li>
-                <#--<li><a data-toggle="pill" href="#association">Associazioni</a></li>-->
+            <#--<li><a data-toggle="pill" href="#association">Associazioni</a></li>-->
             </ul>
             <br>
             <button type="submit" form="create" class="btn btn-default">Crea Corso di Laurea</button>
@@ -30,16 +44,6 @@
 
 
         <div class="container">
-        <#if message??>
-            <div class="title">
-                <h2>ATTENZIONE</h2>
-                <div class="modalContent">
-                    <p>${message}</p>
-                </div>
-            </div>
-        <#else>
-
-        </#if>
 
             <div class="col-md-12 col-xs-12">
                 <div class="tab-content">
@@ -119,20 +123,20 @@
                     </div>
                 <#--end extra_en-->
 
-                    <#--da sistemare
-                    <div id="association" class="tab-pane fade">
-                        <a href="ModAssociationStudyCourseWithCourse?idStudyCourse=${studyCourse.id}">Mod Association With Course</a>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Decidi quali corsi assegnare</div>
-                            <div class="panel-body">
-                                <#list listCourses as course>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="${course.name}">${course.name}</label>
-                                    </div>
-                                </#list>
-                            </div>
+                <#--da sistemare
+                <div id="association" class="tab-pane fade">
+                    <a href="ModAssociationStudyCourseWithCourse?idStudyCourse=${studyCourse.id}">Mod Association With Course</a>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Decidi quali corsi assegnare</div>
+                        <div class="panel-body">
+                            <#list listCourses as course>
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value="${course.name}">${course.name}</label>
+                                </div>
+                            </#list>
                         </div>
-                    </div>-->
+                    </div>
+                </div>-->
 
                 </div>
 

@@ -9,8 +9,23 @@
 <body>
 <#include "navbar.ftl">
 
-<div class="title">
-    Creazione nuovo utente
+<div class="container">
+    <div class="center-block">
+        <div class="w3ls-heading page-header">
+            <h3>Creazione di un nuovo utente</h3>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div>
+        <#if message??>
+            <div class="jumbotron">
+                ${message}
+            </div>
+        <#else>
+        </#if>
+    </div>
 </div>
 
 
@@ -31,16 +46,6 @@
 
 
         <div class="container">
-        <#if message??>
-            <div class="title">
-                <h2>ATTENZIONE</h2>
-                <div class="modalContent">
-                    <p>${message}</p>
-                </div>
-            </div>
-        <#else>
-
-        </#if>
 
             <div class="col-md-12 col-xs-12">
                 <div class="tab-content">

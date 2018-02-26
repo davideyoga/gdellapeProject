@@ -7,60 +7,62 @@
 
 </head>
 <body>
-
 <#include "navbar.ftl">
-<div class="title">
-    Creazione di un nuovo corso
+
+<div class="container">
+    <div class="center-block">
+        <div class="w3ls-heading page-header">
+            <h3>Creazione di un nuovo corso</h3>
+        </div>
+    </div>
 </div>
 
+<div class="container">
+    <div>
+        <#if message??>
+            <div class="jumbotron">
+                ${message}
+            </div>
+        <#else>
+        </#if>
+    </div>
+</div>
 
 <form action="CreateCourse" method="POST" id="create" class="my-form" >
 <#--<div class="row" style="border: #00d21f 5px solid">-->
-<div class="row">
-    <div class="col-md-2 col-xs-2 my-menu">
-        <ul class="nav nav-pills nav-stacked">
-            <li class="active"><a data-toggle="pill" href="#basic">Informazioni di base</a></li>
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Informazioni aggiuntive
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a data-toggle="pill" href="#aggiuntive">Italiano</a></li>
-                    <li><a data-toggle="pill" href="#aggiuntive_en">Inglese</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Descrittori di Dublino
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a data-toggle="pill" href="#dub">Italiano</a></li>
-                    <li><a data-toggle="pill" href="#dub_en">Inglese</a></li>
-                </ul>
-            </li>
-            <li><a data-toggle="pill" href="#notes_page">Note</a></li>
-            <li><a data-toggle="pill" href="#ext_mat">Materiale esterno</a></li>
-        </ul>
-        <br>
-        <button type="submit" form="create" class="btn btn-default">Crea corso</button>
-    </div>
+    <div class="row">
+        <div class="col-md-2 col-xs-2 my-menu">
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active"><a data-toggle="pill" href="#basic">Informazioni di base</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Informazioni aggiuntive
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a data-toggle="pill" href="#aggiuntive">Italiano</a></li>
+                        <li><a data-toggle="pill" href="#aggiuntive_en">Inglese</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Descrittori di Dublino
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a data-toggle="pill" href="#dub">Italiano</a></li>
+                        <li><a data-toggle="pill" href="#dub_en">Inglese</a></li>
+                    </ul>
+                </li>
+                <li><a data-toggle="pill" href="#notes_page">Note</a></li>
+                <li><a data-toggle="pill" href="#ext_mat">Materiale esterno</a></li>
+            </ul>
+            <br>
+            <button type="submit" form="create" class="btn btn-default">Crea corso</button>
+        </div>
 
 
-    <div class="container">
-        <#if message??>
-            <div class="title">
-                <h2>ATTENZIONE</h2>
-                <div class="modalContent">
-                    <p>${message}</p>
-                </div>
-             </div>
-        <#else>
-
-        </#if>
-
-        <div class="col-md-12 col-xs-12">
+        <div class="container">
+            <div class="col-md-12 col-xs-12">
                 <div class="tab-content">
-
 
                     <div id="basic" class="tab-pane fade in active">
                         <div class="form-group">
@@ -92,7 +94,7 @@
                             </select>
                         </div>
                     </div>
-                    <#--end basic-->
+                <#--end basic-->
 
 
                     <div id="aggiuntive" class="tab-pane fade">
@@ -117,7 +119,7 @@
                             <textarea class="form-control" rows="5" id="sillabo" name="syllabus_ita"></textarea>
                         </div>
                     </div>
-                    <#--end aggiuntive-->
+                <#--end aggiuntive-->
 
 
                     <div id="aggiuntive_en" class="tab-pane fade">
@@ -142,7 +144,7 @@
                             <textarea class="form-control" rows="5" id="syllabus" name="syllabus_eng"></textarea>
                         </div>
                     </div>
-                    <#--end aggiuntive_en-->
+                <#--end aggiuntive_en-->
 
 
                     <div id="dub" class="tab-pane fade">
@@ -167,7 +169,7 @@
                             <textarea class="form-control" rows="5" id="lifelog" name="lifelog_learning_skills_ita"></textarea>
                         </div>
                     </div>
-                    <#--end dub-->
+                <#--end dub-->
 
 
                     <div id="dub_en" class="tab-pane fade">
@@ -192,7 +194,7 @@
                             <textarea class="form-control" rows="5" id="lifelog_en" name="lifelog_learning_skills_eng"></textarea>
                         </div>
                     </div>
-                    <#--end dub_en-->
+                <#--end dub_en-->
 
                     <div id="notes_page" class="tab-pane fade">
                         <div class="form-group">
@@ -215,13 +217,13 @@
                         </div>
                     </div>
                 </div>
-                <#--end ext_mat-->
+            <#--end ext_mat-->
 
 
             </div>
         </div>
     </div>
-</div>
+    </div>
 
 </form>
 
