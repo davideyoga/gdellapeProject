@@ -11,22 +11,29 @@
 <!--menù navigazione-->
 <#include "navbar.ftl">
 
-    <div class="title" >
-        Lista Docenti
+<div class="container">
+    <div class="center-block">
+        <div class="w3ls-heading page-header">
+            <h3>I nostri docenti</h3>
+        </div>
     </div>
+</div>
 
-    <div class="container">
-        <!--Eventuale messaggio di errore-->
-        <p>
-            <#if message??>
+<div class="container">
+    <div>
+        <#if message??>
+            <div class="jumbotron">
                 ${message}
-            <#else>
+            </div>
+        <#else>
+        </#if>
+    </div>
+</div>
 
-            </#if>
-        </p>
+<div class="container">
 
-        <div class="table-responsive" >
-            <table class="table table-hover table-bordered table-striped">
+    <div class="table-responsive" >
+        <table class="table table-hover table-bordered table-striped">
             <!--Come un for-each, cicla sulla lista di users estraendo ogni volta l'utente della lista-->
 
             <thead>
@@ -50,7 +57,7 @@
             </tbody>
         </table>
     </div>
-    </div>
+</div>
 
 <!--modulo contatti, email, conclusione-->
 <#include "tail.ftl">

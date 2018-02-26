@@ -7,48 +7,54 @@
 
 </head>
 <body>
+<#include "navbar.ftl">
 
-    <#include "navbar.ftl">
-    <div class="title">
-        Lista Corsi di studio
+<div class="container">
+    <div class="center-block">
+        <div class="w3ls-heading page-header">
+            <h3>Corsi di studio disponibili</h3>
+        </div>
     </div>
+</div>
 
-    <div class="container">
-
-        <!--Eventuale messaggio di errore-->
-        <p>
-            <#if message??>
+<div class="container">
+    <div>
+        <#if message??>
+            <div class="jumbotron">
                 ${message}
-            <#else>
+            </div>
+        <#else>
+        </#if>
+    </div>
+</div>
 
-            </#if>
-        </p>
+<div class="container">
 
-        <div class="table-responsive">
-            <table class="table table-bordered table-striped table-hover">
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
 
-                <thead>
-                <tr>
-                    <th>Codice Corso di studio</th>
-                    <th>Nome Corso di studio </th>
-                    <th> - </th>
-                </tr>
-                </thead>
+            <thead>
+            <tr>
+                <th>Codice Corso di studio</th>
+                <th>Nome Corso di studio </th>
+                <th> - </th>
+            </tr>
+            </thead>
 
-                <tbody>
+            <tbody>
                     <#list studyCourses as studyCourse>
-                        <tr>
-                            <td>${studyCourse.code}</td>
-                            <td>${studyCourse.name}</td>
-                            <td>
-                                <a href="StudyCourseProfile?code=${studyCourse.code}">Leggi di piu'</a>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>${studyCourse.code}</td>
+                        <td>${studyCourse.name}</td>
+                        <td>
+                            <a href="StudyCourseProfile?code=${studyCourse.code}">Leggi di piu'</a>
+                        </td>
+                    </tr>
                     </#list>
-                </tbody>
+            </tbody>
         </table>
     </div>
-    </div>
+</div>
 
 
 <!--modulo contatti, email, conclusione-->

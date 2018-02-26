@@ -7,36 +7,41 @@
 
 </head>
 <body>
-
-    <#include "navbar.ftl">
-    <div class="title" >
-        Lista Corsi di studio
+<#include "navbar.ftl">
+<div class="container">
+    <div class="center-block">
+        <div class="w3ls-heading page-header">
+            <h3>Corsi erogati</h3>
+        </div>
     </div>
+</div>
 
-    <div class="container">
-
-        <!--Eventuale messaggio di errore-->
-        <p>
-            <#if message??>
+<div class="container">
+    <div>
+        <#if message??>
+            <div class="jumbotron">
                 ${message}
-            <#else>
+            </div>
+        <#else>
+        </#if>
+    </div>
+</div>
 
-            </#if>
-        </p>
+<div class="container">
 
-        <div class="table-responsive" >
-            <table class="table table-hover table-bordered table-striped">
-                <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
+    <div class="table-responsive" >
+        <table class="table table-hover table-bordered table-striped">
+            <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
 
-                <thead>
-                <tr>
-                    <th>Codice materia</th>
-                    <th>Nome materia </th>
-                    <th> - </th>
-                </tr>
-                </thead>
+            <thead>
+            <tr>
+                <th>Codice materia</th>
+                <th>Nome materia </th>
+                <th> - </th>
+            </tr>
+            </thead>
 
-                <tbody>
+            <tbody>
                     <#list listCourse as course>
                     <tr>
                         <td>${course.code}</td>
@@ -46,11 +51,11 @@
                         </td>
                     </tr>
                     </#list>
-                </tbody>
-            </table>
+            </tbody>
+        </table>
         <div>
+        </div>
     </div>
-  </div>
 </div>
 <#--tutti questi div sono inutili ma ci devono stare-->
 
