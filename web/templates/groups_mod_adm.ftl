@@ -7,14 +7,29 @@
 
 </head>
 <body>
-
 <#include "navbar.ftl">
-<div class="title">
-    Modifica del gruppo <#if groups.name??>${groups.name}<#else></#if>
+
+<div class="container">
+    <div class="center-block">
+        <div class="w3ls-heading page-header">
+            <h3>Modifica <#if groups.name??>${groups.name}<#else> gruppo</#if> </h3>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div>
+        <#if message??>
+            <div class="jumbotron">
+                ${message}
+            </div>
+        <#else>
+        </#if>
+    </div>
 </div>
 
 
-<form action="CreateGroups" method="POST" id="create" class="my-form" >
+<form action="admModGroups" method="POST" id="mod" class="my-form" >
 <#--<div class="row" style="border: #00d21f 5px solid">-->
     <div class="row">
         <div class="col-md-2 col-xs-2 my-menu">
@@ -22,7 +37,7 @@
                 <li class="active"><a data-toggle="pill" href="#basic">Informazioni di base</a></li>
             </ul>
             <br>
-            <button type="submit" form="create" class="btn btn-default">Modifica gruppo</button>
+            <button type="submit" form="mod" class="btn btn-default">Modifica gruppo</button>
         </div>
 
 

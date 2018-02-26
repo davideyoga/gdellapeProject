@@ -1,4 +1,3 @@
-
 <link href="/templates/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="/templates/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link href="/templates/css/table.css" rel="stylesheet" type="text/css" media="all"/>

@@ -7,17 +7,24 @@
 
 </head>
 <body>
+<#include "navbar.ftl">
 
-    <#include "navbar.ftl">
-
+<div class="container">
+    <div>
+        <#if message??>
+            <div class="jumbotron">
+                ${message}
+            </div>
+        <#else>
+        </#if>
+    </div>
+</div>
     <!-- Modal1 -->
 
         <div class="modal-dialog">
             <!-- Modal content-->
 
                 <div class="modal-header">
-                    <p><#if message??>${message}<#else></#if></p>
-
 
                     <div class="signin-form profile">
                         <h3 class="agileinfo_sign">Accedi</h3>
@@ -38,7 +45,6 @@
                                 <li><a href="#"><i class="fa fa-rss"></i></a></li>
                             </ul>
                         </div>
-                        <p><a href="#" data-toggle="modal" data-target="#myModal3" > Non hai un account?</a></p>
                     </div>
                 </div>
 

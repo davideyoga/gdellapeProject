@@ -11,13 +11,28 @@
 <#include "navbar.ftl">
 
 <div class="container">
-    <div class="title"> Lista corsi</div>
+    <div class="center-block">
+        <div class="w3ls-heading page-header">
+            <h3>Lista dei corsi</h3>
+        </div>
+    </div>
+</div>
 
-    <p><#if message??>${message}<#else></#if></p>
+<div class="container">
+    <div>
+        <#if message??>
+            <div class="jumbotron">
+                ${message}
+            </div>
+        <#else>
+        </#if>
+    </div>
+</div>
+<div class="container">
 
     <div class="table-responsive" >
         <table class="table table-hover table-bordered table-striped">
-        <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
+            <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
 
             <thead>
             <tr>

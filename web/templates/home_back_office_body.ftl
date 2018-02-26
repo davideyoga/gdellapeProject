@@ -1,4 +1,13 @@
 <div class="container">
+    <div class="center-block">
+        <div class="w3ls-heading page-header">
+            <h1>Home BackOffice</h1>
+            <h3>Benvenuto ${user.name}</h3>
+        </div>
+    </div>
+</div>
+
+<div class="container">
     <div>
         <#if message??>
             <div class="jumbotron">
@@ -7,11 +16,9 @@
         <#else>
         </#if>
     </div>
+</div>
 
-    <div class="w3ls-heading page-header">
-        <h1>Home BackOffice</h1>
-        <h3>Benvenuto ${user.name}</h3>
-    </div>
+<div class="container">
 
     <#list services as service>
         <#if service.name == 'createUser'>

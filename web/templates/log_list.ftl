@@ -11,9 +11,25 @@
     <#include "navbar.ftl">
 
 <div class="container">
-    <div class="title"> Visualizza Log</div>
+    <div class="center-block">
+        <div class="w3ls-heading page-header">
+            <h3>Visualizza log</h3>
+        </div>
+    </div>
+</div>
 
-    <p><#if message??>${message}<#else></#if></p>
+<div class="container">
+    <div>
+        <#if message??>
+            <div class="jumbotron">
+                ${message}
+            </div>
+        <#else>
+        </#if>
+    </div>
+</div>
+
+<div class="container">
 
     <div class="table-responsive" >
         <table id="log_tab" class="table table-hover table-bordered table-striped">
@@ -28,13 +44,13 @@
 
             <tbody>
                 <#list logs as log>
-                    <tr>
-                        <td>${log.description}</td>
-                        <td>${log.idUser}</td>
-                        <#--<td>-->
-                            <#--<a href="AdmModGroups?id=${group.id}">modifica</a>-->
-                        <#--</td>-->
-                    </tr>
+                <tr>
+                    <td>${log.description}</td>
+                    <td>${log.idUser}</td>
+                <#--<td>-->
+                <#--<a href="AdmModGroups?id=${group.id}">modifica</a>-->
+                <#--</td>-->
+                </tr>
                     <#if (log?counter%10) == 0 > <#else></#if>
                 </#list>
             </tbody>

@@ -6,7 +6,8 @@
     <!--librerie-->
     <#include "import.ftl">
 </head>
-<body onload="prova()">
+<#--<body onload="prova()">-->
+<body>
     <!--menù navigazione-->
     <#include "navbar.ftl">
 
