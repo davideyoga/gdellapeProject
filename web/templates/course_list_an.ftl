@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>Lista Corsi di studio</title>
+    <title>Lista Corsi</title>
 
 <#include "import.ftl">
 
