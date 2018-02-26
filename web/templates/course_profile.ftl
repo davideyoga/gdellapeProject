@@ -14,7 +14,6 @@
 <#include "navbar.ftl">
 
 <div class="container">
-
     <div>
         <#if message??>
             <div class="jumbotron">
@@ -23,6 +22,9 @@
         <#else>
         </#if>
     </div>
+</div>
+
+<div class="container">
 
     <div class="page-header personal-title">
         dettagli corso

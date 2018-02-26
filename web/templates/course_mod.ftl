@@ -19,15 +19,14 @@
 </div>
 
 <div class="container">
-    <#if message??>
-        <div class="title">
-            <h2>ATTENZIONE</h2>
-            <div class="modalContent">
-                <p>${message}</p>
+    <div>
+        <#if message??>
+            <div class="jumbotron">
+                ${message}
             </div>
-        </div>
-    <#else>
-    </#if>
+        <#else>
+        </#if>
+    </div>
 </div>
 
 <form action="ModCourse" method="POST" id="mod" class="my-form" >
