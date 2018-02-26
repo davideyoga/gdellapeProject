@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <#--sono le informazioni specifiche del corso di studi-->
+<#--sono le informazioni specifiche del corso di studi-->
     <title>
         Home
     </title>
@@ -13,98 +13,206 @@
 
     <#include "navbar.ftl">
 
-    <div class="container">
+<div class="container">
 
-        <p><#if message??>${message}<#else></#if></p>
-
-        <div class="table-responsive" >
-            <table class="table table-hover table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th colspan="4">Infomazioni su ${studyCourse.name}</th>
-                </tr>
-            </thead>
-            <tr>
-                <td>Anno Accademico</td>
-                    <td><a href="StudyCourseProfile?code=${studyCourse.code}&age=${(currentFirstYear - 1)?string.computer}&<#if lng == 'IT'>lng=EN<#elseif lng == 'EN'>lng=IT<#else>lng=EN</#if>&code=${studyCourse.code} ">Previous year</a></td>
-                    <td>${accademicYear}</td>
-                    <td><a href="StudyCourseProfile?code=${studyCourse.code}&age=${(currentFirstYear + 1)?string.computer}&<#if lng == 'IT'>lng=EN<#elseif lng == 'EN'>lng=IT<#else>lng=EN</#if>&code=${studyCourse.code} ">Next year</a></td>
-            </tr>
-            <tr>
-                <td>Nome corso</td>
-                    <td colspan="3">${studyCourse.name}</td>
-            </tr>
-            <tr>
-                <td>Codice corso</td>
-                    <td colspan="3">${studyCourse.code}</td>
-            </tr>
-            <tr>
-                <td>Durata:</td>
-                    <td colspan="3">${studyCourse.duration} anni</td>
-            </tr>
-            <#--<tr>-->
-                <#--<td>Classe:</td>-->
-                    <#--<td><#if studyCourse.classes??> ${studyCourse.classes} <#else>Non presente</#if></td>-->
-            <#--</tr>-->
-            <#--<tr>-->
-                <#--<td>Posti</td>-->
-                    <#--<td>${studyCourse.seat}</td>-->
-            <#--</tr>-->
-            <tr>
-                <td>Dipartimento</td>
-                    <td colspan="3">${studyCourse.department_ita}</td>
-            </tr>
-            <tr>
-                <td>Livello EQF</td>
-                    <td colspan="3">${studyCourse.level_ita}</td>
-            </tr>
-            <tr>
-                <td>Access type</td>
-                    <td colspan="3">${studyCourse.accessType_ita}</td>
-            </tr>
-            <tr>
-                <td>Lingua corso</td>
-                    <td colspan="3">${studyCourse.language_ita}</td>
-            </tr>
-            <br>
-        </table>
-        </div>
-            <!--Tutta la descrizione del corso, per prendere spunto guardare user_profile.ftl-->
-    <#--commento cmmento-->
-            <#--<p>CORSI APPARTENENTI AL CORSO DI STUDI (DA SCRIVERE IN INGLESE)</p>-->
-        <br>
-        <br>
-        <br>
-
-        <#list courses>
-            <div class="table-responsive" >
-            <table class="table table-hover table-bordered table-striped">
-                <thead>
-                <tr>
-                    <th colspan="3">Insegnamenti associati a ${studyCourse.name}</th>
-                </tr>
-                </thead>
-            <#items as  course>
-            <tr>
-                <td>Nome corso</td>
-                <td >${course.name}</td>
-                <td ><a href="CourseProfile?id=${course.idCourse}">Leggi di piu'</a></td>
-            </tr>
-
-            </#items>
-        </table>
+    <div>
+        <#if message??>
+            <div class="jumbotron">
+                ${message}
             </div>
         <#else>
-            <h3>Attualmente non ci sono insegnamenti associati al corso di studi</h3>
-        </#list>
-
-        <br>
-        <div class="title">Descrizione Corso di Studi:</div>
-         ${studyCourse.description_ita}
-
+        </#if>
     </div>
 
-    <#include "tail.ftl">
+    <div class="page-header personal-title">
+        Infomazioni sul corso di studi in ${studyCourse.name}
+    </div>
 
+    <div class="text-center">
+        <h4>Anno Accademico di riferimento</h4>
+        <ul class="pagination">
+            <li><a href="StudyCourseProfile?code=${studyCourse.code}&age=${(currentFirstYear - 1)?string.computer}&<#if lng == 'IT'>lng=EN<#elseif lng == 'EN'>lng=IT<#else>lng=EN</#if>&code=${studyCourse.code} ">« Anno precedente</a></li>
+            <li class="disabled"><a href="#">${accademicYear}</a></li>
+            <li><a href="StudyCourseProfile?code=${studyCourse.code}&age=${(currentFirstYear + 1)?string.computer}&<#if lng == 'IT'>lng=EN<#elseif lng == 'EN'>lng=IT<#else>lng=EN</#if>&code=${studyCourse.code} ">Anno successivo »</a></li>
+        </ul>
+    </div>
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#basic">Dati di base</a></li>
+        <li><a data-toggle="tab" href="#desc">Descrizione</a></li>
+        <li><a data-toggle="tab" href="#course">Materie collegate</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="basic" class="tab-pane fade in active">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Dati di base</h4></div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12 col-xs-12">
+                                <div class="col-md-3 col-xs-3 col-sm-3">
+                                    <h4>Nome percorso: </h4>
+                                </div>
+                                <div class="col-md-9 col-xs-9 col-sm-9">
+                                    <p>${studyCourse.name}</p>
+                                </div>
+                            </div>
+                            <br><br>
+                            <div class="col-md-12 col-xs-12">
+                                <div class="col-md-3 col-xs-3 col-sm-3">
+                                    <p>Codice:</p>
+                                </div>
+                                <div class="col-md-9 col-xs-9 col-sm-9">
+                                    <p>${studyCourse.code}</p>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="col-md-12 col-xs-12">
+                                <div class="col-md-3 col-xs-3 col-sm-3">
+                                    <p>Lingua principale:</p>
+                                </div>
+                                <div class="col-md-9 col-xs-9 col-sm-9">
+                                    <p>${studyCourse.language_ita}</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="col-md-12 col-xs-12">
+                                <div class="col-md-3 col-xs-3 col-sm-3">
+                                    <p>Durata:</p>
+                                </div>
+                                <div class="col-md-9 col-xs-9 col-sm-9">
+                                    <p>${studyCourse.duration} anni</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="col-md-12 col-xs-12">
+                                <div class="col-md-3 col-xs-3 col-sm-3">
+                                    <p>Dipartimento:</p>
+                                </div>
+                                <div class="col-md-9 col-xs-9 col-sm-9">
+                                    <p>${studyCourse.department_ita}</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="col-md-12 col-xs-12">
+                                <div class="col-md-3 col-xs-3 col-sm-3">
+                                    <p>Livello EQF:</p>
+                                </div>
+                                <div class="col-md-9 col-xs-9 col-sm-9">
+                                    <p>${studyCourse.level_ita}</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="col-md-12 col-xs-12">
+                                <div class="col-md-3 col-xs-3 col-sm-3">
+                                    <p>Modalit&agrave d'accesso</p>
+                                </div>
+                                <div class="col-md-9 col-xs-9 col-sm-9">
+                                    <p>${studyCourse.accessType_ita}</p>
+                                </div>
+                            </div>
+                            <br>
+                                    <#if studyCourse.classes??>
+                                        <div class="col-md-12 col-xs-12">
+                                            <div class="col-md-3 col-xs-3 col-sm-3">
+                                                <p>Classe</p>
+                                            </div>
+                                            <div class="col-md-9 col-xs-9 col-sm-9">
+                                                <p> ${studyCourse.classes}</p>
+                                            </div>
+                                        </div>
+                                        <br>
+                                    </#if>
+                            <div class="col-md-12 col-xs-12">
+                                <div class="col-md-3 col-xs-3 col-sm-3">
+                                    <p>Posti disponibili</p>
+                                </div>
+                                <div class="col-md-9 col-xs-9 col-sm-9">
+                                    <p>${studyCourse.seat}</p>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+
+                </div> <#--end panel default-->
+
+            <#--note-->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#note">Note</a>
+                        </h4>
+                    </div>
+                    <div id="note" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12 col-xs-12">
+                                    <p>${course.note_ita}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <#--div note-->
+
+            </div> <#--div panel-group-->
+        </div> <#--div id basic-->
+
+        <div id="desc" class="tab-pane fade">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Descrizione</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12 col-xs-12">
+                                <p>${studyCourse.description_ita}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <#--div panel-group-->
+        </div> <#--div id desc-->
+
+        <div id="course" class="tab-pane fade">
+            <div class="panel-group">
+
+                <#list courses>
+                    <div class="table-responsive" >
+                        <table class="table table-hover table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th colspan="3">Insegnamenti associati a ${studyCourse.name}</th>
+                            </tr>
+                            </thead>
+                            <#items as  course>
+                            <tr>
+                                <td>Nome corso</td>
+                                <td >${course.name}</td>
+                                <td ><a href="CourseProfile?id=${course.idCourse}">Leggi di piu'</a></td>
+                            </tr>
+
+                            </#items>
+                        </table>
+                    </div>
+                <#else>
+                    <h3>Attualmente non ci sono insegnamenti associati al corso di studi</h3>
+                </#list>
+
+            </div> <#--div panel-group-->
+        </div> <#--div id course-->
+
+
+    </div> <#--div tab-content-->
+
+</div>  <#--div container-->
+
+
+<#include "tail.ftl">
 </body>
 </html>
