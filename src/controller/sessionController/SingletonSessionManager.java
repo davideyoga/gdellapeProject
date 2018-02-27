@@ -58,6 +58,16 @@ public class SingletonSessionManager implements SessionManager {
         //creo la sessione
         HttpSession session = request.getSession(true);
 
+
+        /*
+            PERICOLO PERICOLO PERICOLO PERICOLO PERICOLO PERICOLO PERICOLO PERICOLO PERICOLO
+         */
+        user.setPassword(null);
+        /*
+            PERICOLO PERICOLO PERICOLO PERICOLO PERICOLO PERICOLO PERICOLO PERICOLO PERICOLO
+         */
+
+
         //carico i dati nella sessione
         if(user != null){
             session.setAttribute("user", user); //carico user
