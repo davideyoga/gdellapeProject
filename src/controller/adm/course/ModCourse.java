@@ -84,7 +84,7 @@ public class ModCourse extends BaseController {
 
 
                         //inserisco nella sessione dell'utente l'id del corso (per la futura richiesta post)
-                        request.getSession().setAttribute("courseToModify", courseById);
+                        request.getSession().setAttribute("idCourseToModify", courseById.getIdCourse());
 
                         //lancio il template con il corso caricato
                         datamodel.put("course", courseById);
@@ -143,7 +143,7 @@ public class ModCourse extends BaseController {
                 List <Course> courseListUser = courseDao.getCoursesByUser(sessionManager.getUser(request));
 
                 //estraggo il corso con id = al quello contenuto nella richiesta get
-                Course courseById = courseDao.getCourseById(Integer.parseInt(request.getParameter("id")));
+                Course courseById = courseDao.getCourseById(Integer.parseInt(String.valueOf(request.getSession().getAttribute("idCourseToModify"))));
 
                 //estraggo il servizio di creazione dei gruppi
                 Service modAllCourse = this.getServiceAndCreate(request, response, ds, "modAllCourse", "Service to modificate all course", datamodel, this.getServletContext());
@@ -154,7 +154,7 @@ public class ModCourse extends BaseController {
                         courseListUser.contains(courseById)) {
 
                     //se non ho l'id del corso da modificare in sessione
-                    if(request.getSession().getAttribute("courseToModify") == null){
+                    if(request.getSession().getAttribute("idCourseToModify") == null){
 
                         //lancio servlet di errore
                         response.sendRedirect("Error");
@@ -219,7 +219,7 @@ public class ModCourse extends BaseController {
                 createPreviousPageAndRedirectToLogin(request, response, "ListCourse");
             }
 
-        } catch (DaoException e) {
+        } catch (DaoException | NumberFormatException e) {
             e.printStackTrace();
 
             //in caso di dao exception ecc. lancio il template di errore
