@@ -17,6 +17,7 @@
         </div>
     </div>
 </div>
+
 <div class="container">
     <#if message??>
         <div class="title">
@@ -55,10 +56,12 @@
                     </ul>
                 </li>
                 <li><a data-toggle="pill" href="#notes_page">Note</a></li>
-                <li><a data-toggle="pill" href="#ext_mat">Materiale esterno</a></li>
             </ul>
-            <br>
-            <button type="submit" form="mod" class="btn btn-default">Modifica corso</button>
+            <button type="submit" form="mod" class="btn btn-default btn-block">Modifica corso</button>
+
+            <div class="center-block m-t-3">
+                <a href="AddMaterial?idCourse=${course.idCourse}" class="btn btn-primary center-block" role="button">Aggiugni materiale esterno</a>
+            </div>
         </div>
 
 
@@ -210,19 +213,7 @@
                             <textarea class="form-control" rows="5" id="notes" name="note_eng"><#if course.note_eng??>${course.note_eng}</#if></textarea>
                         </div>
                     </div>
-                    <div id="ext_mat" class="tab-pane fade">
-                        <div class="form-group">
-                            <label for="material">Materiale disponibile:</label>
-                            <textarea class="form-control" rows="5" id="material" name="external_material_ita"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="material_en">External material:</label>
-                            <textarea class="form-control" rows="5" id="material_en" name="external_material_eng"></textarea>
-                        </div>
-                    </div>
-                </div>
-            <#--end ext_mat-->
-
+                <#--end note-->
 
             </div>
         </div>

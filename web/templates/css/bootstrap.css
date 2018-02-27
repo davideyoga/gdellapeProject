@@ -3093,7 +3093,7 @@ fieldset[disabled] .btn-default.active {
 }
 .btn-primary {
   color: #fff;
-  background-color: #337ab7;
+  background-color: #0064d2;
   border-color: #2e6da4;
 }
 .btn-primary:hover,
@@ -6623,5 +6623,33 @@ button.close {
 .m-0{
   margin-left: 0px !important;
   margin-right: 0px !important;
+}
+
+.m-t-3{
+  margin-top: 3em;
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
+}
+
+.d-n{
+  display: none;
 }
 /*# sourceMappingURL=bootstrap.css.map */
