@@ -177,6 +177,7 @@ public class ModAdmCourse extends BaseController {
                         if(courseWithName == null && courseWithCode == null){
 
                             //siccome e' stato modificato eseguo un update
+                            courseByForm.setYear(courseById.getYear());
                             courseByForm.setIdCourse(courseById.getIdCourse());
                             courseDao.storeCourse(courseByForm);
 
