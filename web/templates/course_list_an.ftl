@@ -26,16 +26,19 @@
     </div>
 </div>
 
-<div class="container" style="border: yellow 5px solid">
+<div class="container">
 
-    <div class="table-responsive" style="border: brown 5px solid">
-        <table id="course_table" class="table table-hover table-bordered table-striped m-0" style="border: red 5px solid">
+    <div class="table-responsive">
+        <table id="course_table" class="table table-hover table-bordered table-striped">
             <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
 
             <thead>
             <tr>
-                <th>Codice materia</th>
-                <th>Nome materia </th>
+                <th>Codice</th>
+                <th>Nome </th>
+                <th>Settore</th>
+                <th>Semestre</th>
+                <th>Lingua</th>
                 <th> - </th>
             </tr>
             </thead>
@@ -45,6 +48,9 @@
                     <tr>
                         <td>${course.code}</td>
                         <td>${course.name}</td>
+                        <td>${course.sector}</td>
+                        <td>${course.semester}</td>
+                        <td>${course.language_ita}</td>
                         <td>
                             <a href="CourseProfile?id=${course.idCourse}">Leggi di piu'</a>
                         </td>

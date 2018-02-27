@@ -33,12 +33,12 @@
 <div class="container">
 
     <div class="table-responsive" >
-        <table class="table table-hover table-bordered table-striped">
+        <table id="user_table" class="table table-hover table-bordered table-striped">
             <!--Come un for-each, cicla sulla lista di users estraendo ogni volta l'utente della lista-->
 
             <thead>
             <tr>
-                <th>Nome Docente</th>
+                <th>Nome</th>
                 <th>Email</th>
                 <th> - </th>
             </tr>
@@ -61,5 +61,15 @@
 
 <!--modulo contatti, email, conclusione-->
 <#include "tail.ftl">
+<script src="/templates/js/jquery.dataTables.js" type="text/javascript"></script>
+<script src="/templates/js/dataTables.bootstrap.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function() {
+        $("#user_table").dataTable({
+            "iDisplayLength": 10,
+            "aLengthMenu": [[10, 25, 50, 100,  -1], [10, 25, 50, 100, "All"]]
+        });
+    });
+</script>
 </body>
 </html>

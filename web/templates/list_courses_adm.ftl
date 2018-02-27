@@ -32,27 +32,33 @@
 <div class="container">
 
     <div class="table-responsive" >
-        <table class="table table-hover table-bordered table-striped">
+        <table id="course_table" class="table table-hover table-bordered table-striped">
             <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
 
             <thead>
             <tr>
-                <th>nome materia</th>
-                <th>codice materia</th>
+                <th>Codice</th>
+                <th>Nome </th>
+                <th>Settore</th>
+                <th>Semestre</th>
+                <th>Lingua</th>
                 <th> - </th>
             </tr>
             </thead>
 
             <tbody>
-                <#list courses as course>
-                <tr>
-                    <td>${course.name}</td>
-                    <td>${course.code}</td>
-                    <td>
-                        <a href="ModAdmCourse?id=${course.idCourse}">modifica</a>
-                    </td>
-                </tr>
-                </#list>
+                    <#list courses as course>
+                    <tr>
+                        <td>${course.code}</td>
+                        <td>${course.name}</td>
+                        <td>${course.sector}</td>
+                        <td>${course.semester}</td>
+                        <td>${course.language_ita}</td>
+                        <td>
+                            <a href="ModAdmCourse?id=${course.idCourse}">Leggi di piu'</a>
+                        </td>
+                    </tr>
+                    </#list>
             </tbody>
         </table>
     </div>
@@ -60,5 +66,15 @@
 
 <!--modulo contatti, email, conclusione-->
     <#include "tail.ftl">
+<script src="/templates/js/jquery.dataTables.js" type="text/javascript"></script>
+<script src="/templates/js/dataTables.bootstrap.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function() {
+        $("#course_table").dataTable({
+            "iDisplayLength": 10,
+            "aLengthMenu": [[10, 25, 50, 100,  -1], [10, 25, 50, 100, "All"]]
+        });
+    });
+</script>
 </body>
 </html>
