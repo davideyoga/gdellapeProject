@@ -29,7 +29,7 @@ public class ListMaterial extends BaseController {
 
         //inserisco nel datamodel il corso e il materiale
         datamodel.put("course", course);
-        datamodel.put("material", materials);
+        datamodel.put("materials", materials);
 
         //setto l'utente in sessione
         this.datamodel.put("user", sessionManager.getUser(request));
