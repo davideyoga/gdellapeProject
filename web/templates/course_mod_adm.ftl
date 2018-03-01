@@ -61,6 +61,7 @@
 
             <div class="center-block m-t-3">
                 <a href="AddMaterial?idCourse=${course.idCourse}" class="btn btn-primary center-block" role="button">Aggiugni materiale esterno</a>
+                <a href="AddBook?idCourse=${course.idCourse}" class="btn btn-primary center-block" role="button">Aggiugni nuovo libro</a>
             </div>
         </div>
 

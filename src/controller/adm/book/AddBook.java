@@ -188,6 +188,8 @@ public class AddBook extends BaseController {
                         book.setEditor(request.getParameter("editor"));
                         book.setLink(request.getParameter("link"));
 
+                        System.out.println("libro: " + book);
+
                         //setto a 0 il libro per sicurezza
                         book.setId(0);
 
