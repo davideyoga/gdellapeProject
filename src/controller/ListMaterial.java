@@ -106,8 +106,8 @@ public class ListMaterial extends BaseController {
             CourseDao courseDao = new CourseDaoImpl(ds);
             courseDao.init();
 
-            //estraggo il corso dall'id passato
-            String code = request.getParameter("idCourse");
+            //estraggo il corso dal codice passato
+            String code = request.getParameter("code");
 
             //estraggo il corso con tale codice
             Course course = courseDao.getCourseByCode(code);
