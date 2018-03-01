@@ -1,36 +1,3 @@
-<div class="create_user_form">
-    <h1><a href="create_user">PortaleDell'Universita'</a></h1>
-    <div class="create-user-button">
-
-        <p><#if message??>${message}<#else></#if></p>
-
-        <p><#if course.id??>${course.id}<#else></#if></p>
-        <p><#if course.name??>${course.name}<#else></#if></p>
-
-        <h2>Add Material</h2>
-        <form method="POST" action="AddMaterial" enctype="multipart/form-data">
-            <div class="col-md-6">
-
-                <div class="create-group-name">
-                    Name
-                    <input type="text" name="name" >
-                    <i class="fa fa-lock"></i>
-                </div>
-
-                <p>Select the file to upload <input type='file' name='filetoupload'/></p>
-
-            </div>
-            <div class="col-md-6 login-do">
-                <label class="hvr-shutter-in-horizontal login-sub">
-                    <input type="submit" value="Add Material" ajax="false">
-                </label>
-            </div>
-
-            <div class="clearfix"> </div>
-        </form>
-    </div>
-</div>
-
 <!DOCTYPE html>
 <html lang="it" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -68,6 +35,7 @@
             <ul class="nav nav-pills nav-stacked">
                 <li class="active"><a data-toggle="pill" href="#basic">Aggiungi nuovo materiale</a></li>
             </ul>
+            <br>
             <button type="submit" form="create" class="btn btn-default">Aggiungi</button>
         </div>
 
@@ -82,8 +50,11 @@
                             <input type="text" class="form-control" id="nome" name="name" placeholder="Nome della risorsa">
                         </div>
                         <div class="form-group">
-                            <label for="file">Seleziona il file da caricare:</label>
-                            <input type='file' class="form-control" id="file" name='filetoupload'/>
+                            <label>Seleziona il file da caricare:</label><br>
+                            <label class="custom-file">
+                                <input type="file" id="file" class="custom-file-input" name="filetoupload">
+                                <span class="custom-file-control"></span>
+                            </label>
                         </div>
                     </div>
                 <#--end basic-->

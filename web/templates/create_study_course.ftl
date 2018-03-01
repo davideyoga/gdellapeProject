@@ -36,7 +36,7 @@
                 <li class="active"><a data-toggle="pill" href="#base">Dati di base</a></li>
                 <li><a data-toggle="pill" href="#extra_it">Informazioni aggiuntive</a></li>
                 <li><a data-toggle="pill" href="#extra_en">Informazioni in inglese</a></li>
-            <#--<li><a data-toggle="pill" href="#association">Associazioni</a></li>-->
+            <li><a data-toggle="pill" href="#association">Associa corsi</a></li>
             </ul>
             <br>
             <button type="submit" form="create" class="btn btn-default">Crea Corso di Laurea</button>
@@ -123,7 +123,6 @@
                     </div>
                 <#--end extra_en-->
 
-                <#--da sistemare
                 <div id="association" class="tab-pane fade">
                     <a href="ModAssociationStudyCourseWithCourse?idStudyCourse=${studyCourse.id}">Mod Association With Course</a>
                     <div class="panel panel-default">
@@ -136,7 +135,7 @@
                             </#list>
                         </div>
                     </div>
-                </div>-->
+                </div>
 
                 </div>
 
