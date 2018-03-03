@@ -32,7 +32,7 @@
 <#--<div class="row" style="border: #00d21f 5px solid">-->
     <div class="row">
         <div class="col-md-2 col-xs-2 my-menu">
-            <ul class="nav nav-pills nav-stacked">
+            <ul class="nav nav-pills nav-stacked text-center">
                 <li class="active"><a data-toggle="pill" href="#basic">Informazioni di base</a></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Informazioni aggiuntive
@@ -53,10 +53,9 @@
                     </ul>
                 </li>
                 <li><a data-toggle="pill" href="#notes_page">Note</a></li>
-                <li><a data-toggle="pill" href="#ext_mat">Materiale esterno</a></li>
             </ul>
             <br>
-            <button type="submit" form="create" class="btn btn-default">Crea corso</button>
+            <div class="text-center"><button type="submit" form="create" class="btn btn-default">Crea corso</button></div>
         </div>
 
 
@@ -189,8 +188,8 @@
                             <label for="comu_en">Communication:</label>
                             <textarea class="form-control" rows="5" id="comu_en" name="communication_eng"></textarea>
                         </div>
-                        <div class="form-group"_en>
-                            <label for="lifelog">Lifelog learning skills:</label>
+                        <div class="form-group">
+                            <label for="lifelog_en">Lifelog learning skills:</label>
                             <textarea class="form-control" rows="5" id="lifelog_en" name="lifelog_learning_skills_eng"></textarea>
                         </div>
                     </div>
@@ -206,24 +205,18 @@
                             <textarea class="form-control" rows="5" id="notes" name="note_eng"></textarea>
                         </div>
                     </div>
-                    <div id="ext_mat" class="tab-pane fade">
-                        <div class="form-group">
-                            <label for="material">Materiale disponibile:</label>
-                            <textarea class="form-control" rows="5" id="material" name="external_material_ita"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="material_en">External material:</label>
-                            <textarea class="form-control" rows="5" id="material_en" name="external_material_eng"></textarea>
-                        </div>
-                    </div>
+                <#--end note-->
+
                 </div>
-            <#--end ext_mat-->
+            <#--end tab content-->
 
 
             </div>
+        <#--end col md 12-->
         </div>
+    <#--end container-->
     </div>
-    </div>
+<#--end row-->
 
 </form>
 
