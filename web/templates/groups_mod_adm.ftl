@@ -88,7 +88,7 @@
                                         <td>${service.name}</td>
                                         <td>${service.description}</td>
                                         <td>
-                                            <input type="checkbox" name="${service.name}" <#if listGroupsService?seq_contains(service) >checked<#else></#if> >
+                                            <input type="checkbox" name="${service.name}" value="${service.name}" <#if listGroupsService?seq_contains(service) >checked<#else></#if> >
                                         </td>
                                     </tr>
                                     </#list>
@@ -113,8 +113,8 @@
 <script type="text/javascript">
     $(function() {
         $("#groups_table").dataTable({
-            "iDisplayLength": 10,
-            "aLengthMenu": [[10, 25, 50, 100,  -1], [10, 25, 50, 100, "All"]]
+            "iDisplayLength": -1,
+            "aLengthMenu": [[-1], ["All"]]
         });
     });
 </script>
