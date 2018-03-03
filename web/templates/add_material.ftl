@@ -33,10 +33,15 @@
     <div class="row">
         <div class="col-md-2 col-xs-2 my-menu">
             <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a data-toggle="pill" href="#basic">Aggiungi nuovo materiale</a></li>
+                <li class="active text-center"><a data-toggle="pill" href="#basic">Aggiungi nuovo materiale</a></li>
             </ul>
             <br>
-            <button type="submit" form="create" class="btn btn-default">Aggiungi</button>
+            <div class="text-center"><button type="submit" form="create" class="btn btn-default">Aggiungi</button></div>
+            <div class="w3ls-heading page-header">
+            </div>
+            <div class="text-center">
+                <a href="/ModAdmCourse?id=${course.idCourse}" class="btn btn-warning my-text" role="button">torna a ${course.name}</a>
+            </div>
         </div>
 
 

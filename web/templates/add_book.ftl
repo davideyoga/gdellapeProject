@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <title>Lista docenti</title>
+    <title>Aggiungi libro</title>
 
     <!--librerie-->
 <#include "import.ftl">
@@ -31,15 +31,18 @@
 </div>
 
 
-    <form action="AddBook" method="POST" id="Add" class="my-form">
+    <form action="/AddBook?idCourse=${course.idCourse}" method="POST" id="Add" class="my-form">
     <#--<div class="row" style="border: #00d21f 5px solid">-->
         <div class="row">
             <div class="col-md-2 col-xs-2 my-menu">
                 <ul class="nav nav-pills nav-stacked">
-                    <li class="active"><a data-toggle="pill" href="#basic">Aggiungi nuovo libro</a></li>
+                    <li class="active text-center"><a data-toggle="pill" href="#">Aggiungi nuovo libro</a></li>
                 </ul>
                 <br>
-                <button type="submit" form="Add" class="btn btn-default">Aggiungi</button>
+                <div class="text-center"><button type="submit" form="Add" class="btn btn-default">Aggiungi</button></div>
+                <div class="w3ls-heading page-header">
+                </div>
+                <div class="text-center"><a href="/ModAdmCourse?id=${course.idCourse}" class="btn btn-warning my-text" role="button">torna a ${course.name}</a></div>
             </div>
 
 
@@ -83,8 +86,6 @@
             </div>
         </div>
     </form>
-
-<a href="ModAdmCourse?id=${course.idCourse}">torna indietro</a>
 
 <!--modulo contatti, email, conclusione-->
 <#include "tail.ftl">

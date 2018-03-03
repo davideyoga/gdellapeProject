@@ -39,6 +39,14 @@ html, body{
 .my-form{
     margin: 0 15px 0 0;
 }
+
+.my-text{
+    color: black;
+}
+
+.m-b-5{
+    margin-bottom: 5px;
+}
 /*fino qua*/
 
 section.flat button {
@@ -161,7 +169,7 @@ input[type="submit"],input[type="reset"],.w3l_team_grd,.agileits_w3layouts_featu
 }
 i.fa.fa-graduation-cap {
         font-size: 0.8em;
-       color: #ffcc33;
+       color: #f0ad4e;
    
     right: -11px;
     position: absolute;

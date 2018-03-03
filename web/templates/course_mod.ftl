@@ -57,7 +57,14 @@
                 <li><a data-toggle="pill" href="#ext_mat">Materiale esterno</a></li>
             </ul>
             <br>
-            <button type="submit" form="mod" class="btn btn-default">Modifica corso</button>
+            <div class="text-center"><button type="submit" form="mod" class="btn btn-default">Modifica corso</button></div>
+            <div class="w3ls-heading page-header">
+            </div>
+            <div class="text-center">
+                <a href="AddMaterial?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">Aggiugni materiale esterno</a>
+                <a href="AddBook?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">Aggiugni nuovo libro</a>
+                <a href="ListCourse" class="btn btn-warning my-text center-block" role="button">Torna alla lista dei corsi</a>
+            </div>
         </div>
 
 
