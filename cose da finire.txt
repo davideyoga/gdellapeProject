@@ -1,0 +1,29 @@
+in createstudycourse si deve sistemare la lista degli insegnamenti collegati
+
+associare prof e corso
+
+caricare curriculum x prof
+
+associare libro e corso
+
+sistemare dettagli corso da anonimo ---> manca il materiale
+
+servlet courseprofile non ti riconosce loggato
+
+stampare corsi collegati nella pagina del prof ---> userprofile
+
+alla specifica dice che posso scegliere l'anno su course (noi l'abbiamo fatto su studycourse)
+
+selettore lingua non funziona (vedere a template vecchio come si fa)
+
+associare corso e corso
+
+aggiungere tipo di cfu a course
+
+admmodstudycourse crasha
+
+cambiare nome attributo class su studycourse ---> class provoca cose strane
+
+mandare lista corsi alla creazione di uno studycourse x associarli
+
+mandare lista studycourse alla creazione di un corso x associarli
