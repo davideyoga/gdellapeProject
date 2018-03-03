@@ -549,4 +549,16 @@
     </servlet-mapping>
     <!-- Fine Servlet di CourseProfile -->
 
+    <!--servlet DeleteCourse-->
+    <servlet>
+        <servlet-name>DeleteCourse</servlet-name>
+        <servlet-class>controller.adm.course.DeleteCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteCourse</servlet-name>
+        <url-pattern>/DeleteCourse</url-pattern>
+        <url-pattern>/DdeleteCourse</url-pattern>
+    </servlet-mapping>
+    <!--fine servlet DeleteCourse-->
+
 </web-app>

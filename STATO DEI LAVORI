@@ -14,9 +14,6 @@
 6)Eliminare materiale:
     DeleteMaterial (ajax)
 
-8)Eliminare corso:
-    DeleteCourse
-    
 9)Aggiornare Corso (prendo un corso di un anno precedente e lo COPIO all'anno corrente)
     UpdateCourse
 
@@ -26,12 +23,5 @@
 12)Aggiungere e Rimuovere Corsi ad un corso di studio
     ModAssociationStudyCourseWhithCourse
 
-24)Cancellare Corso
-    DeleteCourse
-    
 25)CancellareGruppo
     DeleteGroup
-
-26)Cancellare Corso Di Studi
-    DeleteStudyCourse
-    

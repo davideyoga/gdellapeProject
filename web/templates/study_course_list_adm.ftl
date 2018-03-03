@@ -41,6 +41,7 @@
                 <th>Nome Corso di studio </th>
                 <th> - </th>
                 <th> - </th>
+                <th> - </th>
             </tr>
             </thead>
 
@@ -54,6 +55,9 @@
             </td>
             <td>
                 <a href="modAssociationStudyCourseWithCourse?idStudyCourse=${studyCourse.id}">Associa corsi</a>
+            </td>
+            <td>
+                <a href="DeleteStudyCourse?id=${studyCourse.id}" onclick="return ConfirmDeleteStudyCourse(${studyCourse.code},${studyCourse.name})">Cancella</a>
             </td>
         </tr>
         </#list>

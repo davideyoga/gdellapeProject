@@ -27,3 +27,13 @@ cambiare nome attributo class su studycourse ---> class provoca cose strane
 mandare lista corsi alla creazione di uno studycourse x associarli
 
 mandare lista studycourse alla creazione di un corso x associarli
+
+finire parte grafica di modAssociationStudyCourse_Course
+
+vedere bene come funziona modcourserelation
+
+createcourse con solo nome e codice crasha
+
+createStudyCourse con pochi campi crasha ---> da capire quale campo è il problema
+
+deleteStudycourse funziona ma non rimanda indietro
