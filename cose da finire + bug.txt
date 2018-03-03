@@ -20,7 +20,7 @@ associare corso e corso
 
 aggiungere tipo di cfu a course
 
-admmodstudycourse crasha
+admmodstudycourse crasha quando provo a cambiare le associazioni dei corsi
 
 cambiare nome attributo class su studycourse ---> class provoca cose strane
 

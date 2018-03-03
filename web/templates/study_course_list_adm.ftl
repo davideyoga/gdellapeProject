@@ -40,6 +40,7 @@
                 <th>Codice Corso di studio</th>
                 <th>Nome Corso di studio </th>
                 <th> - </th>
+                <th> - </th>
             </tr>
             </thead>
 
@@ -50,6 +51,9 @@
             <td>${studyCourse.name}</td>
             <td>
                 <a href="AdmModStudyCourse?id=${studyCourse.id}">Modifica Corso</a>
+            </td>
+            <td>
+                <a href="modAssociationStudyCourseWithCourse?idStudyCourse=${studyCourse.id}">Associa corsi</a>
             </td>
         </tr>
         </#list>
