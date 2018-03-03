@@ -122,6 +122,8 @@ public class ListMaterial extends BaseController {
                 //estraggo tutto il materiale inerente al corso
                 List<Material> materials = materialDao.getMaterialByCourse(course);
 
+                System.out.println(materials);
+
                 //chiudo i dao
                 materialDao.destroy();
                 courseDao.destroy();
