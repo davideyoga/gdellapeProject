@@ -36,7 +36,7 @@
                 <li class="active"><a data-toggle="pill" href="#base">Dati di base</a></li>
                 <li><a data-toggle="pill" href="#extra_it">Informazioni aggiuntive</a></li>
                 <li><a data-toggle="pill" href="#extra_en">Informazioni in inglese</a></li>
-                <li><a data-toggle="pill" href="#association">Associazioni</a></li>
+                <#--<li><a data-toggle="pill" href="#association">Associazioni</a></li>-->
             </ul>
             <br>
             <button type="submit" form="mod" class="btn btn-default">Modifica corso di Laurea</button>
@@ -124,19 +124,19 @@
                 <#--end extra_en-->
 
 
-                    <div id="association" class="tab-pane fade">
-                        <a href="ModAssociationStudyCourseWithCourse?idStudyCourse=${studyCourse.id}">Mod Association With Course</a>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Attualmente il corso di laurea include i seguenti corsi</div>
-                            <div class="panel-body">
-                                <#list listCourses as course>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="${course.name}" <#if listCourseByStudyCourse?seq_contains(course) >checked<#else></#if>>${course.name}</label>
-                                    </div>
-                                </#list>
-                            </div>
-                        </div>
-                    </div>
+                    <#--<div id="association" class="tab-pane fade">-->
+                        <#--<a href="ModAssociationStudyCourseWithCourse?idStudyCourse=${studyCourse.id}">Mod Association With Course</a>-->
+                        <#--<div class="panel panel-default">-->
+                            <#--<div class="panel-heading">Attualmente il corso di laurea include i seguenti corsi</div>-->
+                            <#--<div class="panel-body">-->
+                                <#--<#list listCourses as course>-->
+                                    <#--<div class="checkbox">-->
+                                        <#--<label><input type="checkbox" value="${course.name}" <#if listCourseByStudyCourse?seq_contains(course) >checked<#else></#if>>${course.name}</label>-->
+                                    <#--</div>-->
+                                <#--</#list>-->
+                            <#--</div>-->
+                        <#--</div>-->
+                    <#--</div>-->
 
                 </div>
             </div>

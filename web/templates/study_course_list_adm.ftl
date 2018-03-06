@@ -51,7 +51,7 @@
             <td>${studyCourse.code}</td>
             <td>${studyCourse.name}</td>
             <td>
-                <a href="AdmModStudyCourse?id=${studyCourse.id}">Modifica Corso</a>
+                <a href="AdmModStudyCourse?id=${studyCourse.id}">Modifica</a>
             </td>
             <td>
                 <a href="modAssociationStudyCourseWithCourse?idStudyCourse=${studyCourse.id}">Associa corsi</a>
