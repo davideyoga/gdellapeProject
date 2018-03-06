@@ -206,19 +206,29 @@ public class ModAssociationCourseWithUser extends BaseController {
                         }
                     }
 
+                    List<User> gianni = utilityManager.getContentInAButNotInB(userCollegatiPrima, userCollegatiDopo);
+
+                    System.out.println("Gianni: " + gianni);
+
                     //ciclo su utenti presenti prima e non presenti dopo
-                    for( User user: utilityManager.getContentInAButNotInB(userCollegatiPrima, userCollegatiDopo)){
+                    for( User user: gianni){
+
+                        System.out.println();
 
                         //inserisco collegamento tra corso e utente
-                        courseDao.storeLinkCourseUser(course, user);
+                        courseDao.deleteLinkCourseUser(course, user);
 
                     }
 
+                    List<User> pino = utilityManager.getContentInAButNotInB(userCollegatiDopo, userCollegatiPrima);
+
+                    System.out.println("Pino: " + pino);
+
                     //ciclo su utenti non presenti prima ma presenti dopo
-                    for( User user: utilityManager.getContentInAButNotInB(userCollegatiDopo, userCollegatiPrima)){
+                    for( User user: pino){
 
                         //elimino il collegamento tra corso e utente
-                        courseDao.deleteLinkCourseUser(course, user);
+                        courseDao.storeLinkCourseUser(course, user);
 
                     }
 
