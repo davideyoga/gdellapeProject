@@ -200,15 +200,12 @@ public class ModAssociationCourseWithUser extends BaseController {
                     for(User user : allUsers){
 
                         //se il nome dell' utente e' presente tra i parametri post
-                        if( request.getParameter(course.getName()) != null ){
+                        if( request.getParameter(String.valueOf(user.getId())) != null ){
 
                             //inserisco nella lista degli utenti collegati
                             userCollegatiDopo.add(user);
-
                         }
-
                     }
-
 
                     //ciclo su utenti presenti prima e non presenti dopo
                     for( User user: utilityManager.getContentInAButNotInB(userCollegatiPrima, userCollegatiDopo)){
