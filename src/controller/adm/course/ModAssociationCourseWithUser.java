@@ -110,7 +110,6 @@ public class ModAssociationCourseWithUser extends BaseController {
                         //lancio il template
                         TemplateController.process("mod_association_course_with_user.ftl", datamodel, response, getServletContext());
 
-
                         //se non possiede il servizio
                     }else {
                         //lancio il messaggio di servizio non permesso
