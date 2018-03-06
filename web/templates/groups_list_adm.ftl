@@ -39,6 +39,7 @@
                 <th>nome gruppo</th>
                 <th>descrizione gruppo</th>
                 <th> - </th>
+                <th> - </th>
             </tr>
             </thead>
 
@@ -49,6 +50,9 @@
                     <td>${group.description}</td>
                     <td>
                         <a href="AdmModGroups?id=${group.id}">modifica</a>
+                    </td>
+                    <td>
+                        <a href="DeleteGroups?id=${group.id}">elimina</a>
                     </td>
                 </tr>
                 </#list>
