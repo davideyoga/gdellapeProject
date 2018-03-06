@@ -19,6 +19,3 @@
 
 11)Aggiungere e Rimuovere associazione corso
     ModAssociationCourseWithUser
-  
-12)Aggiungere e Rimuovere Corsi ad un corso di studio
-    ModAssociationStudyCourseWhithCourse
