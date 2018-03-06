@@ -32,10 +32,10 @@
 
     <div>Course: ${course.name}</div>
     <div>AGE: ${currentYear}</div>
-    <a href="modAssociationCourseWithUser?id=${course.idCourse}&age=${(currentFirstYear - 1)?string.computer} ">Previous year</a>
-    <a href="modAssociationCourseWithUser?id=${course.idCourse}&age=${(currentFirstYear + 1)?string.computer} ">Next year</a>
+    <#--<a href="modAssociationCourseWithUser?id=${course.idCourse}&age=${(currentFirstYear - 1)?string.computer} ">Previous year</a>-->
+    <#--<a href="modAssociationCourseWithUser?id=${course.idCourse}&age=${(currentFirstYear + 1)?string.computer} ">Next year</a>-->
 
-    <form method="POST" action="modAssociationCourseWithUser?idCourseToModify=${course.idCourse}&age=${currentYear}">
+    <form method="POST" action="modAssociationCourseWithUser?idCourseToModify=${course.idCourse}">
         <#--<div class="row">-->
             <#--<div class="col-md-6 col-lg-6 col-xs-6">-->
 
@@ -67,7 +67,7 @@
                     <#list allUser as user>
                     <tr>
                         <td>${user.name} ${user.surname}</td>
-                        <td><input type="checkbox" name="${user.name}" value="${user.name}" <#if userMatchWithCourse?seq_contains(user) >checked<#else></#if> > associa</td>
+                        <td><input type="checkbox" name="${user.email}" value="${user.email}" <#if userMatch?seq_contains(user) >checked<#else></#if> > associa</td>
                     </tr>
                     </#list>
                 </tbody>
