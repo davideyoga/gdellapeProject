@@ -51,7 +51,7 @@
                     <#list allUser as user>
                     <tr>
                         <td>${user.name} ${user.surname}</td>
-                        <td><input type="checkbox" value="${user.email}" <#if userMatch?seq_contains(user) >checked<#else></#if> > associa</td>
+                        <td><input type="checkbox" name="email" value="${user.email}" <#if userMatch?seq_contains(user) >checked<#else></#if> > associa</td>
                     </tr>
                     </#list>
                 </tbody>
