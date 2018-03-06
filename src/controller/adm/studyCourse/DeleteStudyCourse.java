@@ -61,6 +61,8 @@ public class DeleteStudyCourse extends BaseController {
                     //estraggo il corso di studi in base all'id passato tramite parametro GET e lo elimino
                     studyCourseDao.deleteStudyCourse(studyCourse);
 
+
+
                     //aggiungo un log di avvenuta eliminazione del gruppo
                     logManager.addLog(sessionManager.getUser(request),"STUDY COURSE DELETED: " + studyCourse.toStringForLog() + " BY: " + sessionManager.getUser(request).toStringForLog(), ds);
 
