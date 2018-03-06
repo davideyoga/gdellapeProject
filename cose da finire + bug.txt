@@ -1,3 +1,5 @@
+BUG codice
+
 BUG servlet courseprofile non ti riconosce loggato
 
 BUG cambiare nome attributo class su studycourse ---> class provoca cose strane
