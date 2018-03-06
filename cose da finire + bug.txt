@@ -1,6 +1,6 @@
-BUG codice
-
 BUG servlet courseprofile non ti riconosce loggato
+
+BUG modAssociationCourseWithUser crasha
 
 BUG cambiare nome attributo class su studycourse ---> class provoca cose strane
 

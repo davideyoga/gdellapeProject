@@ -2,12 +2,11 @@
 *                                          STATO DEI LAVORI                                           *
 *******************************************************************************************************
 
-2)Togliere libro:
+2)libro:
+    AddNookByExisting (ajax)
+    GetListBook è vuoto
     RemoveBook (ajax)
-    
-3)Aggiungere libro esistente:
-    AddBookByExisting (ajax)
-    
+
 4)Collegamenti con corsi modulati, corsi propedeutici,ect....
     AddCourseRelation 
 
