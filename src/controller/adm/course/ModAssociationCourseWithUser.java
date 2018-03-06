@@ -184,7 +184,6 @@ public class ModAssociationCourseWithUser extends BaseController {
                         //se non esiste il corso
                         response.sendRedirect("ListCourse");
                         return;
-
                     }
 
                     //estraggo gli utenti collegati al corso
