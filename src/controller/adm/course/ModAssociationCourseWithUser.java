@@ -85,7 +85,7 @@ public class ModAssociationCourseWithUser extends BaseController {
                         }
 
                         //inserisco l'id del corso in sessione
-                        request.getSession().setAttribute("idCourseToModify", course);
+                        request.getSession().setAttribute("idCourseToModify", course.getIdCourse());
 
 
                         //estraggo gli utenti che sono gia collegati al corso
@@ -177,7 +177,7 @@ public class ModAssociationCourseWithUser extends BaseController {
                     }
 
                     //estraggo il corso dall'id inserito nella sessione dell'admin
-                    Course course = courseDao.getCourseById((Integer) request.getSession().getAttribute("idCourseToModify"));
+                    Course course = courseDao.getCourseById(Integer.parseInt(String.valueOf(request.getSession().getAttribute("idCourseToModify"))));
 
                     //se il corso non esiste
                     if(course == null || course.getIdCourse() <= 0 ){
@@ -258,7 +258,7 @@ public class ModAssociationCourseWithUser extends BaseController {
 
             }
 
-        } catch (DaoException e) {
+        } catch (DaoException | NumberFormatException e) {
             e.printStackTrace();
 
             //lancio il template di errore
