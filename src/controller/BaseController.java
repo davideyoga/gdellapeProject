@@ -222,6 +222,7 @@ public class BaseController extends HttpServlet {
                 studyCourse.setLevel_ita(Integer.parseInt(request.getParameter("level_ita")));
             }
         }catch (NumberFormatException e){
+            e.printStackTrace();
             studyCourse.setLevel_ita(0);
         }
 
@@ -230,6 +231,7 @@ public class BaseController extends HttpServlet {
                 studyCourse.setLevel_eng(Integer.parseInt(request.getParameter("level_eng")));
             }
         }catch (NumberFormatException e){
+            e.printStackTrace();
             studyCourse.setLevel_eng(0);
         }
 
@@ -238,6 +240,7 @@ public class BaseController extends HttpServlet {
                 studyCourse.setDuration(Integer.parseInt(request.getParameter("duration")));
             }
         }catch (NumberFormatException e){
+            e.printStackTrace();
             studyCourse.setDuration(0);
         }
 
@@ -261,16 +264,30 @@ public class BaseController extends HttpServlet {
         course.setName(request.getParameter("name"));
         course.setYear(request.getParameter("year"));
 
-        if (request.getParameter("cfu") != null ) {
-            course.setCfu(Integer.parseInt(request.getParameter("cfu")));
+        try {
+
+            if(request.getParameter("semester") != null ) {
+                course.setSemester(Integer.parseInt(request.getParameter("semester")));
+            }
+
+        }catch (NumberFormatException e){
+            e.printStackTrace();
+            course.setSemester(0);
+        }
+
+        try {
+            if (request.getParameter("cfu") != null) {
+                course.setCfu(Integer.parseInt(request.getParameter("cfu")));
+            }
+        }catch (NumberFormatException e){
+            e.printStackTrace();
+            course.setCfu(0);
         }
 
         course.setSector(request.getParameter("sector"));
         course.setLanguage(request.getParameter("language"));
 
-        if(request.getParameter("semester") != null ) {
-            course.setSemester(Integer.parseInt(request.getParameter("semester")));
-        }
+
 
         course.setPrerequisite_ita(request.getParameter("prerequisite_ita"));
         course.setPrerequisite_eng(request.getParameter("prerequisite_eng"));
