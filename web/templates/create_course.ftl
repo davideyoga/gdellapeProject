@@ -78,7 +78,7 @@
                         </div>
                         <div class="form-group">
                             <label for="cfu">Cfu:</label>
-                            <input type="text" class="form-control" id="cfu" name="cfu" placeholder="Es. 6">
+                            <input type="number" min="0" max="180" value="1" class="form-control" id="cfu" name="cfu" placeholder="Es. 6">
                         </div>
                         <div class="form-group">
                             <label for="settore">Settore:</label>

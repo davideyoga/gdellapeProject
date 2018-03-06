@@ -4,10 +4,6 @@ BUG admmodstudycourse crasha quando provo a cambiare le associazioni dei corsi
 
 BUG cambiare nome attributo class su studycourse ---> class provoca cose strane
 
-BUG createcourse con solo nome e codice crasha
-
-BUG createStudyCourse con pochi campi crasha ---> da capire quale campo è il problema
-
 BUG deleteStudycourse funziona ma non rimanda indietro
 
 in createstudycourse si deve sistemare la lista degli insegnamenti collegati

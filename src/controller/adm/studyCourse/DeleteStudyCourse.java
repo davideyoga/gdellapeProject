@@ -33,24 +33,24 @@ public class DeleteStudyCourse extends BaseController {
 
         try {
 
-            //se la sessione e' valida
+//se la sessione e' valida
             if (sessionManager.isValid(request)) {
 
-                //estraggo il servizio di eliminazione dei gruppi
+//estraggo il servizio di eliminazione dei gruppi
                 Service deleteGroups = this.getServiceAndCreate(request, response, ds, "deleteStudyCourse", "Permissed for delete Study Course",
                         datamodel, getServletContext());
 
-                //se l'utente ha il permesso (potrebbe essere ridondante in quanto viene controllato anche per accedere alla lista ma nn si sa mai)
+//se l'utente ha il permesso (potrebbe essere ridondante in quanto viene controllato anche per accedere alla lista ma nn si sa mai)
                 if (((List <Service>) request.getSession().getAttribute("services")).contains(deleteGroups)) {
 
-                    //inizializzo il dao del corso di studi
+//inizializzo il dao del corso di studi
                     StudyCourseDao studyCourseDao = new StudyCourseDaoImpl(ds);
                     studyCourseDao.init();
 
-                    //se non e' presente nei parametri GET l'id del corso di studi
+//se non e' presente nei parametri GET l'id del corso di studi
                     if( request.getParameter("id") == null){
 
-                        //rimando alla lista dei corsi di studio
+//rimando alla lista dei corsi di studio
                         response.sendRedirect("AdmGetListStudyCourse");
                         return;
 
@@ -58,41 +58,41 @@ public class DeleteStudyCourse extends BaseController {
 
                     StudyCourse studyCourse = studyCourseDao.getStudyCourseById(Integer.parseInt(request.getParameter("id")));
 
-                    //estraggo il corso di studi in base all'id passato tramite parametro GET e lo elimino
+//estraggo il corso di studi in base all'id passato tramite parametro GET e lo elimino
                     studyCourseDao.deleteStudyCourse(studyCourse);
 
 
 
-                    //aggiungo un log di avvenuta eliminazione del gruppo
+//aggiungo un log di avvenuta eliminazione del gruppo
                     logManager.addLog(sessionManager.getUser(request),"STUDY COURSE DELETED: " + studyCourse.toStringForLog() + " BY: " + sessionManager.getUser(request).toStringForLog(), ds);
 
 
-                    //chiudo il dao
+//chiudo il dao
                     studyCourseDao.destroy();
 
-                    //reindirizzo verso la servlet che si occupa di restituire la lista dei corsi di studio
+//reindirizzo verso la servlet che si occupa di restituire la lista dei corsi di studio
                     response.sendRedirect("AdmGetListStudyCourse");
 
-                    //se non ha i permessi
+//se non ha i permessi
                 } else {
-                    //lancio il template di non permesso
+//lancio il template di non permesso
                     this.processNotPermitted(request, response);
                 }
-                //se session non valida o non abbastanza nuova
+//se session non valida o non abbastanza nuova
             } else {
 
-                //setto la pagina alla lista degli utenti in quanto questa chiamata avviene tramite GET
+//setto la pagina alla lista degli utenti in quanto questa chiamata avviene tramite GET
                 createPreviousPageAndRedirectToLogin(request, response, "AdmGetListStudyCourse");
             }
 
         } catch (DaoException e) {
-        e.printStackTrace();
+            e.printStackTrace();
 
-        //lancio template di errore
-        this.processError(request, response);
+//lancio template di errore
+            this.processError(request, response);
 
         } catch (IOException e) {
-            //lancio template di errore
+//lancio template di errore
             this.processError(request, response);
 
             e.printStackTrace();
