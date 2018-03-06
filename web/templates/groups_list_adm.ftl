@@ -31,13 +31,14 @@
 
 <div class="container">
     <div class="table-responsive" >
-        <table class="table table-hover table-bordered table-striped">
+        <table id="group_table" class="table table-hover table-bordered table-striped">
             <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
 
             <thead>
             <tr>
                 <th>nome gruppo</th>
                 <th>descrizione gruppo</th>
+                <th> - </th>
                 <th> - </th>
             </tr>
             </thead>
@@ -50,6 +51,9 @@
                     <td>
                         <a href="AdmModGroups?id=${group.id}">modifica</a>
                     </td>
+                    <td>
+                        <a href="DeleteGroups?id=${group.id}">elimina</a>
+                    </td>
                 </tr>
                 </#list>
             </tbody>
@@ -59,5 +63,15 @@
 
 <!--modulo contatti, email, conclusione-->
     <#include "tail.ftl">
+<script src="/templates/js/jquery.dataTables.js" type="text/javascript"></script>
+<script src="/templates/js/dataTables.bootstrap.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function() {
+        $("#group_table").dataTable({
+            "iDisplayLength": 10,
+            "aLengthMenu": [[10, 25, 50, 100,  -1], [10, 25, 50, 100, "All"]]
+        });
+    });
+</script>
 </body>
 </html>

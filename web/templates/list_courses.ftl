@@ -48,7 +48,7 @@
                 <td>${course.name}</td>
                 <td>${course.code}</td>
                 <td>
-                    <a href="ModCourse?id=${course.idCourse}">modifica</a>
+                    <a href="ModCourse?id=${course.idCourse}">modifica corso</a>
                 </td>
             </tr>
             </#list>

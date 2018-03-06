@@ -89,7 +89,7 @@
                         </div>
                         <div class="form-group">
                             <label for="level_it">Livello:</label>
-                            <input type="text" class="form-control" id="level_it" name="level_ita">
+                            <input type="number" min="1" max="5" value="1" class="form-control" id="level_it" name="level_ita">
                         </div>
                         <div class="form-group">
                             <label for="acc_type_it">Modalità d'accesso:</label>
@@ -114,7 +114,7 @@
                         </div>
                         <div class="form-group">
                             <label for="level_en">Level:</label>
-                            <input type="text" class="form-control" id="level_en" name="level_eng">
+                            <input type="number" min="1" max="5" value="1" class="form-control" id="level_en" name="level_eng">
                         </div>
                         <div class="form-group">
                             <label for="acc_type_en">Access type:</label>
@@ -123,21 +123,22 @@
                     </div>
                 <#--end extra_en-->
 
-                <div id="association" class="tab-pane fade">
-                    <a href="ModAssociationStudyCourseWithCourse?idStudyCourse=${studyCourse.id}">Mod Association With Course</a>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Decidi quali corsi assegnare</div>
-                        <div class="panel-body">
-                            <#list listCourses as course>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" value="${course.name}">${course.name}</label>
-                                </div>
-                            </#list>
-                        </div>
-                    </div>
-                </div>
+                    <#--<div id="association" class="tab-pane fade">-->
+                        <#--<a href="ModAssociationStudyCourseWithCourse?idStudyCourse=${studyCourse.id}">Mod Association With Course</a>-->
+                        <#--<div class="panel panel-default">-->
+                            <#--<div class="panel-heading">Decidi quali corsi assegnare</div>-->
+                            <#--<div class="panel-body">-->
+                            <#--<#list listCourses as course>-->
+                                <#--<div class="checkbox">-->
+                                    <#--<label><input type="checkbox" value="${course.name}">${course.name}</label>-->
+                                <#--</div>-->
+                            <#--</#list>-->
+                            <#--</div>-->
+                        <#--</div>-->
+                    <#--</div>-->
 
                 </div>
+                <#--end tab-content-->
 
             </div>
         </div>

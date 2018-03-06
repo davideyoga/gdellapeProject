@@ -87,12 +87,12 @@
                     <div id="curr" class="tab-pane fade">
                         <div class="form-group">
                             <label for="curr_it">Curriculum:</label>
-                            <textarea class="form-control" rows="5" id="curr_it" name="curriculum_ita"></textarea>
+                            <textarea class="form-control" rows="5" id="curr_it" name="curriculum_ita"><#if usermod.curriculum_ita??>${usermod.curriculum_ita}<#else></#if></textarea>
                         <#--value="<#if usermod.curriculum_ita??>${usermod.curriculum_ita}<#else></#if>"-->
                         </div>
                         <div class="form-group">
                             <label for="curr_en">Curriculum inglese:</label>
-                            <textarea class="form-control" rows="5" id="curr_en" name="curriculum_eng"></textarea>
+                            <textarea class="form-control" rows="5" id="curr_en" name="curriculum_eng"><#if usermod.curriculum_eng??>${usermod.curriculum_eng}<#else></#if></textarea>
                         <#--value="<#if usermod.curriculum_eng??>${usermod.curriculum_eng}<#else></#if>"-->
                         </div>
                     </div>

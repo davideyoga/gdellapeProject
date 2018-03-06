@@ -31,7 +31,7 @@
 <div class="container">
 
     <div class="table-responsive">
-        <table class="table table-bordered table-striped table-hover">
+        <table id="sc_tab" class="table table-bordered table-striped table-hover">
 
             <thead>
             <tr>
@@ -59,5 +59,15 @@
 
 <!--modulo contatti, email, conclusione-->
 <#include "tail.ftl">
+<script src="/templates/js/jquery.dataTables.js" type="text/javascript"></script>
+<script src="/templates/js/dataTables.bootstrap.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function() {
+        $("#sc_tab").dataTable({
+            "iDisplayLength": 10,
+            "aLengthMenu": [[10, 25, 50, 100,  -1], [10, 25, 50, 100, "All"]]
+        });
+    });
+</script>
 </body>
 </html>

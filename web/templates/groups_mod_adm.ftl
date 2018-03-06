@@ -35,6 +35,7 @@
         <div class="col-md-2 col-xs-2 my-menu">
             <ul class="nav nav-pills nav-stacked">
                 <li class="active"><a data-toggle="pill" href="#basic">Informazioni di base</a></li>
+                <li><a data-toggle="pill" href="#serv">Associa servizi</a></li>
             </ul>
             <br>
             <button type="submit" form="mod" class="btn btn-default">Modifica gruppo</button>
@@ -56,7 +57,6 @@
             <div class="col-md-12 col-xs-12">
                 <div class="tab-content">
 
-
                     <div id="basic" class="tab-pane fade in active">
                         <div class="form-group">
                             <label for="nome">Nome:</label>
@@ -69,6 +69,35 @@
                     </div>
                 <#--end basic-->
 
+                    <div id="serv" class="tab-pane fade">
+                        <div class="table-responsive" >
+                            <table id="groups_table" class="table table-hover table-bordered table-striped">
+                                <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
+
+                                <thead>
+                                <tr>
+                                    <th>nome</th>
+                                    <th>descrizione</th>
+                                    <th> associa </th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                    <#list listService as service>
+                                    <tr>
+                                        <td>${service.name}</td>
+                                        <td>${service.description}</td>
+                                        <td>
+                                            <input type="checkbox" name="${service.name}" value="${service.name}" <#if listGroupsService?seq_contains(service) >checked<#else></#if> >
+                                        </td>
+                                    </tr>
+                                    </#list>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                <#--end serv-->
+
 
                 </div>
             </div>
@@ -79,5 +108,15 @@
 
 <!--modulo contatti, email, conclusione-->
 <#include "tail.ftl">
+<script src="/templates/js/jquery.dataTables.js" type="text/javascript"></script>
+<script src="/templates/js/dataTables.bootstrap.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function() {
+        $("#groups_table").dataTable({
+            "iDisplayLength": -1,
+            "aLengthMenu": [[-1], ["All"]]
+        });
+    });
+</script>
 </body>
 </html>

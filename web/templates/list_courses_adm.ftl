@@ -43,6 +43,7 @@
                 <th>Semestre</th>
                 <th>Lingua</th>
                 <th> - </th>
+                <th> - </th>
             </tr>
             </thead>
 
@@ -53,10 +54,14 @@
                         <td>${course.name}</td>
                         <td>${course.sector}</td>
                         <td>${course.semester}</td>
-                        <td>${course.language_ita}</td>
+                        <td>${course.language}</td>
                         <td>
-                            <a href="ModAdmCourse?id=${course.idCourse}">Leggi di piu'</a>
+                            <a href="ModAdmCourse?id=${course.idCourse}">modifica corso</a>
                         </td>
+                        <td>
+                            <a href="DeleteCourse?id=${course.idCourse}" onclick="return ConfirmDeleteCourse(${course.code},${course.name})">Cancella Corso</a>
+                        </td>
+
                     </tr>
                     </#list>
             </tbody>

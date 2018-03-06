@@ -57,7 +57,14 @@
                 <li><a data-toggle="pill" href="#ext_mat">Materiale esterno</a></li>
             </ul>
             <br>
-            <button type="submit" form="mod" class="btn btn-default">Modifica corso</button>
+            <div class="text-center"><button type="submit" form="mod" class="btn btn-default">Modifica corso</button></div>
+            <div class="w3ls-heading page-header">
+            </div>
+            <div class="text-center">
+                <a href="AddMaterial?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">Aggiugni materiale esterno</a>
+                <a href="AddBook?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">Aggiugni nuovo libro</a>
+                <a href="ListCourse" class="btn btn-warning my-text center-block" role="button">Torna alla lista dei corsi</a>
+            </div>
         </div>
 
 
@@ -70,9 +77,19 @@
                     <div id="basic" class="tab-pane fade in active">
                         <div class="form-group">
                             <label for="codice">Codice:</label>
-                            <input type="text" class="form-control" id="codice" name="code" value="<#if course.code??>${course.code}<#else></#if>">
-                            <span class="help-block">Codice univoco che identifica il corso</span>
+                            <input type="text" class="form-control" id="codice" name="code" value="<#if course.code??>${course.code}<#else></#if>" disabled>
+                            <#--<p class="form-control-static"><#if course.code??>${course.code}<#else></#if></p>-->
+                            <span class="help-block">Solo un amministratore può modificare il codice</span>
                         </div>
+                    <#--<div class="col-md-12 col-xs-12 well well-sm">-->
+                    <#--<div class="col-md-3 col-xs-3 col-sm-3">-->
+                    <#--<p>Codice:</p>-->
+                    <#--</div>-->
+                    <#--<div class="col-md-9 col-xs-9 col-sm-9">-->
+                    <#--<p>${course.code}</p>-->
+                    <#--</div>-->
+                    <#--</div>-->
+                    <#--<br><br>-->
                         <div class="form-group">
                             <label for="nome">Nome:</label>
                             <input type="text" class="form-control" id="nome" name="name" value="<#if course.name??>${course.name}<#else></#if>">

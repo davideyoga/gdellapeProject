@@ -2,9 +2,6 @@
 *                                          STATO DEI LAVORI                                           *
 *******************************************************************************************************
 
-1)Aggiungee libro: 
-    AddBook
-    
 2)Togliere libro:
     RemoveBook (ajax)
     
@@ -14,73 +11,14 @@
 4)Collegamenti con corsi modulati, corsi propedeutici,ect....
     AddCourseRelation 
 
-5)Aggiungere materiale
-    AddMaterial
-
 6)Eliminare materiale:
     DeleteMaterial (ajax)
-    
-7)Creare corso:
-    CreateCourse -------manca solo il caricamento del materiale esterno
-    
-8)Eliminare corso:
-    DeleteCourse
-    
+
 9)Aggiornare Corso (prendo un corso di un anno precedente e lo COPIO all'anno corrente)
     UpdateCourse
-    
-10)Modificare Corso
-    ModCourse -------manca solo il caricamento del materiale esterno
-   
+
 11)Aggiungere e Rimuovere associazione corso
     ModAssociationCourseWithUser
   
 12)Aggiungere e Rimuovere Corsi ad un corso di studio
     ModAssociationStudyCourseWhithCourse
- 
-13)Prendere Lista Gruppi (ADMIN)
-    AdmGetListGroup
-    
-14)Prendere Lista Gruppi  (ADMIN)
-    AdmGetListGroup
-    
-15)Prendere Lista Corsi di Studio (ADMIN)
-    AdmGetListStudyCourse
-    
-16)Prendere Lista Utenti (ADMIN)
-    AdmGetListUser
-    
-17)Modificare Corso (ADMIN)
-    AdmModCourse
-   
-18)Modificare Gruppo (ADMIN)
-    AdmModGroup
-    
-19)Modificare Corsi di Studio (ADMIN)
-    AdmModStudyCourse
-    
-20)Modifica Utente (ADMIN)
-    AdmModUser
-    
-21)Creare Gruppo
-    CreateGroup
-    
-22)Creare Corso Di Studio
-    CreateStudyCourse
-
-**************************
-**********FATTO***********
-23)Creare Utente        **
-    CreateUser          **
-**************************
-**************************
-
-24)Cancellare Corso
-    DeleteCourse
-    
-25)CancellareGruppo
-    DeleteGroup
-
-26)Cancellare Corso Di Studi
-    DeleteStudyCourse
-    

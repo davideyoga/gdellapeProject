@@ -50,7 +50,7 @@
                         <td>${course.name}</td>
                         <td>${course.sector}</td>
                         <td>${course.semester}</td>
-                        <td>${course.language_ita}</td>
+                        <td>${course.language}</td>
                         <td>
                             <a href="CourseProfile?id=${course.idCourse}">Leggi di piu'</a>
                         </td>

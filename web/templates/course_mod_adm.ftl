@@ -35,7 +35,7 @@
 <#--<div class="row" style="border: #00d21f 5px solid">-->
     <div class="row">
         <div class="col-md-2 col-xs-2 my-menu">
-            <ul class="nav nav-pills nav-stacked">
+            <ul class="nav nav-pills nav-stacked text-center">
                 <li class="active"><a data-toggle="pill" href="#basic">Informazioni di base</a></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Informazioni aggiuntive
@@ -57,11 +57,14 @@
                 </li>
                 <li><a data-toggle="pill" href="#notes_page">Note</a></li>
             </ul>
-            <button type="submit" form="mod" class="btn btn-default btn-block">Modifica corso</button>
-
-            <div class="center-block m-t-3">
-                <a href="AddMaterial?idCourse=${course.idCourse}" class="btn btn-primary center-block" role="button">Aggiugni materiale esterno</a>
-                <a href="AddBook?idCourse=${course.idCourse}" class="btn btn-primary center-block" role="button">Aggiugni nuovo libro</a>
+            <br>
+            <div class="text-center"><button type="submit" form="mod" class="btn btn-default">Modifica corso</button></div>
+            <div class="w3ls-heading page-header">
+            </div>
+            <div class="text-center">
+                <a href="AddMaterial?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">Aggiugni materiale esterno</a>
+                <a href="AddBook?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">Aggiugni nuovo libro</a>
+                <a href="ListCourse" class="btn btn-warning my-text center-block" role="button">Torna alla lista dei corsi</a>
             </div>
         </div>
 
