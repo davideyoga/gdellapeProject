@@ -198,8 +198,8 @@ public class ModAssociationCourseWithUser extends BaseController {
                     //ciclo sui parametri post per estrarre gli utenti settati dall'admin
                     for(User user : allUsers){
 
-                        //se il nome dell' utente e' presente tra i parametri post
-                        if( request.getParameter(String.valueOf(user.getId())) != null ){
+                        //se la eail dell' utente e' presente tra i parametri post
+                        if( request.getParameter(user.getEmail()) != null ){
 
                             //inserisco nella lista degli utenti collegati
                             userCollegatiDopo.add(user);
