@@ -44,6 +44,7 @@
                 <th>Lingua</th>
                 <th> - </th>
                 <th> - </th>
+                <th> - </th>
             </tr>
             </thead>
 
@@ -60,6 +61,9 @@
                         </td>
                         <td>
                             <a href="DeleteCourse?id=${course.idCourse}" onclick="return ConfirmDeleteCourse(${course.code},${course.name})">Cancella Corso</a>
+                        </td>
+                        <td>
+                            <a href="modAssociationCourseWithUser?id=${course.idCourse}">associa docente</a>
                         </td>
 
                     </tr>
