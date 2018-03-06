@@ -286,9 +286,6 @@ public class BaseController extends HttpServlet {
 
         course.setSector(request.getParameter("sector"));
         course.setLanguage(request.getParameter("language"));
-
-
-
         course.setPrerequisite_ita(request.getParameter("prerequisite_ita"));
         course.setPrerequisite_eng(request.getParameter("prerequisite_eng"));
         course.setGoals_ita(request.getParameter("goals_ita"));
