@@ -96,7 +96,7 @@ public class AdmModStudyCourse extends BaseController{
                         courseDao.init();
 
                         //inserisco tutti i corsi e i corsi associati al corso di studi nel datamodel
-                        insertCourse(studyCourse, courseDao);
+                        //insertCourse(studyCourse, courseDao);
 
                         //chiudo il dao dei corsi
                         courseDao.destroy();
@@ -262,7 +262,7 @@ public class AdmModStudyCourse extends BaseController{
 
                     /*
                         INIZIO CECK SULLE ASSOCIAZIONI CON I CORSI
-                     */
+
 
                     //inizializzo un dao dei Corsi per estrarre tutti i corsi
                     CourseDao courseDao = new CourseDaoImpl(ds);
@@ -324,12 +324,12 @@ public class AdmModStudyCourse extends BaseController{
 
                     }
 
-                    /*
+
                         FINE MODIFICA ASSOCIAZIONI CORSI
                      */
 
                     //riestraggo i corsi associati al mio corso di studi e li inserisco nel template
-                    insertCourse(studyCourse, courseDao);
+                    //insertCourse(studyCourse, courseDao);
 
                     //inserisco nel template il corso di studi aggiornato
                     datamodel.put("studyCourse", studyCourse);
@@ -342,7 +342,7 @@ public class AdmModStudyCourse extends BaseController{
 
 
                     //chiudo i vari dao
-                    courseDao.destroy();
+                    //courseDao.destroy();
                     studyCourseDao.destroy();
 
 
