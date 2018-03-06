@@ -36,15 +36,15 @@ public class AdmModStudyCourse extends BaseController{
 
     private void insertCourse(StudyCourse studyCourse, CourseDao courseDao)throws DaoException{
 
-            //estraggo i corsi che vengono erogati dal mio corso di studi
-            List<Course> corsiDelCorsoDiStudi = courseDao.getCourseByStudyCourse(studyCourse);
+        //estraggo i corsi che vengono erogati dal mio corso di studi
+        List<Course> corsiDelCorsoDiStudi = courseDao.getCourseByStudyCourse(studyCourse);
 
-            //estraggo tutti i corsi di studio
-            List<Course> corsiDiStudio = courseDao.getCourses();
+        //estraggo tutti i corsi di studio
+        List<Course> corsiDiStudio = courseDao.getCourses();
 
-            //inserisco nel datamodel i corsi
-            datamodel.put("listCourseByStudyCourse",corsiDelCorsoDiStudi);
-            datamodel.put("listCourses", corsiDiStudio);
+        //inserisco nel datamodel i corsi
+        datamodel.put("listCourseByStudyCourse",corsiDelCorsoDiStudi);
+        datamodel.put("listCourses", corsiDiStudio);
     }
 
 
@@ -359,12 +359,8 @@ public class AdmModStudyCourse extends BaseController{
             }
 
         } catch (DaoException | NullPointerException e) {
-
-            System.out.println("DIO BABBUINO 1");
             e.printStackTrace();
             //in caso di dao exception ecc. lancio il template di errore
-
-            System.out.println("DIO BABBUINO 2");
             this.processError(request, response);
 
         } catch (LogException e) {
