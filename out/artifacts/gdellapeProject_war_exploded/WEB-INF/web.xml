@@ -402,19 +402,6 @@
     <!-- Fine Servlet di ModAssociationCourseWithUser -->
 
 
-    <!-- Servlet di  AdmModCourse-->
-    <servlet>
-        <servlet-name>AdmModCourse</servlet-name>
-        <servlet-class>controller.adm.course.AdmModCourse</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AdmModCourse</servlet-name>
-        <url-pattern>/AdmModCourse</url-pattern>
-        <url-pattern>/admModCourse</url-pattern>
-    </servlet-mapping>
-    <!-- Fine Servlet di AdmModCourse -->
-
-
     <display-name>ServletFileUploadDownloadExample</display-name>
     <context-param>
         <param-name>tempfile.dir</param-name>

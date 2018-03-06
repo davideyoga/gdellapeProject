@@ -1,6 +1,6 @@
-BUG codice
-
 BUG servlet courseprofile non ti riconosce loggato
+
+BUG modAssociationCourseWithUser crasha, non riceve anno corrente
 
 BUG cambiare nome attributo class su studycourse ---> class provoca cose strane
 
@@ -22,6 +22,6 @@ associare corso e corso
 
 aggiungere tipo di cfu a course
 
-finire parte grafica di modAssociationStudyCourse_Course
+finire parte grafica di modAssociationStudyCourse_Course e di modAssociationCourseWithUser
 
 vedere bene come funziona modcourserelation
