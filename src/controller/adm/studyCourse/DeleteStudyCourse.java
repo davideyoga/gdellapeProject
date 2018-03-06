@@ -6,6 +6,7 @@ import dao.exception.DaoException;
 import dao.implementation.StudyCourseDaoImpl;
 import dao.interfaces.StudyCourseDao;
 import model.Service;
+import model.StudyCourse;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -55,11 +56,13 @@ public class DeleteStudyCourse extends BaseController {
 
                     }
 
+                    StudyCourse studyCourse = studyCourseDao.getStudyCourseById(Integer.parseInt(request.getParameter("id")));
+
                     //estraggo il corso di studi in base all'id passato tramite parametro GET e lo elimino
-                    studyCourseDao.deleteStudyCourse(studyCourseDao.getStudyCourseById(Integer.parseInt(request.getParameter("id"))));
+                    studyCourseDao.deleteStudyCourse(studyCourse);
 
                     //aggiungo un log di avvenuta eliminazione del gruppo
-                    logManager.addLog(sessionManager.getUser(request),"STUDY COURSE DELETED: " + studyCourseDao.getStudyCourseById(Integer.parseInt(request.getParameter("id"))).toStringForLog() + " BY: " + sessionManager.getUser(request).toStringForLog(), ds);
+                    logManager.addLog(sessionManager.getUser(request),"STUDY COURSE DELETED: " + studyCourse.toStringForLog() + " BY: " + sessionManager.getUser(request).toStringForLog(), ds);
 
 
                     //chiudo il dao
