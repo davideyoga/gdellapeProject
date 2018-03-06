@@ -359,8 +359,12 @@ public class AdmModStudyCourse extends BaseController{
             }
 
         } catch (DaoException | NullPointerException e) {
+
+            System.out.println("DIO BABBUINO 1");
             e.printStackTrace();
             //in caso di dao exception ecc. lancio il template di errore
+
+            System.out.println("DIO BABBUINO 2");
             this.processError(request, response);
 
         } catch (LogException e) {

@@ -1,12 +1,6 @@
 BUG servlet courseprofile non ti riconosce loggato
 
-BUG admmodstudycourse crasha quando provo a cambiare le associazioni dei corsi
-
 BUG cambiare nome attributo class su studycourse ---> class provoca cose strane
-
-BUG deleteStudycourse funziona ma non rimanda indietro
-
-in createstudycourse si deve sistemare la lista degli insegnamenti collegati
 
 associare prof e corso
 
@@ -25,10 +19,6 @@ selettore lingua non funziona (vedere a template vecchio come si fa)
 associare corso e corso
 
 aggiungere tipo di cfu a course
-
-mandare lista corsi alla creazione di uno studycourse x associarli
-
-mandare lista studycourse alla creazione di un corso x associarli
 
 finire parte grafica di modAssociationStudyCourse_Course
 
