@@ -216,15 +216,32 @@ public class BaseController extends HttpServlet {
         studyCourse.setDepartment_ita(request.getParameter("department_ita"));
         studyCourse.setDepartment_eng(request.getParameter("department_eng"));
 
-        if(request.getParameter("level_ita") != null) {
-            studyCourse.setLevel_ita(Integer.parseInt(request.getParameter("level_ita")));
+        try {
+
+            if(request.getParameter("level_ita") != null) {
+                studyCourse.setLevel_ita(Integer.parseInt(request.getParameter("level_ita")));
+            }
+        }catch (NumberFormatException e){
+            studyCourse.setLevel_ita(0);
         }
-        if(request.getParameter("level_eng") != null) {
-            studyCourse.setLevel_eng(Integer.parseInt(request.getParameter("level_eng")));
+
+        try {
+            if(request.getParameter("level_eng") != null) {
+                studyCourse.setLevel_eng(Integer.parseInt(request.getParameter("level_eng")));
+            }
+        }catch (NumberFormatException e){
+            studyCourse.setLevel_eng(0);
         }
-        if(request.getParameter("duration") != null) {
-            studyCourse.setDuration(Integer.parseInt(request.getParameter("duration")));
+
+        try {
+            if(request.getParameter("duration") != null) {
+                studyCourse.setDuration(Integer.parseInt(request.getParameter("duration")));
+            }
+        }catch (NumberFormatException e){
+            studyCourse.setDuration(0);
         }
+
+
         studyCourse.setClasses(request.getParameter("class"));
         studyCourse.setSeat(request.getParameter("seat"));
         studyCourse.setAccessType_ita(request.getParameter("accessType_ita"));
@@ -233,6 +250,8 @@ public class BaseController extends HttpServlet {
         studyCourse.setLanguage_eng(request.getParameter("language_eng"));
 
         return studyCourse;
+
+
     }
 
     protected Course getCourseByForm(HttpServletRequest request,Course course, int idCourse){
