@@ -240,7 +240,7 @@
                                 <a data-toggle="collapse" href="#know">Risultati di apprendimento</a>
                             </h4>
                         </div>
-                        <div id="know" class="panel-collapse">
+                        <div id="know" class="panel-collapse collapse in">
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-12 col-xs-12">
@@ -258,7 +258,7 @@
                             <a data-toggle="collapse" href="#appl">Campi d'utilizzo</a>
                         </h4>
                     </div>
-                    <div id="appl" class="panel-collapse">
+                    <div id="appl" class="panel-collapse collapse">
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-12 col-xs-12">
@@ -333,14 +333,14 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#mat">Materiale disponibile</a>
+                            <p>Materiale disponibile</p>
                         </h4>
                     </div>
                     <div id="mat" class="panel-collapse">
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-12 col-xs-12">
-
+                                    <a href="ListMaterial?code=${course.code}" class="btn btn-link my-text center-block m-b-5" role="button">Vai al materiale esterno</a>
                                 </div>
                             </div>
                         </div>

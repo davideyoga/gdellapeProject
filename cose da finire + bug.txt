@@ -1,8 +1,8 @@
 BUG cambiare nome attributo class su studycourse ---> class provoca cose strane
 
-caricare curriculum x prof
-
-associare libro e corso
+associare libro e corso:
+                        -add book sta a posto
+                        -manca addBookByExsting che preso un libro già esistente lo collega a un corso
 
 sistemare dettagli corso da anonimo ---> manca il materiale
 
@@ -32,3 +32,9 @@ messaggio persiste, da resettare il contenuto
 fare 2 tipi di messaggio: "messageSucces" e "messageError" nelle servlet: -CreateUser
 
 Errore da sistemare sulla pagina StudyCourseProfile?code=01 PERCHÈ CE NE SONO 2, VEDERE PER ANNO
+
+
+
+------OPZIONALE DA VALUTARE-------
+
+curriculum del prof da caricare come file
