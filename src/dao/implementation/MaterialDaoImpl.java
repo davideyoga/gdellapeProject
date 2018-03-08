@@ -214,6 +214,7 @@ public class MaterialDaoImpl extends DaoDataMySQLImpl implements MaterialDao {
         try {
 
             material.setId(rs.getInt("id"));
+            material.setName(rs.getString("name"));
             material.setDescription_ita(stripSlashes(rs.getString("description_ita")));
             material.setDescription_eng(stripSlashes(rs.getString("description_eng")));
             material.setData(rs.getTimestamp("date"));
