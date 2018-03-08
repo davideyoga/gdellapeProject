@@ -61,8 +61,20 @@
             <div class="w3ls-heading page-header">
             </div>
             <div class="text-center">
-                <a href="AddMaterial?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">Aggiugni materiale esterno</a>
-                <a href="AddBook?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">Aggiugni nuovo libro</a>
+                <#list services as service>
+                    <#if service.name == 'addMaterial'>
+                        <#assign addMaterial= true>
+                    </#if>
+                    <#if service.name == 'addBook'>
+                        <#assign addBook= true>
+                    </#if>
+                </#list>
+                <#if addMaterial>
+                    <a href="AddMaterial?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">Aggiugni materiale esterno</a>
+                </#if>
+                <#if addBook>
+                    <a href="AddBook?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">Aggiugni nuovo libro</a>
+                </#if>
                 <a href="ListCourse" class="btn btn-warning my-text center-block" role="button">Torna alla lista dei corsi</a>
             </div>
         </div>
@@ -78,7 +90,7 @@
                         <div class="form-group">
                             <label for="codice">Codice:</label>
                             <input type="text" class="form-control" id="codice" name="code" value="<#if course.code??>${course.code}<#else></#if>" disabled>
-                            <#--<p class="form-control-static"><#if course.code??>${course.code}<#else></#if></p>-->
+                        <#--<p class="form-control-static"><#if course.code??>${course.code}<#else></#if></p>-->
                             <span class="help-block">Solo un amministratore può modificare il codice</span>
                         </div>
                     <#--<div class="col-md-12 col-xs-12 well well-sm">-->

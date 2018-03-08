@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>Lista Corsi</title>
+    <title>Materiale esterno</title>
 
 <#include "import.ftl">
 </head>
@@ -10,7 +10,7 @@
 <div class="container">
     <div class="center-block">
         <div class="w3ls-heading page-header">
-            <h3>Corsi erogati</h3>
+            <h3><#if course.name??>Materiale relativo a ${course.name}<#else>Materiale esterno</#if></h3>
         </div>
     </div>
 </div>
@@ -30,30 +30,28 @@
 
     <div class="table-responsive">
         <table id="course_table" class="table table-hover table-bordered table-striped">
-            <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
+
 
             <thead>
             <tr>
-                <th>Codice</th>
-                <th>Nome </th>
+                <th>Nome</th>
                 <th>Descrizione</th>
-                <th>Semestre</th>
-                <th>Lingua</th>
-                <th> - </th>
+                <th>Data di creazione</th>
+                <th>Dimensione</th>
+                <th>Tipo</th>
+                <th>-</th>
             </tr>
             </thead>
 
             <tbody>
-                    <#list materials as course>
+                    <#list materials as material>
                     <tr>
-                        <td>${course.code}</td>
-                        <td>${course.name}</td>
-                        <td>${course.description_ita}</td>
-                        <td>${course.data}</td>
-                        <td>${course.language_ita}</td>
-                        <td>
-                            <a href="CourseProfile?id=${course.idCourse}">Leggi di piu'</a>
-                        </td>
+                        <td>${material.name}</td>
+                        <td>${material.description_ita}</td>
+                        <td>${material.data}</td>
+                        <td>${material.size} kb</td>
+                        <td>${material.type}</td>
+                        <td><a href="downloadMaterial?id=${material.id}">scarica</a></td>
                     </tr>
                     </#list>
             </tbody>

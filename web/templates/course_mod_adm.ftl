@@ -62,8 +62,20 @@
             <div class="w3ls-heading page-header">
             </div>
             <div class="text-center">
-                <a href="AddMaterial?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">Aggiugni materiale esterno</a>
-                <a href="AddBook?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">Aggiugni nuovo libro</a>
+                <#list services as service>
+                    <#if service.name == 'addMaterial'>
+                        <#assign addMaterial= true>
+                    </#if>
+                    <#if service.name == 'addBook'>
+                        <#assign addBook= true>
+                    </#if>
+                </#list>
+                <#if addMaterial>
+                    <a href="AddMaterial?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">Aggiugni materiale esterno</a>
+                </#if>
+                <#if addBook>
+                    <a href="AddBook?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">Aggiugni nuovo libro</a>
+                </#if>
                 <a href="ListCourse" class="btn btn-warning my-text center-block" role="button">Torna alla lista dei corsi</a>
             </div>
         </div>
