@@ -87,6 +87,9 @@ public class ModAdmCourse extends BaseController {
                     //setto l'utente in sessione
                     this.datamodel.put("user", sessionManager.getUser(request));
 
+                    //setto i servizi a cui ha accesso l'utente
+                    this.datamodel.put("services", request.getSession().getAttribute("services"));
+
                     TemplateController.process("course_mod_adm.ftl", datamodel, response, getServletContext());
 
                     //se l'utente non puo' modificare il corso
@@ -212,6 +215,9 @@ public class ModAdmCourse extends BaseController {
 
                     //setto l'utente in sessione
                     this.datamodel.put("user", sessionManager.getUser(request));
+
+                    //setto i servizi a cui ha accesso l'utente
+                    this.datamodel.put("services", request.getSession().getAttribute("services"));
 
                     //lancio il template
                     TemplateController.process("course_mod_adm.ftl", datamodel, response, getServletContext());

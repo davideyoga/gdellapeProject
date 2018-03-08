@@ -32,8 +32,6 @@ public class HomeBackOffice extends BaseController {
         //setto i servizi a cui ha accesso l'utente
         this.datamodel.put("services", request.getSession().getAttribute("services"));
 
-        System.out.println(datamodel.get("services"));
-
         //lancio template di home del back office
         TemplateController.process("home_back_office.ftl", this.datamodel, response, getServletContext());
 

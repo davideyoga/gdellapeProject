@@ -92,6 +92,9 @@ public class ModCourse extends BaseController {
                         //setto l'utente in sessione
                         this.datamodel.put("user", sessionManager.getUser(request));
 
+                        //setto i servizi a cui ha accesso l'utente
+                        this.datamodel.put("services", request.getSession().getAttribute("services"));
+
                         TemplateController.process("course_mod.ftl", datamodel, response, getServletContext());
 
                         //se il corso non e' di questo anno accademico (il docente non puo' modificare un anno accademico che non sia quello attuale)
@@ -203,6 +206,9 @@ public class ModCourse extends BaseController {
                         //setto l'utente in sessione
                         this.datamodel.put("user", sessionManager.getUser(request));
 
+                        //setto i servizi a cui ha accesso l'utente
+                        this.datamodel.put("services", request.getSession().getAttribute("services"));
+
                         //lancio il template
                         TemplateController.process("course_mod.ftl", datamodel,response,getServletContext());
 
@@ -230,6 +236,9 @@ public class ModCourse extends BaseController {
 
             //setto l'utente in sessione
             this.datamodel.put("user", sessionManager.getUser(request));
+
+            //setto i servizi a cui ha accesso l'utente
+            this.datamodel.put("services", request.getSession().getAttribute("services"));
 
             //siccome ad un docente che non sia insrito il log non gle ne puo' fregare di meno lancio comunque il template
             TemplateController.process("course_mod.ftl", datamodel,response,getServletContext());
