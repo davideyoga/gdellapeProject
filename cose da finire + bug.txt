@@ -1,10 +1,4 @@
-BUG servlet courseprofile non ti riconosce loggato
-
-BUG modAssociationCourseWithUser crasha, non riceve anno corrente
-
 BUG cambiare nome attributo class su studycourse ---> class provoca cose strane
-
-associare prof e corso
 
 caricare curriculum x prof
 
@@ -25,3 +19,16 @@ aggiungere tipo di cfu a course
 finire parte grafica di modAssociationStudyCourse_Course e di modAssociationCourseWithUser
 
 vedere bene come funziona modcourserelation
+
+create user aggiungere conferma password, togliere tutto tranne email e password, perchè lato servlet non prende i dati
+
+vedere parte relativa a curriculum, add e mod
+
+controllare utenti che l'admin può cancellare
+(es. l'admin non può cancellare se stesso)
+
+messaggio persiste, da resettare il contenuto
+
+fare 2 tipi di messaggio: "messageSucces" e "messageError" nelle servlet: -CreateUser
+
+Errore da sistemare sulla pagina StudyCourseProfile?code=01 PERCHÈ CE NE SONO 2, VEDERE PER ANNO

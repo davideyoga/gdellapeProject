@@ -36,7 +36,7 @@ public class CourseProfile extends BaseController {
 
     protected void processTemplate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
-        System.out.println("Sto per lanciare il template");
+        datamodel.put("user", sessionManager.getUser(request));
 
         //lancio template appropriato
         processTemplate(request, response, "course_profile", datamodel);
