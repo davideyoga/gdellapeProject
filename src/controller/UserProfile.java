@@ -2,8 +2,11 @@ package controller;
 
 import controller.sessionController.SessionException;
 import dao.exception.DaoException;
+import dao.implementation.CourseDaoImpl;
 import dao.implementation.UserDaoImpl;
+import dao.interfaces.CourseDao;
 import dao.interfaces.UserDao;
+import model.Course;
 import model.User;
 import view.TemplateController;
 
@@ -14,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -42,9 +46,15 @@ public class UserProfile extends BaseController {
             UserDao userDao = new UserDaoImpl(ds);
             userDao.init();
 
+            CourseDao courseDao = new CourseDaoImpl(ds);
+            courseDao.init();
+
             User user = userDao.getUserByEmail(request.getParameter("email"));
 
+            List<Course> courseList = courseDao.getCoursesByUser(user);
+
             userDao.destroy();
+            courseDao.destroy();
 
             //se l'utente esiste nel sistema
             if(!(user == null) && user.getId()>0){
@@ -58,7 +68,8 @@ public class UserProfile extends BaseController {
                 //setto l'utente in sessione
                 this.datamodel.put("user", request.getSession().getAttribute("user"));
 
-                System.out.println(datamodel.get("user"));
+                //setto la lista dei corsi dell'utente
+                this.datamodel.put("courses", courseList );
 
                 //lancia il template appropriato alla lingua selezionata dall'utente
                 this.processTemplate(request, response, "user_profile", datamodel);
