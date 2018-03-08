@@ -47,6 +47,8 @@ public class DownloadMaterial extends BaseController {
 
             materialDao.destroy();
 
+            request.setAttribute("contentType", material.getType() );
+
             this.action_download(request, response, material.getRoute());
 
             material=null;
