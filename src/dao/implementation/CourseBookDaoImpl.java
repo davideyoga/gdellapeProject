@@ -124,13 +124,16 @@ public class CourseBookDaoImpl extends DaoDataMySQLImpl implements CourseBookDao
 
     @Override
     public void destroy() throws DaoException{
+
         try {
+
             this.insertCourseBook.close();
             this.selectCourseBookByBookId.close();
             this.selectCourseBookByCourseId.close();
             this.deleteCourseBook.close();
 
             super.destroy();
+
         }catch (DaoException e){
             throw new DestroyDaoException("Error destroyGroupsService", e);
         } catch (SQLException e) {

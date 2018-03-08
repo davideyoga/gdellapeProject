@@ -1,13 +1,19 @@
 package controller.adm.book;
 
 import controller.BaseController;
+import dao.exception.DaoException;
+import dao.implementation.BookDaoImpl;
+import dao.interfaces.BookDao;
+import model.Book;
 import model.Service;
+import view.TemplateController;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Davide Micarelli
@@ -17,6 +23,17 @@ import java.util.List;
  */
 public class GetListBook extends BaseController {
 
+    protected void processTemplate(HttpServletRequest request, HttpServletResponse response, List<Book> listBook) {
+
+        //inserisco i libri nel datamodel
+        datamodel.put("books", listBook);
+
+        //setto l'utente in sessione
+        this.datamodel.put("user", sessionManager.getUser(request));
+
+        //lancio il template
+        TemplateController.process("list_book.ftl", datamodel, response, getServletContext());
+    }
 
     /**
      * Metodo che estrae del db tutti i libri e li inserisce nel datamodel, dopo di che lancia il template list_book
@@ -43,17 +60,30 @@ public class GetListBook extends BaseController {
                 //se l'utente in sessione possiede il servizio updateCourse...
                 if (((List<Service>) request.getSession().getAttribute("services")).contains(addBook)) {
 
-                    //se non si ha il permesso
 
+                    //estraggo tutti i libri
+                    BookDao bookDao = new BookDaoImpl(ds);
+                    bookDao.init();
+
+                    //estraggo tutti i libri
+                    List<Book> bookList = bookDao.getBooks();
+
+                    //chiudo dao
+                    bookDao.destroy();
+
+                    //passo i libri al template
+                    this.processTemplate(request, response, bookList);
+
+                    //se non si ha il permesso
                 }else{
                     this.processNotPermitted(request, response);
                 }
-
             //se sessione non valida
             }else{
-
+                //rimando alla pagina di login
+                createPreviousPageAndRedirectToLogin(request, response, "ListCourse");
             }
-        }catch (NumberFormatException e){
+        }catch (NumberFormatException | DaoException e){
             e.printStackTrace();
         }
 

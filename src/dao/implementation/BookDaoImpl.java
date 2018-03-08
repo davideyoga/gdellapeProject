@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import static dao.security.DaoSecurity.addSlashes;
 import static dao.security.DaoSecurity.stripSlashes;
@@ -21,6 +23,7 @@ public class BookDaoImpl extends DaoDataMySQLImpl implements BookDao {
 
     private PreparedStatement insertBook,
             selectBookById,
+            selectBooks,
             updateBook,
             insertLinkBookToCourse,
             deleteLinkBookToCourse,
@@ -41,6 +44,8 @@ public class BookDaoImpl extends DaoDataMySQLImpl implements BookDao {
             this.selectBookById = connection.prepareStatement("SELECT *" +
                                                                  " FROM book" +
                                                                  " WHERE id = ?");
+            this.selectBooks = connection.prepareStatement("SELECT *" +
+                    "                                           FROM book");
 
             this.insertLinkBookToCourse = connection.prepareStatement("INSERT INTO course_book" +
                     "                                                           VALUES (?,?)");
@@ -88,6 +93,29 @@ public class BookDaoImpl extends DaoDataMySQLImpl implements BookDao {
             e.printStackTrace();
         }
         return book;
+    }
+
+    @Override
+    public List<Book> getBooks() throws DaoException {
+
+        List<Book> list = new ArrayList <>();
+
+        try {
+
+            ResultSet rs = this.selectBooks.executeQuery();
+
+            while (rs.next()){
+
+                Book book = this.generateBook(rs);
+
+                list.add(book);
+            }
+
+        }catch (Exception e) {
+            throw new DaoException("Error query getUserByGroups", e);
+        }
+
+        return list;
     }
 
     @Override
@@ -195,4 +223,50 @@ public class BookDaoImpl extends DaoDataMySQLImpl implements BookDao {
         }
 
     }
+
+    private Book generateBook(ResultSet rs) throws DaoException{
+
+        Book book = this.getBook();
+
+        try {
+
+            book.setId(rs.getInt("id"));
+            book.setCode(rs.getString("code"));
+            book.setAuthor(rs.getString("author"));
+            book.setTitle(rs.getString("title"));
+            book.setVolume(rs.getString("volume"));
+            book.setAge(rs.getInt("age"));
+            book.setEditor(rs.getString("editor"));
+            book.setLink(rs.getString("link"));
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+
+            throw new DaoException("Error generateBook");
+        }
+
+        return book;
+
+    }
+
+    public void destroy() throws DaoException {
+
+        try {
+
+            this.insertBook.close();
+            this.selectBookById.close();
+            this.updateBook.close();
+            this.insertLinkBookToCourse.close();
+            this.deleteLinkBookToCourse.close();
+            this.deleteBookById.close();
+
+            super.destroy();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            throw new DaoException("Error destroy in BookDao", e);
+        }
+    }
+
 }
