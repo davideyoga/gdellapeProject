@@ -51,7 +51,7 @@
                     <a href="AdmModUser?id=${utente.id}">Modifica utente</a>
                 </td>
                 <td>
-                    <a href="DeleteUser?id=${utente.id}" onclick="return ConfirmDelete(${utente.surname},${utente.name})">Cancella Utente</a>
+                    <a href="DeleteUser?id=${utente.id}" onclick="return ConfirmDelete('${utente.surname}','${utente.name}')">Cancella Utente</a>
                 </td>
             </tr>
             </#list>
