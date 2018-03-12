@@ -112,27 +112,33 @@
         <div id="course" class="tab-pane fade">
             <div class="panel-group">
 
-                <#--<#list courses>-->
-                    <#--<div class="table-responsive" >-->
-                        <#--<table class="table table-hover table-bordered table-striped">-->
-                            <#--<thead>-->
-                            <#--<tr>-->
-                                <#--<th colspan="3">Insegnamenti associati a ${userCurrent.name}</th>-->
-                            <#--</tr>-->
-                            <#--</thead>-->
-                            <#--<#items as  course>-->
-                            <#--<tr>-->
-                                <#--<td>Nome corso</td>-->
-                                <#--<td >${course.name}</td>-->
-                                <#--<td ><a href="CourseProfile?id=${course.idCourse}">Leggi di piu'</a></td>-->
-                            <#--</tr>-->
+                <div class="table-responsive">
+                    <table id="course_table" class="table table-hover table-bordered table-striped">
+                        <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
 
-                            <#--</#items>-->
-                        <#--</table>-->
-                    <#--</div>-->
-                <#--<#else>-->
-                    <#--<h3>Attualmente questo docente non ha corsi associati</h3>-->
-                <#--</#list> -->
+                        <thead>
+                        <tr>
+                            <th>Codice</th>
+                            <th>Nome </th>
+                            <th> - </th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                    <#list courses as course>
+                    <tr>
+                        <td>${course.code}</td>
+                        <td>${course.name}</td>
+                        <td>
+                            <a href="CourseProfile?id=${course.idCourse}">Leggi di piu'</a>
+                        </td>
+                    </tr>
+                    </#list>
+                        </tbody>
+                    </table>
+                    <div>
+                    </div>
+                </div>
 
             </div> <#--div panel-group-->
         </div> <#--div id course-->
@@ -145,5 +151,15 @@
 
 <!--modulo contatti, email, conclusione-->
 <#include "tail.ftl">
+<script src="/templates/js/jquery.dataTables.js" type="text/javascript"></script>
+<script src="/templates/js/dataTables.bootstrap.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function() {
+        $("#course_table").dataTable({
+            "iDisplayLength": 10,
+            "aLengthMenu": [[10, 25, 50, 100,  -1], [10, 25, 50, 100, "All"]]
+        });
+    });
+</script>
 </body>
 </html>
