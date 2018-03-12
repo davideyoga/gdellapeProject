@@ -47,6 +47,16 @@ public class BookDaoImpl extends DaoDataMySQLImpl implements BookDao {
             this.selectBooks = connection.prepareStatement("SELECT *" +
                     "                                           FROM book");
 
+            this.updateBook = connection.prepareStatement("UPDATE book" +
+                    "                                           SET code=?," +
+                    "                                               author=?," +
+                    "                                               title=?," +
+                    "                                               volume=?," +
+                    "                                               age=?," +
+                    "                                               editor=?," +
+                    "                                               link=?" +
+                    "                                           WHERE id=?");
+
             this.insertLinkBookToCourse = connection.prepareStatement("INSERT INTO course_book" +
                     "                                                           VALUES (?,?)");
 
