@@ -32,6 +32,7 @@ fare 2 tipi di messaggio: "messageSucces" e "messageError" nelle servlet: -Creat
 Errore da sistemare sulla pagina StudyCourseProfile?code=01 PERCHÈ CE NE SONO 2, VEDERE PER ANNO
 
 
+pag add_book sistemare chiamata ajax, richiamre solo boy di listbook
 
 ------OPZIONALE DA VALUTARE-------
 
