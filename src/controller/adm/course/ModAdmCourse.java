@@ -189,7 +189,7 @@ public class ModAdmCourse extends BaseController {
 
                             //inserisco un log di avvenuta modofica
                             logManager.addLog(sessionManager.getUser(request), "USER: " + sessionManager.getUser(request).toStringForLog() +
-                                    "HAS CHANGED: " + courseByForm.toStringForLog(), ds);
+                                    " HAS CHANGED: " + courseByForm.toStringForLog(), ds);
 
                         }else {
 

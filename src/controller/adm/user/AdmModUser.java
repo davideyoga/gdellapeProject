@@ -152,7 +152,7 @@ public class AdmModUser extends BaseController {
                                     //effettuo l'update
                                     userDao.storeUser(userDaForm);
 
-                                    logManager.addLog(sessionManager.getUser(request), "USER " + userPrimaDelleModifiche + " IT'S CHANGE: " + userDaForm, ds);
+                                    logManager.addLog(sessionManager.getUser(request), "USER: " + userPrimaDelleModifiche + " IT'S CHANGE: " + userDaForm, ds);
 
                                 }
                                 //se non e' cambiato non faccio nulla

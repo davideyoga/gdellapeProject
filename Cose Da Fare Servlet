@@ -3,7 +3,7 @@ LOG: RIcontrollare i log e scriverli meglio, con spazi ecc..
 
 FARE GetListBook
 
-SISTEMARE PASSWORD
+SISTEMARE PASSWORD (criptare password ed altro)
 
 (opzionali)
 Prendere dati tutti della stessa formattazzione, ad esempio tutti minuiscoli ecc..

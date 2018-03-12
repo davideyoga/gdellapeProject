@@ -248,7 +248,7 @@ public class AdmModStudyCourse extends BaseController{
                         studyCourseDao.storeStudyCourse(studyCourse);
 
                         logManager.addLog(sessionManager.getUser(request), "STUDY COURSE CHANGED, BEFORE: " + studyCoursePrecedente.toStringForLog() +
-                                "BY" + sessionManager.getUser(request).toStringForLog(), ds);
+                                " BY: " + sessionManager.getUser(request).toStringForLog(), ds);
 
                         //se i corsi sono uguali non faccio nulla
                     }else{

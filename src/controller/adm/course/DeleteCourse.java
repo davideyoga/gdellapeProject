@@ -59,7 +59,7 @@ public class DeleteCourse extends BaseController {
                     courseDao.deleteCourse(course);
 
                     //aggiungo un log di eliminazione del corso
-                    logManager.addLog(sessionManager.getUser(request),"USER: " + sessionManager.getUser(request).toStringForLog() + "DELETE COURSE: " + course.toStringForLog(), ds);
+                    logManager.addLog(sessionManager.getUser(request),"USER: " + sessionManager.getUser(request).toStringForLog() + " DELETE COURSE: " + course.toStringForLog(), ds);
 
                     //lancio la servlet della lista dei corsi
                     response.sendRedirect("ListCourse");

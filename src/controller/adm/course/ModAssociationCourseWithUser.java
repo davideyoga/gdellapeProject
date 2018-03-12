@@ -243,7 +243,7 @@ public class ModAssociationCourseWithUser extends BaseController {
 
                     //inserisco un log
                     logManager.addLog(sessionManager.getUser(request), "USER: " + sessionManager.getUser(request).toStringForLog() +
-                            "HAS CHANGED THE CONNECTION BETWEEN USERS AND THE COURSE: " + course.toStringForLog(), ds);
+                            " HAS CHANGED THE CONNECTION BETWEEN USERS AND THE COURSE: " + course.toStringForLog(), ds);
 
                     //lancio il template
                     TemplateController.process("mod_association_course_with_user.ftl", datamodel, response, getServletContext());

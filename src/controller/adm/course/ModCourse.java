@@ -193,7 +193,7 @@ public class ModCourse extends BaseController {
 
                             //inserisco un log
                             logManager.addLog(sessionManager.getUser(request), "USER: " + sessionManager.getUser(request).toStringForLog() +
-                                    "HAS CHANGED: " + courseById.toStringForLog(), ds);
+                                    " HAS CHANGED: " + courseById.toStringForLog(), ds);
 
                             //se non sono state effettuate modifiche
                         }else{
