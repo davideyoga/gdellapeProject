@@ -548,4 +548,16 @@
     </servlet-mapping>
     <!--fine servlet DeleteCourse-->
 
+    <!--servlet DeleteCourse-->
+    <servlet>
+        <servlet-name>GetListBook</servlet-name>
+        <servlet-class>controller.adm.book.GetListBook</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetListBook</servlet-name>
+        <url-pattern>/GetListBook</url-pattern>
+        <url-pattern>/getListBook</url-pattern>
+    </servlet-mapping>
+    <!--fine servlet DeleteCourse-->
+
 </web-app>
