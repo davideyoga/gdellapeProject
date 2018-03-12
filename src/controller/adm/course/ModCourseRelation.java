@@ -437,7 +437,7 @@ public class ModCourseRelation extends BaseController {
                             if (serviziCambiati == true) {
 
                                 //aggiungo log di modifica associazioni con i servizi
-                                logManager.addLog(sessionManager.getUser(request), "USER:" + sessionManager.getUser(request).toStringForLog() +  "COURSE: " + courseById.toStringForLog() + " HAS SUBMITTED CHANGES TO ASSOCIATED COURSE IN: " + mode, ds);
+                                logManager.addLog(sessionManager.getUser(request), "USER:" + sessionManager.getUser(request).toStringForLog() +  " COURSE: " + courseById.toStringForLog() + " HAS SUBMITTED CHANGES TO ASSOCIATED COURSE IN: " + mode, ds);
 
                             }
 

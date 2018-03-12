@@ -180,7 +180,7 @@ public class UpdateCourse extends BaseController {
                             courseDao.destroy();
 
                             //aggiungo log Update del corso
-                            logManager.addLog(sessionManager.getUser(request), "USER:" + sessionManager.getUser(request).toStringForLog() +  "HAS UPDATED A COURSE: " + courseById.toStringForLog() , ds);
+                            logManager.addLog(sessionManager.getUser(request), "USER:" + sessionManager.getUser(request).toStringForLog() +  " HAS UPDATED A COURSE: " + courseById.toStringForLog() , ds);
 
                             //lancio la servlet della lista dei corsi
                             response.sendRedirect("ListCourse");

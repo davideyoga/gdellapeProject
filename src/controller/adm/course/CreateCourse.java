@@ -134,7 +134,7 @@ public class CreateCourse extends BaseController {
                         courseDao.storeCourse(course);
 
                         //inserisco un log di avvenuto inserimento
-                        logManager.addLog(sessionManager.getUser(request), "USER: " + sessionManager.getUser(request).toStringForLog() +"STORE COURSE: " + course.toStringForLog(), ds);
+                        logManager.addLog(sessionManager.getUser(request), "USER: " + sessionManager.getUser(request).toStringForLog() +" STORE COURSE: " + course.toStringForLog(), ds);
 
                         //chiudo i dao
                         courseDao.destroy();
