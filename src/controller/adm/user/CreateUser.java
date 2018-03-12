@@ -170,8 +170,6 @@ public class CreateUser extends BaseController {
                             //inserisco nel datamodel id dell'utenet appena creato
                             datamodel.put("idUserCreated", id);
 
-                            System.out.println("id utente appena creato: " + id);
-
                             //aggiungo un log di avvenuta creazioendi un utente
                             logManager.addLog(sessionManager.getUser(request),"USER CREATED: " + user + "BY" + sessionManager.getUser(request), ds);
 
