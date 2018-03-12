@@ -4,8 +4,6 @@ associare libro e corso:
                         -add book sta a posto
                         -manca addBookByExsting che preso un libro già esistente lo collega a un corso
 
-sistemare dettagli corso da anonimo ---> manca il materiale
-
 stampare corsi collegati nella pagina del prof ---> userprofile
 
 alla specifica dice che posso scegliere l'anno su course (noi l'abbiamo fatto su studycourse)
