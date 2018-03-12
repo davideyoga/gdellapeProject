@@ -93,6 +93,10 @@ public class CreateUser extends BaseController {
                     //setto l'utente in sessione
                     this.datamodel.put("user", sessionManager.getUser(request));
 
+                    //setto i servizi a cui ha accesso l'utente
+                    this.datamodel.put("services", request.getSession().getAttribute("services"));
+
+
                     //lancio il template di creazione utente
                     TemplateController.process( "create_user.ftl", datamodel ,response, getServletContext() );
 
@@ -161,7 +165,12 @@ public class CreateUser extends BaseController {
                             user.setPassword(passwordForm);
 
                             //inserisco l'utente
-                            userDao.storeUser(user);
+                            int id =  userDao.storeUser(user);
+
+                            //inserisco nel datamodel id dell'utenet appena creato
+                            datamodel.put("idUserCreated", id);
+
+                            System.out.println("id utente appena creato: " + id);
 
                             //aggiungo un log di avvenuta creazioendi un utente
                             logManager.addLog(sessionManager.getUser(request),"USER CREATED: " + user + "BY" + sessionManager.getUser(request), ds);
@@ -174,6 +183,12 @@ public class CreateUser extends BaseController {
 
                             //setto l'utente in sessione
                             this.datamodel.put("user", sessionManager.getUser(request));
+
+                            userDao.destroy();
+                            userDao = null;
+
+                            //setto i servizi a cui ha accesso l'utente
+                            this.datamodel.put("services", request.getSession().getAttribute("services"));
 
                             //lancio la pagina di creazione dell'utente
                             TemplateController.process("create_user.ftl", datamodel, response, getServletContext());
@@ -190,6 +205,9 @@ public class CreateUser extends BaseController {
 
                         //setto l'utente in sessione
                         this.datamodel.put("user", sessionManager.getUser(request));
+
+                        //setto i servizi a cui ha accesso l'utente
+                        this.datamodel.put("services", request.getSession().getAttribute("services"));
 
                         //lancio la pagina di creazione dell'utente
                         TemplateController.process("create_user.ftl", datamodel, response, getServletContext());
@@ -218,6 +236,9 @@ public class CreateUser extends BaseController {
             //setto l'utente in sessione
             this.datamodel.put("user", sessionManager.getUser(request));
 
+            //setto i servizi a cui ha accesso l'utente
+            this.datamodel.put("services", request.getSession().getAttribute("services"));
+
             //lancio la pagina di creazione dell'utente
             TemplateController.process("create_user.ftl", datamodel, response, getServletContext());
 
@@ -235,6 +256,9 @@ public class CreateUser extends BaseController {
 
             //setto l'utente in sessione
             this.datamodel.put("user", sessionManager.getUser(request));
+
+            //setto i servizi a cui ha accesso l'utente
+            this.datamodel.put("services", request.getSession().getAttribute("services"));
 
             //lancio la pagina di creazione dell'utente
             TemplateController.process("create_user.ftl", datamodel, response, getServletContext());

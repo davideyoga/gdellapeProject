@@ -19,7 +19,7 @@ public interface UserDao extends DaoData{
 
     public User getUserByEmailPassword( String email, String password) throws DaoException;//
 
-    public void storeUser( User user) throws DaoException;//
+    public int storeUser( User user) throws DaoException;//
 
     public void deleteUser(User user) throws DaoException;
 

@@ -1,7 +1,4 @@
-LOG: Sistemare da adm.user in poi
 LOG: RIcontrollare i log e scriverli meglio, con spazi ecc..
-
-FARE GetListBook
 
 SISTEMARE PASSWORD (criptare password ed altro)
 

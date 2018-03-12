@@ -12,6 +12,7 @@ import javax.sql.DataSource;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
 
             //inizializzazione query
             this.insertUser = connection.prepareStatement("INSERT INTO user" +
-                    "                                          VALUES (NULL, ?,?,?,?,?,?,?,?,?)");
+                    "                                          VALUES (NULL, ?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 
             this.selectUserById = connection.prepareStatement("SELECT *" +
                     "                                              FROM user" +
@@ -205,7 +206,7 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
      * @throws DaoException
      */
     @Override
-    public void storeUser(User user) throws DaoException {
+    public int storeUser(User user) throws DaoException {
 
         if( user.getId() > 0 ){ //l'user ha gia' un id, quindi e' gia nel database
 
@@ -223,6 +224,8 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
                 this.updateUser.setInt(10, user.getId());
 
                 this.updateUser.executeUpdate();
+
+                return user.getId();
 
             } catch (SQLException e) {
                 throw new UpdateDaoException("Error storeUser in user dao", e);
@@ -245,6 +248,22 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
                 this.insertUser.setString(9, addSlashes(user.getPassword()));
 
                 this.insertUser.executeUpdate();
+
+                //estraggo il resultset per estrarne l'id appena insertito
+                ResultSet keys = insertUser.getGeneratedKeys();
+
+                //inizializzo un valore dell'id per ritornarlo
+                int key = 0;
+
+                if (keys.next()) {
+                    //i campi del record sono le componenti della chiave
+                    //(nel nostro caso, un solo intero)
+                    //the record fields are the key componenets
+                    //(a single integer in our case)
+                    key = keys.getInt(1);
+                }
+
+                return key;
 
             } catch (SQLException e) {
                 throw new InsertDaoException("Error storeUser in user dao", e);
