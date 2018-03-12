@@ -184,7 +184,7 @@
     <servlet>
         <servlet-name>DeleteUser</servlet-name>
         <servlet-class>controller.adm.user.DeleteUser</servlet-class>
-        </servlet>
+    </servlet>
     <servlet-mapping>
         <servlet-name>DeleteUser</servlet-name>
         <url-pattern>/DeleteUser</url-pattern>
@@ -547,5 +547,17 @@
         <url-pattern>/DdeleteCourse</url-pattern>
     </servlet-mapping>
     <!--fine servlet DeleteCourse-->
+
+    <!--servlet GetListBook-->
+    <servlet>
+        <servlet-name>GetListBook</servlet-name>
+        <servlet-class>controller.adm.book.GetListBook</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetListBook</servlet-name>
+        <url-pattern>/GetListBook</url-pattern>
+        <url-pattern>/getListBook</url-pattern>
+    </servlet-mapping>
+    <!--fine servlet GetListBook-->
 
 </web-app>
