@@ -1,4 +1,4 @@
-BUG cambiare nome attributo class su studycourse ---> class provoca cose strane
+BUG non stampare attributo class su studycourse ---> class provoca cose strane
 
 associare libro e corso:
                         -add book sta a posto
