@@ -1,6 +1,10 @@
-LOG: RIcontrollare i log e scriverli meglio, con spazi ecc..
+LOG:
+    aggiungere data ai log
+    ricontrollare i log e scriverli meglio, con spazi ecc..
 
-SISTEMARE PASSWORD (criptare password ed altro)
+PASSWORD:
+    non esporre all'esterno le password utenti
+
 
 (opzionali)
 Prendere dati tutti della stessa formattazzione, ad esempio tutti minuiscoli ecc..
