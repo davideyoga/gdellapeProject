@@ -3,8 +3,11 @@ package controller.adm.book;
 import controller.BaseController;
 import dao.exception.DaoException;
 import dao.implementation.BookDaoImpl;
+import dao.implementation.CourseDaoImpl;
 import dao.interfaces.BookDao;
+import dao.interfaces.CourseDao;
 import model.Book;
+import model.Course;
 import model.Service;
 import view.TemplateController;
 
@@ -33,6 +36,42 @@ public class GetListBook extends BaseController {
 
         //lancio il template
         TemplateController.process("list_book.ftl", datamodel, response, getServletContext());
+    }
+
+    protected void ceckCourse(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+
+            CourseDao courseDao = new CourseDaoImpl(ds);
+            courseDao.init();
+
+            int id = Integer.parseInt(request.getParameter("idCourse"));
+
+            Course course = courseDao.getCourseById(id);
+
+            if (course!= null && course.getIdCourse()>0){
+
+                datamodel.put("idCourse",id);
+
+            }else{
+
+                course = null;
+
+                System.out.println("Corso non esistente");
+                this.processError(request, response);
+            }
+
+            course = null;
+
+            courseDao.destroy();
+            courseDao=null;
+
+
+        } catch (DaoException | NumberFormatException e) {
+            e.printStackTrace();
+
+            this.processError(request, response);
+        }
+
     }
 
     /**
@@ -64,6 +103,8 @@ public class GetListBook extends BaseController {
                     //estraggo tutti i libri
                     BookDao bookDao = new BookDaoImpl(ds);
                     bookDao.init();
+
+                    this.ceckCourse(request, response);
 
                     //estraggo tutti i libri
                     List<Book> bookList = bookDao.getBooks();
