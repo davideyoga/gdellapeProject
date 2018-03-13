@@ -34,6 +34,7 @@ Errore da sistemare sulla pagina StudyCourseProfile?code=01 PERCHÈ CE NE SONO 2
 Togliere riempimento campo password a profile managment
 
 
+pag add_book sistemare chiamata ajax, richiamre solo boy di listbook
 
 ------OPZIONALE DA VALUTARE-------
 

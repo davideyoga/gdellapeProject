@@ -5,7 +5,8 @@
 <!-- js -->
 
 <script type="text/javascript" src="/templates/js/jquery-2.1.4.min.js"></script>
-<script type="text/javascript" src="/templates/js/test.js"></script>
+<script type="text/javascript" src="/templates/js/confirm_script.js"></script>
+<script type="text/javascript" src="/templates/js/field_convalidator.js"></script>
 
 <!-- //js -->
 

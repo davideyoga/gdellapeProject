@@ -53,13 +53,14 @@
 
                     <div id="access" class="tab-pane fade in active">
                         <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Email">
-                            <span class="help-block">Email d'accesso</span>
+                            <label for="email" placeholder="Es. email@dominio.it">Email:</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Email" required pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}">
+
                         </div>
                         <div class="form-group">
-                            <label for="pwd">Password:</label>
-                            <input type="password" class="form-control" id="pwd" name="password" placeholder="Password">
+                            <label for="pwd">Password: <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-html="true" title="la password deve essere composta da: &#13;&#10;-almeno 8 caratteri &#13;&#10;-almeno una maiuscola&#13;&#10;-almeno una minuscola&#13;&#10;-almeno un numero"></span></label>
+                            <input type="password" class="form-control" id="pwd" name="password" placeholder="Password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
+                            <#--data-toggle="tooltip" data-html="true" title="la password deve essere composta da almeno 8 caratteri, almeno una maiuscola, una minuscola e 1 numero"-->
                         </div>
                     </div>
                 <#--end access-->

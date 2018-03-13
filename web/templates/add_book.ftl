@@ -6,6 +6,21 @@
 
     <!--librerie-->
 <#include "import.ftl">
+    <script type="text/javascript">
+        $(document).ready(function() {
+                $.ajax({
+                    url: "getListBook",
+                    dataType: "html",
+                    success: function(risposta) {
+                        $("div#old").html(risposta);
+                    },
+                    error: function(){
+                        alert("Chiamata fallita!!!");
+                    }
+                });
+                return false;
+            });
+    </script>
 </head>
 <body>
 <!--menù navigazione-->
@@ -36,7 +51,7 @@
         <div class="row">
             <div class="col-md-2 col-xs-2 my-menu">
                 <ul class="nav nav-pills nav-stacked">
-                    <li class="active text-center"><a data-toggle="pill" href="#">Aggiungi nuovo libro</a></li>
+                    <li class="active text-center"><a data-toggle="pill" href="#basic">Aggiungi nuovo libro</a></li>
                 </ul>
                 <br>
                 <div class="text-center"><button type="submit" form="Add" class="btn btn-default">Aggiungi</button></div>
@@ -48,6 +63,10 @@
 
             <div class="container">
                 <div class="col-md-12 col-xs-12">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#basic">Nuovo libro</a></li>
+                        <li><a data-toggle="tab" href="#old">libri esistenti</a></li>
+                    </ul>
                     <div class="tab-content">
 
                         <div id="basic" class="tab-pane fade in active">
@@ -81,6 +100,10 @@
                             </div>
                         </div>
                     <#--end basic-->
+
+                        <div id="old" class="tab-pane fade in active">
+
+                        </div>
                     </div>
                 </div>
             </div>
