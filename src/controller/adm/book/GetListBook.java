@@ -50,7 +50,7 @@ public class GetListBook extends BaseController {
 
             if (course!= null && course.getIdCourse()>0){
 
-                datamodel.put("idCourse",id);
+                datamodel.put("course",course);
 
             }else{
 
@@ -104,7 +104,7 @@ public class GetListBook extends BaseController {
                     BookDao bookDao = new BookDaoImpl(ds);
                     bookDao.init();
 
-                    this.ceckCourse(request, response);
+                    this.ceckCourse(request, response );
 
                     //estraggo tutti i libri
                     List<Book> bookList = bookDao.getBooks();
