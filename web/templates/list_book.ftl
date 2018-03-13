@@ -4,6 +4,21 @@
     <title>Lista Corsi</title>
 
 <#include "import.ftl">
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.ajax({
+                url: "getListBook",
+                dataType: "html",
+                success: function(risposta) {
+                    $("div#old").html(risposta);
+                },
+                error: function(){
+                    alert("Chiamata fallita!!!");
+                }
+            });
+            return false;
+        });
+    </script>
 </head>
 <body>
 <#include "navbar.ftl">
@@ -41,6 +56,7 @@
                 <th>Anno</th>
                 <th>Editore</th>
                 <th>link</th>
+                <th>associa</th>
             </tr>
             </thead>
 
@@ -54,6 +70,7 @@
                         <td>${book.age}</td>
                         <td>${book.editor}</td>
                         <td>${book.link}</td>
+                        <td><input type="checkbox" name="${book.id}" value="${book.id}"> ${course.name}</td>
                     </tr>
                     </#list>
             </tbody>
