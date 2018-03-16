@@ -84,7 +84,7 @@
                         <td>${book.age}</td>
                         <td>${book.editor}</td>
                         <td>${book.link}</td>
-                        <td><input type="checkbox" class="associate" id="${book.id}" name="${book.id}" value="${book.id}"> ${course.name}, ${book.id}</td>
+                        <td><input type="checkbox" class="associate" id="${book.id}" name="${book.id}" value="${book.id}" <#if booksByCourse?seq_contains(book) >checked<#else></#if>> ${course.name}, ${book.id}</td>
                     </tr>
                     </#list>
             </tbody>
