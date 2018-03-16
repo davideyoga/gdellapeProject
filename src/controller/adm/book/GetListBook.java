@@ -26,10 +26,13 @@ import java.util.Map;
  */
 public class GetListBook extends BaseController {
 
-    protected void processTemplate(HttpServletRequest request, HttpServletResponse response, List<Book> listBook) {
+    protected void processTemplate(HttpServletRequest request, HttpServletResponse response, List<Book> listBook, List<Book> listBookByCourse ) {
 
         //inserisco i libri nel datamodel
         datamodel.put("books", listBook);
+
+        //inserisco i libri nel datamodel
+        datamodel.put("booksByCourse", listBookByCourse);
 
         //setto l'utente in sessione
         this.datamodel.put("user", sessionManager.getUser(request));
@@ -38,7 +41,7 @@ public class GetListBook extends BaseController {
         TemplateController.process("list_book.ftl", datamodel, response, getServletContext());
     }
 
-    protected void ceckCourse(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected Course ceckCourse(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
 
             CourseDao courseDao = new CourseDaoImpl(ds);
@@ -51,6 +54,8 @@ public class GetListBook extends BaseController {
             if (course!= null && course.getIdCourse()>0){
 
                 datamodel.put("course",course);
+
+                return course;
 
             }else{
 
@@ -70,7 +75,11 @@ public class GetListBook extends BaseController {
             e.printStackTrace();
 
             this.processError(request, response);
+
+            return null;
         }
+
+        return null;
 
     }
 
@@ -104,16 +113,19 @@ public class GetListBook extends BaseController {
                     BookDao bookDao = new BookDaoImpl(ds);
                     bookDao.init();
 
-                    this.ceckCourse(request, response );
+                    Course course = this.ceckCourse(request, response );
 
                     //estraggo tutti i libri
                     List<Book> bookList = bookDao.getBooks();
+
+                    //estraggo i libri collegati al corso
+                    List<Book> bookListByCourse = bookDao.getCourseByCourse(course);
 
                     //chiudo dao
                     bookDao.destroy();
 
                     //passo i libri al template
-                    this.processTemplate(request, response, bookList);
+                    this.processTemplate(request, response, bookList, bookListByCourse);
 
                     //se non si ha il permesso
                 }else{
