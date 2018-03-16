@@ -1,12 +1,8 @@
 BUG non stampare attributo class su studycourse ---> class provoca cose strane
 
-associare libro e corso:
-                        -add book sta a posto
-                        -vedere addBookByExsting, lo richiamo con ajax da list book
-
 stampare corsi collegati nella pagina del prof ---> userprofile
 
-alla specifica dice che posso scegliere l'anno su course (noi l'abbiamo fatto su studycourse)
+NON RISPETTA LA SPECIFICA ----- alla specifica dice che posso scegliere l'anno su course (noi l'abbiamo fatto su studycourse)
 
 selettore lingua non funziona (vedere a template vecchio come si fa)
 
@@ -33,8 +29,7 @@ Errore da sistemare sulla pagina StudyCourseProfile?code=01 PERCHÈ CE NE SONO 2
 
 Togliere riempimento campo password a profile managment
 
-
-pag add_book sistemare chiamata ajax, richiamre solo boy di listbook
+sistemare parte grafica List_book.ftl per checkare i libri già collegati
 
 ------OPZIONALE DA VALUTARE-------
 

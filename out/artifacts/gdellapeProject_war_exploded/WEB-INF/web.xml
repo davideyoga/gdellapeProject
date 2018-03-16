@@ -560,4 +560,16 @@
     </servlet-mapping>
     <!--fine servlet GetListBook-->
 
+    <!--servlet AddBookByExisting-->
+    <servlet>
+        <servlet-name>AddBookByExisting</servlet-name>
+        <servlet-class>controller.adm.book.AddBookByExisting</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddBookByExisting</servlet-name>
+        <url-pattern>/AddBookByExisting</url-pattern>
+        <url-pattern>/addBookByExisting</url-pattern>
+    </servlet-mapping>
+    <!--fine servlet GetListBook-->
+
 </web-app>
