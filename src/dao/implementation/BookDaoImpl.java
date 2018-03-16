@@ -24,6 +24,7 @@ public class BookDaoImpl extends DaoDataMySQLImpl implements BookDao {
     private PreparedStatement insertBook,
             selectBookById,
             selectBooks,
+            selectBooksByCourse,
             updateBook,
             insertLinkBookToCourse,
             deleteLinkBookToCourse,
@@ -44,6 +45,13 @@ public class BookDaoImpl extends DaoDataMySQLImpl implements BookDao {
             this.selectBookById = connection.prepareStatement("SELECT *" +
                                                                  " FROM book" +
                                                                  " WHERE id = ?");
+
+            this.selectBooksByCourse = connection.prepareStatement("SELECT * " +
+                    "                                                       FROM book " +
+                    "                                                       LEFT JOIN course_book " +
+                    "                                                       ON book.id = course_book.book_id " +
+                    "                                                       WHERE course_book.course_id=? ");
+
             this.selectBooks = connection.prepareStatement("SELECT *" +
                     "                                           FROM book");
 
@@ -123,6 +131,35 @@ public class BookDaoImpl extends DaoDataMySQLImpl implements BookDao {
 
         }catch (Exception e) {
             throw new DaoException("Error query getUserByGroups", e);
+        }
+
+        return list;
+    }
+
+    @Override
+    public List <Book> getCourseByCourse(Course course) throws DaoException {
+        List<Book> list = new ArrayList<>();
+
+        try{
+
+            this.selectBooksByCourse.setInt( 1, course.getIdCourse());
+
+            ResultSet rs = this.selectBooksByCourse.executeQuery();
+
+            //rs ritorna un insieme di tuple rappresentanti i gruppi a cuoi appartiene l'utente
+            //scorro rs ed aggiungo alla lista il gruppo
+            while( rs.next() ){
+
+                Book book = this.generateBook(rs);
+
+                list.add(book);
+            }
+
+        }catch (Exception e) {
+
+            e.printStackTrace();
+            throw new DaoException("Error getCourseByCourse", e);
+
         }
 
         return list;

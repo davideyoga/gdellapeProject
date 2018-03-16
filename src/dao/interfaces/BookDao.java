@@ -15,6 +15,9 @@ public interface BookDao extends DaoData {
     public Book getBook();
     public Book getBookById(int IdBook) throws DaoException;
     List<Book> getBooks() throws DaoException;
+
+    List<Book> getCourseByCourse(Course course) throws DaoException;
+
     public int storeBook (Book book) throws DaoException;
     public void deleteBook (Book book) throws DaoException;
     public void deleteLinkToCourseBook(Course course, Book book) throws DaoException;

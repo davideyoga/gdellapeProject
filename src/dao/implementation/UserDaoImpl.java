@@ -25,14 +25,14 @@ import static dao.security.DaoSecurity.stripSlashes;
 public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
 
     private PreparedStatement   insertUser,
-                                selectUserById,
-                                selectUserByEmailPassword,
-                                updateUser,
-                                deleteUserById,
-                                selectUserByGroupsId,
-                                selectUserByEmail,
-                                selectUserByCourse,
-                                selectUsers;
+            selectUserById,
+            selectUserByEmailPassword,
+            updateUser,
+            deleteUserById,
+            selectUserByGroupsId,
+            selectUserByEmail,
+            selectUserByCourse,
+            selectUsers;
 
 
     /**
@@ -305,16 +305,16 @@ public class UserDaoImpl extends DaoDataMySQLImpl implements UserDao{
 
         try {
 
-                user.setId(rs.getInt("id"));
-                user.setSurname(stripSlashes(rs.getString("surname")));
-                user.setName(stripSlashes(rs.getString("name")));
-                user.setEmail(stripSlashes(rs.getString("email")));
-                user.setNumber(rs.getLong("number"));
-                user.setCurriculum_ita(stripSlashes(rs.getString("curriculum_ita")));
-                user.setCurriculum_eng(stripSlashes(rs.getString("curriculum_eng")));
-                user.setReceprion_hours_ita(stripSlashes(rs.getString("receprion_hours_ita")));
-                user.setReceprion_hours_eng(stripSlashes(rs.getString("receprion_hours_eng")));
-                user.setPassword(rs.getString("password"));
+            user.setId(rs.getInt("id"));
+            user.setSurname(stripSlashes(rs.getString("surname")));
+            user.setName(stripSlashes(rs.getString("name")));
+            user.setEmail(stripSlashes(rs.getString("email")));
+            user.setNumber(rs.getLong("number"));
+            user.setCurriculum_ita(stripSlashes(rs.getString("curriculum_ita")));
+            user.setCurriculum_eng(stripSlashes(rs.getString("curriculum_eng")));
+            user.setReceprion_hours_ita(stripSlashes(rs.getString("receprion_hours_ita")));
+            user.setReceprion_hours_eng(stripSlashes(rs.getString("receprion_hours_eng")));
+            user.setPassword(rs.getString("password"));
 
         } catch (SQLException e) {
             throw new DaoException("Error generateUser", e);
