@@ -29,7 +29,6 @@ Errore da sistemare sulla pagina StudyCourseProfile?code=01 PERCHÈ CE NE SONO 2
 
 Togliere riempimento campo password a profile managment
 
-sistemare parte grafica List_book.ftl per checkare i libri già collegati
 
 ------OPZIONALE DA VALUTARE-------
 
