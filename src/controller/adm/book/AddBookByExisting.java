@@ -25,6 +25,7 @@ public class AddBookByExisting extends BaseController {
 
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
+        System.out.println("gianni");
 
 
         //controllo l'esistenza del parametro idBook e idCourse

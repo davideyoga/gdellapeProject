@@ -17,15 +17,15 @@
                             idCourse: ${course.idCourse}
                         },
                         success: function(data) {
-                            alert('it worked');
+                            alert('libro associato');
                             // alert(data);
                             // $('#container').html(data);
                         },
                         error: function() {
-                            alert('it broke');
+                            console.log('errore');
                         },
                         complete: function() {
-                            alert('it completed');
+                            console.log('chiamata ajax completata');
                         }
                     });
 
