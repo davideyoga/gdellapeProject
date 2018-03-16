@@ -18,8 +18,8 @@
                         },
                         success: function(data) {
                             alert('it worked');
-                            alert(data);
-                            $('#container').html(data);
+                            // alert(data);
+                            // $('#container').html(data);
                         },
                         error: function() {
                             alert('it broke');
@@ -94,7 +94,7 @@
     </div>
 </div>
 
-<div id="container"></div>
+<div id="container2"></div>
 <#--tutti questi div sono inutili ma ci devono stare-->
 
 <!--modulo contatti, email, conclusione-->
