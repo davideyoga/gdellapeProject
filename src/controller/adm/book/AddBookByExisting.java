@@ -42,6 +42,7 @@ public class AddBookByExisting extends BaseController {
                 //casto l'id del libro e del corso
                 int idBook = SecurityLayer.checkNumeric(request.getParameter("idBook"));
                 int idCourse = SecurityLayer.checkNumeric(request.getParameter("idCourse"));
+                System.out.println("idBook: " + idBook + " \nidcourse: " + idCourse);
 
                 //estraggo il libro e il corso
                 Book book= bookDao.getBookById(idBook);

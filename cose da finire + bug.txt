@@ -2,7 +2,7 @@ BUG non stampare attributo class su studycourse ---> class provoca cose strane
 
 associare libro e corso:
                         -add book sta a posto
-                        -manca addBookByExsting che preso un libro già esistente lo collega a un corso
+                        -vedere addBookByExsting, lo richiamo con ajax da list book
 
 stampare corsi collegati nella pagina del prof ---> userprofile
 

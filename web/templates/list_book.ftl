@@ -6,17 +6,31 @@
 <#include "import.ftl">
     <script type="text/javascript">
         $(document).ready(function() {
-            $.ajax({
-                url: "getListBook",
-                dataType: "html",
-                success: function(risposta) {
-                    $("div#old").html(risposta);
-                },
-                error: function(){
-                    alert("Chiamata fallita!!!");
+            $('.associate').on('change',function() {
+                console.log($(this).attr('id'));  //-->this will alert name of checked checkbox.
+                if(this.checked){
+                    $.ajax({
+                        type: "GET",
+                        url: 'AddBookByExisting',
+                        data: {
+                            idBook: $(this).attr('id'),
+                            idCourse: ${course.idCourse}
+                        },
+                        success: function(data) {
+                            alert('it worked');
+                            // alert(data);
+                            // $('#container').html(data);
+                        },
+                        error: function() {
+                            alert('it broke');
+                        },
+                        complete: function() {
+                            alert('it completed');
+                        }
+                    });
+
                 }
             });
-            return false;
         });
     </script>
 </head>
@@ -70,7 +84,7 @@
                         <td>${book.age}</td>
                         <td>${book.editor}</td>
                         <td>${book.link}</td>
-                        <td><input type="checkbox" name="${book.id}" value="${book.id}"> ${course.name}</td>
+                        <td><input type="checkbox" class="associate" id="${book.id}" name="${book.id}" value="${book.id}"> ${course.name}, ${book.id}</td>
                     </tr>
                     </#list>
             </tbody>
@@ -79,6 +93,8 @@
         </div>
     </div>
 </div>
+
+<div id="container2"></div>
 <#--tutti questi div sono inutili ma ci devono stare-->
 
 <!--modulo contatti, email, conclusione-->
