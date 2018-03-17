@@ -36,7 +36,6 @@
                 <li class="active"><a data-toggle="pill" href="#base">Dati di base</a></li>
                 <li><a data-toggle="pill" href="#extra_it">Informazioni aggiuntive</a></li>
                 <li><a data-toggle="pill" href="#extra_en">Informazioni in inglese</a></li>
-            <li><a data-toggle="pill" href="#association">Associa corsi</a></li>
             </ul>
             <br>
             <button type="submit" form="create" class="btn btn-default">Crea Corso di Laurea</button>
@@ -123,22 +122,8 @@
                     </div>
                 <#--end extra_en-->
 
-                    <#--<div id="association" class="tab-pane fade">-->
-                        <#--<a href="ModAssociationStudyCourseWithCourse?idStudyCourse=${studyCourse.id}">Mod Association With Course</a>-->
-                        <#--<div class="panel panel-default">-->
-                            <#--<div class="panel-heading">Decidi quali corsi assegnare</div>-->
-                            <#--<div class="panel-body">-->
-                            <#--<#list listCourses as course>-->
-                                <#--<div class="checkbox">-->
-                                    <#--<label><input type="checkbox" value="${course.name}">${course.name}</label>-->
-                                <#--</div>-->
-                            <#--</#list>-->
-                            <#--</div>-->
-                        <#--</div>-->
-                    <#--</div>-->
-
                 </div>
-                <#--end tab-content-->
+            <#--end tab-content-->
 
             </div>
         </div>

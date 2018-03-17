@@ -41,16 +41,6 @@
 
 
         <div class="container">
-        <#if message??>
-            <div class="title">
-                <h2>ATTENZIONE</h2>
-                <div class="modalContent">
-                    <p>${message}</p>
-                </div>
-            </div>
-        <#else>
-
-        </#if>
 
             <div class="col-md-12 col-xs-12">
                 <div class="tab-content">

@@ -19,6 +19,9 @@ fare 2 tipi di messaggio: "messageSucces" e "messageError" nelle servlet: -Creat
 Togliere riempimento campo password a profile managment
 
 
+per la ricerca di un corso: manca filtrare per docente e per corso di laurea
+
+
 ------OPZIONALE DA VALUTARE-------
 
 curriculum del prof da caricare come file
