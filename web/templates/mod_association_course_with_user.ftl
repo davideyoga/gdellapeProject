@@ -26,47 +26,67 @@
         </#if>
     </div>
 </div>
+
 <div class="container">
 
         <#assign x=currentYear>
 
     <div>Course: ${course.name}</div>
     <div>AGE: ${currentYear}</div>
-    <#--<a href="modAssociationCourseWithUser?id=${course.idCourse}&age=${(currentFirstYear - 1)?string.computer} ">Previous year</a>-->
-    <#--<a href="modAssociationCourseWithUser?id=${course.idCourse}&age=${(currentFirstYear + 1)?string.computer} ">Next year</a>-->
-
-    <form method="POST" action="modAssociationCourseWithUser">
-
-        <div class="table-responsive">
-            <table id="user_tab" class="table table-bordered table-striped table-hover">
-
-                <thead>
-                <tr>
-                    <th>Nome Docente</th>
-                    <th>-</th>
-                </tr>
-                </thead>
-
-                <tbody>
-                    <#list allUser as user>
-                    <tr>
-                        <td>${user.name} ${user.surname}</td>
-                        <td><input type="checkbox" name="${user.email}" value="${user.email}" <#if userMatch?seq_contains(user) >checked<#else></#if> > associa</td>
-                    </tr>
-                    </#list>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="col-md-6 login-do">
-            <label class="hvr-shutter-in-horizontal login-sub">
-                <input type="submit" value="Update">
-            </label>
-        </div>
-
-    </form>
-
+<#--<a href="modAssociationCourseWithUser?id=${course.idCourse}&age=${(currentFirstYear - 1)?string.computer} ">Previous year</a>-->
+<#--<a href="modAssociationCourseWithUser?id=${course.idCourse}&age=${(currentFirstYear + 1)?string.computer} ">Next year</a>-->
 </div>
+<form action="modAssociationCourseWithUser" method="POST" id="mod" class="my-form" >
+
+    <div class="row">
+        <div class="col-md-2 col-xs-2 my-menu">
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active"><a data-toggle="pill" href="#list">lista docenti</a></li>
+            </ul>
+            <br>
+            <button type="submit" form="mod" class="btn btn-default">Salva</button>
+        </div>
+
+
+        <div class="container">
+
+            <div class="col-md-12 col-xs-12">
+                <div class="tab-content" >
+
+
+                    <div id="list" class="tab-pane fade in active">
+                        <div class="table-responsive">
+                            <table id="user_tab" class="table table-bordered table-striped table-hover">
+
+                                <thead>
+                                <tr>
+                                    <th>Nome Docente</th>
+                                    <th>-</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                    <#list allUser as user>
+                                    <tr>
+                                        <td>${user.surname} ${user.name}</td>
+                                        <td><input type="checkbox" name="${user.email}" value="${user.email}" <#if userMatch?seq_contains(user) >checked<#else></#if> > associa</td>
+                                    </tr>
+                                    </#list>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                <#--end access-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+
 <!--modulo contatti, email, conclusione-->
 <#include "tail.ftl">
 <script src="/templates/js/jquery.dataTables.js" type="text/javascript"></script>
