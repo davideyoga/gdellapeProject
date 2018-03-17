@@ -1,12 +1,11 @@
 BUG non stampare attributo class su studycourse ---> class provoca cose strane
 
-stampare corsi collegati nella pagina del prof ---> userprofile
 
 NON RISPETTA LA SPECIFICA ----- alla specifica dice che posso scegliere l'anno su course (noi l'abbiamo fatto su studycourse)
 
 selettore lingua non funziona (vedere a template vecchio come si fa)
 
-associare corso e corso
+associare corso e corso ----> parametro mod non ho capito
 
 aggiungere tipo di cfu a course
 

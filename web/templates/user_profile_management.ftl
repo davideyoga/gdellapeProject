@@ -58,11 +58,14 @@
                         </div>
                         <div class="form-group">
                             <label for="pwd">Password:</label>
-                            <input type="password" class="form-control" id="pwd" name="password" value="<#if userCurrent.password??>${userCurrent.password}<#else></#if>">
+                            <input type="password" class="form-control" id="pwd" name="password" autocomplete="false" value="">
+
+                        <#--<input type="password" class="form-control" id="pwd" name="password" value="<#if userCurrent.password??>${userCurrent.password}<#else></#if>">-->
                         </div>
                         <div class="form-group">
                             <label for="pwd">Ripeti password:</label>
-                            <input type="password" class="form-control" id="pwd" name="ripetere-password" value="<#if userCurrent.password??>${userCurrent.password}<#else></#if>">
+                            <input type="password" class="form-control" id="pwd" name="ripetere-password" autocomplete="false">
+                            <#--<input type="password" class="form-control" id="pwd" name="ripetere-password" value="<#if userCurrent.password??>${userCurrent.password}<#else></#if>">-->
                         </div>
                     </div>
                 <#--end access-->

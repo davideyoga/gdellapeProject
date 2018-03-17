@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Relazion tra corsi</title>
+    <title>Relazione tra corsi</title>
 
 <#include "import.ftl">
 </head>
@@ -13,6 +13,7 @@
     <div class="center-block">
         <div class="w3ls-heading page-header">
             <h3>Associazione tra corsi</h3>
+            <h4>corso ${course.name}</h4>
         </div>
     </div>
 </div>
@@ -28,34 +29,73 @@
     </div>
 </div>
 
-<div class="container">
 
-    <div>corso ${course.name}</div>
+<form action="ModCourseRelation" method="POST" id="mod" class="my-form" >
 
-    <div class="profile-button">
-
-        <form method="POST" action="ModCourseRelation">
-
-
-        <#list allCourse as course>
-
-            <!--se il corso e' presente tra i corsi associati al corso di studi preso in esame, setta il checkbox a true, false altrimenti -->
-            <input type="checkbox" name="${course.idCourse}" value="${course.idCourse}" <#if courseRelated?seq_contains(course) >checked<#else></#if> > ${course.name}
+    <div class="row">
+        <div class="col-md-2 col-xs-2 my-menu">
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active"><a data-toggle="pill" href="#list">lista corsi</a></li>
+            </ul>
+            <br>
+            <button type="submit" form="mod" class="btn btn-default">Salva</button>
+        </div>
 
 
-        </#list>
+        <div class="container">
 
-            <div class="col-md-6 login-do">
-                <label class="hvr-shutter-in-horizontal login-sub">
-                    <input type="submit" value="Update">
-                </label>
+            <div class="col-md-12 col-xs-12">
+                <div class="tab-content" >
+
+
+                    <div id="list" class="tab-pane fade in active">
+                        <div class="table-responsive" >
+                            <table id="course_table" class="table table-hover table-bordered table-striped">
+                                <!--Come un for-each, cicla sulla lista di users estraendo ogni volta l'utente della lista-->
+
+                                <thead>
+                                <tr>
+                                    <th>Codice</th>
+                                    <th>nome</th>
+                                    <th> - </th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                    <#list allCourse as course>
+                                    <tr>
+                                        <td>${course.code}</td>
+                                        <td>${course.name}</td>
+                                        <td>
+                                            <input type="checkbox" name="${course.idCourse}" value="${course.idCourse}" <#if courseRelated?seq_contains(course)>checked<#else></#if> > ${course.name}
+                                        </td>
+                                    </tr>
+                                    </#list>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                <#--end access-->
+
+                </div>
             </div>
-
-        </form>
+        </div>
     </div>
-</div>
+
+</form>
 
 <!--modulo contatti, email, conclusione-->
 <#include "tail.ftl">
+<script src="/templates/js/jquery.dataTables.js" type="text/javascript"></script>
+<script src="/templates/js/dataTables.bootstrap.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function() {
+        $("#course_table").dataTable({
+            "iDisplayLength": 10,
+            "aLengthMenu": [[10, 25, 50, 100,  -1], [10, 25, 50, 100, "All"]]
+        });
+    });
+</script>
 </body>
 </html>
