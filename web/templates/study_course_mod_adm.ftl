@@ -62,10 +62,10 @@
                             <label for="dur">Durata:</label>
                             <input type="number" min="1" max="10" class="form-control" id="dur" name="duration" value= "<#if studyCourse.duration??>${studyCourse.duration}<#else></#if>">
                         </div>
-                        <div class="form-group">
-                            <label for="class">Classe:</label>
-                            <input type="text" class="form-control" id="class" name="class" value="<#if studyCourse.class??>${studyCourse.class}<#else></#if>">
-                        </div>
+                        <#--<div class="form-group">-->
+                            <#--<label for="class">Classe:</label>-->
+                            <#--<input type="text" class="form-control" id="class" name="class" value="<#if studyCourse.class??>${studyCourse.class}<#else></#if>">-->
+                        <#--</div>-->
                         <div class="form-group">
                             <label for="seat">posti disponibili:</label>
                             <input type="text" class="form-control" id="seat" name="seat" value="<#if studyCourse.seat??>${studyCourse.seat}<#else></#if>">

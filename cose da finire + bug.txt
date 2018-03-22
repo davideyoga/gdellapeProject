@@ -1,6 +1,3 @@
-BUG non stampare attributo class su studycourse ---> class provoca cose strane
-
-
 NON RISPETTA LA SPECIFICA ----- alla specifica dice che posso scegliere l'anno su course (noi l'abbiamo fatto su studycourse)
 
 selettore lingua non funziona (vedere a template vecchio come si fa)
@@ -12,7 +9,6 @@ aggiungere tipo di cfu a course
 controllare utenti che l'admin può cancellare
 (es. l'admin non può cancellare se stesso)
 
-messaggio persiste, da resettare il contenuto
 
 fare 2 tipi di messaggio: "messageSucces" e "messageError" nelle servlet: -CreateUser
 

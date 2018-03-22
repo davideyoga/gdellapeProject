@@ -118,17 +118,17 @@
                                 </div>
                             </div>
                             <br>
-                                    <#if studyCourse.classes??>
-                                        <div class="col-md-12 col-xs-12">
-                                            <div class="col-md-3 col-xs-3 col-sm-3">
-                                                <p>Classe</p>
-                                            </div>
-                                            <div class="col-md-9 col-xs-9 col-sm-9">
-                                                <p> ${studyCourse.classes}</p>
-                                            </div>
-                                        </div>
-                                        <br>
-                                    </#if>
+                                    <#--<#if studyCourse.classes??>-->
+                                        <#--<div class="col-md-12 col-xs-12">-->
+                                            <#--<div class="col-md-3 col-xs-3 col-sm-3">-->
+                                                <#--<p>Classe</p>-->
+                                            <#--</div>-->
+                                            <#--<div class="col-md-9 col-xs-9 col-sm-9">-->
+                                                <#--<p> ${studyCourse.classes}</p>-->
+                                            <#--</div>-->
+                                        <#--</div>-->
+                                        <#--<br>-->
+                                    <#--</#if>-->
                             <div class="col-md-12 col-xs-12">
                                 <div class="col-md-3 col-xs-3 col-sm-3">
                                     <p>Posti disponibili</p>
