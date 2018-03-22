@@ -11,6 +11,18 @@ html {
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
+
+#form label{
+  float:left;
+  width:140px;
+}
+
+#error_msg{
+  color:red;
+  font-weight:bold;
+}
+
+
 body {
   margin: 0;
 }
