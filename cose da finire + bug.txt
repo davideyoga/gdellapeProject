@@ -6,10 +6,7 @@ associare corso e corso ----> parametro mod non ho capito
 
 aggiungere tipo di cfu a course
 
-controllare utenti che l'admin può cancellare
-(es. l'admin non può cancellare se stesso)
-
-per la ricerca di un corso: manca filtrare per docente e per corso di laurea
+per la ricerca di un corso: manca filtrare per docente e per corso di laurea----> usare GetCourseAn con parametro get
 
 
 ------OPZIONALE DA VALUTARE-------
