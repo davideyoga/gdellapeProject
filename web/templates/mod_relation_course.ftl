@@ -67,7 +67,7 @@
                                         <td>${course.code}</td>
                                         <td>${course.name}</td>
                                         <td>
-                                            <input type="checkbox" name="${course.idCourse}" value="${course.idCourse}" <#if courseRelated?seq_contains(course)>checked<#else></#if> > ${course.name}
+                                            <input type="checkbox" name="${course.idCourse}" value="${course.idCourse}" <#if courseRelated?seq_contains(course)>checked<#else></#if> >
                                         </td>
                                     </tr>
                                     </#list>
