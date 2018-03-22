@@ -9,12 +9,6 @@ aggiungere tipo di cfu a course
 controllare utenti che l'admin può cancellare
 (es. l'admin non può cancellare se stesso)
 
-
-fare 2 tipi di messaggio: "messageSucces" e "messageError" nelle servlet: -CreateUser
-
-Togliere riempimento campo password a profile managment
-
-
 per la ricerca di un corso: manca filtrare per docente e per corso di laurea
 
 
@@ -22,3 +16,5 @@ per la ricerca di un corso: manca filtrare per docente e per corso di laurea
 
 curriculum del prof da caricare come file
 vedere parte relativa a curriculum, add e mod
+
+fare 2 tipi di messaggio: "messageSucces" e "messageError" nelle servlet: -CreateUser
