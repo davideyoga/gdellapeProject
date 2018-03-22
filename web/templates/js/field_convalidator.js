@@ -34,13 +34,17 @@
                     checkMatchingPasswords();
                 }
             })
-            .on("blur", function(){
-                // also check when the element looses focus (clicks somewhere else)
-                checkMatchingPasswords();
-            })
+            // .on("blur", function(){
+            //     // also check when the element looses focus (clicks somewhere else)
+            //     checkMatchingPasswords();
+            // })
             .on("focus", function(){
                 // reset the error message when they go to make a change
                 resetPasswordError();
+            })
+            .on("focusout", function(){
+                // also check when the element looses focus (clicks somewhere else)
+                checkMatchingPasswords();
             })
 
     });

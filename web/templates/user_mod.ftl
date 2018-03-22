@@ -28,7 +28,7 @@
     </div>
 </div>
 
-<form action="AdmModUser" method="POST" id="mod" class="my-form" autocomplete="off">
+<form action="AdmModUser" method="POST" id="identicalForm" class="my-form" autocomplete="off">
 
     <div class="row">
         <div class="col-md-2 col-xs-2 my-menu">
@@ -40,7 +40,7 @@
                 <li><a data-toggle="pill" href="#perm">Permessi</a></li>
             </ul>
             <br>
-            <button type="submit" form="mod" class="btn btn-default">Modifica utente</button>
+            <button type="submit" form="identicalForm" class="btn btn-default">Modifica utente</button>
         </div>
 
 
@@ -53,15 +53,15 @@
                     <div id="access" class="tab-pane fade in active">
                         <div class="form-group">
                             <label for="email">Email:</label>
-                            <input type="email" class="form-control" id="email" name="email" value="<#if usermod.email??>${usermod.email}<#else></#if>">
+                            <input type="email" class="form-control" id="email" name="email" value="<#if usermod.email??>${usermod.email}<#else></#if>" placeholder="Email@host.com" required pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}">
                         </div>
                         <div class="form-group">
-                            <label for="pwd">Password:</label>
-                            <input type="password" class="form-control" id="pwd" name="password">
+                            <label for="pwd">Password: <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-html="true" title="la password deve essere composta da: &#13;&#10;-almeno 8 caratteri &#13;&#10;-almeno una maiuscola&#13;&#10;-almeno una minuscola&#13;&#10;-almeno un numero"></span></label>
+                            <input type="password" class="form-control" id="pwd" name="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
                         </div>
                         <div class="form-group">
                             <label for="pwd">Ripeti password:</label>
-                            <input type="password" class="form-control" id="pwd" name="ripetere-password">
+                            <input type="password" class="form-control" id="pwd2" name="ripetere-password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
                         </div>
                     </div>
                 <#--end access-->

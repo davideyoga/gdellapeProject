@@ -49,7 +49,7 @@
 
                     <div id="access" class="tab-pane fade in active">
                         <div class="form-group">
-                            <label for="email" placeholder="Es. email@dominio.it">Email:</label>
+                            <label for="email">Email:</label>
                             <input type="email" class="form-control" id="email" name="email" placeholder="Email@host.com" required pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}">
 
                         </div>
