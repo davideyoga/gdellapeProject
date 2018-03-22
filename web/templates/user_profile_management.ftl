@@ -30,7 +30,7 @@
     </div>
 </div>
 
-<form action="ProfileManagement" method="POST" id="mod" class="my-form" >
+<form action="ProfileManagement" method="POST" id="mod" class="my-form" autocomplete="off">
 
     <div class="row">
         <div class="col-md-2 col-xs-2 my-menu">
