@@ -120,7 +120,9 @@
                             <div class="panel-body">
                                 <#list listGroups as group>
                                     <div class="checkbox">
-                                        <label><input type="checkbox" name="${group.name}" value="${group.name}" <#if listUserGroups?seq_contains(group) >checked<#else></#if>>${group.name}</label>
+                                        <label>
+                                            <input type="checkbox" name="${group.name}" value="${group.name}" <#if listUserGroups?seq_contains(group) >checked<#else></#if>>${group.name}
+                                        </label>
                                     </div>
                                 </#list>
                             </div>
