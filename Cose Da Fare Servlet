@@ -6,6 +6,9 @@ PASSWORD:
     non esporre all'esterno le password utenti
 
 
+SISTEMARE servlet GetCourseAn ricerca per docente deve prendere anche il cognom
+
+
 (opzionali)
 Prendere dati tutti della stessa formattazzione, ad esempio tutti minuiscoli ecc..
 
