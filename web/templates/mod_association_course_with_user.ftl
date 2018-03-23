@@ -36,6 +36,8 @@
 <#--<a href="modAssociationCourseWithUser?id=${course.idCourse}&age=${(currentFirstYear - 1)?string.computer} ">Previous year</a>-->
 <#--<a href="modAssociationCourseWithUser?id=${course.idCourse}&age=${(currentFirstYear + 1)?string.computer} ">Next year</a>-->
 </div>
+
+
 <form action="modAssociationCourseWithUser" method="POST" id="mod" class="my-form" >
 
     <div class="row">
@@ -48,7 +50,7 @@
             <div class="w3ls-heading page-header">
             </div>
             <div class="text-center">
-                <a href="/HomeBackOffice" class="btn btn-warning my-text center-block" role="button">torna al back office</a>
+                <a href="/ListCourse" class="btn btn-warning my-text center-block" role="button">torna alla lista dei corsi</a>
             </div>
         </div>
 

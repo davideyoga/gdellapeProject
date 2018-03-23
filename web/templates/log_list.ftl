@@ -29,20 +29,26 @@
     </div>
 </div>
 
-<div class="container">
+<div class="row">
+    <div class="col-md-2 col-xs-2 my-menu">
+        <div class="text-center"><a href="homeBackOffice" class="btn btn-warning my-text center-block" role="button">torna al back office</a></div>
+    </div>
 
-    <div class="table-responsive" >
-        <table id="log_tab" class="table table-hover table-bordered table-striped">
-            <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
 
-            <thead>
-            <tr>
-                <th>Azione</th>
-                <th>id utente</th>
-            </tr>
-            </thead>
+    <div class="container">
 
-            <tbody>
+        <div class="table-responsive" >
+            <table id="log_tab" class="table table-hover table-bordered table-striped">
+                <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
+
+                <thead>
+                <tr>
+                    <th>Azione</th>
+                    <th>id utente</th>
+                </tr>
+                </thead>
+
+                <tbody>
                 <#list logs as log>
                 <tr>
                     <td>${log.description}</td>
@@ -53,10 +59,14 @@
                 </tr>
                     <#if (log?counter%10) == 0 > <#else></#if>
                 </#list>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
+<#--end container-->
 </div>
+<#--end row-->
+
 
 <!--modulo contatti, email, conclusione-->
     <#include "tail.ftl">

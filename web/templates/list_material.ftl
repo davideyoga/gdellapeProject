@@ -26,24 +26,34 @@
     </div>
 </div>
 
-<div class="container">
 
-    <div class="table-responsive">
-        <table id="course_table" class="table table-hover table-bordered table-striped">
+<div class="row">
+    <div class="col-md-2 col-xs-2 my-menu">
+        <div class="text-center"><a href="/courseProfile?id=${course.idCourse}" class="btn btn-warning my-text center-block" role="button">torna a ${course.name}</a></div>
+    </div>
 
 
-            <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Descrizione</th>
-                <th>Data di creazione</th>
-                <th>Dimensione</th>
-                <th>Tipo</th>
-                <th>-</th>
-            </tr>
-            </thead>
+    <div class="container">
+        <div class="col-md-12 col-xs-12">
 
-            <tbody>
+            <div class="container">
+
+                <div class="table-responsive">
+                    <table id="course_table" class="table table-hover table-bordered table-striped">
+
+
+                        <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Descrizione</th>
+                            <th>Data di creazione</th>
+                            <th>Dimensione</th>
+                            <th>Tipo</th>
+                            <th>-</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
                     <#list materials as material>
                     <tr>
                         <td>${material.name}</td>
@@ -54,12 +64,21 @@
                         <td><a href="downloadMaterial?id=${material.id}">scarica</a></td>
                     </tr>
                     </#list>
-            </tbody>
-        </table>
-        <div>
+                        </tbody>
+                    </table>
+                    <div>
+                    </div>
+                </div>
+            </div>
+        <#--end container-->
         </div>
+    <#--end col md 12-->
     </div>
+<#--end container-->
 </div>
+<#--end row-->
+
+
 <#--tutti questi div sono inutili ma ci devono stare-->
 
 <!--modulo contatti, email, conclusione-->
