@@ -39,6 +39,9 @@
             </ul>
             <br>
             <button type="submit" form="mod" class="btn btn-default">Modifica gruppo</button>
+            <div class="w3ls-heading page-header">
+            </div>
+            <div class="text-center"><a href="/AdmGetListGroups" class="btn btn-warning my-text center-block" role="button">torna alla lista dei gruppi</a></div>
         </div>
 
 

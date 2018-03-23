@@ -29,26 +29,32 @@
     </div>
 </div>
 
-<div class="container">
+<div class="row">
+    <div class="col-md-2 col-xs-2 my-menu">
+        <div class="text-center"><a href="/HomeBackOffice" class="btn btn-warning my-text center-block" role="button">torna al back office</a></div>
+    </div>
 
-    <div class="table-responsive" >
-        <table id="course_table" class="table table-hover table-bordered table-striped">
-            <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
 
-            <thead>
-            <tr>
-                <th>Codice</th>
-                <th>Nome </th>
-                <th>Settore</th>
-                <th>Semestre</th>
-                <th>Lingua</th>
-                <th> - </th>
-                <th> - </th>
-                <th> - </th>
-            </tr>
-            </thead>
+    <div class="container">
 
-            <tbody>
+        <div class="table-responsive" >
+            <table id="course_table" class="table table-hover table-bordered table-striped">
+                <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
+
+                <thead>
+                <tr>
+                    <th>Codice</th>
+                    <th>Nome </th>
+                    <th>Settore</th>
+                    <th>Semestre</th>
+                    <th>Lingua</th>
+                    <th> - </th>
+                    <th> - </th>
+                    <th> - </th>
+                </tr>
+                </thead>
+
+                <tbody>
                     <#list courses as course>
                     <tr>
                         <td>${course.code}</td>
@@ -68,10 +74,14 @@
 
                     </tr>
                     </#list>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
+<#--end container-->
 </div>
+<#--end row-->
+
 
 <!--modulo contatti, email, conclusione-->
     <#include "tail.ftl">

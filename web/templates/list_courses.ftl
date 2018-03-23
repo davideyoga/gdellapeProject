@@ -28,21 +28,31 @@
         </#if>
     </div>
 </div>
-<div class="container">
 
-    <div class="table-responsive" >
-        <table class="table table-hover table-bordered table-striped">
-            <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
+<div class="row">
+    <div class="col-md-2 col-xs-2 my-menu">
+        <div class="text-center"><a href="/home" class="btn btn-warning my-text center-block" role="button">torna alla home</a></div>
+    </div>
 
-            <thead>
-            <tr>
-                <th>nome materia</th>
-                <th>codice materia</th>
-                <th> - </th>
-            </tr>
-            </thead>
 
-            <tbody>
+    <div class="container">
+        <div class="col-md-12 col-xs-12">
+
+            <div class="container">
+
+                <div class="table-responsive" >
+                    <table class="table table-hover table-bordered table-striped">
+                        <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
+
+                        <thead>
+                        <tr>
+                            <th>nome materia</th>
+                            <th>codice materia</th>
+                            <th> - </th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
             <#list courses as course>
             <tr>
                 <td>${course.name}</td>
@@ -52,10 +62,14 @@
                 </td>
             </tr>
             </#list>
-            </tbody>
-        </table>
-    </div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+<#--end container-->
 </div>
+<#--end row-->
+
 
 <!--modulo contatti, email, conclusione-->
 <#include "tail.ftl">
