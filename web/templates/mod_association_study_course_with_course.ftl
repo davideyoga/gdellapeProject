@@ -42,7 +42,7 @@
 
             <div class="col-md-2 col-xs-2 my-menu">
                 <ul class="nav nav-pills nav-stacked text-center">
-                    <li class="active"><a data-toggle="pill" href="#list">lista corsi</a></li>
+                    <li class="active"><a data-toggle="pill" href="#">lista corsi</a></li>
                 </ul>
                 <br>
                 <div class="text-center">
