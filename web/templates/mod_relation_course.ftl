@@ -12,8 +12,11 @@
 <div class="container">
     <div class="center-block">
         <div class="w3ls-heading page-header">
-            <h3>Associazione tra corsi</h3>
-            <h4>corso ${course.name}</h4>
+            <h3>${course.name}</h3>
+            <h4><#if mode=='borrowed'>borrowed</#if>
+                <#if mode=='preparatory'>corsi propedeutici</#if>
+                <#if mode=='module'>associa moduli</#if>
+            </h4>
         </div>
     </div>
 </div>
@@ -39,6 +42,9 @@
             </ul>
             <br>
             <button type="submit" form="mod" class="btn btn-default">Salva</button>
+            <div class="w3ls-heading page-header">
+            </div>
+            <a href="ModAdmCourse?id=${course.idCourse}" class="btn btn-warning my-text center-block" role="button">Torna al corso ${course.name}</a>
         </div>
 
 
@@ -57,7 +63,9 @@
                                 <tr>
                                     <th>Codice</th>
                                     <th>nome</th>
-                                    <th> - </th>
+                                    <th><#if mode=='borrowed'>borrowed</#if>
+                                        <#if mode=='preparatory'>corsi propedeutici</#if>
+                                        <#if mode=='module'>associa moduli</#if></th>
                                 </tr>
                                 </thead>
 
