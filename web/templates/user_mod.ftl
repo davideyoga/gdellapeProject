@@ -41,6 +41,11 @@
             </ul>
             <br>
             <button type="submit" form="identicalForm" class="btn btn-default">Modifica utente</button>
+            <div class="w3ls-heading page-header">
+            </div>
+            <div class="text-center">
+                <a href="AdmGetListUser" class="btn btn-warning my-text center-block" role="button">Torna alla lista degli utenti</a>
+            </div>
         </div>
 
 
