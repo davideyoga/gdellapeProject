@@ -28,20 +28,31 @@
     </div>
 </div>
 
-<div class="container">
+<div class="row">
+    <div class="col-md-2 col-xs-2 my-menu">
+        <div class="text-center">
+            <a href="home" class="btn btn-warning my-text center-block" role="button">Torna alla home</a>
+        </div>
+    </div>
 
-    <div class="table-responsive">
-        <table id="sc_tab" class="table table-bordered table-striped table-hover">
 
-            <thead>
-            <tr>
-                <th>Codice Corso di studio</th>
-                <th>Nome Corso di studio </th>
-                <th> - </th>
-            </tr>
-            </thead>
+    <div class="container">
 
-            <tbody>
+        <div class="col-md-12 col-xs-12">
+            <div class="container">
+
+                <div class="table-responsive">
+                    <table id="sc_tab" class="table table-bordered table-striped table-hover">
+
+                        <thead>
+                        <tr>
+                            <th>Codice Corso di studio</th>
+                            <th>Nome Corso di studio </th>
+                            <th> - </th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
                     <#list studyCourses as studyCourse>
                     <tr>
                         <td>${studyCourse.code}</td>
@@ -51,8 +62,12 @@
                         </td>
                     </tr>
                     </#list>
-            </tbody>
-        </table>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
 

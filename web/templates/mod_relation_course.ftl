@@ -44,7 +44,9 @@
             <button type="submit" form="mod" class="btn btn-default">Salva</button>
             <div class="w3ls-heading page-header">
             </div>
-            <a href="ModAdmCourse?id=${course.idCourse}" class="btn btn-warning my-text center-block" role="button">Torna al corso ${course.name}</a>
+            <div class="text-center">
+                <a href="ModAdmCourse?id=${course.idCourse}" class="btn btn-warning my-text center-block" role="button">Torna al corso ${course.name}</a>
+            </div>
         </div>
 
 
