@@ -77,7 +77,7 @@
                     <a href="AddMaterial?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">Aggiugni materiale esterno</a>
                 </#if>
                 <#if addBook>
-                    <a href="AddBook?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">Aggiugni nuovo libro</a>
+                    <a href="GetListBook?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">Aggiungi libri</a>
                 </#if>
                 <#if mod>
                     <a href="/modCourseRelation?idCourse=${course.idCourse}&mode=module" class="btn btn-warning my-text center-block m-b-5" role="button">associa moduli</a>
