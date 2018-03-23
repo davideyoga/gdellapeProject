@@ -33,6 +33,35 @@
             });
         });
     </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.delete').on('change',function() {
+                console.log($(this).attr('id'));  //-->this will alert name of checked checkbox.
+                if(this.checked){
+                    $.ajax({
+                        type: "GET",
+                        url: 'RemoveBook',
+                        data: {
+                            idBook: $(this).attr('id'),
+                            idCourse: ${course.idCourse}
+                        },
+                        success: function(data) {
+                            alert('libro eliminato');
+                            // alert(data);
+                            // $('#container').html(data);
+                        },
+                        error: function() {
+                            console.log('errore');
+                        },
+                        complete: function() {
+                            console.log('chiamata ajax completata');
+                        }
+                    });
+
+                }
+            });
+        });
+    </script>
 </head>
 <body>
 <#include "navbar.ftl">
@@ -87,6 +116,7 @@
                             <th>Editore</th>
                             <th>link</th>
                             <th>associa</th>
+                            <th>elimina</th>
                         </tr>
                         </thead>
 
@@ -101,6 +131,7 @@
                         <td>${book.editor}</td>
                         <td>${book.link}</td>
                         <td><input type="checkbox" class="associate" id="${book.id}" name="${book.id}" value="${book.id}" <#if booksByCourse?seq_contains(book) >checked<#else></#if>> ${course.name}, ${book.id}</td>
+                        <td><input type="checkbox" class="delete" id="${book.id}" name="${book.id}" value="${book.id}" > elimina</td>
                     </tr>
                     </#list>
                         </tbody>

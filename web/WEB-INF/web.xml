@@ -499,6 +499,18 @@
     </servlet-mapping>
     <!-- Fine Servlet di AddBook -->
 
+    <!-- Servlet di  RemoveBook-->
+    <servlet>
+        <servlet-name>RemoveBook</servlet-name>
+        <servlet-class>controller.adm.book.RemoveBook</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RemoveBook</servlet-name>
+        <url-pattern>/RemoveBook</url-pattern>
+        <url-pattern>/removeBook</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di AddBook -->
+
     <!-- Servlet di  ListCourseAn-->
     <servlet>
         <servlet-name>ListCourseAn</servlet-name>
