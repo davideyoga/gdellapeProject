@@ -17,6 +17,13 @@ import java.io.IOException;
 
 /**
  * @author Davide Micarelli
+ * ajax
+ * Rimuove un libro da un corso
+ *
+ * PARAMETRI DA PASSARE CON RICHIESTA GET:
+ * idBook: id del libro da scollegare dal corso
+ * idCourse: id del corso da scollegare dal libro
+ *
  */
 public class  RemoveBook extends BaseController {
 
