@@ -6,8 +6,15 @@ PASSWORD:
     non esporre all'esterno le password utenti
 
 
+SISTEMARE servlet GetCourseAn ricerca per docente deve prendere anche il cognom
+
+controllare utenti che l'admin può cancellare
+(es. l'admin non può cancellare se stesso)
+
+
+ma removeBook che cazzo fa?
+
+Servlet ModUser non funonzia senza rimette le password
+
 (opzionali)
-Prendere dati tutti della stessa formattazzione, ad esempio tutti minuiscoli ecc..
-
-
-Servlet GetListBooks mandare lista libri collegati al corso
+Prendere dati tutti della stessa formattazione, ad esempio tutti minuscoli ecc...

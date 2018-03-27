@@ -28,21 +28,29 @@
     </div>
 </div>
 
-<div class="container">
+<div class="row">
+    <div class="col-md-2 col-xs-2 my-menu">
+        <div class="text-center">
+            <a href="homeBackOffice" class="btn btn-warning my-text center-block" role="button">Torna al back office</a>
+        </div>
+    </div>
 
-    <div class="table-responsive" >
-        <table id="user_table" class="table table-hover table-bordered table-striped">
 
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>Email</th>
-                <th>  </th>
-                <th>  </th>
-            </tr>
-            </thead>
+    <div class="container">
 
-            <tbody>
+        <div class="table-responsive" >
+            <table id="user_table" class="table table-hover table-bordered table-striped">
+
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Email</th>
+                    <th>  </th>
+                    <th>  </th>
+                </tr>
+                </thead>
+
+                <tbody>
             <#list users as utente>
             <tr>
                 <td>${utente.id}</td>
@@ -55,10 +63,12 @@
                 </td>
             </tr>
             </#list>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
+
 
 <#include "tail.ftl">
 <script src="/templates/js/jquery.dataTables.js" type="text/javascript"></script>
