@@ -358,7 +358,7 @@ public class BaseController extends HttpServlet {
             //ciclo sulla lista di tutti i gruppi
             for (Groups groups : groupsList) {
 
-                //aggiungo groups come chiave e come valore la lista di tutti i suoi UserGroups
+                //aggiungo groups come chiave e come valorep la lista di tutti i suoi UserGroups
                 groupsUserGroupsList.put(groups, userGroupsDao.getUserGroupsByGroups(groups));
 
             }

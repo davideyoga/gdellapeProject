@@ -12,7 +12,7 @@ controllare utenti che l'admin può cancellare
 (es. l'admin non può cancellare se stesso)
 
 
-ma removeBook che cazzo fa?
+ma removeBook che cazzo fa?: GUARDARE JAVADOC AGGIORNATI
 
 Servlet ModUser non funziona senza rimette le password: il javascript se non inserisco la password non mi manda avanti, togliere javascript
 
