@@ -103,8 +103,24 @@ public class AdmModUser extends BaseController {
 
                         userDaForm.setPassword(request.getParameter("password"));
 
+                        System.out.println("Password Nuovo utente prima: "+request.getParameter("password"));
+
+                        System.out.println("Password Vecchio Utente: "+userPrimaDelleModifiche.getPassword());
+
+                        boolean ceckPassword = false;
+                        //se la password dell'utente non e' stata inserita la recupero dal vecchio user
+                        if(userDaForm.getPassword().equals(null) || userDaForm.getPassword().equals("") ){
+                            userDaForm.setPassword(userPrimaDelleModifiche.getPassword());
+                            ceckPassword=true;
+                        }
+
+                        System.out.println("Password Nuovo Utente dopo: "+userDaForm.getPassword());
+
+
                         //se la password inserita e' uguale in entrambi i campi
-                        if (userDaForm.getPassword().equals(request.getParameter("ripetere-password"))) {
+                        if (userDaForm.getPassword().equals(request.getParameter("ripetere-password")) || ceckPassword) {
+
+                            System.out.println("SONO ENTRATO!!!");
 
                             //se la mail non e' presente nel sistema oppure e' uguale alla mail precedente
                             if (!isExistEmail(userDao, request.getParameter("email")) || request.getParameter("email").equals(userPrimaDelleModifiche.getEmail())) {
@@ -142,17 +158,22 @@ public class AdmModUser extends BaseController {
                                 userDaForm.setReceprion_hours_ita(request.getParameter("receprion_hours_ita"));
                                 userDaForm.setReceprion_hours_eng(request.getParameter("receprion_hours_eng"));
 
+                                System.out.println("User Prima: " + userPrimaDelleModifiche);
 
-                                System.out.println("user prima: " + userPrimaDelleModifiche);
-                                System.out.println("user dopo:" + userDaForm);
+                                System.out.println("User Dopo: " + userDaForm);
+
 
                                 //se l'utente e' cambiato rispetto a prima
                                 if (!userDaForm.equals(userPrimaDelleModifiche)) {
 
+                                    System.out.println("Effettoato update");
+
+                                    userDaForm.setPassword(utilityManager.sha1Encrypt(userDaForm.getPassword()));
+
                                     //effettuo l'update
                                     userDao.storeUser(userDaForm);
 
-                                    logManager.addLog(sessionManager.getUser(request), "USER: " + userPrimaDelleModifiche + " IT'S CHANGE: " + userDaForm, ds);
+                                    logManager.addLog(sessionManager.getUser(request), "USER " + userPrimaDelleModifiche + " IT'S CHANGE: " + userDaForm, ds);
 
                                 }
                                 //se non e' cambiato non faccio nulla
@@ -264,8 +285,10 @@ public class AdmModUser extends BaseController {
                                 //carico tutti i gruppi presenti nel sistema
                                 datamodel.put("listGroups", groupsListAll);
 
+                                utilityManager.removePassword(userDaForm);
+
                                 //carico il nuovo utente nel template
-                                datamodel.put("user", userDaForm);
+                                datamodel.put("usermod", userDaForm);
 
                                 //chiudo tutto
                                 userGroups = null;
@@ -293,7 +316,10 @@ public class AdmModUser extends BaseController {
 
                                 //carico un messaggio di errore
                                 datamodel.put("message", "Error, Email already exists in the system, No changes have been made");
-                                datamodel.put("user", userPrimaDelleModifiche);
+
+                                utilityManager.removePassword(userPrimaDelleModifiche);
+
+                                datamodel.put("usermod", userPrimaDelleModifiche);
 
                                 //setto l'utente in sessione
                                 this.datamodel.put("user", sessionManager.getUser(request));
@@ -383,7 +409,7 @@ public class AdmModUser extends BaseController {
                     GroupsDao groupsDao = new GroupsDaoImpl(ds);
                     groupsDao.init();
 
-                    //se non e' presente l'id del corso di studi passato come parametro get c'e' un problema
+                    //se non e' presente l'id dell'utente passato come parametro get c'e' un problema
                     if (request.getParameter("id") == null) {
                         response.sendRedirect("AdmGetListUser");
                         return;
@@ -400,6 +426,9 @@ public class AdmModUser extends BaseController {
 
                     //estraggo tutti i gruppi
                     List <Groups> listGroups = groupsDao.getAllGroups();
+
+                    //elimino la password
+                    utilityManager.removePassword(user);
 
                     //carico nel template l'utente
                     datamodel.put("usermod", user);

@@ -18,6 +18,9 @@ import java.util.Map;
  */
 public interface UtilityManager {
 
+    void removePassword(User user);
+    void removePassword( List<User> users);
+
     boolean isCorrectEmail(String email);
 
     int getPasswordLength();
@@ -29,6 +32,8 @@ public interface UtilityManager {
     String getAccademicYearByYear(int year);
 
     int getFirstParameterAccademicYear( String accademicYear);
+
+    String sha1Encrypt(String x);
 
     /**
      * Torna oggetti presenti nella lista a e non presenti nella lista b

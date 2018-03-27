@@ -88,6 +88,9 @@ public class CourseProfile extends BaseController {
                     datamodel.put("listBorrowed",listBorrowed);
                     datamodel.put("listModulated",listModulated);
                     datamodel.put("listPreparatory",listPreparatory);
+
+                    utilityManager.removePassword(listDocent);
+
                     datamodel.put("listDocent",listDocent);
 
                     System.out.println(datamodel);

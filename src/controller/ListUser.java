@@ -58,6 +58,8 @@ public class ListUser extends BaseController {
             //estraggo gli utenti che corrispondono al gruppo dei docenti
             List<User> userList = userDao.getUserByGroups(docente);
 
+            utilityManager.removePassword(userList);
+
             //carico la lista dei docenti nel datamodel
             datamodel.put("users", userList);
 
