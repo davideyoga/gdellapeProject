@@ -67,15 +67,25 @@ public class DeleteUser extends BaseController {
                     User user = userDao.getUser();
                     user.setId(Integer.parseInt(request.getParameter("id")));
 
-                    //elimino l'utente
-                    userDao.deleteUser(user);
+                    //controllo se l'utente sta cancellando se stesso
+                    if(user.equals(sessionManager.getUser(request))){
 
-                    //chiudo il dao
-                    userDao.destroy();
-                    userDao = null;
+                        //inserisco messaggio al template
+                        datamodel.put("message","It is not possible to cancel himself");
 
-                    //inserisco un log
-                    logManager.addLog(sessionManager.getUser(request),"USER: " + user + " HAS BEEN DELETED BY:" + sessionManager.getUser(request),ds );
+                    }else {
+
+                        //elimino l'utente
+                        userDao.deleteUser(user);
+
+                        //chiudo il dao
+                        userDao.destroy();
+                        userDao = null;
+
+                        //inserisco un log
+                        logManager.addLog(sessionManager.getUser(request), "USER: " + user + " HAS BEEN DELETED BY:" + sessionManager.getUser(request), ds);
+
+                    }
 
                     //reindirizzo verso la servlet che si occupa di restituire la lista degli utenti
                     response.sendRedirect("AdmGetListUser");
