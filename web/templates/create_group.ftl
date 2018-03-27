@@ -37,20 +37,13 @@
             </ul>
             <br>
             <button type="submit" form="create" class="btn btn-default">Crea gruppo</button>
+            <div class="w3ls-heading page-header">
+            </div>
+            <div class="text-center"><a href="/HomeBackOffice" class="btn btn-warning my-text center-block" role="button">torna al back office</a></div>
         </div>
 
 
         <div class="container">
-        <#if message??>
-            <div class="title">
-                <h2>ATTENZIONE</h2>
-                <div class="modalContent">
-                    <p>${message}</p>
-                </div>
-            </div>
-        <#else>
-
-        </#if>
 
             <div class="col-md-12 col-xs-12">
                 <div class="tab-content">

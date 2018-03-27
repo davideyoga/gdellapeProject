@@ -26,28 +26,51 @@
         </#if>
     </div>
 </div>
-<div class="container">
-
+<div class="row">
+    <div class="container">
         <#assign x=currentYear>
 
-    <div>Study Course: ${studyCourse.name}</div>
-    <div>AGE: ${currentYear}</div>
-    <a href="ModAssociationStudyCourseWithCourse?idStudyCourse=${studyCourse.id}&age=${(currentFirstYear - 1)?string.computer} ">Previous year</a>
-    <a href="ModAssociationStudyCourseWithCourse?idStudyCourse=${studyCourse.id}&age=${(currentFirstYear + 1)?string.computer} ">Next year</a>
+        <div>Study Course: ${studyCourse.name}</div>
+        <div>AGE: ${currentYear}</div>
+        <a href="ModAssociationStudyCourseWithCourse?idStudyCourse=${studyCourse.id}&age=${(currentFirstYear - 1)?string.computer} ">Previous year</a>
+        <a href="ModAssociationStudyCourseWithCourse?idStudyCourse=${studyCourse.id}&age=${(currentFirstYear + 1)?string.computer} ">Next year</a>
 
-    <form method="POST" action="ModAssociationStudyCourseWithCourse">
-        <div class="table-responsive">
-            <table id="sc_tab" class="table table-bordered table-striped table-hover">
+    </div>
 
-                <thead>
-                <tr>
-                    <th>Codice Corso di studio</th>
-                    <th>Nome Corso di studio </th>
-                    <th> tipo cfu </th>
-                </tr>
-                </thead>
+    <form method="POST" action="ModAssociationStudyCourseWithCourse" id="ass">
 
-                <tbody>
+
+            <div class="col-md-2 col-xs-2 my-menu">
+                <ul class="nav nav-pills nav-stacked text-center">
+                    <li class="active"><a data-toggle="pill" href="#">lista corsi</a></li>
+                </ul>
+                <br>
+                <div class="text-center">
+                    <button type="submit" form="ass" class="btn btn-default">Salva</button>
+                </div>
+                <div class="w3ls-heading page-header">
+                </div>
+                <div class="text-center">
+                    <a href="/ListCourse" class="btn btn-warning my-text center-block" role="button">torna alla lista dei corsi</a>
+                </div>
+            </div>
+
+
+            <div class="container">
+
+                <div class="col-md-12 col-xs-12">
+                    <div class="table-responsive">
+                        <table id="sc_tab" class="table table-bordered table-striped table-hover">
+
+                            <thead>
+                            <tr>
+                                <th>Codice Corso di studio</th>
+                                <th>Nome Corso di studio </th>
+                                <th> tipo cfu </th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
                     <#list allCourses as course>
                     <tr>
                         <td>${course.code}</td>
@@ -57,16 +80,15 @@
                         </td>
                     </tr>
                     </#list>
-                </tbody>
-            </table>
-        </div>
+                            </tbody>
+                        </table>
+                    </div>
 
-        <div class="col-md-6 login-do">
-            <label class="hvr-shutter-in-horizontal login-sub">
-                <input type="submit" value="Update">
-            </label>
-        </div>
+                </div>
+            </div>
 
+
+        </div>
     </form>
 
 </div>

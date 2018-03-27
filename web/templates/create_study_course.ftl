@@ -36,10 +36,12 @@
                 <li class="active"><a data-toggle="pill" href="#base">Dati di base</a></li>
                 <li><a data-toggle="pill" href="#extra_it">Informazioni aggiuntive</a></li>
                 <li><a data-toggle="pill" href="#extra_en">Informazioni in inglese</a></li>
-            <li><a data-toggle="pill" href="#association">Associa corsi</a></li>
             </ul>
             <br>
             <button type="submit" form="create" class="btn btn-default">Crea Corso di Laurea</button>
+            <div class="w3ls-heading page-header">
+            </div>
+            <div class="text-center"><a href="/HomeBackOffice" class="btn btn-warning my-text center-block" role="button">torna al back office</a></div>
         </div>
 
 
@@ -62,10 +64,10 @@
                             <label for="dur">Durata:</label>
                             <input type="number" min="1" max="10" class="form-control" id="dur" name="duration" value="1">
                         </div>
-                        <div class="form-group">
-                            <label for="class">Classe:</label>
-                            <input type="text" class="form-control" id="class" name="class">
-                        </div>
+                        <#--<div class="form-group">-->
+                            <#--<label for="class">Classe:</label>-->
+                            <#--<input type="text" class="form-control" id="class" name="class">-->
+                        <#--</div>-->
                         <div class="form-group">
                             <label for="seat">posti disponibili:</label>
                             <input type="text" class="form-control" id="seat" name="seat">
@@ -123,22 +125,8 @@
                     </div>
                 <#--end extra_en-->
 
-                    <#--<div id="association" class="tab-pane fade">-->
-                        <#--<a href="ModAssociationStudyCourseWithCourse?idStudyCourse=${studyCourse.id}">Mod Association With Course</a>-->
-                        <#--<div class="panel panel-default">-->
-                            <#--<div class="panel-heading">Decidi quali corsi assegnare</div>-->
-                            <#--<div class="panel-body">-->
-                            <#--<#list listCourses as course>-->
-                                <#--<div class="checkbox">-->
-                                    <#--<label><input type="checkbox" value="${course.name}">${course.name}</label>-->
-                                <#--</div>-->
-                            <#--</#list>-->
-                            <#--</div>-->
-                        <#--</div>-->
-                    <#--</div>-->
-
                 </div>
-                <#--end tab-content-->
+            <#--end tab-content-->
 
             </div>
         </div>

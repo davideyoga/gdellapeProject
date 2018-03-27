@@ -42,7 +42,10 @@
                 <div class="text-center"><button type="submit" form="Add" class="btn btn-default">Aggiungi</button></div>
                 <div class="w3ls-heading page-header">
                 </div>
-                <div class="text-center"><a href="/ModAdmCourse?id=${course.idCourse}" class="btn btn-warning my-text" role="button">torna a ${course.name}</a></div>
+                <div class="text-center">
+                    <a href="GetListBook?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">Scegli dalla lista di libri esistenti</a>
+                    <a href="/ModAdmCourse?id=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">torna a ${course.name}</a>
+                </div>
             </div>
 
 

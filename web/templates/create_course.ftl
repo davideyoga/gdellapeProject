@@ -58,7 +58,7 @@
             <div class="text-center"><button type="submit" form="create" class="btn btn-default">Crea corso</button></div>
             <div class="w3ls-heading page-header">
             </div>
-            <div class="text-center"><a href="/HomeBackOffice" class="btn btn-warning my-text" role="button">torna al back office</a></div>
+            <div class="text-center"><a href="/HomeBackOffice" class="btn btn-warning my-text center-block" role="button">torna al back office</a></div>
         </div>
 
 

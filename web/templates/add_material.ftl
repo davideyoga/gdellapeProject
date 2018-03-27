@@ -32,7 +32,7 @@
 <#--<div class="row" style="border: #00d21f 5px solid">-->
     <div class="row">
         <div class="col-md-2 col-xs-2 my-menu">
-            <ul class="nav nav-pills nav-stacked">
+            <ul class="nav nav-pills nav-stacked text-center">
                 <li class="active text-center"><a data-toggle="pill" href="#basic">Aggiungi nuovo materiale</a></li>
             </ul>
             <br>
@@ -40,7 +40,7 @@
             <div class="w3ls-heading page-header">
             </div>
             <div class="text-center">
-                <a href="/ModAdmCourse?id=${course.idCourse}" class="btn btn-warning my-text" role="button">torna a ${course.name}</a>
+                <a href="/ModAdmCourse?id=${course.idCourse}" class="btn btn-warning my-text center-block" role="button">torna a ${course.name}</a>
             </div>
         </div>
 

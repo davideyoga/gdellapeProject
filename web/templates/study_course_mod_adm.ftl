@@ -31,7 +31,7 @@
 <form action="AdmModStudyCourse" method="POST" id="mod" class="my-form" >
 
     <div class="row">
-        <div class="col-md-2 col-xs-2 my-menu">
+        <div class="col-md-2 col-xs-2 my-menu text-center">
             <ul class="nav nav-pills nav-stacked">
                 <li class="active"><a data-toggle="pill" href="#base">Dati di base</a></li>
                 <li><a data-toggle="pill" href="#extra_it">Informazioni aggiuntive</a></li>
@@ -40,6 +40,11 @@
             </ul>
             <br>
             <button type="submit" form="mod" class="btn btn-default">Modifica corso di Laurea</button>
+            <div class="w3ls-heading page-header">
+            </div>
+            <div class="text-center">
+                <a href="AdmGetListStudyCourse" class="btn btn-warning my-text center-block" role="button">Torna alla lista dei corsi di studio</a>
+            </div>
         </div>
 
 
@@ -62,10 +67,10 @@
                             <label for="dur">Durata:</label>
                             <input type="number" min="1" max="10" class="form-control" id="dur" name="duration" value= "<#if studyCourse.duration??>${studyCourse.duration}<#else></#if>">
                         </div>
-                        <div class="form-group">
-                            <label for="class">Classe:</label>
-                            <input type="text" class="form-control" id="class" name="class" value="<#if studyCourse.class??>${studyCourse.class}<#else></#if>">
-                        </div>
+                        <#--<div class="form-group">-->
+                            <#--<label for="class">Classe:</label>-->
+                            <#--<input type="text" class="form-control" id="class" name="class" value="<#if studyCourse.class??>${studyCourse.class}<#else></#if>">-->
+                        <#--</div>-->
                         <div class="form-group">
                             <label for="seat">posti disponibili:</label>
                             <input type="text" class="form-control" id="seat" name="seat" value="<#if studyCourse.seat??>${studyCourse.seat}<#else></#if>">

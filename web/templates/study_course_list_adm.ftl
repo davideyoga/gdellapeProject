@@ -28,47 +28,64 @@
     </div>
 </div>
 
-<div class="container">
+<div class="row">
+    <div class="col-md-2 col-xs-2 my-menu">
+        <div class="text-center">
+            <a href="homeBackOffice" class="btn btn-warning my-text center-block" role="button">Torna al back office</a>
+        </div>
+    </div>
 
-    <div class="table-responsive" >
-        <table id="sc_table" class="table table-hover table-bordered table-striped">
-            <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
+
+    <div class="container">
+
+        <div class="col-md-12 col-xs-12">
+            <div class="container">
+
+                <div class="table-responsive" >
+                    <table id="sc_table" class="table table-hover table-bordered table-striped">
+                        <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
 
 
-            <thead>
-            <tr>
-                <th>Codice Corso di studio</th>
-                <th>Nome Corso di studio </th>
-                <th> - </th>
-                <th> - </th>
-                <th> - </th>
-                <th> - </th>
-            </tr>
-            </thead>
+                        <thead>
+                        <tr>
+                            <th>Codice Corso di studio</th>
+                            <th>Nome Corso di studio </th>
+                            <th> - </th>
+                            <th> - </th>
+                            <th> - </th>
+                            <th> - </th>
+                        </tr>
+                        </thead>
 
-            <tbody>
-        <#list studyCourses as studyCourse>
-        <tr>
-            <td>${studyCourse.code}</td>
-            <td>${studyCourse.name}</td>
-            <td>
-                <a href="AdmModStudyCourse?id=${studyCourse.id}">Modifica</a>
-            </td>
-            <td>
-                <a href="modAssociationStudyCourseWithCourse?idStudyCourse=${studyCourse.id}">Associa corsi</a>
-            </td>
-            <td>
-                <a href="DeleteStudyCourse?id=${studyCourse.id}" onclick="return ConfirmDeleteStudyCourse(${studyCourse.code},${studyCourse.name})">Cancella</a>
-            </td>
-            <td>
-                <a href="modAssociationStudyCourseWithCourse?idStudyCourse=${studyCourse.id}">Associa corsi</a>
-            </td>
-        </tr>
-        </#list>
-            </tbody>
-        </table>
+                        <tbody>
+                            <#list studyCourses as studyCourse>
+                            <tr>
+                                <td>${studyCourse.code}</td>
+                                <td>${studyCourse.name}</td>
+                                <td>
+                                    <a href="AdmModStudyCourse?id=${studyCourse.id}">Modifica</a>
+                                </td>
+                                <td>
+                                    <a href="modAssociationStudyCourseWithCourse?idStudyCourse=${studyCourse.id}">Associa corsi</a>
+                                </td>
+                                <td>
+                                    <a href="DeleteStudyCourse?id=${studyCourse.id}" onclick="return ConfirmDeleteStudyCourse(${studyCourse.code},${studyCourse.name})">Cancella</a>
+                                </td>
+                                <td>
+                                    <a href="modAssociationStudyCourseWithCourse?idStudyCourse=${studyCourse.id}">Associa corsi</a>
+                                </td>
+                            </tr>
+                            </#list>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
+
+
 <#include "tail.ftl">
 <script src="/templates/js/jquery.dataTables.js" type="text/javascript"></script>
 <script src="/templates/js/dataTables.bootstrap.js" type="text/javascript"></script>

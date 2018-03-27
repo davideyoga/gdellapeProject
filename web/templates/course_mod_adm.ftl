@@ -69,12 +69,24 @@
                     <#if service.name == 'addBook'>
                         <#assign addBook= true>
                     </#if>
+                    <#if service.name == 'modAllCourse'>
+                        <#assign mod= true>
+                    </#if>
                 </#list>
                 <#if addMaterial>
                     <a href="AddMaterial?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">Aggiugni materiale esterno</a>
                 </#if>
                 <#if addBook>
-                    <a href="AddBook?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">Aggiugni nuovo libro</a>
+                    <a href="GetListBook?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">Aggiungi libri</a>
+                </#if>
+                <#if mod>
+                    <a href="/modCourseRelation?idCourse=${course.idCourse}&mode=module" class="btn btn-warning my-text center-block m-b-5" role="button">associa moduli</a>
+                </#if>
+                <#if mod>
+                    <a href="/modCourseRelation?idCourse=${course.idCourse}&mode=borrowed" class="btn btn-warning my-text center-block m-b-5" role="button">borrowed???</a>
+                </#if>
+                <#if mod>
+                    <a href="/modCourseRelation?idCourse=${course.idCourse}&mode=preparatory" class="btn btn-warning my-text center-block m-b-5" role="button">corsi propedeutici</a>
                 </#if>
                 <a href="ListCourse" class="btn btn-warning my-text center-block" role="button">Torna alla lista dei corsi</a>
             </div>
