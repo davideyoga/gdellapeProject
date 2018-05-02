@@ -8,6 +8,14 @@ aggiungere tipo di cfu a course
 per la ricerca di un corso usare ListCourseAn con parametro get: -testare ricerca docente
                                                                  -non funziona ricerca in base alla laurea
 
+Eliminare materiale:
+    DeleteMaterial (ajax)
+    ListMaterialNotAnonymous non funziona
+
+Aggiornare Corso (prendo un corso di un anno precedente e lo COPIO all'anno corrente)
+    UpdateCourse
+    alla lista dei corsi list_courses_adm.ftl arrivano solo corsi dell'anno attuale. Prendere tutti
+
 
 ------CONTROLLARE BENE SE E' STATO FATTO---------
 2)libro:
@@ -17,13 +25,6 @@ per la ricerca di un corso usare ListCourseAn con parametro get: -testare ricerc
 
 4)Collegamenti con corsi modulati, corsi propedeutici,ect....
     AddCourseRelation
-
-6)Eliminare materiale:
-    DeleteMaterial (ajax)
-
-Aggiornare Corso (prendo un corso di un anno precedente e lo COPIO all'anno corrente)
-    UpdateCourse
-    alla lista dei corsi list_courses_adm.ftl arrivano solo corsi dell'anno attuale. Prendere tutti
 
 
 ------OPZIONALE DA VALUTARE-------
