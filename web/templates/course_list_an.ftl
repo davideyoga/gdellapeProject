@@ -30,6 +30,12 @@
         <div class="text-center">
             <a href="home?<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>" class="btn btn-warning my-text center-block" role="button">Torna alla home</a>
         </div>
+        <div class="w3ls-heading page-header">
+        </div>
+        <div class="text-center">
+            <a href="/ListCourseAn?docent=" class="btn btn-warning my-text center-block m-b-5" role="button">Ricerca in base al docente</a>
+            <a href="/ListCourseAn?studyCourse=" class="btn btn-warning my-text center-block m-b-5" role="button">Ricerca in base al corso di laurea</a>
+        </div>
     </div>
 
     <div class="container">
@@ -39,28 +45,28 @@
                 <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
 
                 <thead>
-                    <tr>
-                        <th>Codice</th>
-                        <th>Nome </th>
-                        <th>Settore</th>
-                        <th>Semestre</th>
-                        <th>Lingua</th>
-                        <th> - </th>
-                    </tr>
+                <tr>
+                    <th>Codice</th>
+                    <th>Nome </th>
+                    <th>Settore</th>
+                    <th>Semestre</th>
+                    <th>Lingua</th>
+                    <th> - </th>
+                </tr>
                 </thead>
 
                 <tbody>
                     <#list listCourse as course>
-                        <tr>
-                            <td>${course.code}</td>
-                            <td>${course.name}</td>
-                            <td>${course.sector}</td>
-                            <td>${course.semester}</td>
-                            <td>${course.language}</td>
-                            <td>
-                                <a href="CourseProfile?id=${course.idCourse}&<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>">Leggi di piu'</a>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>${course.code}</td>
+                        <td>${course.name}</td>
+                        <td>${course.sector}</td>
+                        <td>${course.semester}</td>
+                        <td>${course.language}</td>
+                        <td>
+                            <a href="CourseProfile?id=${course.idCourse}&<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>">Leggi di piu'</a>
+                        </td>
+                    </tr>
                     </#list>
                 </tbody>
             </table>

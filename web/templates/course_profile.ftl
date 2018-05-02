@@ -120,6 +120,19 @@
                                         </div>
                                     </div>
                                     <br>
+                                    <div class="col-md-12 col-xs-12">
+                                        <div class="col-md-3 col-xs-3 col-sm-3">
+                                            <p>Docenti:</p>
+                                        </div>
+                                        <div class="col-md-9 col-xs-9 col-sm-9">
+                                            <#list listDocent as docent>
+                                                <p><a href="UserProfile?email=${docent.email}&lng=IT">${docent.name} ${docent.surname}</a></p>
+                                                <br>
+                                            </#list>
+                                        </div>
+                                    </div>
+                                    <br>
+
                                 </div>
                             </div>
                         </div>
