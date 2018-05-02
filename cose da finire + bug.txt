@@ -1,4 +1,4 @@
-NON RISPETTA LA SPECIFICA ----- alla specifica dice che posso scegliere l'anno su course (noi l'abbiamo fatto su studycourse)
+Controllare bene ----- alla specifica dice che posso scegliere l'anno su course (noi l'abbiamo fatto su studycourse)
 
 selettore lingua su course_list_an (LISTCOURSEAN) non funziona
 

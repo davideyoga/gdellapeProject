@@ -41,13 +41,13 @@
         <div class="w3layouts_agileits_nav_section">
             <nav class="navbar navbar-default">
                 <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="w3ls__agileinfo_search">
-                    <form action="#" method="post">
-                        <input type="search" name="Search" placeholder="Cerca qui..." required="">
-                        <input type="submit" value=" ">
-                    </form>
+                <#--<div class="w3ls__agileinfo_search">-->
+                    <#--<form action="#" method="post">-->
+                        <#--<input type="search" name="Search" placeholder="Cerca qui..." required="">-->
+                        <#--<input type="submit" value=" ">-->
+                    <#--</form>-->
 
-                </div>
+                <#--</div>-->
                 <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
 
                     <nav>
@@ -57,9 +57,9 @@
                             <li><a href="/ListStudyCourses?<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>" class="hvr-rectangle-out">Lauree</a></li>
                             <li><a href="/ListCourseAn?<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>" class="hvr-rectangle-out">Corsi</a></li>
                             <li><a href="/ListUser?<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>" class="hvr-rectangle-out">Docenti</a></li>
-                            <li><a href="#news" class="hvr-rectangle-out">Notizie</a></li>
-                            <li><a href="#gallery" class="hvr-rectangle-out">Servizi</a></li>
-                            <li><a href="#contact" class="hvr-rectangle-out">Contatti</a></li>
+                            <#--<li><a href="#news" class="hvr-rectangle-out">Notizie</a></li>-->
+                            <#--<li><a href="#gallery" class="hvr-rectangle-out">Servizi</a></li>-->
+                            <#--<li><a href="#contact" class="hvr-rectangle-out">Contatti</a></li>-->
                         </ul>
 
                     </nav>
