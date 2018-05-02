@@ -48,6 +48,7 @@
                     <th>Settore</th>
                     <th>Semestre</th>
                     <th>Lingua</th>
+                    <th>Anno</th>
                     <th> - </th>
                     <th> - </th>
                     <th> - </th>
@@ -62,6 +63,7 @@
                         <td>${course.sector}</td>
                         <td>${course.semester}</td>
                         <td>${course.language}</td>
+                        <td>${course.year}</td>
                         <td>
                             <a href="ModAdmCourse?id=${course.idCourse}">modifica corso</a>
                         </td>

@@ -1,6 +1,7 @@
+
 Controllare bene ----- alla specifica dice che posso scegliere l'anno su course (noi l'abbiamo fatto su studycourse)
 
-selettore lingua su course_list_an (LISTCOURSEAN) non funziona
+selettore lingua su course_list_an (LISTCOURSEAN) non funziona [solo su questa pagina]
 
 aggiungere tipo di cfu a course
 
@@ -20,11 +21,9 @@ per la ricerca di un corso usare ListCourseAn con parametro get: -testare ricerc
 6)Eliminare materiale:
     DeleteMaterial (ajax)
 
-9)Aggiornare Corso (prendo un corso di un anno precedente e lo COPIO all'anno corrente)
+Aggiornare Corso (prendo un corso di un anno precedente e lo COPIO all'anno corrente)
     UpdateCourse
-
-11)Aggiungere e Rimuovere associazione corso
-    ModAssociationCourseWithUser
+    alla lista dei corsi list_courses_adm.ftl arrivano solo corsi dell'anno attuale. Prendere tutti
 
 
 ------OPZIONALE DA VALUTARE-------

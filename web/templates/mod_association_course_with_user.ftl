@@ -46,7 +46,7 @@
                 <li class="active"><a data-toggle="pill" href="#list">lista docenti</a></li>
             </ul>
             <br>
-            <div class="text-center"><button type="submit" form="create" class="btn btn-default">Salva</button></div>
+            <div class="text-center"><button type="submit" form="mod" class="btn btn-default">Salva</button></div>
             <div class="w3ls-heading page-header">
             </div>
             <div class="text-center">
