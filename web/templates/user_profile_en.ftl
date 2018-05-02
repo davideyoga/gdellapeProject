@@ -1,15 +1,15 @@
 <!--questa pagina serve per vedere più dettagli di un docente-->
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
-    <title>Profilo Utente</title>
+    <title>User Profile</title>
 
     <!--librerie-->
 <#include "import.ftl">
 </head>
 <body>
 <!--menù navigazione-->
-<#include "navbar.ftl">
+<#include "navbar_en.ftl">
 
 <div class="container">
     <div class="center-block">
@@ -33,16 +33,16 @@
 <div class="row">
     <div class="col-md-2 col-xs-2 my-menu">
         <div class="text-center">
-            <a href="ListUser?<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>" class="btn btn-warning my-text center-block" role="button">Torna alla lista dei docenti</a>
+            <a href="ListUser?<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=EN</#if>" class="btn btn-warning my-text center-block" role="button">Back to Docent list</a>
         </div>
     </div>
 
     <div class="container">
 
         <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#cont">Contatti</a></li>
+            <li class="active"><a data-toggle="tab" href="#cont">Contacts</a></li>
             <li><a data-toggle="tab" href="#curr">Curriculum</a></li>
-            <li><a data-toggle="tab" href="#course">Corsi</a></li>
+            <li><a data-toggle="tab" href="#course">Courses</a></li>
         </ul>
 
         <div class="tab-content">
@@ -50,7 +50,7 @@
                 <div class="panel-group">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h4 class="panel-title">Contatti</h4></div>
+                            <h4 class="panel-title">Contacts</h4></div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-12 col-xs-12">
@@ -64,7 +64,7 @@
                                 <br>
                                 <div class="col-md-12 col-xs-12">
                                     <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <p>Numero di telefono:</p>
+                                        <p>Phone number:</p>
                                     </div>
                                     <div class="col-md-9 col-xs-9 col-sm-9">
                                         <p><#if userCurrent.number??>
@@ -76,11 +76,12 @@
 
                                 <div class="col-md-12 col-xs-12">
                                     <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <p>Ricevimento:</p>
+                                        <p>Reception hours:</p>
                                     </div>
                                     <div class="col-md-9 col-xs-9 col-sm-9">
-                                        <p><#if userCurrent.receprion_hours_ita??>
-                                            ${userCurrent.receprion_hours_ita}
+                                        <p>
+                                        <#if userCurrent.receprion_hours_eng??>
+                                            ${userCurrent.receprion_hours_eng}
                                         <#else>
                                         </#if></p>
                                     </div>
@@ -101,8 +102,8 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-12 col-xs-12">
-                                    <#if userCurrent.curriculum_ita??>
-                                        ${userCurrent.curriculum_ita}
+                                    <#if userCurrent.curriculum_eng??>
+                                        ${userCurrent.curriculum_eng}
                                     <#else>
                                     </#if>
                                 </div>
@@ -121,8 +122,8 @@
 
                             <thead>
                             <tr>
-                                <th>Codice</th>
-                                <th>Nome </th>
+                                <th>Code</th>
+                                <th>Name </th>
                                 <th> - </th>
                             </tr>
                             </thead>
@@ -133,7 +134,7 @@
                             <td>${course.code}</td>
                             <td>${course.name}</td>
                             <td>
-                                <a href="CourseProfile?id=${course.idCourse}&<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>">Leggi di piu'</a>
+                                <a href="CourseProfile?id=${course.idCourse}&<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=EN</#if>">Read more</a>
                             </td>
                         </tr>
                         </#list>
@@ -154,7 +155,7 @@
 </div>
 
 <!--modulo contatti, email, conclusione-->
-<#include "tail.ftl">
+<#include "tail_en.ftl">
 <script src="/templates/js/jquery.dataTables.js" type="text/javascript"></script>
 <script src="/templates/js/dataTables.bootstrap.js" type="text/javascript"></script>
 <script type="text/javascript">

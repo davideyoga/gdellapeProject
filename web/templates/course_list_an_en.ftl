@@ -29,7 +29,7 @@
 <div class="row">
     <div class="col-md-2 col-xs-2 my-menu">
         <div class="text-center">
-            <a href="home?<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>" class="btn btn-warning my-text center-block" role="button">Torna alla home</a>
+            <a href="home?<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>" class="btn btn-warning my-text center-block" role="button">Back to home</a>
         </div>
     </div>
     <div class="container">

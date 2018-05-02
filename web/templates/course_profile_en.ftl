@@ -10,7 +10,7 @@
 
 </head>
 <body>
-<#include "navbar.ftl">
+<#include "navbar_en.ftl">
 
 <div class="container">
     <div class="center-block">
@@ -364,6 +364,6 @@
 
 </div>  <#--div container-->
 
-<#include "tail.ftl">
+<#include "tail_en.ftl">
 </body>
 </html>
