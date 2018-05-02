@@ -1,20 +1,20 @@
 <!--questa pagina serve per vedere tutti i professori, da anonimi, cioè non loggati-->
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
-    <title>Lista docenti</title>
+    <title>Docents List</title>
 
     <!--librerie-->
 <#include "import.ftl">
 </head>
 <body>
 <!--menù navigazione-->
-<#include "navbar.ftl">
+<#include "navbar_en.ftl">
 
 <div class="container">
     <div class="center-block">
         <div class="w3ls-heading page-header">
-            <h3>I nostri docenti</h3>
+            <h3>Our Docent</h3>
         </div>
     </div>
 </div>
@@ -33,10 +33,9 @@
 <div class="row">
     <div class="col-md-2 col-xs-2 my-menu">
         <div class="text-center">
-            <a href="home?<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>" class="btn btn-warning my-text center-block" role="button">Torna alla home</a>
+            <a href="home?<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=EN</#if>" class="btn btn-warning my-text center-block" role="button">Back to home</a>
         </div>
     </div>
-
     <div class="container">
 
         <div class="table-responsive" >
@@ -45,7 +44,7 @@
 
                 <thead>
                 <tr>
-                    <th>Nome</th>
+                    <th>Name</th>
                     <th>Email</th>
                     <th> - </th>
                 </tr>
@@ -57,7 +56,7 @@
                     <td>${user.name} ${user.surname}</td>
                     <td>${user.email}</td>
                     <td>
-                        <a href="UserProfile?email=${user.email}&<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>">Leggi di piu'</a>
+                        <a href="UserProfile?email=${user.email}&<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=EN</#if>">Read more</a>
                     </td>
                 </tr>
                 </#list>
@@ -68,7 +67,7 @@
 </div>
 
 <!--modulo contatti, email, conclusione-->
-<#include "tail.ftl">
+<#include "tail_en.ftl">
 <script src="/templates/js/jquery.dataTables.js" type="text/javascript"></script>
 <script src="/templates/js/dataTables.bootstrap.js" type="text/javascript"></script>
 <script type="text/javascript">
