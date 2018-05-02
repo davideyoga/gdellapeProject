@@ -33,8 +33,35 @@
         <div class="w3ls-heading page-header">
         </div>
         <div class="text-center">
-            <a href="/ListCourseAn?docent=" class="btn btn-warning my-text center-block m-b-5" role="button">Ricerca in base al docente</a>
-            <a href="/ListCourseAn?studyCourse=" class="btn btn-warning my-text center-block m-b-5" role="button">Ricerca in base al corso di laurea</a>
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle btn-block" type="button" data-toggle="dropdown">Ricerca in base al docente
+                    <span class="caret"></span>
+                </button>
+                <form class="dropdown-menu" action="ListCourseAn" method="GET" id="search">
+                    <div class="my-background p-1 text-white">
+                        <div class="form-group">
+                            <label for="docent">Nome docente:</label>
+                            <input type="text" class="form-control" id="docent" name="docent" value="">
+                        </div>
+                        <button type="submit" class="btn btn-default my-text center-block">Cerca</button>
+                    </div>
+                </form>
+            </div>
+            <br>
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle btn-block" type="button" data-toggle="dropdown">Ricerca in base al corso di laurea
+                    <span class="caret"></span>
+                </button>
+                <form class="dropdown-menu" action="ListCourseAn" method="GET" id="search">
+                    <div class="my-background p-1 text-white">
+                        <div class="form-group">
+                            <label for="studyCourse">Nome laurea:</label>
+                            <input type="text" class="form-control" id="studyCourse" name="studyCourse" value="">
+                        </div>
+                        <button type="submit" class="btn btn-default my-text center-block">Cerca</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 

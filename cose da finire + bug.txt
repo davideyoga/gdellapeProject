@@ -4,7 +4,8 @@ selettore lingua su course_list_an (LISTCOURSEAN) non funziona
 
 aggiungere tipo di cfu a course
 
-per la ricerca di un corso: manca filtrare per docente e per corso di laurea----> usare ListCourseAn con parametro get
+per la ricerca di un corso usare ListCourseAn con parametro get: -testare ricerca docente
+                                                                 -non funziona ricerca in base alla laurea
 
 
 ------CONTROLLARE BENE SE E' STATO FATTO---------

@@ -6642,6 +6642,10 @@ button.close {
   margin-top: 3em;
 }
 
+.p-1{
+  padding:1em;
+}
+
 .btn-file {
   position: relative;
   overflow: hidden;
@@ -6664,5 +6668,13 @@ button.close {
 
 .d-n{
   display: none;
+}
+
+.my-background {
+  background-color: #0064D2;
+}
+
+.text-white{
+  color: white;
 }
 /*# sourceMappingURL=bootstrap.css.map */
