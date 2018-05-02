@@ -2,11 +2,28 @@ Controllare bene ----- alla specifica dice che posso scegliere l'anno su course 
 
 selettore lingua su course_list_an (LISTCOURSEAN) non funziona
 
-associare corso e corso ----> parametro mod non ho capito
-
 aggiungere tipo di cfu a course
 
-per la ricerca di un corso: manca filtrare per docente e per corso di laurea----> usare GetCourseAn con parametro get
+per la ricerca di un corso: manca filtrare per docente e per corso di laurea----> usare ListCourseAn con parametro get
+
+
+------CONTROLLARE BENE SE E' STATO FATTO---------
+2)libro:
+    AddNookByExisting (ajax)
+    GetListBook è vuoto
+    RemoveBook (ajax)
+
+4)Collegamenti con corsi modulati, corsi propedeutici,ect....
+    AddCourseRelation
+
+6)Eliminare materiale:
+    DeleteMaterial (ajax)
+
+9)Aggiornare Corso (prendo un corso di un anno precedente e lo COPIO all'anno corrente)
+    UpdateCourse
+
+11)Aggiungere e Rimuovere associazione corso
+    ModAssociationCourseWithUser
 
 
 ------OPZIONALE DA VALUTARE-------
