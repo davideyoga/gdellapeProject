@@ -31,6 +31,39 @@
         <div class="text-center">
             <a href="home?<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>" class="btn btn-warning my-text center-block" role="button">Back to home</a>
         </div>
+        <div class="w3ls-heading page-header">
+        </div>
+        <div class="text-center">
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle btn-block" type="button" data-toggle="dropdown">Search by docent
+                    <span class="caret"></span>
+                </button>
+                <form class="dropdown-menu" action="ListCourseAn" method="GET" id="search">
+                    <div class="my-background p-1 text-white">
+                        <div class="form-group">
+                            <label for="docent">Docent name:</label>
+                            <input type="text" class="form-control" id="docent" name="docent" value="">
+                        </div>
+                        <button type="submit" class="btn btn-default my-text center-block">Search</button>
+                    </div>
+                </form>
+            </div>
+            <br>
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle btn-block" type="button" data-toggle="dropdown">Search by study course
+                    <span class="caret"></span>
+                </button>
+                <form class="dropdown-menu" action="ListCourseAn" method="GET" id="search">
+                    <div class="my-background p-1 text-white">
+                        <div class="form-group">
+                            <label for="studyCourse">Study course name:</label>
+                            <input type="text" class="form-control" id="studyCourse" name="studyCourse" value="">
+                        </div>
+                        <button type="submit" class="btn btn-default my-text center-block">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
     <div class="container">
 
