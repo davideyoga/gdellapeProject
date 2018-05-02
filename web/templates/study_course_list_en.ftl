@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="it" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>Lista Corsi di studio</title>
+    <title>Study Course List</title>
 
 <#include "import.ftl">
 
@@ -12,7 +12,7 @@
 <div class="container">
     <div class="center-block">
         <div class="w3ls-heading page-header">
-            <h3>Corsi di studio disponibili</h3>
+            <h3>Available Study Course</h3>
         </div>
     </div>
 </div>
@@ -31,7 +31,7 @@
 <div class="row">
     <div class="col-md-2 col-xs-2 my-menu">
         <div class="text-center">
-            <a href="home?<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>" class="btn btn-warning my-text center-block" role="button">Torna alla home</a>
+            <a href="home?<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=EN</#if>" class="btn btn-warning my-text center-block" role="button">Back to home</a>
         </div>
     </div>
 
@@ -46,8 +46,8 @@
 
                         <thead>
                         <tr>
-                            <th>Codice Corso di studio</th>
-                            <th>Nome Corso di studio </th>
+                            <th>Study Course code</th>
+                            <th>Name</th>
                             <th> - </th>
                         </tr>
                         </thead>
@@ -58,7 +58,7 @@
                         <td>${studyCourse.code}</td>
                         <td>${studyCourse.name}</td>
                         <td>
-                            <a href="StudyCourseProfile?code=${studyCourse.code}&?<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>">Leggi di piu'</a>
+                            <a href="StudyCourseProfile?code=${studyCourse.code}&<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=EN</#if>">Read more</a>
                         </td>
                     </tr>
                     </#list>

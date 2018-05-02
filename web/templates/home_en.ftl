@@ -13,6 +13,6 @@
 <#include "bodyContent_en.ftl">
 
 <!--modulo contatti, email, conclusione-->
-<#include "tail.ftl">
+<#include "tail_en.ftl">
 </body>
 </html>

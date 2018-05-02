@@ -4,7 +4,7 @@
 
     <div class="wthree_agile_top_header">
         <div class="logo-agileits">
-            <h1><a href="/home"><span>U</span>niversit&agrave <i class="fa fa-graduation-cap" aria-hidden="true"></i></a></h1>
+            <h1><a href="/home?<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>"><span>U</span>niversit&agrave <i class="fa fa-graduation-cap" aria-hidden="true"></i></a></h1>
         </div>
 
         <div class="agileits_w3layouts_sign_in">
@@ -53,10 +53,10 @@
                     <nav>
                         <ul class="nav navbar-nav">
                             <li class="active">
-                                <a href="/home">Home</a></li>
-                            <li><a href="/ListStudyCourses" class="hvr-rectangle-out">Lauree</a></li>
-                            <li><a href="/ListCourseAn" class="hvr-rectangle-out">Corsi</a></li>
-                            <li><a href="/ListUser" class="hvr-rectangle-out">Docenti</a></li>
+                                <a href="/home?<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>">Home</a></li>
+                            <li><a href="/ListStudyCourses?<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>" class="hvr-rectangle-out">Lauree</a></li>
+                            <li><a href="/ListCourseAn?<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>" class="hvr-rectangle-out">Corsi</a></li>
+                            <li><a href="/ListUser?<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>" class="hvr-rectangle-out">Docenti</a></li>
                             <li><a href="#news" class="hvr-rectangle-out">Notizie</a></li>
                             <li><a href="#gallery" class="hvr-rectangle-out">Servizi</a></li>
                             <li><a href="#contact" class="hvr-rectangle-out">Contatti</a></li>
