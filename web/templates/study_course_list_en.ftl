@@ -7,7 +7,7 @@
 
 </head>
 <body>
-<#include "navbar.ftl">
+<#include "navbar_en.ftl">
 
 <div class="container">
     <div class="center-block">
@@ -73,7 +73,7 @@
 
 
 <!--modulo contatti, email, conclusione-->
-<#include "tail.ftl">
+<#include "tail_en.ftl">
 <script src="/templates/js/jquery.dataTables.js" type="text/javascript"></script>
 <script src="/templates/js/dataTables.bootstrap.js" type="text/javascript"></script>
 <script type="text/javascript">
