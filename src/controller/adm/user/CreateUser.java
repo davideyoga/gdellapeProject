@@ -84,30 +84,30 @@ public class CreateUser extends BaseController {
             //estraggo il servizio di creazione degli utenti
             Service createUser = getCreateUserService(request,response);
 
-                //se l'utente in sessione possiede il servizio createUser...
-                if (((List <Service>) request.getSession().getAttribute("services")).contains(createUser)) {
+            //se l'utente in sessione possiede il servizio createUser...
+            if (((List <Service>) request.getSession().getAttribute("services")).contains(createUser)) {
 
 
-                    this.datamodel.put("message", null);
+                this.datamodel.put("message", null);
 
-                    //setto l'utente in sessione
-                    this.datamodel.put("user", sessionManager.getUser(request));
+                //setto l'utente in sessione
+                this.datamodel.put("user", sessionManager.getUser(request));
 
-                    //setto i servizi a cui ha accesso l'utente
-                    this.datamodel.put("services", request.getSession().getAttribute("services"));
-
-
-                    //lancio il template di creazione utente
-                    TemplateController.process( "create_user.ftl", datamodel ,response, getServletContext() );
-
-                } else {
-
-                    //lancio il messaggio di servizio non permesso
-                    this.processNotPermitted(request, response);
-                }
+                //setto i servizi a cui ha accesso l'utente
+                this.datamodel.put("services", request.getSession().getAttribute("services"));
 
 
-        //se la sessione non e' valida
+                //lancio il template di creazione utente
+                TemplateController.process( "create_user.ftl", datamodel ,response, getServletContext() );
+
+            } else {
+
+                //lancio il messaggio di servizio non permesso
+                this.processNotPermitted(request, response);
+            }
+
+
+            //se la sessione non e' valida
         }else{
 
             //setto la previous page e reindirizzo alla login
@@ -162,7 +162,8 @@ public class CreateUser extends BaseController {
 
                             //setto l'user da inserire
                             user.setEmail(emailForm);
-                            user.setPassword(passwordForm);
+                            user.setPassword(utilityManager.sha1Encrypt(passwordForm));
+
 
                             //inserisco l'utente
                             int id =  userDao.storeUser(user);
@@ -173,7 +174,7 @@ public class CreateUser extends BaseController {
                             //aggiungo un log di avvenuta creazioendi un utente
                             logManager.addLog(sessionManager.getUser(request),"USER CREATED: " + user + "BY" + sessionManager.getUser(request), ds);
 
-                        //se la mail e' gia presente nel database
+                            //se la mail e' gia presente nel database
                         } else {
 
                             //inserisco il messaggio di email gia' presente nel database
@@ -196,7 +197,7 @@ public class CreateUser extends BaseController {
                         userDao.destroy();
                         userDao = null;
 
-                    //se i dati passati dalla form non sono corretti:
+                        //se i dati passati dalla form non sono corretti:
                     }else{
                         //inserisco il messaggio di dati non corretti
                         datamodel.put("message", "Past data is incorrect");
@@ -211,14 +212,14 @@ public class CreateUser extends BaseController {
                         TemplateController.process("create_user.ftl", datamodel, response, getServletContext());
                     }
 
-                //se all'utente non e' permesso aggiungere utenti
+                    //se all'utente non e' permesso aggiungere utenti
                 } else {
 
                     //lancio il template della pagina not_permissed
                     this.processNotPermitted(request, response);
                 }
 
-            //se la sessione non e' valida
+                //se la sessione non e' valida
             }else{
 
                 //setto la previous page e reindirizzo alla login

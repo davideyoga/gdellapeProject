@@ -59,6 +59,8 @@ public class UserProfile extends BaseController {
             //se l'utente esiste nel sistema
             if(!(user == null) && user.getId()>0){
 
+                utilityManager.removePassword(user);
+
                 //carico l'user nel datamodel
                 datamodel.put("userCurrent", user);
 

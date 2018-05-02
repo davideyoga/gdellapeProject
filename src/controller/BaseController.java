@@ -314,6 +314,23 @@ public class BaseController extends HttpServlet {
         return course;
     }
 
+    protected User getUserByForm(HttpServletRequest request,User user, int iduser) throws NumberFormatException{
+
+        user.setId(iduser);
+        user.setSurname(request.getParameter("surname"));
+        user.setName(request.getParameter("name"));
+        user.setEmail(request.getParameter("email"));
+        user.setNumber(Long.parseLong(request.getParameter("number")));
+        user.setCurriculum_ita(request.getParameter("curriculum_ita"));
+        user.setCurriculum_eng(request.getParameter("curriculum_eng"));
+        user.setReceprion_hours_ita(request.getParameter("receprion_hours_ita"));
+        user.setReceprion_hours_eng(request.getParameter("receprion_hours_eng"));
+        user.setPassword(request.getParameter("password"));
+
+        return user;
+
+    }
+
     protected void insertUserInCourseServlet(HttpServletRequest request) throws DaoException{
 
             //aggiungo tutti i gruppi al datamodel (per creare un selettore)
@@ -341,7 +358,7 @@ public class BaseController extends HttpServlet {
             //ciclo sulla lista di tutti i gruppi
             for (Groups groups : groupsList) {
 
-                //aggiungo groups come chiave e come valore la lista di tutti i suoi UserGroups
+                //aggiungo groups come chiave e come valorep la lista di tutti i suoi UserGroups
                 groupsUserGroupsList.put(groups, userGroupsDao.getUserGroupsByGroups(groups));
 
             }
@@ -353,6 +370,8 @@ public class BaseController extends HttpServlet {
             userDao.destroy();
             userGroupsDao.destroy();
     }
+
+
 
 
     protected void processError(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{

@@ -12,10 +12,18 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+import javax.xml.bind.DatatypeConverter;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import static java.util.Objects.isNull;
 
 /**
  * @author Davide Micarelli
@@ -42,6 +50,18 @@ public class SingletonUtilityManager implements UtilityManager {
         return utilityManager;
     }
 
+
+    @Override
+    public void removePassword(User user) {
+        user.setPassword(null);
+    }
+
+    @Override
+    public void removePassword(List <User> users) {
+        for (User curr : users){
+            curr.setPassword(null);
+        }
+    }
 
     /**
      * Controlla tramite regular expression la validita' della email
@@ -118,6 +138,28 @@ public class SingletonUtilityManager implements UtilityManager {
 
         return Integer.parseInt( accademicYear.substring(0,3) );
 
+    }
+
+    /**
+     * codifica la stringa in sha1
+     * @param x stringa da codificare
+     * @return sha1(x) oppure null
+     */
+    public String sha1Encrypt(String x) {
+        if(isNull(x) || x.equals("")){
+            Logger.getAnonymousLogger().log(Level.WARNING, "SecurityException: parametro null" );
+            return null;
+        }
+        String sha1 = null;
+        try {
+            MessageDigest msdDigest = MessageDigest.getInstance("SHA-1");
+            msdDigest.update(x.getBytes("UTF-8"), 0, x.length());
+            sha1 = DatatypeConverter.printHexBinary(msdDigest.digest());
+            sha1=sha1.toLowerCase();
+        } catch (UnsupportedEncodingException | NoSuchAlgorithmException e) {
+            Logger.getAnonymousLogger().log(Level.WARNING, "SecurityException: " + e.getMessage());
+        }
+        return sha1;
     }
 
     /**

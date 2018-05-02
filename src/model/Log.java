@@ -5,7 +5,7 @@ import dao.data.DaoData;
 import java.sql.Timestamp;
 
 /**
- * @Creator Davide Micarelli
+ * @author Davide Micarelli
  */
 public class Log {
 
