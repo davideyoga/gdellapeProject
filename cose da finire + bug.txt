@@ -21,6 +21,8 @@ Aggiornare Corso (prendo un corso di un anno precedente e lo COPIO all'anno corr
 NON CI STA LA SERVLET -----  Collegamenti con corsi modulati, corsi propedeutici,ect....
                              AddCourseRelation
 
+RemoveBook non funziona, i parametri li prende bene dal template
+
 
 ------OPZIONALE DA VALUTARE-------
 
