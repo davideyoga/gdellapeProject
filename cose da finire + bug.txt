@@ -17,14 +17,9 @@ Aggiornare Corso (prendo un corso di un anno precedente e lo COPIO all'anno corr
     alla lista dei corsi list_courses_adm.ftl arrivano solo corsi dell'anno attuale. Prendere tutti
 
 
-------CONTROLLARE BENE SE E' STATO FATTO---------
-2)libro:
-    AddNookByExisting (ajax)
-    GetListBook è vuoto
-    RemoveBook (ajax)
 
-4)Collegamenti con corsi modulati, corsi propedeutici,ect....
-    AddCourseRelation
+NON CI STA LA SERVLET -----  Collegamenti con corsi modulati, corsi propedeutici,ect....
+                             AddCourseRelation
 
 
 ------OPZIONALE DA VALUTARE-------
