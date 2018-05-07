@@ -23,6 +23,8 @@ NON CI STA LA SERVLET -----  Collegamenti con corsi modulati, corsi propedeutici
 
 RemoveBook non funziona, i parametri li prende bene dal template
 
+SE SI DISATTIVA JAVASCRIPT NON FUNZIO A PIU' NULLA SE ANONIMO
+
 
 ------OPZIONALE DA VALUTARE-------
 

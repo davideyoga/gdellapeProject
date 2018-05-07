@@ -107,10 +107,12 @@ public class ListMaterial extends BaseController {
             courseDao.init();
 
             //estraggo il corso dal codice passato
-            String code = request.getParameter("code");
+            int id = Integer.parseInt(request.getParameter("id"));
 
             //estraggo il corso con tale codice
-            Course course = courseDao.getCourseByCode(code);
+            Course course = courseDao.getCourseById(id);
+
+            System.out.println(course);
 
             //se il corso esiste
             if(course != null){
@@ -143,7 +145,7 @@ public class ListMaterial extends BaseController {
 
             }
 
-        } catch (DaoException e) {
+        } catch (DaoException | NumberFormatException e) {
             e.printStackTrace();
 
             this.processError(request, response);
