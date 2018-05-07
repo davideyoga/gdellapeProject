@@ -36,6 +36,9 @@ public class ListCourseAn extends BaseController {
         //carico la lingua nel datamodel
         this.setLng(request, datamodel);
 
+        //carico nome servlet
+        this.datamodel.put("nameServlet","ListCourseAn");
+
         //setto l'utente in sessione
         this.datamodel.put("user", sessionManager.getUser(request));
 

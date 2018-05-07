@@ -87,6 +87,7 @@ public class DeleteUser extends BaseController {
 
                     }
 
+
                     //reindirizzo verso la servlet che si occupa di restituire la lista degli utenti
                     response.sendRedirect("AdmGetListUser");
 
