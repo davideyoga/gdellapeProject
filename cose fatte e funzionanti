@@ -1,0 +1,12 @@
+home
+crea utente
+lista utente
+modifica e cancella utente ( controllare lato server quale utente si puo cancellare) non è che funonzia troppo
+crea corso
+lista corso
+associa docente-corso
+carica materiale
+crea libro
+aggiungi libro con ajax
+lista libro
+add material

@@ -360,7 +360,7 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-12 col-xs-12">
-                                        <a href="ListMaterial?code=${course.code}&lng=IT" class="btn btn-link my-text center-block m-b-5" role="button">Vai al materiale esterno</a>
+                                        <a href="ListMaterial?id=${course.id}&lng=IT" class="btn btn-link my-text center-block m-b-5" role="button">Vai al materiale esterno</a>
                                     </div>
                                 </div>
                             </div>

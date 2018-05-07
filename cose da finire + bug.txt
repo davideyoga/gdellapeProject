@@ -30,5 +30,6 @@ SE SI DISATTIVA JAVASCRIPT NON FUNZIO A PIU' NULLA SE ANONIMO
 
 curriculum del prof da caricare come file
 vedere parte relativa a curriculum, add e mod
+vedere opzioni per riportarsi la lingua sul tasto cambio lingua.
 
 fare 2 tipi di messaggio: "messageSucces" e "messageError" nelle servlet: -CreateUser
