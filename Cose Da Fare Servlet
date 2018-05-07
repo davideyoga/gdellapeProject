@@ -3,7 +3,7 @@ LOG:
     ricontrollare i log e scriverli meglio, con spazi ecc..
 
 PASSWORD:
-    non esporre all'esterno le password utenti
+    non esporre all'esterno le password utenti OK
 
 
 SISTEMARE servlet GetCourseAn ricerca per docente deve prendere anche il cognom
