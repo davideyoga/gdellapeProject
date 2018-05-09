@@ -1,8 +1,6 @@
 
 Controllare bene ----- alla specifica dice che posso scegliere l'anno su course (noi l'abbiamo fatto su studycourse)
 
-selettore lingua su course_list_an (LISTCOURSEAN) non funziona [solo su questa pagina]
-
 aggiungere tipo di cfu a course
 
 per la ricerca di un corso usare ListCourseAn con parametro get: -testare ricerca docente
@@ -33,3 +31,12 @@ vedere parte relativa a curriculum, add e mod
 vedere opzioni per riportarsi la lingua sul tasto cambio lingua.
 
 fare 2 tipi di messaggio: "messageSucces" e "messageError" nelle servlet: -CreateUser
+
+------------------------------------------------------------------------------------------------------------------------
+
+risistemare il layout di base
+javascript che evidenzia la pagina attuale
+javascript che lista gli anni dei corsi precedenti
+listcoursean attrezzo per anno precedente e successivo
+riguardare ricerca corso in base a docente
+frecceta ordinamento corsi e lauree
