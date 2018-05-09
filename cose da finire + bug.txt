@@ -35,7 +35,6 @@ fare 2 tipi di messaggio: "messageSucces" e "messageError" nelle servlet: -Creat
 ------------------------------------------------------------------------------------------------------------------------
 
 risistemare il layout di base
-javascript che evidenzia la pagina attuale
 javascript che lista gli anni dei corsi precedenti
 listcoursean attrezzo per anno precedente e successivo
 riguardare ricerca corso in base a docente
