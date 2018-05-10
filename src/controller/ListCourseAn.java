@@ -97,7 +97,7 @@ public class ListCourseAn extends BaseController {
 
 
             /*
-                INIZIO SELEZIONE CORSI PER NOME
+                INIZIO SELEZIONE CORSI PER NOME (nome del corso)
              */
             if(request.getParameter("name") != null) {
 
@@ -296,8 +296,11 @@ public class ListCourseAn extends BaseController {
                     //ciclo sulla lista degli utenti collegati al corso corrente
                     for (User currUser : listuser) {
 
-                        //se trovo il professore lo setto a true, in modo ce non venga eliminato
-                        if (currUser.getName().equals(param)) match = true;
+                        //se trovo il nome o cognome il professore lo setto a true, in modo ce non venga eliminato
+                        //if (currUser.getName().equals(param)) match = true;
+                        //if (currUser.getSurname().equals(param)) match = true;
+                        if(this.matchNome(param, currUser.getName())) match = true;
+                        if(this.matchNome(param, currUser.getSurname())) match = true;
 
                     }
 
@@ -346,7 +349,8 @@ public class ListCourseAn extends BaseController {
 
                         //se l'attuale corso metcha con la stringa passata dall'user la variabile viene settata a true,
                         //in modo che al prossimo ciclo non venga eliminato
-                        if (currStudyCourse.getName().equals(param)) match = true;
+                        //if (currStudyCourse.getName().equals(param)) match = true;
+                        if(this.matchNome(param, curr.getName())) match = true;
 
                     }
 

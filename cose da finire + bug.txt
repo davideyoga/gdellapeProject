@@ -1,6 +1,8 @@
 
 Controllare bene ----- alla specifica dice che posso scegliere l'anno su course (noi l'abbiamo fatto su studycourse)
 
+selettore lingua su course_list_an (LISTCOURSEAN) non funziona [solo su questa pagina]
+
 aggiungere tipo di cfu a course
 
 per la ricerca di un corso usare ListCourseAn con parametro get: -testare ricerca docente
@@ -32,10 +34,12 @@ vedere opzioni per riportarsi la lingua sul tasto cambio lingua.
 
 fare 2 tipi di messaggio: "messageSucces" e "messageError" nelle servlet: -CreateUser
 
-------------------------------------------------------------------------------------------------------------------------
 
-risistemare il layout di base
-javascript che lista gli anni dei corsi precedenti
-listcoursean attrezzo per anno precedente e successivo
-riguardare ricerca corso in base a docente
-frecceta ordinamento corsi e lauree
+
+REV1
+- quando ci troviamo davanti ad un corso nella servlet CourseProfile si deve aggiungere la lista dei corsi di studio per cui il corso e' fruibile
+    la lista dei corsi di studio si chiama listStudyCourse
+
+- ListCourseAn inserire il selettore degli anni
+
+- Filtrare lista corsi (ListCourseAn) per usare servlet bellissima di davide

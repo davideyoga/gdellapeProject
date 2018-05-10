@@ -1,0 +1,8 @@
+FrontEnd
+
+-Publicazione bilingue: Tutto il FrontOffice deve avere una visaulazzazzione in ita e in eng
+-Visualizzazzione lista corsi di laurea per cui il corso e' fruibile (quando sto dentro un corso devo far vedere i corsi di laurea per cui e' fruibile )
+-materiali per il corso
+-filtrare lista corsi per: Nome(anche parziale), codice, SSD, semestre, docente, lingua, corso di laurea per i quali e' disponibile
+-di default si deve caricare l'ultimo corso per anno
+
