@@ -43,3 +43,13 @@ REV1
 - ListCourseAn inserire il selettore degli anni
 
 - Filtrare lista corsi (ListCourseAn) per usare servlet bellissima di davide
+        I parametri sono:
+
+            - year (prima parte dell'anno accademico)
+            - name: nome del corso
+            - code; codice del corso
+            - sector: settore corso
+            - semester: semestre corso
+            - language
+
+- mandare docenti alla pagina ListCourseAn per farli selezionare
