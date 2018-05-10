@@ -4,19 +4,24 @@ import controller.utility.AccademicYear;
 import controller.utility.AccademicYearException;
 import dao.exception.DaoException;
 import dao.implementation.CourseDaoImpl;
+import dao.implementation.GroupsDaoImpl;
 import dao.implementation.StudyCourseDaoImpl;
 import dao.implementation.UserDaoImpl;
 import dao.interfaces.CourseDao;
+import dao.interfaces.GroupsDao;
 import dao.interfaces.StudyCourseDao;
 import dao.interfaces.UserDao;
 import model.Course;
+import model.Groups;
 import model.StudyCourse;
 import model.User;
+import org.apache.catalina.Group;
 import view.TemplateController;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -31,7 +36,7 @@ import java.util.regex.Pattern;
  */
 public class ListCourseAn extends BaseController {
 
-    protected void processTemplate(HttpServletRequest request, HttpServletResponse response, List<Course> listCourse){
+    protected void processTemplate(HttpServletRequest request, HttpServletResponse response, List<Course> listCourse, List<User> userList){
 
         //carico la lingua nel datamodel
         this.setLng(request, datamodel);
@@ -44,6 +49,9 @@ public class ListCourseAn extends BaseController {
 
         //carico nel datodel la lista dei corsi rimasti
         datamodel.put("listCourse", listCourse);
+
+        //inserisco i docenti nel datamodel
+        datamodel.put("listTheacher", userList);
 
         //lancio messaggio di errore
         //TemplateController.process("course_list_an.ftl", datamodel, response, getServletContext());
@@ -89,6 +97,8 @@ public class ListCourseAn extends BaseController {
 
             StudyCourseDao studyCourseDao = new StudyCourseDaoImpl(ds);
             studyCourseDao.init();
+
+            List<User> allTeachers = this.getAllTeacher(userDao, ds);
 
             //estraggo i corsi dell'anno di accademicYear
             List<Course> listCourse = courseDao.getCourseByYear(accademicYear.toString());
@@ -379,7 +389,7 @@ public class ListCourseAn extends BaseController {
 
             System.out.println();
 
-            this.processTemplate(request,response,listCourse);
+            this.processTemplate(request,response,listCourse, allTeachers);
 
 
 
@@ -422,6 +432,27 @@ public class ListCourseAn extends BaseController {
         if(matcher.find()) return true;
         else return false;
     }
+
+
+    /**
+     * Estrae tutti i docenti
+     * @param userDao
+     * @param ds
+     * @return
+     * @throws DaoException
+     */
+    private List<User> getAllTeacher(UserDao userDao, DataSource ds) throws DaoException {
+
+        GroupsDao groupsDao = new GroupsDaoImpl(ds);
+        groupsDao.init();
+
+        Groups groups = groupsDao.getGroupsByName("Docente");
+
+        groupsDao.destroy();
+
+        return userDao.getUserByGroups(groups);
+    }
+
 
 
 }
