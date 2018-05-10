@@ -52,4 +52,4 @@ REV1
             - semester: semestre corso
             - language
 
-- mandare docenti alla pagina ListCourseAn per farli selezionare
+- mandare docenti alla pagina ListCourseAn per farli selezionare    FATTO!!!!
