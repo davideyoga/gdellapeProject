@@ -87,14 +87,25 @@
                 <div id="search" class="tab-pane fade in active">
                     <form class="my-form" action="ListCourseAn" method="GET">
 
+                    <#--<div class="form-group">-->
+                    <#--<label for="docent">Nome docente:</label>-->
+                    <#--<input type="text" class="form-control" id="docent" name="docent" value="">-->
+                    <#--</div>-->
+                    <#--<div class="form-group">-->
+                    <#--<label for="studyCourse">Nome laurea:</label>-->
+                    <#--<input type="text" class="form-control" id="studyCourse" name="studyCourse" value="">-->
+                    <#--</div>-->
                         <div class="form-group">
-                            <label for="docent">Nome docente:</label>
-                            <input type="text" class="form-control" id="docent" name="docent" value="">
+                            <label for="sel1">Seleziona Docente:</label>
+                            <select class="form-control" id="sel1" name="docent">
+                                <#list listTheacher as teach>
+                                    <option value="${teach.id}">${teach.name} ${teach.surname}</option>
+                                    <#--<option value="${teach.name}">${teach.name} ${teach.surname}</option>-->
+                                </#list>
+                            </select>
+                            <br>
                         </div>
-                        <div class="form-group">
-                            <label for="studyCourse">Nome laurea:</label>
-                            <input type="text" class="form-control" id="studyCourse" name="studyCourse" value="">
-                        </div>
+
                         <button type="submit" class="btn btn-default my-text center-block">Cerca</button>
 
                     </form>
