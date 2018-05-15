@@ -4,6 +4,12 @@
     <title>Lista Corsi</title>
 
 <#include "import.ftl">
+    <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById('search').classList.remove('in');
+            document.getElementById('search').classList.remove('active');
+        }
+    </script>
 </head>
 <body>
 <#include "navbar_en.ftl">

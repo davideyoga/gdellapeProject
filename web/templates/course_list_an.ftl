@@ -3,7 +3,13 @@
 <head>
     <title>Lista Corsi</title>
 
-<#include "import.ftl">
+    <#include "import.ftl">
+    <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById('search').classList.remove('in');
+            document.getElementById('search').classList.remove('active');
+        }
+    </script>
 </head>
 <body>
 <#include "navbar.ftl">
@@ -78,7 +84,7 @@
                     </div>
                 </div><#--div list-->
 
-                <div id="search" class="tab-pane fade">
+                <div id="search" class="tab-pane fade in active">
                     <form class="my-form" action="ListCourseAn" method="GET">
 
                         <div class="form-group">

@@ -1,12 +1,8 @@
 
 Controllare bene ----- alla specifica dice che posso scegliere l'anno su course (noi l'abbiamo fatto su studycourse)
 
-selettore lingua su course_list_an (LISTCOURSEAN) non funziona [solo su questa pagina]
-
 aggiungere tipo di cfu a course
 
-per la ricerca di un corso usare ListCourseAn con parametro get: -testare ricerca docente
-                                                                 -non funziona ricerca in base alla laurea
 
 Eliminare materiale:
     DeleteMaterial (ajax)
