@@ -15,7 +15,7 @@
 <div class="container">
     <div class="center-block">
         <div class="w3ls-heading page-header">
-            <h3>Dettagli <#if course.name??>${course.name}<#else> corso</#if></h3>
+            <h3>Dettagli <#if course.name??>${course.name}<#else>corso</#if></h3>
         </div>
     </div>
 </div>
