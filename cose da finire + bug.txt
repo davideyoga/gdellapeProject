@@ -1,3 +1,4 @@
+per sistemare il fatto del javascript vedere alla pagina course_list_an
 
 Controllare bene ----- alla specifica dice che posso scegliere l'anno su course (noi l'abbiamo fatto su studycourse)
 
@@ -18,9 +19,6 @@ NON CI STA LA SERVLET -----  Collegamenti con corsi modulati, corsi propedeutici
                              AddCourseRelation
 
 RemoveBook non funziona, i parametri li prende bene dal template
-
-SE SI DISATTIVA JAVASCRIPT NON FUNZIO A PIU' NULLA SE ANONIMO
-
 
 ------OPZIONALE DA VALUTARE-------
 
