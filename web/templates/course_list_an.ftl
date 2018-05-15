@@ -98,6 +98,7 @@
                         <div class="form-group">
                             <label for="sel1">Seleziona Docente:</label>
                             <select class="form-control" id="sel1" name="docent">
+                                <option value="" selected>seleziona docente</option>
                                 <#list listTheacher as teach>
                                     <option value="${teach.id}">${teach.name} ${teach.surname}</option>
                                     <#--<option value="${teach.name}">${teach.name} ${teach.surname}</option>-->
