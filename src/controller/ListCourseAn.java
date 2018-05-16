@@ -311,6 +311,8 @@ public class ListCourseAn extends BaseController {
                         //if (currUser.getSurname().equals(param)) match = true;
                         if(this.matchNome(param, currUser.getName())) match = true;
                         if(this.matchNome(param, currUser.getSurname())) match = true;
+                        if(this.matchNome(param, currUser.getSurname()+ " " + currUser.getName())) match = true;
+                        if(this.matchNome(param, currUser.getName() + " " + currUser.getSurname())) match = true;
 
                     }
 
