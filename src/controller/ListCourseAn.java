@@ -284,7 +284,9 @@ public class ListCourseAn extends BaseController {
             if(request.getParameter("docent") != null) {
 
                 //estaggo il parametro passato
-                param = request.getParameter("docent");
+                //param = request.getParameter("docent");
+
+                int idDocentePassato = Integer.parseInt(request.getParameter("docent"));
 
                 //inizializzo iteratore
                 Iterator <Course> itr = listCourse.iterator();
@@ -309,10 +311,13 @@ public class ListCourseAn extends BaseController {
                         //se trovo il nome o cognome il professore lo setto a true, in modo ce non venga eliminato
                         //if (currUser.getName().equals(param)) match = true;
                         //if (currUser.getSurname().equals(param)) match = true;
-                        if(this.matchNome(param, currUser.getName())) match = true;
+                        /*if(this.matchNome(param, currUser.getName())) match = true;
                         if(this.matchNome(param, currUser.getSurname())) match = true;
                         if(this.matchNome(param, currUser.getSurname()+ " " + currUser.getName())) match = true;
                         if(this.matchNome(param, currUser.getName() + " " + currUser.getSurname())) match = true;
+                        */
+
+                        if( idDocentePassato==currUser.getId()) match = true;
 
                     }
 
