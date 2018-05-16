@@ -145,15 +145,10 @@ public class ProfileManagement extends BaseController {
             //se la sessione e' valida e abbastanza nuova
             if(sessionManager.isHardValid( request )){
 
-
-
-
-
-
                 //se la nuova pass e' corretta
                 if (this.ceckPostValue(request, response)){
 
-                    System.out.println("Password corretta: " + request.getParameter("password"));
+                    //System.out.println("Password corretta: " + request.getParameter("password"));
 
                     //se password corretta prendo la nuova password, la cripto e la setto nell'utente
                     newUser.setPassword(utilityManager.sha1Encrypt(request.getParameter("password")));
@@ -161,14 +156,12 @@ public class ProfileManagement extends BaseController {
                     //se pass non corretta mi prendo la password precedente
                 }else{
 
-                    System.out.println("Setto la vecchia password: " + oldUser.getPassword());
-
+                    //System.out.println("Setto la vecchia password: " + oldUser.getPassword());
 
                     //setto la password vecchia
                     newUser.setPassword(oldUser.getPassword());
 
                 }
-
 
                 //eseguo update
                 userDao.init();
