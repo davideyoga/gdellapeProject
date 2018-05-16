@@ -39,9 +39,13 @@
         <div class="w3ls-heading page-header">
         </div>
         <ul class="nav nav-pills nav-stacked text-center">
-            <li class="active"><a data-toggle="pill" href="#list">Lista corsi</a></li>
-            <li><a data-toggle="pill" href="#search">Ricerca avanzata</a></li>
+            <li class="active"><a data-toggle="pill" href="ListCourseAn?<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>#list">Lista corsi</a></li>
+            <li><a data-toggle="pill" href="#search">Cerca un corso</a></li>
         </ul>
+
+        <div class="text-center">
+            <a href="ListCourseAn?<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>" class="btn btn-default" role="button">azzera risultati</a>
+        </div>
     </div>
 
     <div class="container">
@@ -96,15 +100,60 @@
                     <#--<input type="text" class="form-control" id="studyCourse" name="studyCourse" value="">-->
                     <#--</div>-->
                         <div class="form-group">
-                            <label for="sel1">Seleziona Docente:</label>
-                            <select class="form-control" id="sel1" name="docent">
-                                <option value="" selected>seleziona docente</option>
-                                <#list listTheacher as teach>
-                                    <option value="${teach.id}">${teach.name} ${teach.surname}</option>
-                                    <#--<option value="${teach.name}">${teach.name} ${teach.surname}</option>-->
-                                </#list>
-                            </select>
-                            <br>
+                            <label for="name">Cerca per nome:</label>
+                            <input type="text" class="form-control" id="name" name="name" value="">
+                        </div>
+
+                        <div class="panel-group">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" href="#advSearch">Ricerca avanzata</a>
+                                    </h4>
+                                </div>
+                                <div id="advSearch" class="panel-collapse collapse">
+                                    <div class="panel-body">
+
+                                        <div class="form-group">
+                                            <label for="code">cerca in base al codice del corso:</label>
+                                            <input type="text" class="form-control" id="code" name="code" value="">
+                                        </div>
+
+                                        <#--<div class="form-group">-->
+                                            <#--<label for="sel1">cerca in base al docente:</label>-->
+                                            <#--<select class="form-control" id="sel1" name="docent">-->
+                                                <#--<option value="" selected>seleziona docente</option>-->
+                                                <#--<#list listTheacher as teach>-->
+                                                    <#--<option value="${teach.id}">${teach.name} ${teach.surname}</option>-->
+                                                    <#--</#list>-->
+                                            <#--</select>-->
+                                            <#--<br>-->
+                                        <#--</div>-->
+
+                                        <div class="form-group">
+                                            <label for="studyCourse">cerca in base al corso di laurea:</label>
+                                            <input type="text" class="form-control" id="studyCourse" name="studyCourse" value="">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="sector">cerca in base al settore:</label>
+                                            <input type="text" class="form-control" id="sector" name="sector" value="">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="semester">cerca in base al semestre:</label>
+                                            <input type="text" class="form-control" id="semester" name="semester" value="">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="language">cerca in base alla lingua di insegnamento:</label>
+                                            <input type="text" class="form-control" id="language" name="language" value="">
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
 
                         <button type="submit" class="btn btn-default my-text center-block">Cerca</button>

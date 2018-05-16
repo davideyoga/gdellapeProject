@@ -281,7 +281,7 @@ public class ListCourseAn extends BaseController {
                 INIZIO SELEZIONE CORSI PER DOCENTE
              */
 
-            if(request.getParameter("docent") != null) {
+            if(request.getParameter("docent") != null) { //doobiamo sistemare il fatto che id docente è un numero, con null non funzionano i numeri, usare tipo lo zero
 
                 //estaggo il parametro passato
                 //param = request.getParameter("docent");
