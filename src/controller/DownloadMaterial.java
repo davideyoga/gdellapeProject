@@ -9,6 +9,7 @@ import model.Material;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 
@@ -53,7 +54,7 @@ public class DownloadMaterial extends BaseController {
 
             material=null;
 
-        }catch (DaoException | NumberFormatException e){
+        }catch (DaoException | NumberFormatException | FileNotFoundException e){
             //se trovo un errore lancio processo di errore
             this.processError(request, response);
         }
