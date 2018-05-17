@@ -107,6 +107,8 @@ public class ListCourseAn extends BaseController {
 
             List<StudyCourse> allStudyCourse = studyCourseDao.getAllStudyCourses();
 
+            System.out.println("allStudyCourse" + allStudyCourse);
+
             List<User> allTeachers = this.getAllTeacher(userDao, ds);
 
             String param;

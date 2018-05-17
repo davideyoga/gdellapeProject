@@ -457,7 +457,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>ListMaterialNotAnonymous</servlet-name>
-        <url-pattern>/ListMaterialNotAnonymous</url-pattern>
+        <url-pattern>/listMaterialNotAnonymous</url-pattern>
         <url-pattern>/ListMaterialNotAnonymous</url-pattern>
     </servlet-mapping>
     <!-- Fine Servlet di ListMaterialNotAnonimous -->
