@@ -51,6 +51,8 @@ REV1 FRONT SIDE-----------------------------------------------------------------
 
 - ListCourseAn inserire il selettore degli anni, se javascript disattivato far vedere i pulsanti anno precedente, anno successivo
 
+- ListCourseAn: inserire anno attualmente visualizzato
+
 - ListStudyCourses: replicare ricerca per anno come in ListCourseAn
 
 - Filtrare lista corsi (ListCourseAn) per usare servlet bellissima di davide
