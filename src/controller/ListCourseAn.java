@@ -55,6 +55,8 @@ public class ListCourseAn extends BaseController {
 
         datamodel.put("allStudyCourse", allStudyCourse);
 
+        System.out.println("allStudyCourse" + allStudyCourse);
+
         //lancio messaggio di errore
         //TemplateController.process("course_list_an.ftl", datamodel, response, getServletContext());
         this.processTemplate(request, response, "course_list_an", datamodel);

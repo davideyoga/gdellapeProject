@@ -3,7 +3,7 @@
 <head>
     <title>Lista Corsi</title>
 
-    <#include "import.ftl">
+<#include "import.ftl">
     <script type="text/javascript">
         window.onload = function() {
             document.getElementById('search').classList.remove('in');
@@ -24,12 +24,12 @@
 
 <div class="container">
     <div>
-        <#if message??>
-            <div class="jumbotron">
-                ${message}
-            </div>
-        <#else>
-        </#if>
+    <#if message??>
+        <div class="jumbotron">
+        ${message}
+        </div>
+    <#else>
+    </#if>
     </div>
 </div>
 
@@ -72,18 +72,18 @@
                         </thead>
 
                         <tbody>
-                                <#list listCourse as course>
-                                <tr>
-                                    <td>${course.code}</td>
-                                    <td>${course.name}</td>
-                                    <td>${course.sector}</td>
-                                    <td>${course.semester}</td>
-                                    <td>${course.language}</td>
-                                    <td>
-                                        <a href="CourseProfile?id=${course.idCourse}&<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>">Leggi di piu'</a>
-                                    </td>
-                                </tr>
-                                </#list>
+                        <#list listCourse as course>
+                        <tr>
+                            <td>${course.code}</td>
+                            <td>${course.name}</td>
+                            <td>${course.sector}</td>
+                            <td>${course.semester}</td>
+                            <td>${course.language}</td>
+                            <td>
+                                <a href="CourseProfile?id=${course.idCourse}&<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>">Leggi di piu'</a>
+                            </td>
+                        </tr>
+                        </#list>
                         </tbody>
                     </table>
 
