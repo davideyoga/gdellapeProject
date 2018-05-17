@@ -40,7 +40,7 @@
 </label>
 
 <div class="row">
-    <div class="col-md-2 col-xs-2 my-menu">
+    <div class="col-md-2 col-xs-2 col-sm-2 my-menu">
         <div class="text-center">
             <a href="home?<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>" class="btn btn-warning my-text center-block" role="button">Torna alla home</a>
         </div>
@@ -58,7 +58,7 @@
 
     <div class="container">
 
-        <div class="col-md-12 col-xs-12">
+        <div class="col-md-12 col-xs-12 col-sm-12">
             <div class="tab-content">
 
                 <div id="list" class="tab-pane fade in active">
