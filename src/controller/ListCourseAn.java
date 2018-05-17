@@ -36,7 +36,7 @@ import java.util.regex.Pattern;
  */
 public class ListCourseAn extends BaseController {
 
-    protected void processTemplate(HttpServletRequest request, HttpServletResponse response, List<Course> listCourse, List<User> userList){
+    protected void processTemplate(HttpServletRequest request, HttpServletResponse response, List<Course> listCourse, List<User> userList, List<StudyCourse> allStudyCourse){
 
         //carico la lingua nel datamodel
         this.setLng(request, datamodel);
@@ -52,6 +52,8 @@ public class ListCourseAn extends BaseController {
 
         //inserisco i docenti nel datamodel
         datamodel.put("listTheacher", userList);
+
+        datamodel.put("allStudyCourse", allStudyCourse);
 
         //lancio messaggio di errore
         //TemplateController.process("course_list_an.ftl", datamodel, response, getServletContext());
@@ -102,6 +104,8 @@ public class ListCourseAn extends BaseController {
 
             StudyCourseDao studyCourseDao = new StudyCourseDaoImpl(ds);
             studyCourseDao.init();
+
+            List<StudyCourse> allStudyCourse = studyCourseDao.getAllStudyCourses();
 
             List<User> allTeachers = this.getAllTeacher(userDao, ds);
 
@@ -286,11 +290,6 @@ public class ListCourseAn extends BaseController {
             if(request.getParameter("docent") != null && request.getParameter("docent").length()!=0) { //doobiamo sistemare il fatto che id docente è un numero, con null non funzionano i numeri, usare tipo lo zero
 
                 //estaggo il parametro passato
-                //param = request.getParameter("docent");
-
-                System.out.println("request.getParameter(\"docent\"): " + request.getParameter("docent"));
-                System.out.println("request.getParameter(\"docent\").length(): " + request.getParameter("docent").length());
-
                 int idDocentePassato = Integer.parseInt(request.getParameter("docent"));
 
                 //inizializzo iteratore
@@ -346,8 +345,7 @@ public class ListCourseAn extends BaseController {
 
             if(request.getParameter("studyCourse") != null && request.getParameter("studyCourse").length()!=0) {
 
-                //estaggo il parametro passato
-                param = request.getParameter("studyCourse");
+                int idStudyCourse = Integer.parseInt(request.getParameter("studyCourse"));
 
                 //inizializzo iteratore
                 Iterator <Course> itr = listCourse.iterator();
@@ -372,7 +370,7 @@ public class ListCourseAn extends BaseController {
                         //se l'attuale corso metcha con la stringa passata dall'user la variabile viene settata a true,
                         //in modo che al prossimo ciclo non venga eliminato
                         //if (currStudyCourse.getName().equals(param)) match = true;
-                        if(this.matchNome(param, curr.getName())) match = true;
+                        if(idStudyCourse==currStudyCourse.getId()) match = true;
 
                     }
 
@@ -401,7 +399,7 @@ public class ListCourseAn extends BaseController {
 
             System.out.println();
 
-            this.processTemplate(request,response,listCourse, allTeachers);
+            this.processTemplate(request,response,listCourse, allTeachers, allStudyCourse);
 
 
 

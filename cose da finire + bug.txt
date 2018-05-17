@@ -1,15 +1,13 @@
 per sistemare il fatto del javascript vedere alla pagina course_list_an
 
 -----------------------------------------------
-Eliminare materiale:
+Eliminare materiale: Sistemare la parte grafica
     DeleteMaterial (ajax)
-    ListMaterialNotAnonymous non funziona
 -----------------------------------------------
 
 ----------------------------------------------------------------------------------------------------------
 Aggiornare Corso (prendo un corso di un anno precedente e lo COPIO all'anno corrente)
     UpdateCourse
-    alla lista dei corsi list_courses_adm.ftl arrivano solo corsi dell'anno attuale. Prendere tutti
 ----------------------------------------------------------------------------------------------------------
 
 
@@ -71,7 +69,18 @@ REV1 BACK SIDE------------------------------------------------------------------
 
 - Parte server: ListCourse fare modifica anni come ListCourseAn
 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
 
-------------------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+PARTE SERVER:
+LOG:
+    ricontrollare i log e scriverli meglio, con spazi ecc..
+
+
+controllare utenti che l'admin può cancellare
+(es. l'admin non può cancellare se stesso)
+
+(opzionali)
+Prendere dati tutti della stessa formattazione, ad esempio tutti minuscoli ecc...
