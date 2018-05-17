@@ -43,6 +43,7 @@
             <li class="active"><a data-toggle="tab" href="#basic">Dati di base</a></li>
             <li><a data-toggle="tab" href="#dublin">Descrittori di Dublino</a></li>
             <li><a data-toggle="tab" href="#material">Materiale</a></li>
+            <li><a data-toggle="tab" href="#studyCourse">Lauree associate</a></li>
         </ul>
 
         <div class="tab-content">
@@ -369,7 +370,39 @@
 
 
                 </div> <#--div panel-group-->
-            </div> <#--div id dublin-->
+            </div> <#--div id material-->
+
+            <div id="studyCourse" class="tab-pane fade">
+                <div class="tab-content">
+
+                    <div class="table-responsive">
+                        <table id="Scourse_table" class="table table-hover table-bordered table-striped">
+                            <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
+
+                            <thead>
+                                <tr>
+                                    <th>Codice</th>
+                                    <th>Nome </th>
+                                    <th> - </th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <#list listStudyCourse as course>
+                                <tr>
+                                    <td>${course.code}</td>
+                                    <td>${course.name}</td>
+                                    <td>
+                                        <a href="StudyCourseProfile?code=${course.code}&<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>">Leggi di piu'</a>
+                                    </td>
+                                </tr>
+                                </#list>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div><#--div tabcontent-->
+            </div> <#--div id studyCourse-->
 
 
         </div> <#--div tab-content-->
@@ -379,5 +412,15 @@
 </div> <#--div row-->
 
 <#include "tail.ftl">
+<script src="/templates/js/jquery.dataTables.js" type="text/javascript"></script>
+<script src="/templates/js/dataTables.bootstrap.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function() {
+        $("#Scourse_table").dataTable({
+            "iDisplayLength": 10,
+            "aLengthMenu": [[10, 25, 50, 100,  -1], [10, 25, 50, 100, "All"]]
+        });
+    });
+</script>
 </body>
 </html>
