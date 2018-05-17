@@ -59,6 +59,8 @@ public class ListCourse extends BaseController {
                 //dichiaro un anno accademico
                 AccademicYear accademicYear;
 
+
+
                 //estraggo l'anno accademico dalla richiesta get
                 if(request.getParameter("year") == null || request.getParameter("year").equals("")){
 

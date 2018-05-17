@@ -2,6 +2,8 @@ package controller.adm.course;
 
 import controller.BaseController;
 import controller.logController.LogException;
+import controller.utility.AccademicYear;
+import controller.utility.AccademicYearException;
 import dao.exception.DaoException;
 import dao.implementation.CourseDaoImpl;
 import dao.interfaces.CourseDao;
@@ -172,9 +174,14 @@ public class ModAdmCourse extends BaseController {
                         //se ho modificato il codice estraggo corsi con stesso codice per evitare omonimie
                         if(!courseById.getCode().equals(courseByForm.getCode())){
 
-                            courseWithCode = courseDao.getCourseByCode(courseByForm.getCode());
+                            System.out.println("courseWithName" + courseWithName);
+
+                            courseWithCode = courseDao.getCoursesByCodeAndYear(courseByForm.getCode(), new AccademicYear(courseById.getYear()));
 
                         }
+
+                        //pulisco il messaggio
+                        datamodel.put("message", "");
 
                         //se non esistono corsi con stesso nome e codice
                         if(courseWithName == null && courseWithCode == null){
@@ -183,6 +190,7 @@ public class ModAdmCourse extends BaseController {
                             courseByForm.setYear(courseById.getYear());
                             courseByForm.setIdCourse(courseById.getIdCourse());
                             courseDao.storeCourse(courseByForm);
+
 
                             //inserisco messaggio di avvenuta modifica del corso
                             datamodel.put("message", "Update Successful");
@@ -234,7 +242,7 @@ public class ModAdmCourse extends BaseController {
                 createPreviousPageAndRedirectToLogin(request, response, "ListCourse");
             }
 
-        } catch (DaoException e) {
+        } catch (DaoException | AccademicYearException e ) {
             e.printStackTrace();
 
             //in caso di dao exception ecc. lancio il template di errore

@@ -172,7 +172,7 @@ public class CreateUser extends BaseController {
                             datamodel.put("idUserCreated", id);
 
                             //aggiungo un log di avvenuta creazioendi un utente
-                            logManager.addLog(sessionManager.getUser(request),"USER CREATED: " + user + "BY" + sessionManager.getUser(request), ds);
+                            logManager.addLog(sessionManager.getUser(request),"USER CREATED: " + user.toStringForLog() + " BY: " + sessionManager.getUser(request).toStringForLog(), ds);
 
                             //se la mail e' gia presente nel database
                         } else {

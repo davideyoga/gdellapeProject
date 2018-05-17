@@ -74,23 +74,29 @@ public class ListCourseAn extends BaseController {
 
         try {
 
-            AccademicYear accademicYear = null;
+            //inizializzo i dao
+            CourseDao courseDao = new CourseDaoImpl(ds);
+            courseDao.init();
+
+            //estraggo i corsi dell'anno di accademicYear
+            List<Course> listCourse = null;
 
             //controllo se esiste l'anno accademico nel parametro get
             if(request.getParameter("year") != null && request.getParameter("year").length()!=0){
 
                 //se esiste creo un anno accademico, nel caso in cui non sia un intero si genera un NumberFormatException (gestito)
-                accademicYear = new AccademicYear(  Integer.parseInt(request.getParameter("year")));
+                AccademicYear accademicYear = new AccademicYear(  Integer.parseInt(request.getParameter("year")));
+                listCourse = courseDao.getCourseByYear(accademicYear.toString());
+
+                accademicYear = null;
 
 
             }else{
-                //inizilizza l'anno accademico come quello corrente
-                accademicYear = new AccademicYear( Calendar.getInstance() );
+                //se non presente anno accademico estraggo tuti i corsi
+                listCourse = courseDao.getCourses();
             }
 
-            //inizializzo i dao
-            CourseDao courseDao = new CourseDaoImpl(ds);
-            courseDao.init();
+
 
             UserDao userDao = new UserDaoImpl(ds);
             userDao.init();
@@ -99,9 +105,6 @@ public class ListCourseAn extends BaseController {
             studyCourseDao.init();
 
             List<User> allTeachers = this.getAllTeacher(userDao, ds);
-
-            //estraggo i corsi dell'anno di accademicYear
-            List<Course> listCourse = courseDao.getCourseByYear(accademicYear.toString());
 
             String param;
 

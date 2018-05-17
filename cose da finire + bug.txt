@@ -1,18 +1,10 @@
 per sistemare il fatto del javascript vedere alla pagina course_list_an
 
-Controllare bene ----- alla specifica dice che posso scegliere l'anno su course (noi l'abbiamo fatto su studycourse)
-
-
 -----------------------------------------------
 Eliminare materiale:
     DeleteMaterial (ajax)
     ListMaterialNotAnonymous non funziona
 -----------------------------------------------
-
-
-----------------------------------------------------------------------------------------------------------
-mandare a course_list_an lista dei corsi di studio per fare ricerca su di essi, la servket è ListCourseAn
-----------------------------------------------------------------------------------------------------------
 
 ----------------------------------------------------------------------------------------------------------
 Aggiornare Corso (prendo un corso di un anno precedente e lo COPIO all'anno corrente)
@@ -71,6 +63,14 @@ REV1 FRONT SIDE-----------------------------------------------------------------
 
 - Parte server: cancellare fisicamente dal server il materiale
 
+- Parte server: ListCourseAn:   mandare lista corsi di laurea (Mi viene mandato id invece che nome)
+
+
+
+REV1 BACK SIDE------------------------------------------------------------------------------------------------------------------------------------------------
+- Aggiungere selettore anni nella pagina ListCourse (come fatto in ListCourseAn)
+
+- Alla pagina di AdmModUser se nn e' inserita la password non si puo' modificare l'utente
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------------------------------------
