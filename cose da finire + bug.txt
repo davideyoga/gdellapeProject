@@ -49,7 +49,9 @@ REV1----------------------------------------------------------------------------
 - quando ci troviamo davanti ad un corso nella servlet CourseProfile si deve aggiungere la lista dei corsi di studio per cui il corso e' fruibile
     la lista dei corsi di studio si chiama listStudyCourse
 
-- ListCourseAn inserire il selettore degli anni
+- ListCourseAn inserire il selettore degli anni, se javascript disattivato far vedere i pulsanti anno precedente, anno successivo
+
+- ListStudyCourses: replicare ricerca per anno come in ListCourseAn
 
 - Filtrare lista corsi (ListCourseAn) per usare servlet bellissima di davide
         I parametri sono:
@@ -62,6 +64,7 @@ REV1----------------------------------------------------------------------------
             - language
 
 - Parte server: cancellare fisicamente dal server il materiale
+
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------------------------------------
