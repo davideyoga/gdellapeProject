@@ -13,14 +13,14 @@
 
 function carica() {
 
-    var min = (new Date().getFullYear())-50;
-    max = min + 20 +50;
+    var max = (new Date().getFullYear());
+    min = max - 30;
     select = document.getElementById("selectElementId");
 
-    for (var i = min; i<=max; i++){
+    for (var i = max; i>=min; i--){
         var opt = document.createElement('option');
-        opt.value = i;
-        opt.innerHTML = i;
+        opt.value = i-1;
+        opt.innerHTML = (i-1)+"/"+i;
         select.appendChild(opt);
 
     }
