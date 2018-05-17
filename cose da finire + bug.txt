@@ -38,9 +38,6 @@ RemoveBook non funziona, i parametri li prende bene dal template
 
 
 REV1 FRONT SIDE------------------------------------------------------------------------------------------------------------------------------------------------
-- quando ci troviamo davanti ad un corso nella servlet CourseProfile si deve aggiungere la lista dei corsi di studio per cui il corso e' fruibile
-    la lista dei corsi di studio si chiama listStudyCourse
-
 - ListCourseAn inserire il selettore degli anni, se javascript disattivato far vedere i pulsanti anno precedente, anno successivo
 
 - ListCourseAn: inserire anno attualmente visualizzato
