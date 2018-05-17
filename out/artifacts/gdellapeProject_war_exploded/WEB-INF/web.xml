@@ -449,18 +449,18 @@
     <!-- Fine Servlet di ListMaterial -->
 
 
-    <!-- Servlet di  ListMaterialNotAnonymous-->
+    <!-- Servlet di  ListMaterialNotAnonimous-->
     <servlet>
-        <servlet-name>ListMaterialNotAnonymous</servlet-name>
-        <servlet-class>controller.adm.material.ListMaterialNotAnonymous</servlet-class>
+        <servlet-name>ListMaterialNotAnonimous</servlet-name>
+        <servlet-class>controller.adm.material.ListMaterialNotAnonimous</servlet-class>
 
     </servlet>
     <servlet-mapping>
-        <servlet-name>ListMaterialNotAnonymous</servlet-name>
-        <url-pattern>/ListMaterialNotAnonymous</url-pattern>
-        <url-pattern>/listMaterialNotAnonymous</url-pattern>
+        <servlet-name>ListMaterialNotAnonimous</servlet-name>
+        <url-pattern>/ListMaterialNotAnonimous</url-pattern>
+        <url-pattern>/listMaterialNotAnonimous</url-pattern>
     </servlet-mapping>
-    <!-- Fine Servlet di ListMaterialNotAnonymous -->
+    <!-- Fine Servlet di ListMaterialNotAnonimous -->
 
     <!-- Servlet di  ModCourseRelation-->
     <servlet>
