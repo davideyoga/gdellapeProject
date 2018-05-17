@@ -12,8 +12,8 @@ Aggiornare Corso (prendo un corso di un anno precedente e lo COPIO all'anno corr
 
 
 ----------------------------------------------------------------------------------------------------------
-NON CI STA LA SERVLET -----  Collegamenti con corsi modulati, corsi propedeutici,ect....
-                             AddCourseRelation
+Collegamenti con corsi modulati, corsi propedeutici,ect....
+AddCourseRelation
 ----------------------------------------------------------------------------------------------------------
 
 
@@ -63,7 +63,7 @@ REV1 FRONT SIDE-----------------------------------------------------------------
 
 
 REV1 BACK SIDE------------------------------------------------------------------------------------------------------------------------------------------------
-- Aggiungere selettore anni nella pagina ListCourse (come fatto in ListCourseAn)
+- Aggiungere selettore anni nella pagina ListCourse (come fatto in ListCourseAn) FATTO  MA PERMETTERE DI NON INVIARE NULLA
 
 - Alla pagina di AdmModUser se nn e' inserita la password non si puo' modificare l'utente
 
