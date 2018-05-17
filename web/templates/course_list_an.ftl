@@ -56,7 +56,7 @@
         </div>
     </div>
 
-    <div class="col-md-10 col-xs-10 col-sm-10">
+    <div class="col-md-9 col-xs-9 col-sm-9">
         <div class="tab-content">
 
             <div id="list" class="tab-pane fade in active">
