@@ -8,6 +8,7 @@
         window.onload = function() {
             document.getElementById('search').classList.remove('in');
             document.getElementById('search').classList.remove('active');
+            carica();
         }
     </script>
 </head>
@@ -31,6 +32,13 @@
         </#if>
     </div>
 </div>
+
+<label>
+    <select id="selectElementId" >
+
+    </select>
+</label>
+
 <div class="row">
     <div class="col-md-2 col-xs-2 my-menu">
         <div class="text-center">

@@ -24,3 +24,5 @@ function ConfirmDeleteStudyCourse(code,name)
     else
         return false;
 }
+
+
