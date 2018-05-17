@@ -32,7 +32,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-2 col-xs-2 my-menu text-center">
+    <div class="col-md-2 col-xs-2 col-sm-2 my-menu text-center">
         <div class="text-center">
             <a href="ListCourseAn?<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>" class="btn btn-warning my-text center-block" role="button">Torna alla lista dei corsi</a>
         </div>
@@ -57,7 +57,7 @@
                         <div id="base" class="panel-collapse">
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-md-12 col-xs-12">
+                                    <div class="col-md-12 col-xs-12 col-sm-12">
                                         <div class="col-md-3 col-xs-3 col-sm-3">
                                             <h4>Nome corso: </h4>
                                         </div>
@@ -66,7 +66,7 @@
                                         </div>
                                     </div>
                                     <br><br>
-                                    <div class="col-md-12 col-xs-12">
+                                    <div class="col-md-12 col-xs-12 col-sm-12">
                                         <div class="col-md-3 col-xs-3 col-sm-3">
                                             <p>Codice:</p>
                                         </div>
@@ -75,7 +75,7 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <div class="col-md-12 col-xs-12">
+                                    <div class="col-md-12 col-xs-12 col-sm-12">
                                         <div class="col-md-3 col-xs-3 col-sm-3">
                                             <p>Anno:</p>
                                         </div>
@@ -84,7 +84,7 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <div class="col-md-12 col-xs-12">
+                                    <div class="col-md-12 col-xs-12 col-sm-12">
                                         <div class="col-md-3 col-xs-3 col-sm-3">
                                             <p>Cfu:</p>
                                         </div>
@@ -93,7 +93,7 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <div class="col-md-12 col-xs-12">
+                                    <div class="col-md-12 col-xs-12 col-sm-12">
                                         <div class="col-md-3 col-xs-3 col-sm-3">
                                             <p>Settore:</p>
                                         </div>
@@ -102,7 +102,7 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <div class="col-md-12 col-xs-12">
+                                    <div class="col-md-12 col-xs-12 col-sm-12">
                                         <div class="col-md-3 col-xs-3 col-sm-3">
                                             <p>Lingua:</p>
                                         </div>
@@ -111,7 +111,7 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <div class="col-md-12 col-xs-12">
+                                    <div class="col-md-12 col-xs-12 col-sm-12">
                                         <div class="col-md-3 col-xs-3 col-sm-3">
                                             <p>Semestre:</p>
                                         </div>
@@ -120,7 +120,7 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <div class="col-md-12 col-xs-12">
+                                    <div class="col-md-12 col-xs-12 col-sm-12">
                                         <div class="col-md-3 col-xs-3 col-sm-3">
                                             <p>Docenti:</p>
                                         </div>
@@ -166,7 +166,7 @@
                         <div id="goals" class="panel-collapse collapse">
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-md-12 col-xs-12">
+                                    <div class="col-md-12 col-xs-12 col-sm-12">
                                         <p>${course.goals_ita}</p>
                                     </div>
                                 </div>
@@ -184,7 +184,7 @@
                         <div id="exam" class="panel-collapse collapse">
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-md-12 col-xs-12">
+                                    <div class="col-md-12 col-xs-12 col-sm-12">
                                         <p>${course.exame_mode_ita}</p>
                                     </div>
                                 </div>
@@ -202,7 +202,7 @@
                         <div id="teach" class="panel-collapse collapse">
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-md-12 col-xs-12">
+                                    <div class="col-md-12 col-xs-12 col-sm-12">
                                         <p>${course.teaching_mode_ita}</p>
                                     </div>
                                 </div>
@@ -220,7 +220,7 @@
                         <div id="syl" class="panel-collapse collapse">
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-md-12 col-xs-12">
+                                    <div class="col-md-12 col-xs-12 col-sm-12">
                                         <p>${course.syllabus_ita}</p>
                                     </div>
                                 </div>
@@ -238,7 +238,7 @@
                         <div id="note" class="panel-collapse collapse">
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-md-12 col-xs-12">
+                                    <div class="col-md-12 col-xs-12 col-sm-12">
                                         <p>${course.note_ita}</p>
                                     </div>
                                 </div>
@@ -263,7 +263,7 @@
                             <div id="know" class="panel-collapse collapse in">
                                 <div class="panel-body">
                                     <div class="row">
-                                        <div class="col-md-12 col-xs-12">
+                                        <div class="col-md-12 col-xs-12 col-sm-12">
                                             <#if course.knowledge_ita??>${course.knowledge_ita}</#if>
                                         </div>
                                     </div>
@@ -281,7 +281,7 @@
                         <div id="appl" class="panel-collapse collapse">
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-md-12 col-xs-12">
+                                    <div class="col-md-12 col-xs-12 col-sm-12">
                                         <#if course.application_ita??>${course.application_ita}</#if>
                                     </div>
                                 </div>
@@ -299,7 +299,7 @@
                             <div id="eva" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <div class="row">
-                                        <div class="col-md-12 col-xs-12">
+                                        <div class="col-md-12 col-xs-12 col-sm-12">
                                             <#if course.evaluation_ita??>${course.evaluation_ita}</#if>
                                         </div>
                                     </div>
@@ -317,7 +317,7 @@
                             <div id="comu" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <div class="row">
-                                        <div class="col-md-12 col-xs-12">
+                                        <div class="col-md-12 col-xs-12 col-sm-12">
                                             <#if course.communication_ita??>${course.communication_ita}</#if>
                                         </div>
                                     </div>
@@ -335,7 +335,7 @@
                             <div id="life" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <div class="row">
-                                        <div class="col-md-12 col-xs-12">
+                                        <div class="col-md-12 col-xs-12 col-sm-12">
                                             <#if course.lifelog_learning_skills_ita??>${course.lifelog_learning_skills_ita}</#if>
                                         </div>
                                     </div>
@@ -359,7 +359,7 @@
                         <div id="mat" class="panel-collapse">
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-md-12 col-xs-12">
+                                    <div class="col-md-12 col-xs-12 col-sm-12">
                                         <a href="ListMaterial?id=${course.idCourse}&lng=IT" class="btn btn-link my-text center-block m-b-5" role="button">Vai al materiale esterno</a>
                                     </div>
                                 </div>
