@@ -1,42 +1,57 @@
+per sistemare il fatto del javascript vedere alla pagina course_list_an
 
 Controllare bene ----- alla specifica dice che posso scegliere l'anno su course (noi l'abbiamo fatto su studycourse)
 
-aggiungere tipo di cfu a course
 
-
+-----------------------------------------------
 Eliminare materiale:
     DeleteMaterial (ajax)
     ListMaterialNotAnonymous non funziona
+-----------------------------------------------
 
+
+----------------------------------------------------------------------------------------------------------
+mandare a course_list_an lista dei corsi di studio per fare ricerca su di essi, la servket è ListCourseAn
+----------------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------------
 Aggiornare Corso (prendo un corso di un anno precedente e lo COPIO all'anno corrente)
     UpdateCourse
     alla lista dei corsi list_courses_adm.ftl arrivano solo corsi dell'anno attuale. Prendere tutti
+----------------------------------------------------------------------------------------------------------
 
 
-
+----------------------------------------------------------------------------------------------------------
 NON CI STA LA SERVLET -----  Collegamenti con corsi modulati, corsi propedeutici,ect....
                              AddCourseRelation
+----------------------------------------------------------------------------------------------------------
 
+
+----------------------------------------------------------------------------------------------------------
 RemoveBook non funziona, i parametri li prende bene dal template
-
-SE SI DISATTIVA JAVASCRIPT NON FUNZIO A PIU' NULLA SE ANONIMO
-
-
-------OPZIONALE DA VALUTARE-------
-
-curriculum del prof da caricare come file
-vedere parte relativa a curriculum, add e mod
-vedere opzioni per riportarsi la lingua sul tasto cambio lingua.
-
-fare 2 tipi di messaggio: "messageSucces" e "messageError" nelle servlet: -CreateUser
+----------------------------------------------------------------------------------------------------------
 
 
+|------OPZIONALE DA VALUTARE-------------------------------------------------------------------
+|                                                                                              |
+|curriculum del prof da caricare come file                                                     |
+|vedere parte relativa a curriculum, add e mod                                                 |
+|vedere opzioni per riportarsi la lingua sul tasto cambio lingua.                              |
+|fare 2 tipi di messaggio: "messageSucces" e "messageError" nelle servlet: -CreateUser         |
+|aggiungere tipo di cfu a course                                                               |
+|----------------------------------------------------------------------------------------------|
+|----------------------------------------------------------------------------------------------|
+|----------------------------------------------------------------------------------------------|
 
-REV1
+
+
+REV1------------------------------------------------------------------------------------------------------------------------------------------------
 - quando ci troviamo davanti ad un corso nella servlet CourseProfile si deve aggiungere la lista dei corsi di studio per cui il corso e' fruibile
     la lista dei corsi di studio si chiama listStudyCourse
 
-- ListCourseAn inserire il selettore degli anni
+- ListCourseAn inserire il selettore degli anni, se javascript disattivato far vedere i pulsanti anno precedente, anno successivo
+
+- ListStudyCourses: replicare ricerca per anno come in ListCourseAn
 
 - Filtrare lista corsi (ListCourseAn) per usare servlet bellissima di davide
         I parametri sono:
@@ -48,4 +63,8 @@ REV1
             - semester: semestre corso
             - language
 
-- mandare docenti alla pagina ListCourseAn per farli selezionare    FATTO!!!!
+- Parte server: cancellare fisicamente dal server il materiale
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
