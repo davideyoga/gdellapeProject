@@ -24,7 +24,7 @@ import java.util.List;
  *
  * @author Davide Micarelli
  */
-public class ListMaterialNotAnonymous extends BaseController {
+public class ListMaterialNotAnonimous extends BaseController {
 
 
     protected void processTemplate(HttpServletRequest request, HttpServletResponse response, Course course, List<Material> materials) throws ServletException, IOException {
@@ -73,6 +73,8 @@ public class ListMaterialNotAnonymous extends BaseController {
                     courseById = courseDao.getCourseById(SecurityLayer.checkNumeric(request.getParameter("id")));
                 }
 
+                System.out.println("courseById" + courseById );
+
 
                 //se il corso esiste
                 if (courseById != null) {
@@ -88,6 +90,8 @@ public class ListMaterialNotAnonymous extends BaseController {
 
                         //estraggo tutto il materiale inerente al corso
                         List <Material> materials = materialDao.getMaterialByCourse(courseById);
+
+                        System.out.println("materials"+materials );
 
                         //chiudo i dao
                         materialDao.destroy();
