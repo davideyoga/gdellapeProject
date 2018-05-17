@@ -77,7 +77,7 @@ public class ListCourseAn extends BaseController {
             AccademicYear accademicYear = null;
 
             //controllo se esiste l'anno accademico nel parametro get
-            if(request.getParameter("year") != null){
+            if(request.getParameter("year") != null && request.getParameter("year").length()!=0){
 
                 //se esiste creo un anno accademico, nel caso in cui non sia un intero si genera un NumberFormatException (gestito)
                 accademicYear = new AccademicYear(  Integer.parseInt(request.getParameter("year")));
@@ -109,7 +109,7 @@ public class ListCourseAn extends BaseController {
             /*
                 INIZIO SELEZIONE CORSI PER NOME (nome del corso)
              */
-            if(request.getParameter("name") != null) {
+            if(request.getParameter("name") != null && request.getParameter("name").length()!=0) {
 
                 //estaggo il nome della stringa che l'utente ha passato
                 param = request.getParameter("name");
@@ -140,7 +140,7 @@ public class ListCourseAn extends BaseController {
                 INIZIO SELEZIONE CORSI PER CODICE
              */
 
-            if(request.getParameter("code") != null) {
+            if(request.getParameter("code") != null && request.getParameter("code").length()!=0) {
 
                 //estaggo il parametro passato
                 param = request.getParameter("code");
@@ -170,7 +170,7 @@ public class ListCourseAn extends BaseController {
                 INIZIO SELEZIONE CORSI PER SETTORE
              */
 
-            if(request.getParameter("sector") != null) {
+            if(request.getParameter("sector") != null && request.getParameter("sector").length()!=0) {
 
                 //estaggo il parametro passato
                 param = request.getParameter("sector");
@@ -202,7 +202,7 @@ public class ListCourseAn extends BaseController {
             /*
                 INIZIO SELEZIONE CORSI PER SEMESTRE
              */
-            if(request.getParameter("semester") != null) {
+            if(request.getParameter("semester") != null && request.getParameter("semester").length()!=0) {
 
                 try {
 
@@ -247,7 +247,7 @@ public class ListCourseAn extends BaseController {
                 INIZIO SELEZIONE CORSI PER LINGUA
              */
 
-            if(request.getParameter("language") != null) {
+            if(request.getParameter("language") != null && request.getParameter("language").length()!=0) {
 
                 //estaggo il parametro passato
                 param = request.getParameter("language");
@@ -281,10 +281,13 @@ public class ListCourseAn extends BaseController {
                 INIZIO SELEZIONE CORSI PER DOCENTE
              */
 
-            if(request.getParameter("docent") != null) { //doobiamo sistemare il fatto che id docente è un numero, con null non funzionano i numeri, usare tipo lo zero
+            if(request.getParameter("docent") != null && request.getParameter("docent").length()!=0) { //doobiamo sistemare il fatto che id docente è un numero, con null non funzionano i numeri, usare tipo lo zero
 
                 //estaggo il parametro passato
                 //param = request.getParameter("docent");
+
+                System.out.println("request.getParameter(\"docent\"): " + request.getParameter("docent"));
+                System.out.println("request.getParameter(\"docent\").length(): " + request.getParameter("docent").length());
 
                 int idDocentePassato = Integer.parseInt(request.getParameter("docent"));
 
@@ -339,7 +342,7 @@ public class ListCourseAn extends BaseController {
                 INIZIO SELEZIONE CORSI PER CORSO DI STUDI
              */
 
-            if(request.getParameter("studyCourse") != null) {
+            if(request.getParameter("studyCourse") != null && request.getParameter("studyCourse").length()!=0) {
 
                 //estaggo il parametro passato
                 param = request.getParameter("studyCourse");
