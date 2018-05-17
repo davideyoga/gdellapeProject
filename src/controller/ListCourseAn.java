@@ -78,7 +78,6 @@ public class ListCourseAn extends BaseController {
             CourseDao courseDao = new CourseDaoImpl(ds);
             courseDao.init();
 
-            //estraggo i corsi dell'anno di accademicYear
             List<Course> listCourse = null;
 
             //controllo se esiste l'anno accademico nel parametro get

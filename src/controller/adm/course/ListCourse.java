@@ -65,8 +65,7 @@ public class ListCourse extends BaseController {
                 if(request.getParameter("year") == null || request.getParameter("year").equals("")){
 
                     //inizializzo l'anno accademico come quello corrente
-                    accademicYear = new AccademicYear(Calendar.getInstance());
-
+                    accademicYear = null;
                 }else{
 
                     //estraggo l'anno dalla richiesta get (se non e' un valore consono lo gestisco nel blocco catch)
@@ -75,8 +74,8 @@ public class ListCourse extends BaseController {
                 }
 
                 //inserisco nel datamodel l'anno e l'anno accademico
-                datamodel.put("accademicYear", accademicYear.toString());
-                datamodel.put("year", accademicYear.getFirstYear());
+                //datamodel.put("accademicYear", accademicYear.toString());
+                //datamodel.put("year", accademicYear.getFirstYear());
 
                 /*
                     ADMIN
@@ -89,8 +88,19 @@ public class ListCourse extends BaseController {
                     CourseDao courseDao = new CourseDaoImpl(ds);
                     courseDao.init();
 
-                    //inserisco i corsi nel datamodel
-                    datamodel.put("courses", courseDao.getCourseByYear(accademicYear.toString()));
+                    if(accademicYear != null){
+
+                        //inserisco i corsi nel datamodel
+                        datamodel.put("courses", courseDao.getCourseByYear(accademicYear.toString()));
+
+                    }else {
+
+                        //inserisco i corsi nel datamodel
+                        datamodel.put("courses", courseDao.getCourses());
+
+                    }
+
+
 
                     courseDao.destroy();
 
