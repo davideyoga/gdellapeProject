@@ -6,9 +6,8 @@
 <#include "import.ftl">
     <script type="text/javascript">
         $(document).ready(function() {
-            $('.associate').on('change',function() {
+            $('.associate').on('click',function() {
                 console.log($(this).attr('id'));  //-->this will alert name of checked checkbox.
-                if(this.checked){
                     $.ajax({
                         type: "GET",
                         url: 'AddBookByExisting',
@@ -18,6 +17,7 @@
                         },
                         success: function(data) {
                             alert('libro associato');
+                            location.reload(true);
                             // alert(data);
                             // $('#container').html(data);
                         },
@@ -28,16 +28,14 @@
                             console.log('chiamata ajax completata');
                         }
                     });
-
-                }
             });
         });
     </script>
+
     <script type="text/javascript">
         $(document).ready(function() {
-            $('.delete').on('change',function() {
+            $('.delete').on('click',function() {
                 console.log($(this).attr('id'));  //-->this will alert name of checked checkbox.
-                if(this.checked){
                     $.ajax({
                         type: "GET",
                         url: 'RemoveBook',
@@ -57,8 +55,6 @@
                             console.log('chiamata ajax completata');
                         }
                     });
-
-                }
             });
         });
     </script>
@@ -117,6 +113,7 @@
                             <th>link</th>
                             <th>associa</th>
                             <th>elimina</th>
+                            <th>stato</th>
                         </tr>
                         </thead>
 
@@ -130,8 +127,11 @@
                         <td>${book.age}</td>
                         <td>${book.editor}</td>
                         <td>${book.link}</td>
-                        <td><input type="checkbox" class="associate" id="${book.id}" name="${book.id}" value="${book.id}" <#if booksByCourse?seq_contains(book) >checked<#else></#if>> ${course.name}, ${book.id}</td>
-                        <td><input type="checkbox" class="delete" id="${book.id}" name="idBook" value="${book.id}" > elimina</td>
+                        <#--<td><input type="checkbox" class="associate" id="${book.id}" name="${book.id}" value="${book.id}" <#if booksByCourse?seq_contains(book) >checked<#else></#if>> ${course.name}, ${book.id}</td>-->
+                        <#--<td><input type="checkbox" class="delete" id="${book.id}" name="idBook" value="${book.id}" > elimina</td>-->
+                        <td><button type="button" id="${book.id}" name="${book.id}" value="${book.id}" class="btn btn-info associate">${course.name}, ${book.id}</button></td>
+                        <td><button type="button" id="${book.id}" name="${book.id}" value="${book.id}" class="btn btn-info delete">${course.name}, ${book.id}</button></td>
+                        <td><#if booksByCourse?seq_contains(book) >associato<#else> non associato</#if></td>
                     </tr>
                     </#list>
                         </tbody>

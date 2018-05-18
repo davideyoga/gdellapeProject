@@ -2,7 +2,7 @@ per sistemare il fatto del javascript vedere alla pagina course_list_an
 
 -----------------------------------------------
 Eliminare materiale: Sistemare la parte grafica
-    DeleteMaterial (ajax)
+    DeleteMaterial (ajax) non funziona la query
 -----------------------------------------------
 
 ----------------------------------------------------------------------------------------------------------

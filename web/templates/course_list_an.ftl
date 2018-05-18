@@ -139,8 +139,25 @@
                                 <#--</div>-->
 
                                     <div class="form-group">
-                                        <label for="studyCourse">cerca in base al corso di laurea:</label>
-                                        <input type="text" class="form-control" id="studyCourse" name="studyCourse" value="">
+                                        <label for="sel1">Seleziona Docente:</label>
+                                        <select class="form-control" id="sel1" name="docent">
+                                            <option value="" selected>seleziona docente</option>
+                                            <#list listTheacher as teach>
+                                                <option value="${teach.id}">${teach.name} ${teach.surname}</option>
+                                            </#list>
+                                        </select>
+                                        <br>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="sel2">Seleziona corso di laurea:</label>
+                                        <select class="form-control" id="sel2" name="studyCourse">
+                                            <option value="" selected>seleziona laurea</option>
+                                            <#list allStudyCourse as course>
+                                                <option value="${course.id}">${course.name}</option>
+                                            </#list>
+                                        </select>
+                                        <br>
                                     </div>
 
                                     <div class="form-group">
