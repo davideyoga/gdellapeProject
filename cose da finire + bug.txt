@@ -5,11 +5,6 @@ Eliminare materiale: Sistemare la parte grafica
     DeleteMaterial (ajax)
 -----------------------------------------------
 
-----------------------------------------------------------------------------------------------------------
-Aggiornare Corso (prendo un corso di un anno precedente e lo COPIO all'anno corrente)
-    UpdateCourse
-----------------------------------------------------------------------------------------------------------
-
 
 ----------------------------------------------------------------------------------------------------------
 Collegamenti con corsi modulati, corsi propedeutici,ect....
