@@ -82,3 +82,5 @@ controllare utenti che l'admin può cancellare
 
 (opzionali)
 Prendere dati tutti della stessa formattazione, ad esempio tutti minuscoli ecc...
+
+-- SERVER controllare controlli doGet UpdateCourse
