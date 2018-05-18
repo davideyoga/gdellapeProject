@@ -1,10 +1,5 @@
 per sistemare il fatto del javascript vedere alla pagina course_list_an
 
------------------------------------------------
-Eliminare materiale: Sistemare la parte grafica
-    DeleteMaterial (ajax)
------------------------------------------------
-
 
 ----------------------------------------------------------------------------------------------------------
 Collegamenti con corsi modulati, corsi propedeutici,ect....

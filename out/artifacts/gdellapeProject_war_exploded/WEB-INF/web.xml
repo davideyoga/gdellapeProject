@@ -289,6 +289,18 @@
     </servlet-mapping>
     <!-- Fine Servlet di DeleteStudyCourse -->
 
+    <!-- Servlet di  DeleteMaterial-->
+    <servlet>
+        <servlet-name>DeleteMaterial</servlet-name>
+        <servlet-class>controller.adm.material.DeleteMaterial</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteMaterial</servlet-name>
+        <url-pattern>/DeleteMaterial</url-pattern>
+        <url-pattern>/deleteMaterial</url-pattern>
+    </servlet-mapping>
+    <!-- Fine Servlet di DeleteStudyCourse -->
+
     <!-- Servlet di  HomeBackOffice-->
     <servlet>
         <servlet-name>HomeBackOffice</servlet-name>
