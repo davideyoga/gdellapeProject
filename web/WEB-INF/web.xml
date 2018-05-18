@@ -296,8 +296,8 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>DeleteMaterial</servlet-name>
+        <url-pattern>/DeleteMaterial</url-pattern>
         <url-pattern>/deleteMaterial</url-pattern>
-        <url-pattern>/deletematerial</url-pattern>
     </servlet-mapping>
     <!-- Fine Servlet di DeleteStudyCourse -->
 

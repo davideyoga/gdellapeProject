@@ -39,6 +39,8 @@ public class DeleteMaterial extends BaseController {
                 //estraggo il materiale
                 Material material = materialDao.getMaterialById(idMaterial);
 
+                System.out.println("porcoddio" + idMaterial);
+
                 //elimino il materiale
                 materialDao.deleteMaterial(material);
 

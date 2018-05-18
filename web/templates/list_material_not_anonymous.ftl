@@ -5,6 +5,30 @@
 
     <!--librerie-->
     <#include "import.ftl">
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.delete').on('click',function() {
+                console.log($(this).attr('id'));  //-->this will alert name of checked checkbox.
+                $.ajax({
+                    type: "GET",
+                    url: 'DeleteMaterial',
+                    data: {
+                        idMaterial: $(this).attr('id')
+                    },
+                    success: function(data) {
+                        alert('materiale rimosso');
+                        location.reload(true);
+                    },
+                    error: function() {
+                        console.log('errore');
+                    },
+                    complete: function() {
+                        console.log('chiamata ajax completata');
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 <body>
 <#include "navbar.ftl">
@@ -55,16 +79,16 @@
                         </thead>
 
                         <tbody>
-                    <#list material as material>
-                    <tr>
-                        <td>${material.name}</td>
-                        <td>${material.description_ita}</td>
-                        <td>${material.data}</td>
-                        <td>${material.size} kb</td>
-                        <td>${material.type}</td>
-                        <td><a href="De?id=${material.id}">scarica</a></td>
-                    </tr>
-                    </#list>
+                            <#list material as material>
+                                <tr>
+                                    <td>${material.name}</td>
+                                    <td>${material.description_ita}</td>
+                                    <td>${material.data}</td>
+                                    <td>${material.size} kb</td>
+                                    <td>${material.type}</td>
+                                    <td><button type="button" id="${material.id}" name="${material.id}" value="${material.id}" class="btn btn-info delete">elimina</button></td>
+                                </tr>
+                            </#list>
                         </tbody>
                     </table>
                     <div>
