@@ -17,11 +17,6 @@ AddCourseRelation
 ----------------------------------------------------------------------------------------------------------
 
 
-----------------------------------------------------------------------------------------------------------
-RemoveBook non funziona, i parametri li prende bene dal template, non funziona la query
-----------------------------------------------------------------------------------------------------------
-
-
 |------OPZIONALE DA VALUTARE-------------------------------------------------------------------
 |                                                                                              |
 |curriculum del prof da caricare come file                                                     |
@@ -60,6 +55,8 @@ REV1 FRONT SIDE-----------------------------------------------------------------
 - Parte server: cancellare fisicamente dal server il materiale
 
 - Parte server: ListCourseAn:   mandare lista corsi di laurea (Mi viene mandato id invece che nome)
+
+- RemoveBook non funziona, i parametri li prende bene dal template, non funziona la query
 
 
 
