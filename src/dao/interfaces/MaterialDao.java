@@ -18,7 +18,7 @@ public interface MaterialDao extends DaoData {
 
     public int storeMaterial ( Material material ) throws DaoException;
 
-    public void deleteMaterial (Material material ) throws DaoException;
+    public void deleteMaterial (Material material, String path ) throws DaoException;
 
     public void addConnectionWithCourseMaterial(Course course, Material material) throws DaoException;
 

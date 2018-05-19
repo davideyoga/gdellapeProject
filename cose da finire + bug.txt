@@ -74,5 +74,3 @@ controllare utenti che l'admin può cancellare
 Prendere dati tutti della stessa formattazione, ad esempio tutti minuscoli ecc...
 
 -- SERVER controllare controlli doGet UpdateCourse, mandare anche l'anno attuale, non funziona un cazzo a sta servlet
-
--- SERVER DeleteMaterial non funziona, il parametro get è giusto

@@ -3,9 +3,7 @@ package controller.adm.material;
 import controller.BaseController;
 import controller.utility.SecurityLayer;
 import dao.exception.DaoException;
-import dao.implementation.CourseDaoImpl;
 import dao.implementation.MaterialDaoImpl;
-import dao.interfaces.CourseDao;
 import dao.interfaces.MaterialDao;
 import model.Material;
 
@@ -38,8 +36,10 @@ public class DeleteMaterial extends BaseController {
                 //estraggo il materiale
                 Material material = materialDao.getMaterialById(idMaterial);
 
+
+
                 //elimino il materiale
-                materialDao.deleteMaterial(material);
+                materialDao.deleteMaterial(material, getServletContext().getInitParameter("uploads.directory"));
 
                 materialDao.destroy();
 

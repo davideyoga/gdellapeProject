@@ -8,6 +8,7 @@ import model.Course;
 import model.Material;
 
 import javax.sql.DataSource;
+import java.io.File;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -152,8 +153,11 @@ public class MaterialDaoImpl extends DaoDataMySQLImpl implements MaterialDao {
 
 
     @Override
-    public void deleteMaterial(Material material) throws DaoException {
+    public void deleteMaterial(Material material, String path) throws DaoException {
         try{
+
+            this.deleteMaterialOnServer(material, path);
+
             this.deleteMaterialById.setInt(1,material.getId());
             this.deleteMaterialById.executeUpdate();
         } catch (SQLException e) {
@@ -161,6 +165,7 @@ public class MaterialDaoImpl extends DaoDataMySQLImpl implements MaterialDao {
         }
 
     }
+
 
     @Override
     public void addConnectionWithCourseMaterial(Course course, Material material) throws DaoException {
@@ -228,4 +233,28 @@ public class MaterialDaoImpl extends DaoDataMySQLImpl implements MaterialDao {
 
         return material;
     }
+
+
+    private void deleteMaterialOnServer(Material material, String path) throws DaoException {
+
+        ///etc/apache-tomcat-8.5.14/download
+
+        try{
+
+            String newPath = path + "/" + material.getRoute();
+
+            File file = new File(newPath);
+
+            file.delete();
+
+        }catch(Exception e){
+
+            e.printStackTrace();
+
+            throw new DaoException("Error in deleteMaterialOnServer");
+
+        }
+
+    }
+
 }
