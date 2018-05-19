@@ -245,6 +245,8 @@ public class BookDaoImpl extends DaoDataMySQLImpl implements BookDao {
             this.deleteLinkBookToCourse.setInt(1, course.getIdCourse());
             this.deleteLinkBookToCourse.setInt(2, book.getId());
 
+            this.deleteLinkBookToCourse.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
 
