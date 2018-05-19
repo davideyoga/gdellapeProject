@@ -42,8 +42,6 @@ REV1 FRONT SIDE-----------------------------------------------------------------
 
 - CourseProfile: aggiungere lista corsi di studi per cui il corso e' fruibile (il dato mandato nel datamodel si chiama 'listStudyCourse')
 
-- Parte server: cancellare fisicamente dal server il materiale
-
 - Parte server: ListCourseAn:   mandare lista corsi di laurea (Mi viene mandato id invece che nome)
 
 - RemoveBook quando un libro viene eliminato non ricarica la pagina
