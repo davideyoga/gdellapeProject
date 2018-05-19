@@ -43,6 +43,7 @@ REV1 FRONT SIDE-----------------------------------------------------------------
 - CourseProfile: aggiungere lista corsi di studi per cui il corso e' fruibile (il dato mandato nel datamodel si chiama 'listStudyCourse')
 
 - Parte server: ListCourseAn:   mandare lista corsi di laurea (Mi viene mandato id invece che nome)
+    SI CHIAMA allStudyCourse
 
 - RemoveBook quando un libro viene eliminato non ricarica la pagina
 
@@ -52,6 +53,7 @@ REV1 BACK SIDE------------------------------------------------------------------
 - Aggiungere selettore anni nella pagina ListCourse (come fatto in ListCourseAn) FATTO  MA PERMETTERE DI NON INVIARE NULLA
 
 - Alla pagina di AdmModUser se nn e' inserita la password non si puo' modificare l'utente, togliere i limiti sulla password
+
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------------------------------------
