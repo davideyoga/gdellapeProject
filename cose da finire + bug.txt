@@ -46,7 +46,7 @@ REV1 FRONT SIDE-----------------------------------------------------------------
 
 - Parte server: ListCourseAn:   mandare lista corsi di laurea (Mi viene mandato id invece che nome)
 
-- RemoveBook non funziona, i parametri li prende bene dal template, non funziona la query
+- RemoveBook quando un libro viene eliminato non ricarica la pagina
 
 
 
