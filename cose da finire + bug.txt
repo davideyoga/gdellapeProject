@@ -51,9 +51,7 @@ REV1 FRONT SIDE-----------------------------------------------------------------
 REV1 BACK SIDE------------------------------------------------------------------------------------------------------------------------------------------------
 - Aggiungere selettore anni nella pagina ListCourse (come fatto in ListCourseAn) FATTO  MA PERMETTERE DI NON INVIARE NULLA
 
-- Alla pagina di AdmModUser se nn e' inserita la password non si puo' modificare l'utente
-
-- Parte server: ListCourse fare modifica anni come ListCourseAn
+- Alla pagina di AdmModUser se nn e' inserita la password non si puo' modificare l'utente, togliere i limiti sulla password
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -64,11 +62,12 @@ PARTE SERVER:
 LOG:
     ricontrollare i log e scriverli meglio, con spazi ecc..
 
-
+(opzionale)
 controllare utenti che l'admin può cancellare
 (es. l'admin non può cancellare se stesso)
 
-(opzionali)
+(opzionale)
 Prendere dati tutti della stessa formattazione, ad esempio tutti minuscoli ecc...
 
 -- SERVER controllare controlli doGet UpdateCourse, mandare anche l'anno attuale, non funziona un cazzo a sta servlet
+

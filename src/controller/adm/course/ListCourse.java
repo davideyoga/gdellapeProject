@@ -126,8 +126,20 @@ public class ListCourse extends BaseController {
                         CourseDao courseDao = new CourseDaoImpl(ds);
                         courseDao.init();
 
-                        //estraggo i corsi collegati all'utente in sessione e li inserisco i corsi nel datamodel
-                        datamodel.put("courses", courseDao.getCoursesByUserAndYear(sessionManager.getUser(request), accademicYear.toString()));
+                        //se e' stato inserito l'anno accademic
+                        if(accademicYear !=null) {
+
+                            //estraggo i corsi collegati all'utente in sessione e li inserisco i corsi nel datamodel
+                            datamodel.put("courses", courseDao.getCoursesByUserAndYear(sessionManager.getUser(request), accademicYear.toString()));
+
+
+                            //se non e' presente l'anno accademico
+                        }else{
+
+                            //estraggo tutti gli anni collegati al docente e li inersco nel datamodel
+                            datamodel.put("courses", courseDao.getCoursesByUser(sessionManager.getUser(request)));
+                        }
+
 
                         courseDao.destroy();
 
