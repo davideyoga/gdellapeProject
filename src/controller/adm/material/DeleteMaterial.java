@@ -26,7 +26,6 @@ public class DeleteMaterial extends BaseController {
 
 
         if(request.getParameter("idMaterial")!= null){
-
             try {
 
                 //inizializzo il dao del materiale e dei corsi
@@ -39,15 +38,15 @@ public class DeleteMaterial extends BaseController {
                 //estraggo il materiale
                 Material material = materialDao.getMaterialById(idMaterial);
 
-                System.out.println("porcoddio" + idMaterial);
-
                 //elimino il materiale
                 materialDao.deleteMaterial(material);
+
+                materialDao.destroy();
 
                 //torno OK alla chiamata servlet se arrivo alla fine senza problemi
                 response.getWriter().write("OK");
 
-                materialDao.destroy();
+
 
 
             } catch (DaoException | NumberFormatException e) {

@@ -57,7 +57,8 @@ public class MaterialDaoImpl extends DaoDataMySQLImpl implements MaterialDao {
                     "                                                       ON material.id = course_material.material_id" +
                     "                                                       WHERE course_material.course_id = ?");
 
-            this.deleteMaterialById = connection.prepareStatement(" DELETE FROM material" + "WHERE id=?");
+            this.deleteMaterialById = connection.prepareStatement(" DELETE FROM material" +
+                    "                                                            WHERE id=?");
 
         } catch (SQLException e) {
             throw new DaoException("Error initializing groups dao", e);
