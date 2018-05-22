@@ -21,12 +21,13 @@ AddCourseRelation
 
 
 REV1 FRONT SIDE------------------------------------------------------------------------------------------------------------------------------------------------
-- ListCourseAn inserire il selettore degli anni, se javascript disattivato far vedere i pulsanti anno precedente, anno successivo
+- ListCourseAn se javascript disattivato far vedere i pulsanti anno precedente, anno successivo
 
 - ListCourseAn: inserire anno attualmente visualizzato
 
 
 - ListStudyCourses: replicare ricerca per anno come in ListCourseAn
+
 
 - Alla descrizione dei corsi, se nn e' presente un dato in una lingua mettere quell'altro
 

@@ -149,7 +149,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-12 col-xs-12">
-                                    <p>${course.prerequisite_eng}</p>
+                                    <p><#if course.prerequisite_eng??>${course.prerequisite_eng}<#else>${course.prerequisite_ita}</#if></p>
                                 </div>
                             </div>
                         </div>
@@ -167,7 +167,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-12 col-xs-12">
-                                    <p>${course.goals_eng}</p>
+                                    <p><#if course.goals_eng??>${course.goals_eng}<#else>${course.goals_ita}</#if></p>
                                 </div>
                             </div>
                         </div>
@@ -185,7 +185,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-12 col-xs-12">
-                                    <p>${course.exame_mode_eng}</p>
+                                    <p><#if course.exame_mode_eng??>${course.exame_mode_eng}<#else>${course.exame_mode_ita}</#if></p>
                                 </div>
                             </div>
                         </div>
@@ -203,7 +203,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-12 col-xs-12">
-                                    <p>${course.teaching_mode_eng}</p>
+                                    <p><#if course.teaching_mode_eng??>${course.teaching_mode_eng}<#else>${course.teaching_mode_ita}</#if></p>
                                 </div>
                             </div>
                         </div>
@@ -221,7 +221,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-12 col-xs-12">
-                                    <p>${course.syllabus_eng}</p>
+                                    <p><#if course.syllabus_eng??>${course.syllabus_eng}<#else>${course.syllabus_ita}</#if></p>
                                 </div>
                             </div>
                         </div>
@@ -239,7 +239,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-12 col-xs-12">
-                                    <p>${course.note_eng}</p>
+                                    <p><#if course.note_eng??>${course.note_eng}<#else>${course.note_ita}</#if></p>
                                 </div>
                             </div>
                         </div>
@@ -264,7 +264,7 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-12 col-xs-12">
-                                        <#if course.knowledge_ita??>${course.knowledge_eng}</#if>
+                                        <#if course.knowledge_eng??>${course.knowledge_eng}<#else>${course.knowledge_ita}</#if>
                                     </div>
                                 </div>
                             </div>
@@ -282,7 +282,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-12 col-xs-12">
-                                    <#if course.application_ita??>${course.application_eng}</#if>
+                                    <#if course.application_eng??>${course.application_eng}<#else>${course.application_ita}</#if>
                                 </div>
                             </div>
                         </div>
@@ -300,7 +300,7 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-12 col-xs-12">
-                                        <#if course.evaluation_ita??>${course.evaluation_eng}</#if>
+                                        <#if course.evaluation_eng??>${course.evaluation_eng}<#else>${course.evaluation_ita}</#if>
                                     </div>
                                 </div>
                             </div>
@@ -318,7 +318,7 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-12 col-xs-12">
-                                        <#if course.communication_ita??>${course.communication_eng}</#if>
+                                        <#if course.communication_eng??>${course.communication_eng}<#else>${course.communication_ita}</#if>
                                     </div>
                                 </div>
                             </div>
@@ -336,7 +336,7 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-12 col-xs-12">
-                                        <#if course.lifelog_learning_skills_eng??>${course.lifelog_learning_skills_eng}</#if>
+                                        <#if course.lifelog_learning_skills_eng??>${course.lifelog_learning_skills_eng}<#else>${course.lifelog_learning_skills_ita}</#if>
                                     </div>
                                 </div>
                             </div>
