@@ -8,6 +8,7 @@
         window.onload = function() {
             document.getElementById('search').classList.remove('in');
             document.getElementById('search').classList.remove('active');
+            document.getElementById('Accyear').classList.remove('hidden');
             carica();
         }
     </script>
@@ -108,7 +109,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div id="Accyear" class="row hidden">
                         <div class="form-group col-xs-2">
                             <label for="selectElementId">anno accademico:</label>
                             <select id="selectElementId" name="year" class="form-control">
@@ -117,6 +118,13 @@
                         </div>
                     </div>
 
+                    <noscript>
+                        <div class="row">
+                            <div class="form-group col-xs-2">
+                                giovanni
+                            </div>
+                        </div>
+                    </noscript>
 
                     <div class="panel-group">
                         <div class="panel panel-default">
