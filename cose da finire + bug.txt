@@ -29,13 +29,6 @@ REV1 FRONT SIDE-----------------------------------------------------------------
 - ListStudyCourses: replicare ricerca per anno come in ListCourseAn
 
 
-- Alla descrizione dei corsi, se nn e' presente un dato in una lingua mettere quell'altro
-
-- CourseProfile: aggiungere lista corsi di studi per cui il corso e' fruibile (il dato mandato nel datamodel si chiama 'listStudyCourse')
-
-- Parte server: ListCourseAn:   mandare lista corsi di laurea (Mi viene mandato id invece che nome)
-    SI CHIAMA allStudyCourse
-
 - RemoveBook quando un libro viene eliminato non ricarica la pagina
 
 
