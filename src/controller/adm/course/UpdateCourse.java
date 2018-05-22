@@ -37,15 +37,10 @@ public class UpdateCourse extends BaseController {
 
         datamodel.put("courseNotUpdatable", courseNotUpdatable);
 
-        for (Course c: courses){
-            System.out.println(c);
-        }
-
         //setto l'utente in sessione
         this.datamodel.put("user", sessionManager.getUser(request));
 
-        //lancio pagina della lista corsi
-        response.sendRedirect("ListCourse");
+        TemplateController.process("update_course.ftl", datamodel, response, getServletContext());
     }
 
 
