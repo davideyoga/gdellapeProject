@@ -76,6 +76,9 @@ public class CourseProfile extends BaseController {
                     List<Course> listModulated = courseDao.getCourseModulated(course);
                     List<Course> listPreparatory = courseDao.getCoursePreparatory(course);
 
+                    //estraggo i corsi precedenti e successivi del corso
+                    List<Course> courseRelatedByYear = courseDao.getCoursesByCode(course.getCode());
+
                     //estraggo i docenti che possiedono il corso
                     List<User> listDocent = userDao.getUserByCourse(course);
 
@@ -88,6 +91,8 @@ public class CourseProfile extends BaseController {
                     datamodel.put("listBorrowed",listBorrowed);
                     datamodel.put("listModulated",listModulated);
                     datamodel.put("listPreparatory",listPreparatory);
+                    datamodel.put("courseRelatedByYear",courseRelatedByYear);
+
 
                     utilityManager.removePassword(listDocent);
 

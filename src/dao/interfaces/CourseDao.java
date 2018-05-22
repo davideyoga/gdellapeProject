@@ -26,6 +26,8 @@ public interface CourseDao extends DaoData{
     Course storeCourse(Course course) throws DaoException;
     void deleteCourse(Course course) throws DaoException;
 
+    List<Course> getCoursesByCode(String code) throws DaoException;
+
     List<Course> getCoursesByUser(User user) throws DaoException;
 
     Course getCoursesByCodeAndYear(String code, AccademicYear accademicYear) throws DaoException;

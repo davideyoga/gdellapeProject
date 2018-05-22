@@ -551,6 +551,28 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
     }
 
     @Override
+    public List <Course> getCoursesByCode(String code) throws DaoException {
+        List<Course> courseList = new ArrayList <>();
+
+        try {
+
+            this.selectCourseByCode.setString(1, code);
+
+            ResultSet rs = this.selectCourseByCfu.executeQuery();
+
+            while (rs.next()){
+
+                courseList.add(this.generateCourse(rs));
+
+            }
+        } catch (SQLException e) {
+            throw new SelectDaoException("Error getCourseByCfu", e);
+        }
+
+        return courseList;
+    }
+
+    @Override
     public List<Course> getCoursesByUser(User user) throws DaoException {
 
         //inizializzo una lista di corsi
