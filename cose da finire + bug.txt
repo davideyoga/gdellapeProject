@@ -16,7 +16,7 @@ AddCourseRelation
 |aggiungere tipo di cfu a course                                                               |
 |----------------------------------------------------------------------------------------------|
 |----------------------------------------------------------------------------------------------|
-|-----------------------f-----------------------------------------------------------------------|
+|----------------------------------------------------------------------------------------------|
 
 
 
@@ -27,16 +27,6 @@ REV1 FRONT SIDE-----------------------------------------------------------------
 
 
 - ListStudyCourses: replicare ricerca per anno come in ListCourseAn
-
-- Filtrare lista corsi (ListCourseAn) per usare servlet bellissima di davide
-        I parametri sono:
-
-            - year (prima parte dell'anno accademico)
-            - name: nome del corso
-            - code; codice del corso
-            - sector: settore corso
-            - semester: semestre corso
-            - language
 
 - Alla descrizione dei corsi, se nn e' presente un dato in una lingua mettere quell'altro
 

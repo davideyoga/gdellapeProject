@@ -3,7 +3,7 @@
 <head>
     <title>Lista Corsi</title>
 
-    <#include "import.ftl">
+<#include "import.ftl">
     <script type="text/javascript">
         window.onload = function() {
             document.getElementById('search').classList.remove('in');
@@ -24,20 +24,16 @@
 
 <div class="container">
     <div>
-        <#if message??>
-            <div class="jumbotron">
-                ${message}
-            </div>
-        <#else>
-        </#if>
+    <#if message??>
+        <div class="jumbotron">
+            ${message}
+        </div>
+    <#else>
+    </#if>
     </div>
 </div>
 
-<label>
-    <select id="selectElementId" >
 
-    </select>
-</label>
 
 <div class="row">
     <div class="col-md-2 col-xs-2 col-sm-2 my-menu">
@@ -56,7 +52,7 @@
         </div>
     </div>
 
-    <div class="col-md-10 col-xs-10 col-sm-10">
+    <div class="col-md-9 col-xs-9 col-sm-9">
         <div class="tab-content">
 
             <div id="list" class="tab-pane fade in active">
@@ -76,18 +72,18 @@
                         </thead>
 
                         <tbody>
-                                <#list listCourse as course>
-                                <tr>
-                                    <td>${course.code}</td>
-                                    <td>${course.name}</td>
-                                    <td>${course.sector}</td>
-                                    <td>${course.semester}</td>
-                                    <td>${course.language}</td>
-                                    <td>
-                                        <a href="CourseProfile?id=${course.idCourse}&<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>">Leggi di piu'</a>
-                                    </td>
-                                </tr>
-                                </#list>
+                        <#list listCourse as course>
+                        <tr>
+                            <td>${course.code}</td>
+                            <td>${course.name}</td>
+                            <td>${course.sector}</td>
+                            <td>${course.semester}</td>
+                            <td>${course.language}</td>
+                            <td>
+                                <a href="CourseProfile?id=${course.idCourse}&<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>">Leggi di piu'</a>
+                            </td>
+                        </tr>
+                        </#list>
                         </tbody>
                     </table>
 
@@ -105,10 +101,22 @@
                 <#--<label for="studyCourse">Nome laurea:</label>-->
                 <#--<input type="text" class="form-control" id="studyCourse" name="studyCourse" value="">-->
                 <#--</div>-->
-                    <div class="form-group">
-                        <label for="name">Cerca per nome:</label>
-                        <input type="text" class="form-control" id="name" name="name" value="">
+                    <div class="row">
+                        <div class="form-group col-xs-3">
+                            <label for="name">Cerca per nome:</label>
+                            <input type="text" class="form-control" id="name" name="name" value="">
+                        </div>
                     </div>
+
+                    <div class="row">
+                        <div class="form-group col-xs-2">
+                            <label for="selectElementId">anno accademico:</label>
+                            <select id="selectElementId" name="year" class="form-control">
+
+                            </select>
+                        </div>
+                    </div>
+
 
                     <div class="panel-group">
                         <div class="panel panel-default">
@@ -120,9 +128,11 @@
                             <div id="advSearch" class="panel-collapse collapse">
                                 <div class="panel-body">
 
-                                    <div class="form-group">
-                                        <label for="code">cerca in base al codice del corso:</label>
-                                        <input type="text" class="form-control" id="code" name="code" value="">
+                                    <div class="row">
+                                        <div class="form-group col-xs-3">
+                                            <label for="code">codice del corso:</label>
+                                            <input type="text" class="form-control" id="code" name="code" value="">
+                                        </div>
                                     </div>
 
                                 <#--<div class="form-group">-->
@@ -135,25 +145,53 @@
                                 <#--</select>-->
                                 <#--<br>-->
                                 <#--</div>-->
-
-                                    <div class="form-group">
-                                        <label for="studyCourse">cerca in base al corso di laurea:</label>
-                                        <input type="text" class="form-control" id="studyCourse" name="studyCourse" value="">
+                                    <div class="row">
+                                        <div class="form-group col-xs-3">
+                                            <label for="sel1">Docente:</label>
+                                            <select class="form-control" id="sel1" name="docent">
+                                                <option value="" selected>seleziona docente</option>
+                                                <#list listTheacher as teach>
+                                                    <option value="${teach.id}">${teach.name} ${teach.surname}</option>
+                                                </#list>
+                                            </select>
+                                        </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="sector">cerca in base al settore:</label>
-                                        <input type="text" class="form-control" id="sector" name="sector" value="">
+                                    <div class="row">
+                                        <div class="form-group col-xs-3">
+                                            <label for="sel2">corso di laurea:</label>
+                                            <select class="form-control" id="sel2" name="studyCourse">
+                                                <option value="" selected>seleziona laurea</option>
+                                            <#list allStudyCourse as course>
+                                                <option value="${course.id}">${course.name}</option>
+                                            </#list>
+                                            </select>
+                                        </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="semester">cerca in base al semestre:</label>
-                                        <input type="text" class="form-control" id="semester" name="semester" value="">
+                                    <div class="row">
+                                        <div class="form-group col-xs-3">
+                                            <label for="sector">settore:</label>
+                                            <input type="text" class="form-control" id="sector" name="sector" value="">
+                                        </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="language">cerca in base alla lingua di insegnamento:</label>
-                                        <input type="text" class="form-control" id="language" name="language" value="">
+                                    <div class="row">
+                                        <div class="form-group col-xs-2">
+                                            <label for="sem">semestre:</label>
+                                            <select class="form-control" id="sem">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-xs-3">
+                                            <label for="language">lingua:</label>
+                                            <input type="text" class="form-control" id="language" name="language" value="">
+                                        </div>
                                     </div>
 
                                 </div>
