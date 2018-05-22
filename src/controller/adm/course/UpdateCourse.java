@@ -246,9 +246,6 @@ public class UpdateCourse extends BaseController {
                     currentYear.setFirstYear(currentYear.getFirstYear()+2);
                     List<Course> courseNextYear = courseDao.getCourseByYear(currentYear.toString());
 
-                    //chiudo dao
-                    courseDao.destroy();
-
                     //rimuovo i corsi del prossimo anno accademici
                     allCourse.removeAll(courseNextYear);
 
@@ -334,7 +331,7 @@ public class UpdateCourse extends BaseController {
                                         //chiudo il dao
                                         courseDao.destroy();
 
-                                        this.processTemplate(request, response, "UPDATE SUCCESFULL", allCourse, courseByCodeAndYear2);
+                                        this.processTemplate(request, response, "ALREADY EXISTING COURSE", allCourse, courseByCodeAndYear2);
                                         return;
                                     }
 
