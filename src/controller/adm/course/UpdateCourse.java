@@ -28,10 +28,18 @@ import java.util.List;
  */
 public class UpdateCourse extends BaseController {
 
-    private void processTemplate(HttpServletRequest request, HttpServletResponse response, String message) throws IOException {
+    private void processTemplate(HttpServletRequest request, HttpServletResponse response, String message, List<Course> courses, Course courseNotUpdatable) throws IOException {
 
         //carico il corso nel datamodel
         datamodel.put("message", message);
+
+        datamodel.put("courses", courses);
+
+        datamodel.put("courseNotUpdatable", courseNotUpdatable);
+
+        for (Course c: courses){
+            System.out.println(c);
+        }
 
         //setto l'utente in sessione
         this.datamodel.put("user", sessionManager.getUser(request));
@@ -41,14 +49,177 @@ public class UpdateCourse extends BaseController {
     }
 
 
+//    /**
+//     * Controlli su validita' della sessione e permesso,
+//     * prendo l'id del corso passato come parametro get,
+//     * controllo se il parametro mode e' a 1 oppure a 2;
+//     *      se e' a 1 devo riportare il corso passato all'anno attuale
+//     *      se e' a 2 devo aggiornare il corso al prossimo anno accademico
+//     */
+//    @Override
+//    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//
+//        try {
+//
+//            //pulisco messaggio
+//            datamodel.put("message", null);
+//
+//            //se sessione valida
+//            if (this.sessionManager.isValid(request)) {
+//
+//                System.out.println("a\n");
+//
+//                //estraggo il servizio di aggiornare un corso
+//                Service updateCourse = this.getServiceAndCreate(request, response, ds, "updateCourse", "Permissed for update Course",
+//                        datamodel, getServletContext());
+//
+//                //se l'utente in sessione possiede il servizio updateCourse...
+//                if (((List <Service>) request.getSession().getAttribute("services")).contains(updateCourse)) {
+//
+//                    //inizializzo un dao dei corsi
+//                    CourseDao courseDao = new CourseDaoImpl(ds);
+//                    courseDao.init();
+//
+//                    //estraggo id nella sessione del corso che si intende aggiornare, se non esiste o non e' un numero lancia un NumberFormatException
+//                    int idCourse = Integer.parseInt(request.getParameter("idCourse"));
+//
+//                    //estraggo il corso (non viene messo tutto in sessione per maggiore sicurezza che esiste ancora)
+//                    Course courseById = courseDao.getCourseById(idCourse);
+//
+//                    //se il corso esiste
+//                    if (courseById != null){
+//
+//                        //estraggo l'anno dal corso da aggiornare
+//                        int firstYear = new AccademicYear(courseById.getYear()).getFirstYear();
+//                        //inizializzo un anno accademico con l'anno del corso passato
+//                        AccademicYear accademicYear = new AccademicYear(firstYear);
+//
+//                        if (request.getParameter("mode") == null){
+//                            this.processError(request, response);
+//                            return;
+//                        }
+//
+//                        switch (request.getParameter("mode")){
+//
+//                            case "1":
+//                                //devo riportare il croso all'attuale anno accademico
+//
+//                                //inizializzo l'attuale anno accademico
+//                                AccademicYear year = new AccademicYear(Calendar.getInstance());
+//
+//                                //estraggo corso con stesso anno e codice del corso che vado a creare
+//                                Course courseByCodeAndYear = courseDao.getCoursesByCodeAndYear(courseById.getCode(), year);
+//
+//                                //controllo se non esiste un corso con codice uguale al corso passato e con l'anno attuale
+//                                if(courseByCodeAndYear==null || courseByCodeAndYear.getIdCourse()<=0){
+//
+//                                    //creo il nuovo corso
+//                                    courseById.setIdCourse(0);
+//                                    courseById.setYear(year.toString());
+//
+//                                    courseDao.storeCourse(courseById);
+//
+//                                    courseDao.destroy();
+//
+//                                    logManager.addLog(sessionManager.getUser(request),
+//                                                "USER: " + sessionManager.getUser(request).toStringForLog() +
+//                                                        " UPDATED THE COURSE: "+ courseById.toStringForLog()  + "TO A SUBSEQUENT YEAR " , ds);
+//
+//                                    this.processTemplate(request, response, "UPDATE COURSE");
+//                                    return;
+//
+//                                }else{
+//                                    //se esiste gia un corso di quell'anno
+//
+//                                    //chiudo il dao
+//                                    courseDao.destroy();
+//
+//                                    this.processTemplate(request, response, "ALREADY EXISTING COURSE");
+//                                    return;
+//                                }
+//
+//
+//                            case "2":
+//                                //devo portare il corso all'anno successivo di quello attuale
+//
+//                                //inizializzo il corso successivo a quello attuale
+//                                AccademicYear nextYear = new AccademicYear( new AccademicYear(Calendar.getInstance()).getFirstYear() + 1 );
+//
+//                                //estraggo corso con stesso anno e codice del corso che vado a creare
+//                                Course courseByCodeAndYear2 = courseDao.getCoursesByCodeAndYear(courseById.getCode(), nextYear);
+//
+//                                //controllo se non esiste un corso con codice uguale al corso passato e con l'anno attuale
+//                                if(courseByCodeAndYear2==null || courseByCodeAndYear2.getIdCourse()<=0){
+//
+//                                    //creo il nuovo corso
+//                                    courseById.setIdCourse(0);
+//                                    courseById.setYear(nextYear.toString());
+//
+//                                    courseDao.storeCourse(courseById);
+//
+//                                    courseDao.destroy();
+//
+//                                    logManager.addLog(sessionManager.getUser(request),
+//                                            "USER: " + sessionManager.getUser(request).toStringForLog() +
+//                                                    " UPDATED THE COURSE: "+ courseById.toStringForLog()  + "TO A SUBSEQUENT YEAR " , ds);
+//
+//                                    this.processTemplate(request, response, "UPDATE COURSE");
+//                                    return;
+//
+//                                }else{
+//                                    //se esiste gia un corso di quell'anno
+//
+//                                    //chiudo il dao
+//                                    courseDao.destroy();
+//
+//                                    this.processTemplate(request, response, "ALREADY EXISTING COURSE");
+//                                    return;
+//                                }
+//                        }
+//
+//                        //se il corso non esiste
+//                    }else{
+//
+//                        courseDao.destroy();
+//
+//                        this.processError(request, response);
+//
+//                    }
+//
+//
+//                    //se l'utente non possiede il servizio
+//                } else {
+//
+//                    //lancio la servlet di non permesso\
+//                    this.processNotPermitted(request, response);
+//
+//                }
+//
+//                //se l'utente non ha una sessione valida
+//            } else {
+//
+//                //lancio il login
+//                createPreviousPageAndRedirectToLogin(request, response, "ListCourse");
+//
+//            }
+//
+//        } catch (DaoException | NumberFormatException e) {
+//            e.printStackTrace();
+//
+//            //lancio servlet di errore
+//            this.processError(request, response);
+//        } catch (LogException e) {
+//            e.printStackTrace();
+//        } catch (AccademicYearException e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
+
+
     /**
-     * Controlli su validita' della sessione e permesso,
-     * prendo l'id del corso passato come parametro get,
-     * controllo se il parametro mode e' a 1 oppure a 2;
-     *      se e' a 1 devo riportare il corso passato all'anno attuale
-     *      se e' a 2 devo aggiornare il corso al prossimo anno accademico
+     * Mando lista tutti i corsi - corsi nuovi (anno precendente all'attuale)
      */
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
@@ -68,144 +239,48 @@ public class UpdateCourse extends BaseController {
                 //se l'utente in sessione possiede il servizio updateCourse...
                 if (((List <Service>) request.getSession().getAttribute("services")).contains(updateCourse)) {
 
-                    //inizializzo un dao dei corsi
+
                     CourseDao courseDao = new CourseDaoImpl(ds);
                     courseDao.init();
 
-                    //estraggo id nella sessione del corso che si intende aggiornare, se non esiste o non e' un numero lancia un NumberFormatException
-                    int idCourse = Integer.parseInt(request.getParameter("idCourse"));
 
-                    //estraggo il corso (non viene messo tutto in sessione per maggiore sicurezza che esiste ancora)
-                    Course courseById = courseDao.getCourseById(idCourse);
+                    //estraggo la lista di tutti i corsi
+                    List<Course> allCourse = courseDao.getCourses();
 
-                    //se il corso esiste
-                    if (courseById != null){
+                    //estraggo i corsi del prossimo anno accademico
+                    AccademicYear currentYear = new AccademicYear(Calendar.getInstance());
+                    currentYear.setFirstYear(currentYear.getFirstYear()+1);
+                    currentYear.setFirstYear(currentYear.getFirstYear()+2);
+                    List<Course> courseNextYear = courseDao.getCourseByYear(currentYear.toString());
 
-                        //estraggo l'anno dal corso da aggiornare
-                        int firstYear = new AccademicYear(courseById.getYear()).getFirstYear();
-                        //inizializzo un anno accademico con l'anno del corso passato
-                        AccademicYear accademicYear = new AccademicYear(firstYear);
+                    //chiudo dao
+                    courseDao.destroy();
 
-                        if (request.getParameter("mode") == null){
-                            this.processError(request, response);
-                            return;
-                        }
+                    //rimuovo i corsi del prossimo anno accademici
+                    allCourse.removeAll(courseNextYear);
 
-                        switch (request.getParameter("mode")){
+                    //lancio template
+                    this.processTemplate(request, response, null, allCourse, null);
 
-                            case "1":
-                                //devo riportare il croso all'attuale anno accademico
+                    //se l'utente non possiede il permesso
+                }else{
 
-                                //inizializzo l'attuale anno accademico
-                                AccademicYear year = new AccademicYear(Calendar.getInstance());
-
-                                //estraggo corso con stesso anno e codice del corso che vado a creare
-                                Course courseByCodeAndYear = courseDao.getCoursesByCodeAndYear(courseById.getCode(), year);
-
-                                //controllo se non esiste un corso con codice uguale al corso passato e con l'anno attuale
-                                if(courseByCodeAndYear==null || courseByCodeAndYear.getIdCourse()<=0){
-
-                                    //creo il nuovo corso
-                                    courseById.setIdCourse(0);
-                                    courseById.setYear(year.toString());
-
-                                    courseDao.storeCourse(courseById);
-
-                                    courseDao.destroy();
-
-                                    logManager.addLog(sessionManager.getUser(request),
-                                                "USER: " + sessionManager.getUser(request).toStringForLog() +
-                                                        " UPDATED THE COURSE: "+ courseById.toStringForLog()  + "TO A SUBSEQUENT YEAR " , ds);
-
-                                    this.processTemplate(request, response, "UPDATE COURSE");
-                                    return;
-
-                                }else{
-                                    //se esiste gia un corso di quell'anno
-
-                                    //chiudo il dao
-                                    courseDao.destroy();
-
-                                    this.processTemplate(request, response, "ALREADY EXISTING COURSE");
-                                    return;
-                                }
-
-
-                            case "2":
-                                //devo portare il corso all'anno successivo di quello attuale
-
-                                //inizializzo il corso successivo a quello attuale
-                                AccademicYear nextYear = new AccademicYear( new AccademicYear(Calendar.getInstance()).getFirstYear() + 1 );
-
-                                //estraggo corso con stesso anno e codice del corso che vado a creare
-                                Course courseByCodeAndYear2 = courseDao.getCoursesByCodeAndYear(courseById.getCode(), nextYear);
-
-                                //controllo se non esiste un corso con codice uguale al corso passato e con l'anno attuale
-                                if(courseByCodeAndYear2==null || courseByCodeAndYear2.getIdCourse()<=0){
-
-                                    //creo il nuovo corso
-                                    courseById.setIdCourse(0);
-                                    courseById.setYear(nextYear.toString());
-
-                                    courseDao.storeCourse(courseById);
-
-                                    courseDao.destroy();
-
-                                    logManager.addLog(sessionManager.getUser(request),
-                                            "USER: " + sessionManager.getUser(request).toStringForLog() +
-                                                    " UPDATED THE COURSE: "+ courseById.toStringForLog()  + "TO A SUBSEQUENT YEAR " , ds);
-
-                                    this.processTemplate(request, response, "UPDATE COURSE");
-                                    return;
-
-                                }else{
-                                    //se esiste gia un corso di quell'anno
-
-                                    //chiudo il dao
-                                    courseDao.destroy();
-
-                                    this.processTemplate(request, response, "ALREADY EXISTING COURSE");
-                                    return;
-                                }
-                        }
-
-                        //se il corso non esiste
-                    }else{
-
-                        courseDao.destroy();
-
-                        this.processError(request, response);
-
-                    }
-
-
-                    //se l'utente non possiede il servizio
-                } else {
-
-                    //lancio la servlet di non permesso\
                     this.processNotPermitted(request, response);
 
                 }
 
-                //se l'utente non ha una sessione valida
-            } else {
+                //se sessione non valida
+            }else{
 
-                //lancio il login
-                createPreviousPageAndRedirectToLogin(request, response, "ListCourse");
+                createPreviousPageAndRedirectToLogin(request, response, "UpdateCourse");
 
             }
+        }catch (NumberFormatException | DaoException e){
 
-        } catch (DaoException | NumberFormatException e) {
             e.printStackTrace();
-
-            //lancio servlet di errore
             this.processError(request, response);
-        } catch (LogException e) {
-            e.printStackTrace();
-        } catch (AccademicYearException e) {
-            e.printStackTrace();
-        }
 
+        }
     }
 
     /**
