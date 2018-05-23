@@ -21,8 +21,7 @@
                             //      $("#status").replaceWith(function(){
                             //          return "<td id=\"status\"></td>";
                             //     });
-                            });
-                            alert('libro associato');
+                            // alert('libro associato');
                             location.reload(true);
                             // alert(data);
                             // $('#container').html(data);
@@ -51,7 +50,8 @@
                             idCourse: ${course.idCourse}
                         },
                         success: function(data) {
-                            alert('libro eliminato');
+                            // alert('libro eliminato');
+                            location.reload(true);
                             // alert(data);
                             // $('#container').html(data);
                         },
@@ -139,8 +139,7 @@
                         <#--<td><input type="checkbox" class="delete" id="${book.id}" name="idBook" value="${book.id}" > elimina</td>-->
                         <td><button type="button" id="${book.id}" name="${book.id}" value="${book.id}" class="btn btn-info associate">${course.name}, ${book.id}</button></td>
                         <td><button type="button" id="${book.id}" name="${book.id}" value="${book.id}" class="btn btn-info delete">${course.name}, ${book.id}</button></td>
-                        <#assign i=i+1>
-                        <td id="stat${i}"><#if booksByCourse?seq_contains(book) >associato <#else>non associato</#if></td>
+                        <td><#if booksByCourse?seq_contains(book) >associato <#else>non associato</#if></td>
                     </tr>
                     </#list>
                         </tbody>
