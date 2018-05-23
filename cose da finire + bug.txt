@@ -26,16 +26,8 @@ AddCourseRelation
 
 
 REV1 FRONT SIDE------------------------------------------------------------------------------------------------------------------------------------------------
-- ListCourseAn fare i pulsanti anno precedente, anno successivo
-
-- ListCourseAn: inserire anno attualmente visualizzato
-
 
 - ListStudyCourses: replicare ricerca per anno come in ListCourseAn
-
-
-- RemoveBook quando un libro viene eliminato non ricarica la pagina
-
 
 
 REV1 BACK SIDE------------------------------------------------------------------------------------------------------------------------------------------------

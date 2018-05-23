@@ -7,6 +7,14 @@
     </title>
 
 <#include "import.ftl">
+    <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById('material').classList.remove('in');
+            document.getElementById('material').classList.remove('active');
+            document.getElementById('studyCourse').classList.remove('in');
+            document.getElementById('studyCourse').classList.remove('active');
+        }
+    </script>
 
 </head>
 <body>
@@ -347,7 +355,7 @@
                 </div> <#--div panel-group-->
             </div> <#--div id dublin-->
 
-            <div id="material" class="tab-pane fade">
+            <div id="material" class="tab-pane fade in active">
                 <div class="panel-group">
 
                 <#--Materiale it-->
@@ -372,7 +380,7 @@
                 </div> <#--div panel-group-->
             </div> <#--div id material-->
 
-            <div id="studyCourse" class="tab-pane fade">
+            <div id="studyCourse" class="tab-pane fade in active">
                 <div class="tab-content">
 
                     <div class="table-responsive">

@@ -115,6 +115,7 @@
                             <select id="selectElementId" name="year" class="form-control">
 
                             </select>
+                            <noscript>la ricerca per anno funziona solo con i javascript abilitati!</noscript>
                         </div>
                     </div>
 
