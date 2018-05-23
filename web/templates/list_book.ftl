@@ -16,10 +16,17 @@
                             idCourse: ${course.idCourse}
                         },
                         success: function(data) {
+                            $('#status').load(document.URL +  ' #status', function () {
+                                // $("#status").replaceWith(function(){
+                                //     return "<td id=\"status\">associato</td>";
+                                // });
+
+                            });
                             alert('libro associato');
-                            location.reload(true);
+                            // location.reload(true);
                             // alert(data);
                             // $('#container').html(data);
+
                         },
                         error: function() {
                             console.log('errore');
@@ -131,7 +138,7 @@
                         <#--<td><input type="checkbox" class="delete" id="${book.id}" name="idBook" value="${book.id}" > elimina</td>-->
                         <td><button type="button" id="${book.id}" name="${book.id}" value="${book.id}" class="btn btn-info associate">${course.name}, ${book.id}</button></td>
                         <td><button type="button" id="${book.id}" name="${book.id}" value="${book.id}" class="btn btn-info delete">${course.name}, ${book.id}</button></td>
-                        <td><#if booksByCourse?seq_contains(book) >associato<#else> non associato</#if></td>
+                        <td id="status"><#if booksByCourse?seq_contains(book) >associato<#else> non associato</#if></td>
                     </tr>
                     </#list>
                         </tbody>

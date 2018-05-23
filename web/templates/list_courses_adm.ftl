@@ -52,7 +52,6 @@
                     <th> - </th>
                     <th> - </th>
                     <th> - </th>
-                    <th> - </th>
                 </tr>
                 </thead>
 
@@ -73,9 +72,6 @@
                         </td>
                         <td>
                             <a href="modAssociationCourseWithUser?id=${course.idCourse}">associa docente</a>
-                        </td>
-                        <td>
-                            <a href="UpdateCourse?idCourse=${course.idCourse}">aggiorna</a>
                         </td>
 
                     </tr>
