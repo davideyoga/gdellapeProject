@@ -93,10 +93,6 @@ public class CourseProfile extends BaseController {
                     datamodel.put("listPreparatory",listPreparatory);
                     datamodel.put("courseRelatedByYear",courseRelatedByYear);
 
-                    for(Course c: courseRelatedByYear){
-                        System.out.println(c);
-                    }
-
 
                     utilityManager.removePassword(listDocent);
 
