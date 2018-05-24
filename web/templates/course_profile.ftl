@@ -23,7 +23,8 @@
 <div class="container">
     <div class="center-block">
         <div class="w3ls-heading page-header">
-            <h3>Dettagli <#if course.name??>${course.name}<#else>corso</#if></h3>
+            <h3>Dettagli <#if course.name??>${course.name}<#else> </#if></h3>
+            <h4 class="text-center"> <#if course.year??> anno accademico ${course.year}<#else> </#if></h4>
         </div>
     </div>
 </div>
@@ -133,21 +134,31 @@
                                         <div class="col-md-3 col-xs-3 col-sm-3">
                                             <p>Docenti:</p>
                                         </div>
-                                        <div class="col-md-9 col-xs-9 col-sm-9">
+                                        <div class="col-md-9 col-xs-9 col-sm-9 ">
                                             <#list listDocent as docent>
-                                                <p><a href="UserProfile?email=${docent.email}&lng=IT">${docent.name} ${docent.surname}</a></p>
-                                                <br>
+                                                <p class="personal1"><a class="btn btn-warning custom" href="UserProfile?email=${docent.email}&lng=IT">${docent.name} ${docent.surname}</a></p>
                                             </#list>
                                         </div>
                                     </div>
-                                    <br>
 
+                                    <div class="col-md-12 col-xs-12 col-sm-12">
+                                        <div class="col-md-3 col-xs-3 col-sm-3">
+                                            <p>Anni precedenti:</p>
+                                        </div>
+                                        <div class="col-md-9 col-xs-9 col-sm-9">
+                                            <div>
+                                            <#list courseRelatedByYear as anno >
+                                                <p class="personal1"><a class="btn btn-info" href="CourseProfile?id=${anno.code}&year=${anno.year?right_pad(4)?substring(0, 4)?trim}&lng=IT">anno accademico ${anno.year}</a></p>
+                                            </#list>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <#--prerequisiti-->
+                <#--prerequisiti-->
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
@@ -165,7 +176,7 @@
                         </div>
                     </div>
 
-                    <#--obiettivi-->
+                <#--obiettivi-->
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
@@ -183,7 +194,7 @@
                         </div>
                     </div>
 
-                    <#--exame mode-->
+                <#--exame mode-->
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
@@ -201,7 +212,7 @@
                         </div>
                     </div>
 
-                    <#--teaching mode-->
+                <#--teaching mode-->
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
@@ -219,7 +230,7 @@
                         </div>
                     </div>
 
-                    <#--sillabo-->
+                <#--sillabo-->
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
@@ -262,25 +273,25 @@
             <div id="dublin" class="tab-pane fade">
                 <div class="panel-group">
 
-                    <#--Risultati di apprendimento-->
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" href="#know">Risultati di apprendimento</a>
-                                </h4>
-                            </div>
-                            <div id="know" class="panel-collapse collapse in">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-md-12 col-xs-12 col-sm-12">
+                <#--Risultati di apprendimento-->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#know">Risultati di apprendimento</a>
+                            </h4>
+                        </div>
+                        <div id="know" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12 col-sm-12">
                                             <#if course.knowledge_ita??>${course.knowledge_ita}<#else>${course.knowledge_eng}</#if>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                    <#--Campi d'utilizzo-->
+                <#--Campi d'utilizzo-->
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
@@ -298,59 +309,59 @@
                         </div>
                     </div>
 
-                        <#--Capacità di giudizio-->
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" href="#eva">Capacità di giudizio</a>
-                                </h4>
-                            </div>
-                            <div id="eva" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-md-12 col-xs-12 col-sm-12">
+                <#--Capacità di giudizio-->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#eva">Capacità di giudizio</a>
+                            </h4>
+                        </div>
+                        <div id="eva" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12 col-sm-12">
                                             <#if course.evaluation_ita??>${course.evaluation_ita}<#else>${course.evaluation_eng}</#if>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <#--Capacità di comunicazione-->
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" href="#comu">Capacità di comunicazione</a>
-                                </h4>
-                            </div>
-                            <div id="comu" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-md-12 col-xs-12 col-sm-12">
+                <#--Capacità di comunicazione-->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#comu">Capacità di comunicazione</a>
+                            </h4>
+                        </div>
+                        <div id="comu" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12 col-sm-12">
                                             <#if course.communication_ita??>${course.communication_ita}<#else>${course.communication_eng}</#if>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <#--Lifelog learning skills-->
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" href="#life">Lifelog learning skills</a>
-                                </h4>
-                            </div>
-                            <div id="life" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-md-12 col-xs-12 col-sm-12">
+                <#--Lifelog learning skills-->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#life">Lifelog learning skills</a>
+                            </h4>
+                        </div>
+                        <div id="life" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12 col-sm-12">
                                             <#if course.lifelog_learning_skills_ita??>${course.lifelog_learning_skills_ita}<#else>${course.lifelog_learning_skills_eng}</#if>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
                 </div> <#--div panel-group-->
             </div> <#--div id dublin-->
@@ -388,11 +399,11 @@
                             <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
 
                             <thead>
-                                <tr>
-                                    <th>Codice</th>
-                                    <th>Nome </th>
-                                    <th> - </th>
-                                </tr>
+                            <tr>
+                                <th>Codice</th>
+                                <th>Nome </th>
+                                <th> - </th>
+                            </tr>
                             </thead>
 
                             <tbody>
