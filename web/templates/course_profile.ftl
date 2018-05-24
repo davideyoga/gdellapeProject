@@ -7,6 +7,14 @@
     </title>
 
 <#include "import.ftl">
+    <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById('material').classList.remove('in');
+            document.getElementById('material').classList.remove('active');
+            document.getElementById('studyCourse').classList.remove('in');
+            document.getElementById('studyCourse').classList.remove('active');
+        }
+    </script>
 
 </head>
 <body>
@@ -128,140 +136,131 @@
                                         <div class="col-md-9 col-xs-9 col-sm-9">
                                             <#list listDocent as docent>
                                                 <p><a href="UserProfile?email=${docent.email}&lng=IT">${docent.name} ${docent.surname}</a></p>
+                                                <br>
                                             </#list>
                                         </div>
+                                    </div>
                                     <br>
-                                    </div>
-                                    <div class="col-md-12 col-xs-12 col-sm-12">
-                                        <div class="col-md-3 col-xs-3 col-sm-3">
-                                            <p>Anni Correlati:</p>
-                                        </div>
-                                        <div class="col-md-9 col-xs-9 col-sm-9">
-                                        <#list courseRelatedByYear as listaanni>
-                                            <p><a href="CourseProfile?id=${listaanni.idCourse}&lng=IT&year=${listaanni.year?right_pad(4)?substring(0, 4)?trim}&lng=IT">vai al corso dell'anno ${listaanni.year}</a></p>
-                                        </#list>
-                                            <br>
-                                        </div>
 
-                                    </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
                     <#--prerequisiti-->
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" href="#pre">Prerequisiti</a>
-                                </h4>
-                            </div>
-                            <div id="pre" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-md-12 col-xs-12">
-                                            <p>${course.prerequisite_ita}</p>
-                                        </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#pre">Prerequisiti</a>
+                            </h4>
+                        </div>
+                        <div id="pre" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12">
+                                        <p><#if course.prerequisite_ita??>${course.prerequisite_ita}<#else>${course.prerequisite_eng}</#if></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
                     <#--obiettivi-->
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" href="#goals">Obiettivi</a>
-                                </h4>
-                            </div>
-                            <div id="goals" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-md-12 col-xs-12 col-sm-12">
-                                            <p>${course.goals_ita}</p>
-                                        </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#goals">Obiettivi</a>
+                            </h4>
+                        </div>
+                        <div id="goals" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12 col-sm-12">
+                                        <p><#if course.goals_ita??>${course.goals_ita}<#else>${course.goals_eng}</#if></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
                     <#--exame mode-->
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" href="#exam">Modalit&agrave d'esame</a>
-                                </h4>
-                            </div>
-                            <div id="exam" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-md-12 col-xs-12 col-sm-12">
-                                            <p>${course.exame_mode_ita}</p>
-                                        </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#exam">Modalit&agrave d'esame</a>
+                            </h4>
+                        </div>
+                        <div id="exam" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12 col-sm-12">
+                                        <p><#if course.exame_mode_ita??>${course.exame_mode_ita}<#else>${course.exame_mode_eng}</#if></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
                     <#--teaching mode-->
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" href="#teach">Modalit&agrave d'insegnamento</a>
-                                </h4>
-                            </div>
-                            <div id="teach" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-md-12 col-xs-12 col-sm-12">
-                                            <p>${course.teaching_mode_ita}</p>
-                                        </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#teach">Modalit&agrave d'insegnamento</a>
+                            </h4>
+                        </div>
+                        <div id="teach" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12 col-sm-12">
+                                        <p><#if course.teaching_mode_ita??>${course.teaching_mode_ita}<#else>${course.teaching_mode_eng}</#if></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
                     <#--sillabo-->
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" href="#syl">Sillabo</a>
-                                </h4>
-                            </div>
-                            <div id="syl" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-md-12 col-xs-12 col-sm-12">
-                                            <p>${course.syllabus_ita}</p>
-                                        </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#syl">Sillabo</a>
+                            </h4>
+                        </div>
+                        <div id="syl" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12 col-sm-12">
+                                        <p><#if course.syllabus_ita??>${course.syllabus_ita}<#else>${course.syllabus_eng}</#if></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                    <#--note-->
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" href="#note">Note</a>
-                                </h4>
-                            </div>
-                            <div id="note" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-md-12 col-xs-12 col-sm-12">
-                                            <p>${course.note_ita}</p>
-                                        </div>
+                <#--note-->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#note">Note</a>
+                            </h4>
+                        </div>
+                        <div id="note" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12 col-sm-12">
+                                        <p><#if course.note_ita??>${course.note_ita}<#else>${course.note_eng}</#if></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    <#--div note-->
+                    </div>
+                <#--div note-->
 
-                    </div> <#--div panel-group-->
-                </div> <#--div id basic-->
+                </div> <#--div panel-group-->
+            </div> <#--div id basic-->
 
-                <div id="dublin" class="tab-pane fade">
-                    <div class="panel-group">
+            <div id="dublin" class="tab-pane fade">
+                <div class="panel-group">
 
                     <#--Risultati di apprendimento-->
                         <div class="panel panel-default">
@@ -274,7 +273,7 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-md-12 col-xs-12 col-sm-12">
-                                            <#if course.knowledge_ita??>${course.knowledge_ita}</#if>
+                                            <#if course.knowledge_ita??>${course.knowledge_ita}<#else>${course.knowledge_eng}</#if>
                                         </div>
                                     </div>
                                 </div>
@@ -282,24 +281,24 @@
                         </div>
 
                     <#--Campi d'utilizzo-->
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" href="#appl">Campi d'utilizzo</a>
-                                </h4>
-                            </div>
-                            <div id="appl" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-md-12 col-xs-12 col-sm-12">
-                                        <#if course.application_ita??>${course.application_ita}</#if>
-                                        </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#appl">Campi d'utilizzo</a>
+                            </h4>
+                        </div>
+                        <div id="appl" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12 col-sm-12">
+                                        <#if course.application_ita??>${course.application_ita}<#else>${course.application_eng}</#if>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                    <#--Capacità di giudizio-->
+                        <#--Capacità di giudizio-->
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
@@ -310,14 +309,14 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-md-12 col-xs-12 col-sm-12">
-                                            <#if course.evaluation_ita??>${course.evaluation_ita}</#if>
+                                            <#if course.evaluation_ita??>${course.evaluation_ita}<#else>${course.evaluation_eng}</#if>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                    <#--Capacità di comunicazione-->
+                        <#--Capacità di comunicazione-->
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
@@ -328,14 +327,14 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-md-12 col-xs-12 col-sm-12">
-                                            <#if course.communication_ita??>${course.communication_ita}</#if>
+                                            <#if course.communication_ita??>${course.communication_ita}<#else>${course.communication_eng}</#if>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                    <#--Lifelog learning skills-->
+                        <#--Lifelog learning skills-->
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
@@ -346,57 +345,57 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-md-12 col-xs-12 col-sm-12">
-                                            <#if course.lifelog_learning_skills_ita??>${course.lifelog_learning_skills_ita}</#if>
+                                            <#if course.lifelog_learning_skills_ita??>${course.lifelog_learning_skills_ita}<#else>${course.lifelog_learning_skills_eng}</#if>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                    </div> <#--div panel-group-->
-                </div> <#--div id dublin-->
+                </div> <#--div panel-group-->
+            </div> <#--div id dublin-->
 
-                <div id="material" class="tab-pane fade">
-                    <div class="panel-group">
+            <div id="material" class="tab-pane fade">
+                <div class="panel-group">
 
-                    <#--Materiale it-->
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <p>Materiale disponibile</p>
-                                </h4>
-                            </div>
-                            <div id="mat" class="panel-collapse">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-md-12 col-xs-12 col-sm-12">
-                                            <a href="ListMaterial?id=${course.idCourse}&lng=IT" class="btn btn-link my-text center-block m-b-5" role="button">Vai al materiale esterno</a>
-                                        </div>
+                <#--Materiale it-->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <p>Materiale disponibile</p>
+                            </h4>
+                        </div>
+                        <div id="mat" class="panel-collapse">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12 col-sm-12">
+                                        <a href="ListMaterial?id=${course.idCourse}&lng=IT" class="btn btn-link my-text center-block m-b-5" role="button">Vai al materiale esterno</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
 
-                    </div> <#--div panel-group-->
-                </div> <#--div id material-->
+                </div> <#--div panel-group-->
+            </div> <#--div id material-->
 
-                <div id="studyCourse" class="tab-pane fade">
-                    <div class="tab-content">
+            <div id="studyCourse" class="tab-pane fade">
+                <div class="tab-content">
 
-                        <div class="table-responsive">
-                            <table id="Scourse_table" class="table table-hover table-bordered table-striped">
-                                <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
+                    <div class="table-responsive">
+                        <table id="Scourse_table" class="table table-hover table-bordered table-striped">
+                            <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
 
-                                <thead>
+                            <thead>
                                 <tr>
                                     <th>Codice</th>
                                     <th>Nome </th>
                                     <th> - </th>
                                 </tr>
-                                </thead>
+                            </thead>
 
-                                <tbody>
+                            <tbody>
                                 <#list listStudyCourse as course>
                                 <tr>
                                     <td>${course.code}</td>
@@ -406,30 +405,30 @@
                                     </td>
                                 </tr>
                                 </#list>
-                                </tbody>
-                            </table>
+                            </tbody>
+                        </table>
 
-                        </div>
-                    </div><#--div tabcontent-->
-                </div> <#--div id studyCourse-->
-
-
-            </div> <#--div tab-content-->
+                    </div>
+                </div><#--div tabcontent-->
+            </div> <#--div id studyCourse-->
 
 
-        </div>  <#--div container-->
-    </div> <#--div row-->
+        </div> <#--div tab-content-->
+
+
+    </div>  <#--div container-->
+</div> <#--div row-->
 
 <#include "tail.ftl">
-    <script src="/templates/js/jquery.dataTables.js" type="text/javascript"></script>
-    <script src="/templates/js/dataTables.bootstrap.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        $(function() {
-            $("#Scourse_table").dataTable({
-                "iDisplayLength": 10,
-                "aLengthMenu": [[10, 25, 50, 100,  -1], [10, 25, 50, 100, "All"]]
-            });
+<script src="/templates/js/jquery.dataTables.js" type="text/javascript"></script>
+<script src="/templates/js/dataTables.bootstrap.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function() {
+        $("#Scourse_table").dataTable({
+            "iDisplayLength": 10,
+            "aLengthMenu": [[10, 25, 50, 100,  -1], [10, 25, 50, 100, "All"]]
         });
-    </script>
+    });
+</script>
 </body>
 </html>
