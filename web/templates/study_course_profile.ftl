@@ -5,6 +5,14 @@
     <title>Corso di studio</title>
 
     <#include "import.ftl">
+    <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById('desc').classList.remove('in');
+            document.getElementById('desc').classList.remove('active');
+            document.getElementById('course').classList.remove('in');
+            document.getElementById('course').classList.remove('active');
+        }
+    </script>
 
 </head>
 <body>
@@ -173,7 +181,7 @@
                 </div> <#--div panel-group-->
             </div> <#--div id basic-->
 
-            <div id="desc" class="tab-pane fade">
+            <div id="desc" class="tab-pane fade in active">
                 <div class="panel-group">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -190,7 +198,7 @@
                 </div> <#--div panel-group-->
             </div> <#--div id desc-->
 
-            <div id="course" class="tab-pane fade">
+            <div id="course" class="tab-pane fade in active">
                 <div class="panel-group">
 
                 <#list courses>
