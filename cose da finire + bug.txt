@@ -5,7 +5,7 @@ REV1 FRONT SIDE-----------------------------------------------------------------
 
 
 REV1 BACK SIDE------------------------------------------------------------------------------------------------------------------------------------------------
-- Aggiungere selettore anni nella pagina ListCourse (come fatto in ListCourseAn) FATTO  MA PERMETTERE DI NON INVIARE NULLA
+- Aggiungere selettore anni nella pagina ListCourse (come fatto in ListCourseAn) FATTO MA PERMETTERE DI NON INVIARE NULLA
 
 
 
