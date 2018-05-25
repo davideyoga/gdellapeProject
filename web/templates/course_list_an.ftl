@@ -68,6 +68,7 @@
                             <th>Settore</th>
                             <th>Semestre</th>
                             <th>Lingua</th>
+                            <th>Anno</th>
                             <th> - </th>
                         </tr>
                         </thead>
@@ -80,6 +81,7 @@
                             <td>${course.sector}</td>
                             <td>${course.semester}</td>
                             <td>${course.language}</td>
+                            <td>${course.year}</td>
                             <td>
                                 <a href="CourseProfile?id=${course.idCourse}&<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>">Leggi di piu'</a>
                             </td>

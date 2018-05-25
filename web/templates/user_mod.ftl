@@ -62,11 +62,11 @@
                         </div>
                         <div class="form-group">
                             <label for="pwd">Password: <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-html="true" title="la password deve essere composta da: &#13;&#10;-almeno 8 caratteri &#13;&#10;-almeno una maiuscola&#13;&#10;-almeno una minuscola&#13;&#10;-almeno un numero"></span></label>
-                            <input type="password" class="form-control" id="pwd" name="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
+                            <input type="password" class="form-control" id="pwd" name="password"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
                         </div>
                         <div class="form-group">
                             <label for="pwd">Ripeti password:</label>
-                            <input type="password" class="form-control" id="pwd2" name="ripetere-password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
+                            <input type="password" class="form-control" id="pwd2" name="ripetere-password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
                         </div>
                     </div>
                 <#--end access-->

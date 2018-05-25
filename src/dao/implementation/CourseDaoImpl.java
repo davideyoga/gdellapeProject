@@ -558,7 +558,7 @@ public class CourseDaoImpl extends DaoDataMySQLImpl implements CourseDao{
 
             this.selectCourseByCode.setString(1, code);
 
-            ResultSet rs = this.selectCourseByCfu.executeQuery();
+            ResultSet rs = this.selectCourseByCode.executeQuery();
 
             while (rs.next()){
 

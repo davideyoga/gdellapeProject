@@ -23,8 +23,16 @@ html, body{
     padding-top: 2em;
 }
 
+.personal1{
+    padding-top: 4px;
+}
+
 .personal2{
     padding-top: 1em;
+}
+
+.custom {
+    width: 215px !important;
 }
 
 .background{

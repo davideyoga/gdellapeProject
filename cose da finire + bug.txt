@@ -33,7 +33,6 @@ REV1 FRONT SIDE-----------------------------------------------------------------
 REV1 BACK SIDE------------------------------------------------------------------------------------------------------------------------------------------------
 - Aggiungere selettore anni nella pagina ListCourse (come fatto in ListCourseAn) FATTO  MA PERMETTERE DI NON INVIARE NULLA
 
-- Alla pagina di AdmModUser se nn e' inserita la password non si puo' modificare l'utente, togliere i limiti sulla password
 
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------
