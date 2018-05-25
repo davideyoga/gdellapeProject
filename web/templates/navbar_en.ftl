@@ -35,8 +35,8 @@
         <div class="clearfix"> </div>
     </div>
 
-    <div class="container">
-        <div class="w3layouts_agileits_nav_section">
+    <div class="row bg-color-ghostwhite">
+        <div class="w3layouts_agileits_nav_section container">
             <nav class="navbar navbar-default">
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <#--<div class="w3ls__agileinfo_search">-->

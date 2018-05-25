@@ -1,4 +1,22 @@
-per sistemare il fatto del javascript vedere alla pagina course_list_an
+
+REV1 FRONT SIDE------------------------------------------------------------------------------------------------------------------------------------------------
+
+- ListStudyCourses: replicare ricerca per anno come in ListCourseAn
+
+
+REV1 BACK SIDE------------------------------------------------------------------------------------------------------------------------------------------------
+- Aggiungere selettore anni nella pagina ListCourse (come fatto in ListCourseAn) FATTO  MA PERMETTERE DI NON INVIARE NULLA
+
+
+
+PARTE SERVER:
+LOG:
+    ricontrollare i log e scriverli meglio, con spazi ecc..
+
+-- SERVER controllare controlli doGet UpdateCourse, mandare anche l'anno attuale
+
+--  UpdateCourse mandare anno in cui ci troviamo
+
 
 
 ----------------------------------------------------------------------------------------------------------
@@ -20,31 +38,3 @@ AddCourseRelation
 
  -  Prendere dati tutti della stessa formattazione, ad esempio tutti minuscoli ecc...
 |----------------------------------------------------------------------------------------------|
-|----------------------------------------------------------------------------------------------|
-|----------------------------------------------------------------------------------------------|
-
-
-
-REV1 FRONT SIDE------------------------------------------------------------------------------------------------------------------------------------------------
-
-- ListStudyCourses: replicare ricerca per anno come in ListCourseAn
-
-
-REV1 BACK SIDE------------------------------------------------------------------------------------------------------------------------------------------------
-- Aggiungere selettore anni nella pagina ListCourse (come fatto in ListCourseAn) FATTO  MA PERMETTERE DI NON INVIARE NULLA
-
-
-
-------------------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-PARTE SERVER:
-LOG:
-    ricontrollare i log e scriverli meglio, con spazi ecc..
-
--- SERVER controllare controlli doGet UpdateCourse, mandare anche l'anno attuale
-
---  UpdateCourse mandare anno in cui ci troviamo
-

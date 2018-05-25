@@ -51,9 +51,10 @@
     </#list>
 
     <div class="row">
-        <div class="col-md-12 col-xs-12 fa-border-course">
-            <div class="w3ls-heading personal2">
-                <h3>Sezione Utenti</h3>
+        <div class="col-md-12 col-xs-12  well">
+            <#--<div class="w3ls-heading personal2">-->
+            <div class="page-header text-center">
+                <h2>Sezione Utenti</h2>
             </div>
             <div class="">
 
@@ -79,9 +80,9 @@
     <div class="clearfix"> </div>
 
     <div class="row">
-        <div class="col-md-12 col-xs-12 fa-border-course">
-            <div class="w3ls-heading personal">
-                <h3>Sezione percorsi di laurea</h3>
+        <div class="col-md-12 col-xs-12 well">
+            <div class="page-header text-center">
+                <h2>Sezione percorsi di laurea</h2>
             </div>
             <div class="">
                 <#if createStudyCourse>
@@ -106,9 +107,9 @@
     <div class="clearfix"> </div>
 
     <div class="row">
-        <div class="col-md-12 col-xs-12 fa-border-course">
-            <div class="w3ls-heading personal">
-                <h3>Sezione Insegnamenti</h3>
+        <div class="col-md-12 col-xs-12 well">
+            <div class="page-header text-center">
+                <h2>Sezione Insegnamenti</h2>
             </div>
             <div class="">
 
@@ -127,14 +128,20 @@
                     </section>
                 </a>
                 </#if>
+
+                <a href="/UpdateCourse">
+                    <section class="flat">
+                        <button>Aggiorna insegnamenti</button>
+                    </section>
+                </a>
             </div>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-12 col-xs-12 fa-border-course">
-            <div class="w3ls-heading personal">
-                <h3>Sezione Gruppi</h3>
+        <div class="col-md-12 col-xs-12 well">
+            <div class="page-header text-center">
+                <h2>Sezione Gruppi</h2>
             </div>
             <div class="">
 
@@ -159,9 +166,9 @@
 
     <#if logView>
         <div class="row">
-            <div class="col-md-12 col-xs-12 fa-border-course">
-                <div class="w3ls-heading personal">
-                    <h3>Log</h3>
+            <div class="col-md-12 col-xs-12 well">
+                <div class="page-header text-center">
+                    <h2>Log</h2>
                 </div>
                 <div class="">
 
