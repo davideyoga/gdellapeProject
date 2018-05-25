@@ -6,6 +6,14 @@
 
     <!--librerie-->
 <#include "import.ftl">
+    <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById('curr').classList.remove('in');
+            document.getElementById('curr').classList.remove('active');
+            document.getElementById('course').classList.remove('in');
+            document.getElementById('course').classList.remove('active');
+        }
+    </script>
 </head>
 <body>
 <!--menù navigazione-->
@@ -93,7 +101,7 @@
                 </div> <#--div panel-group-->
             </div> <#--div id contact-->
 
-            <div id="curr" class="tab-pane fade">
+            <div id="curr" class="tab-pane fade in active">
                 <div class="panel-group">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -113,7 +121,7 @@
                 </div> <#--div panel-group-->
             </div> <#--div id desc-->
 
-            <div id="course" class="tab-pane fade">
+            <div id="course" class="tab-pane fade in active">
                 <div class="panel-group">
 
                     <div class="table-responsive">
