@@ -40,6 +40,8 @@ public class UpdateCourse extends BaseController {
         //setto l'utente in sessione
         this.datamodel.put("user", sessionManager.getUser(request));
 
+        this.datamodel.put("actualYear", new AccademicYear(Calendar.getInstance()).getFirstYear());
+
         TemplateController.process("update_course.ftl", datamodel, response, getServletContext());
     }
 
