@@ -5,6 +5,11 @@
 
     <!--librerie-->
     <#include "import.ftl">
+    <script type="text/javascript">
+        window.onload = function() {
+            carica();
+        }
+    </script>
 </head>
 <body>
 <!--menù navigazione-->
@@ -34,9 +39,30 @@
         <div class="text-center"><a href="/HomeBackOffice" class="btn btn-warning my-text center-block" role="button">torna al back office</a></div>
     </div>
 
+    <div class="col-md-9 col-xs-9">
 
-    <div class="container">
+        <div>
+            <form class="" action="ListCourse" method="GET">
 
+                <div id="Accyear" class="form-group col-xs-2">
+                    <label for="selectElementId">anno accademico:</label>
+                    <select id="selectElementId" name="year" class="form-control">
+
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default">Cerca</button>
+                </div>
+
+            </form>
+
+            <a href="ListCourse" class="btn btn-default" role="button">azzera risultati</a>
+
+        </div>
+
+        <div class="w3ls-heading page-header">
+        </div>
         <div class="table-responsive" >
             <table id="course_table" class="table table-hover table-bordered table-striped">
                 <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
@@ -79,8 +105,8 @@
                 </tbody>
             </table>
         </div>
-    </div>
-<#--end container-->
+
+    </div><#--end col md 10-->
 </div>
 <#--end row-->
 

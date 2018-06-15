@@ -5,6 +5,11 @@
 
     <!--librerie-->
 <#include "import.ftl">
+    <script type="text/javascript">
+        window.onload = function() {
+            carica();
+        }
+    </script>
 </head>
 <body>
 <!--menù navigazione-->
@@ -31,18 +36,33 @@
 
 <div class="row">
     <div class="col-md-2 col-xs-2 my-menu">
-        <div class="text-center"><a href="/home" class="btn btn-warning my-text center-block" role="button">torna alla home</a></div>
+        <div class="text-center"><a href="/home" class="btn btn-warning my-text center-block" role="button">torna al back office</a></div>
     </div>
 
+    <div class="col-md-9 col-xs-9">
 
-    <div class="container">
-        <div class="col-md-12 col-xs-12">
+        <div>
+            <form class="" action="ListCourse" method="GET">
 
-            <div class="container">
+                <div id="Accyear" class="form-group col-xs-2">
+                    <label for="selectElementId">anno accademico:</label>
+                    <select id="selectElementId" name="year" class="form-control">
+
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default">Cerca</button>
+                </div>
+
+            </form>
+
+            <a href="ListCourse" class="btn btn-default" role="button">azzera risultati</a>
+
+        </div>
 
                 <div class="table-responsive" >
                     <table class="table table-hover table-bordered table-striped">
-                        <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
 
                         <thead>
                         <tr>
@@ -53,22 +73,23 @@
                         </thead>
 
                         <tbody>
-            <#list courses as course>
-            <tr>
-                <td>${course.name}</td>
-                <td>${course.code}</td>
-                <td>
-                    <a href="ModCourse?id=${course.idCourse}">modifica corso</a>
-                </td>
-            </tr>
-            </#list>
+                            <#list courses as course>
+                                <tr>
+                                    <td>${course.name}</td>
+                                    <td>${course.code}</td>
+                                    <td>
+                                        <a href="ModCourse?id=${course.idCourse}">modifica corso</a>
+                                    </td>
+                                </tr>
+                            </#list>
                         </tbody>
                     </table>
-                </div>
-            </div>
-<#--end container-->
-</div>
-<#--end row-->
+                </div><#--end table responsive-->
+
+
+        </div><#--div tabcontent-->
+    </div><#--end col md 12-->
+</div><#--end row-->
 
 
 <!--modulo contatti, email, conclusione-->

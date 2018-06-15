@@ -32,7 +32,7 @@
 
 
 <form action="ModAdmCourse" method="POST" id="mod" class="my-form" >
-<#--<div class="row" style="border: #00d21f 5px solid">-->
+
     <div class="row">
         <div class="col-md-2 col-xs-2 my-menu">
             <ul class="nav nav-pills nav-stacked text-center">

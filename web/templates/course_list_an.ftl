@@ -121,14 +121,6 @@
                         </div>
                     </div>
 
-                    <noscript>
-                        <div class="row">
-                            <div class="form-group col-xs-2">
-                                giovanni
-                            </div>
-                        </div>
-                    </noscript>
-
                     <div class="panel-group">
                         <div class="panel panel-default">
                             <div class="panel-heading">

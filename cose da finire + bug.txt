@@ -1,30 +1,19 @@
 
 REV1 FRONT SIDE------------------------------------------------------------------------------------------------------------------------------------------------
 
-- ListStudyCourses: replicare ricerca per anno come in ListCourseAn
-
 
 REV1 BACK SIDE------------------------------------------------------------------------------------------------------------------------------------------------
 - Aggiungere selettore anni nella pagina ListCourse (come fatto in ListCourseAn) FATTO MA PERMETTERE DI NON INVIARE NULLA
-
-- FARE RICERCA AVANZATA IN ListCourse nel back office
-
+- - ListStudyCourses: replicare ricerca per anno come in ListCourseAn
 
 
 PARTE SERVER:
 LOG:
     ricontrollare i log e scriverli meglio, con spazi ecc..
 
--- SERVER controllare controlli doGet UpdateCourse, mandare anche l'anno attuale
-
---  UpdateCourse mandare anno in cui ci troviamo
+-- SERVER controllare controlli doGet UpdateCourse
 
 
-
-----------------------------------------------------------------------------------------------------------
-Collegamenti con corsi modulati, corsi propedeutici,ect....
-AddCourseRelation
-----------------------------------------------------------------------------------------------------------
 
 
 |------OPZIONALE DA VALUTARE-------------------------------------------------------------------
@@ -33,10 +22,7 @@ AddCourseRelation
 |vedere parte relativa a curriculum, add e mod                                                 |
 |vedere opzioni per riportarsi la lingua sul tasto cambio lingua.                              |
 |fare 2 tipi di messaggio: "messageSucces" e "messageError" nelle servlet: -CreateUser         |
-|-  aggiungere tipo di cfu a course                                                               |
+|-  aggiungere tipo di cfu a course                                                            |
 
 |-  controllare utenti che l'admin può cancellare
     (es. l'admin non può cancellare se stesso)
-
- -  Prendere dati tutti della stessa formattazione, ad esempio tutti minuscoli ecc...
-|----------------------------------------------------------------------------------------------|
