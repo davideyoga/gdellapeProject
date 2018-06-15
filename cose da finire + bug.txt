@@ -1,6 +1,7 @@
 
 REV1 FRONT SIDE------------------------------------------------------------------------------------------------------------------------------------------------
 
+- corsi mutiati/propedeutici/ecc.. aggiungere anno
 
 REV1 BACK SIDE------------------------------------------------------------------------------------------------------------------------------------------------
 - Aggiungere selettore anni nella pagina ListCourse (come fatto in ListCourseAn) FATTO MA PERMETTERE DI NON INVIARE NULLA
