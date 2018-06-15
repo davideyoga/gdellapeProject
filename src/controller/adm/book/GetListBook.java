@@ -119,7 +119,7 @@ public class GetListBook extends BaseController {
                     List<Book> bookList = bookDao.getBooks();
 
                     //estraggo i libri collegati al corso
-                    List<Book> bookListByCourse = bookDao.getCourseByCourse(course);
+                    List<Book> bookListByCourse = bookDao.getBookByCourse(course);
 
                     //chiudo dao
                     bookDao.destroy();

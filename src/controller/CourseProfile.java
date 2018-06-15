@@ -1,12 +1,15 @@
 package controller;
 
 import dao.exception.DaoException;
+import dao.implementation.BookDaoImpl;
 import dao.implementation.CourseDaoImpl;
 import dao.implementation.StudyCourseDaoImpl;
 import dao.implementation.UserDaoImpl;
+import dao.interfaces.BookDao;
 import dao.interfaces.CourseDao;
 import dao.interfaces.StudyCourseDao;
 import dao.interfaces.UserDao;
+import model.Book;
 import model.Course;
 import model.StudyCourse;
 import model.User;
@@ -70,6 +73,9 @@ public class CourseProfile extends BaseController {
                     StudyCourseDao studyCourseDao = new StudyCourseDaoImpl(ds);
                     studyCourseDao.init();
 
+                    BookDao bookDao = new BookDaoImpl(ds);
+                    bookDao.init();
+
 
                     //estraggo i corsi mutuati ecc..
                     List<Course> listBorrowed = courseDao.getCourseBorrowed(course);
@@ -85,6 +91,9 @@ public class CourseProfile extends BaseController {
                     //estraggo i corsi di studio in cui il corso e' fruibile
                     List<StudyCourse> listStudyCourse = studyCourseDao.getStudyCourseByCourse(course);
 
+                    //estraggo i libri
+                    List<Book> listBook = bookDao.getBookByCourse(course);
+
                     //inserisco tutto nel datamodel
                     datamodel.put("course",course);
                     datamodel.put("listStudyCourse",listStudyCourse);
@@ -92,19 +101,34 @@ public class CourseProfile extends BaseController {
                     datamodel.put("listModulated",listModulated);
                     datamodel.put("listPreparatory",listPreparatory);
                     datamodel.put("courseRelatedByYear",courseRelatedByYear);
+                    datamodel.put("listBook", listBook);
+
+
+
+
+
+
+                    datamodel.put("value", "CourseProfile");
+
+
+
 
 
                     utilityManager.removePassword(listDocent);
 
                     datamodel.put("listDocent",listDocent);
 
-                    System.out.println(datamodel);
-
+                    System.out.println("\n");
+                    System.out.println("\n");
+                    System.out.println("listBook: "+ listBook);
+                    System.out.println("\n");
+                    System.out.println("\n");
 
                     //chiudo i dao
                     userDao.destroy();
                     studyCourseDao.destroy();
                     courseDao.destroy();
+                    bookDao.destroy();
 
                     //lancio il processo template
                     this.processTemplate(request, response);

@@ -166,6 +166,13 @@ public class ModCourseRelation extends BaseController {
                         //estraggo tutti i corsi dell'anno del corso estratto dal parametro get
                         List<Course> allCourses = courseDao.getCourseByYear(courseById.getYear());
 
+                        System.out.println("\n");
+                        System.out.println("\n");
+                        System.out.println(allCourses);
+                        System.out.println("\n");System.out.println("\n");
+
+
+
                         //estraggo i corsi della modalita' selezionata
                         List<Course> courseRelated = new ArrayList <>();
 
