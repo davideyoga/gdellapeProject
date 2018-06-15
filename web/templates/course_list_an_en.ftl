@@ -71,7 +71,7 @@
                             <th> - </th>
                         </tr>
                         </thead>
-
+<#--asdfadf-->
                         <tbody>
                         <#list listCourse as course>
                         <tr>
