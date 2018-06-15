@@ -7,6 +7,8 @@ REV1 FRONT SIDE-----------------------------------------------------------------
 REV1 BACK SIDE------------------------------------------------------------------------------------------------------------------------------------------------
 - Aggiungere selettore anni nella pagina ListCourse (come fatto in ListCourseAn) FATTO MA PERMETTERE DI NON INVIARE NULLA
 
+- FARE RICERCA AVANZATA IN ListCourse nel back office
+
 
 
 PARTE SERVER:

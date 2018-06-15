@@ -83,7 +83,7 @@
                     <a href="/modCourseRelation?idCourse=${course.idCourse}&mode=module" class="btn btn-warning my-text center-block m-b-5" role="button">associa moduli</a>
                 </#if>
                 <#if mod>
-                    <a href="/modCourseRelation?idCourse=${course.idCourse}&mode=borrowed" class="btn btn-warning my-text center-block m-b-5" role="button">borrowed???</a>
+                    <a href="/modCourseRelation?idCourse=${course.idCourse}&mode=borrowed" class="btn btn-warning my-text center-block m-b-5" role="button">mutua corso</a>
                 </#if>
                 <#if mod>
                     <a href="/modCourseRelation?idCourse=${course.idCourse}&mode=preparatory" class="btn btn-warning my-text center-block m-b-5" role="button">corsi propedeutici</a>

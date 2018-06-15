@@ -137,7 +137,7 @@ public class BookDaoImpl extends DaoDataMySQLImpl implements BookDao {
     }
 
     @Override
-    public List <Book> getCourseByCourse(Course course) throws DaoException {
+    public List <Book> getBookByCourse(Course course) throws DaoException {
         List<Book> list = new ArrayList<>();
 
         try{
@@ -154,6 +154,10 @@ public class BookDaoImpl extends DaoDataMySQLImpl implements BookDao {
 
                 list.add(book);
             }
+
+            System.out.println("\n");
+            System.out.println("\n");
+            System.out.println("book: " + list);
 
         }catch (Exception e) {
 
