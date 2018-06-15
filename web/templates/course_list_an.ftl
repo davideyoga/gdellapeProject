@@ -210,7 +210,7 @@
             </div><#--div search-->
 
         </div><#--div tabcontent-->
-    </div> <#--div col md 9-->
+    </div> <#--div col md 12-->
 </div><#--div row-->
 
 <!--modulo contatti, email, conclusione-->

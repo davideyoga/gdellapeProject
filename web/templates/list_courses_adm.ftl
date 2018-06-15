@@ -58,30 +58,30 @@
             </form>
 
             <a href="ListCourse" class="btn btn-default" role="button">azzera risultati</a>
+
         </div>
 
         <div class="w3ls-heading page-header">
         </div>
-        <div id="list" class="tab-pane fade in active">
-            <div class="table-responsive" >
-                <table id="course_table" class="table table-hover table-bordered table-striped">
-                    <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
+        <div class="table-responsive" >
+            <table id="course_table" class="table table-hover table-bordered table-striped">
+                <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
 
-                    <thead>
-                    <tr>
-                        <th>Codice</th>
-                        <th>Nome </th>
-                        <th>Settore</th>
-                        <th>Semestre</th>
-                        <th>Lingua</th>
-                        <th>Anno</th>
-                        <th> - </th>
-                        <th> - </th>
-                        <th> - </th>
-                    </tr>
-                    </thead>
+                <thead>
+                <tr>
+                    <th>Codice</th>
+                    <th>Nome </th>
+                    <th>Settore</th>
+                    <th>Semestre</th>
+                    <th>Lingua</th>
+                    <th>Anno</th>
+                    <th> - </th>
+                    <th> - </th>
+                    <th> - </th>
+                </tr>
+                </thead>
 
-                    <tbody>
+                <tbody>
                     <#list courses as course>
                     <tr>
                         <td>${course.code}</td>
@@ -102,10 +102,9 @@
 
                     </tr>
                     </#list>
-                    </tbody>
-                </table>
-            </div>
-        </div><#--div list-->
+                </tbody>
+            </table>
+        </div>
 
     </div><#--end col md 10-->
 </div>
