@@ -57,9 +57,7 @@
 
             </form>
 
-            <div >
-                <a href="ListCourse" class="btn btn-default" role="button">azzera risultati</a>
-            </div>
+            <a href="ListCourse" class="btn btn-default" role="button">azzera risultati</a>
         </div>
 
         <div class="w3ls-heading page-header">
