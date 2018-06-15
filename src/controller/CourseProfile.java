@@ -104,6 +104,16 @@ public class CourseProfile extends BaseController {
                     datamodel.put("listBook", listBook);
 
 
+
+
+
+
+                    datamodel.put("value", "CourseProfile");
+
+
+
+
+
                     utilityManager.removePassword(listDocent);
 
                     datamodel.put("listDocent",listDocent);
