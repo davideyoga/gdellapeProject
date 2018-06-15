@@ -175,7 +175,7 @@ public class AdmModUser extends BaseController {
 
                                     datamodel.put("message", "Utente aggiornato con successo");
 
-                                    logManager.addLog(sessionManager.getUser(request), "USER " + userPrimaDelleModifiche + " IT'S CHANGE: " + userDaForm, ds);
+                                    logManager.addLog(sessionManager.getUser(request), "USER " + userPrimaDelleModifiche.toStringForLog() + " IT'S CHANGE: " + userDaForm.toStringForLog(), ds);
 
                                 }
                                 //se non e' cambiato non faccio nulla
@@ -265,7 +265,7 @@ public class AdmModUser extends BaseController {
                                 if (gruppiCambiati == true) {
 
                                     //aggiungo log di modifica associazioni con i gruppi
-                                    logManager.addLog(sessionManager.getUser(request), "USER: " + userDaForm + " HAS SUBMITTED CHANGES TO ASSOCIATED GROUPS", ds);
+                                    logManager.addLog(sessionManager.getUser(request), "USER: " + userDaForm.toStringForLog() + " HAS SUBMITTED CHANGES TO ASSOCIATED GROUPS", ds);
 
                                 }
 
