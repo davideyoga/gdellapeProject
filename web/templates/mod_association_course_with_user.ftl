@@ -8,13 +8,6 @@
 <body>
 <#include "navbar.ftl">
 
-<div class="container">
-    <div class="center-block">
-        <div class="w3ls-heading page-header">
-            <h3>Associa corso e docenti</h3>
-        </div>
-    </div>
-</div>
 
 <div class="container">
     <div>
@@ -27,14 +20,14 @@
     </div>
 </div>
 
+
 <div class="container">
-
-        <#assign x=currentYear>
-
-    <div>Course: ${course.name}</div>
-    <div>AGE: ${currentYear}</div>
-<#--<a href="modAssociationCourseWithUser?id=${course.idCourse}&age=${(currentFirstYear - 1)?string.computer} ">Previous year</a>-->
-<#--<a href="modAssociationCourseWithUser?id=${course.idCourse}&age=${(currentFirstYear + 1)?string.computer} ">Next year</a>-->
+    <div class="center-block">
+        <div class="w3ls-heading page-header">
+            <h3>Associa docenti a <#if course.name??>${course.name}<#else> </#if></h3>
+            <h4 class="text-center"> <#if course.year??> anno accademico ${course.year}<#else> </#if></h4>
+        </div>
+    </div>
 </div>
 
 
