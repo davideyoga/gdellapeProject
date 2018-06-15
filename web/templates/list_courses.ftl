@@ -51,13 +51,13 @@
                     </select>
                 </div>
 
+                <br>
+
                 <div class="form-group">
                     <button type="submit" class="btn btn-default">Cerca</button>
                 </div>
 
             </form>
-
-            <a href="ListCourse" class="btn btn-default" role="button">azzera risultati</a>
 
         </div>
 

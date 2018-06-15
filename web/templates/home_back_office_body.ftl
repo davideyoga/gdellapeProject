@@ -39,6 +39,9 @@
         <#if service.name == 'modCourse'>
             <#assign modCourse= true>
         </#if>
+        <#if service.name == 'updateCourse'>
+            <#assign updateCourse= true>
+        </#if>
         <#if service.name == 'createGroup'>
             <#assign createGroup = true>
         </#if>
@@ -50,6 +53,7 @@
         </#if>
     </#list>
 
+    <#if createUser && viewUser>
     <div class="row">
         <div class="col-md-12 col-xs-12  well">
             <#--<div class="w3ls-heading personal2">-->
@@ -76,9 +80,11 @@
             </div>
         </div>
     </div>
+    </#if>
 
     <div class="clearfix"> </div>
 
+    <#if createStudyCourse && viewStudyCourse>
     <div class="row">
         <div class="col-md-12 col-xs-12 well">
             <div class="page-header text-center">
@@ -103,9 +109,11 @@
             </div>
         </div>
     </div>
+    </#if>
 
     <div class="clearfix"> </div>
 
+    <#if createCourse && modCourse && updateCourse>
     <div class="row">
         <div class="col-md-12 col-xs-12 well">
             <div class="page-header text-center">
@@ -129,15 +137,19 @@
                 </a>
                 </#if>
 
+                <#if updateCourse>
                 <a href="/UpdateCourse">
                     <section class="flat">
                         <button>Aggiorna insegnamenti</button>
                     </section>
                 </a>
+                </#if>
             </div>
         </div>
     </div>
+    </#if>
 
+    <#if createGroup && modGroups>
     <div class="row">
         <div class="col-md-12 col-xs-12 well">
             <div class="page-header text-center">
@@ -163,6 +175,8 @@
             </div>
         </div>
     </div>
+    </#if>
+
 
     <#if logView>
         <div class="row">

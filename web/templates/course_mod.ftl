@@ -54,7 +54,6 @@
                     </ul>
                 </li>
                 <li><a data-toggle="pill" href="#notes_page">Note</a></li>
-                <li><a data-toggle="pill" href="#ext_mat">Materiale esterno</a></li>
             </ul>
             <br>
             <div class="text-center"><button type="submit" form="mod" class="btn btn-default">Modifica corso</button></div>
@@ -68,13 +67,25 @@
                     <#if service.name == 'addBook'>
                         <#assign addBook= true>
                     </#if>
+                    <#if service.name == 'modAllCourse'>
+                        <#assign mod= true>
+                    </#if>
                 </#list>
                 <#if addMaterial>
                     <a href="AddMaterial?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">Aggiugni materiale esterno</a>
                 </#if>
                 <#if addBook>
-                    <a href="AddBook?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">Aggiugni nuovo libro</a>
+                    <a href="GetListBook?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">Aggiungi libri</a>
                 </#if>
+                <#--<#if mod>-->
+                    <#--<a href="/modCourseRelation?idCourse=${course.idCourse}&mode=module" class="btn btn-warning my-text center-block m-b-5" role="button">associa moduli</a>-->
+                <#--</#if>-->
+                <#--<#if mod>-->
+                    <#--<a href="/modCourseRelation?idCourse=${course.idCourse}&mode=borrowed" class="btn btn-warning my-text center-block m-b-5" role="button">mutua corso</a>-->
+                <#--</#if>-->
+                <#--<#if mod>-->
+                    <#--<a href="/modCourseRelation?idCourse=${course.idCourse}&mode=preparatory" class="btn btn-warning my-text center-block m-b-5" role="button">corsi propedeutici</a>-->
+                <#--</#if>-->
                 <a href="ListCourse" class="btn btn-warning my-text center-block" role="button">Torna alla lista dei corsi</a>
             </div>
         </div>
@@ -93,15 +104,7 @@
                         <#--<p class="form-control-static"><#if course.code??>${course.code}<#else></#if></p>-->
                             <span class="help-block">Solo un amministratore può modificare il codice</span>
                         </div>
-                    <#--<div class="col-md-12 col-xs-12 well well-sm">-->
-                    <#--<div class="col-md-3 col-xs-3 col-sm-3">-->
-                    <#--<p>Codice:</p>-->
-                    <#--</div>-->
-                    <#--<div class="col-md-9 col-xs-9 col-sm-9">-->
-                    <#--<p>${course.code}</p>-->
-                    <#--</div>-->
-                    <#--</div>-->
-                    <#--<br><br>-->
+
                         <div class="form-group">
                             <label for="nome">Nome:</label>
                             <input type="text" class="form-control" id="nome" name="name" value="<#if course.name??>${course.name}<#else></#if>">

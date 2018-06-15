@@ -107,13 +107,11 @@
                     <div id="ric" class="tab-pane fade">
                         <div class="form-group">
                             <label for="receprion_ita">Orario di ricevimento:</label>
-                            <textarea class="form-control" rows="5" id="receprion_ita" name="receprion_hours_ita"><#if usermod.receprion_hours_ita??>${usermod.receprion_hours_ita}<#else></#if>
-                            </textarea>
+                            <textarea class="form-control" rows="5" id="receprion_ita" name="receprion_hours_ita"><#if usermod.receprion_hours_ita??>${usermod.receprion_hours_ita}<#else></#if></textarea>
                         </div>
                         <div class="form-group">
                             <label for="receprion_eng">Orario di ricevimento:</label>
-                            <textarea class="form-control" rows="5" id="receprion_eng" name="receprion_hours_eng"><#if usermod.receprion_hours_eng??>${usermod.receprion_hours_eng}<#else></#if>
-                            </textarea>
+                            <textarea class="form-control" rows="5" id="receprion_eng" name="receprion_hours_eng"><#if usermod.receprion_hours_eng??>${usermod.receprion_hours_eng}<#else></#if></textarea>
                         </div>
                     </div>
                 <#--end ric-->

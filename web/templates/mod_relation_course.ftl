@@ -65,6 +65,7 @@
                                 <tr>
                                     <th>Codice</th>
                                     <th>nome</th>
+                                    <th>anno</th>
                                     <th><#if mode=='borrowed'>borrowed</#if>
                                         <#if mode=='preparatory'>corsi propedeutici</#if>
                                         <#if mode=='module'>associa moduli</#if></th>
@@ -76,6 +77,7 @@
                                     <tr>
                                         <td>${course.code}</td>
                                         <td>${course.name}</td>
+                                        <td>${course.year}</td>
                                         <td>
                                             <input type="checkbox" name="${course.idCourse}" value="${course.idCourse}" <#if courseRelated?seq_contains(course)>checked<#else></#if> >
                                         </td>
