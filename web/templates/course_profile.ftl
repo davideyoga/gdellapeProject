@@ -3,7 +3,7 @@
 <head>
 <#--sono le informazioni specifiche della materia-->
     <title>
-        Dettagli corso
+        Dettagli corsozz
     </title>
 
 <#include "import.ftl">
