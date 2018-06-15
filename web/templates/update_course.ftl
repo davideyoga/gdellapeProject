@@ -64,7 +64,7 @@
                             <td>${course.year}</td>
                             <td>
 
-                                <a class="btn btn-info <#if course.year??>disabled</#if>" role="button" href="UpdateCourse?idCourse=${course.idCourse}&mode=1&<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>">attualizza</a>
+                                <a class="btn btn-info" role="button" href="UpdateCourse?idCourse=${course.idCourse}&mode=1&<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>">attualizza</a>
                             </td>
                             <td>
                                 <a href="UpdateCourse?idCourse=${course.idCourse}&mode=2&<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>">anno nuovo</a>

@@ -121,14 +121,6 @@
                         </div>
                     </div>
 
-                    <noscript>
-                        <div class="row">
-                            <div class="form-group col-xs-2">
-                                giovanni
-                            </div>
-                        </div>
-                    </noscript>
-
                     <div class="panel-group">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -218,7 +210,7 @@
             </div><#--div search-->
 
         </div><#--div tabcontent-->
-    </div> <#--div col md 12-->
+    </div> <#--div col md 9-->
 </div><#--div row-->
 
 <!--modulo contatti, email, conclusione-->

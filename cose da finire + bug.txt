@@ -1,14 +1,10 @@
 
 REV1 FRONT SIDE------------------------------------------------------------------------------------------------------------------------------------------------
 
-- ListStudyCourses: replicare ricerca per anno come in ListCourseAn
-
------- UpdateCourse: finire pagina
-
 
 REV1 BACK SIDE------------------------------------------------------------------------------------------------------------------------------------------------
 - Aggiungere selettore anni nella pagina ListCourse (come fatto in ListCourseAn) FATTO MA PERMETTERE DI NON INVIARE NULLA
-
+- - ListStudyCourses: replicare ricerca per anno come in ListCourseAn
 
 
 PARTE SERVER:
@@ -17,7 +13,6 @@ LOG:
 
 -- SERVER controllare controlli doGet UpdateCourse
 
---  UpdateCourse mandare anno in cui ci troviamo: fatto actualYear
 
 
 
@@ -27,7 +22,7 @@ LOG:
 |vedere parte relativa a curriculum, add e mod                                                 |
 |vedere opzioni per riportarsi la lingua sul tasto cambio lingua.                              |
 |fare 2 tipi di messaggio: "messageSucces" e "messageError" nelle servlet: -CreateUser         |
-|-  aggiungere tipo di cfu a course                                                               |
+|-  aggiungere tipo di cfu a course                                                            |
 
 |-  controllare utenti che l'admin può cancellare
     (es. l'admin non può cancellare se stesso)
