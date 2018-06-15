@@ -396,37 +396,22 @@
 
 
             <div id="book" class="tab-pane fade">
-                <div class="panel-group">
 
-                <#--libri it-->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <p>Libri: </p>
-                            </h4>
-                        </div>
-                        <div id="mat" class="panel-collapse">
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-md-12 col-xs-12 col-sm-12">
+                <div class="table-responsive">
+                    <table id="book_table" class="table table-hover table-bordered table-striped">
 
+                        <thead>
+                        <tr>
+                            <th>Codice</th>
+                            <th>Titolo</th>
+                            <th>Volume</th>
+                            <th>Anno</th>
+                            <th>editore</th>
+                            <th>Link</th>
+                        </tr>
+                        </thead>
 
-                                        <div class="table-responsive">
-                                            <table id="course_table" class="table table-hover table-bordered table-striped">
-                                                <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
-
-                                                <thead>
-                                                <tr>
-                                                    <th>Codice</th>
-                                                    <th>Titolo</th>
-                                                    <th>Volume</th>
-                                                    <th>Anno</th>
-                                                    <th>editore</th>
-                                                    <th>Link</th>
-                                                </tr>
-                                                </thead>
-
-                                                <tbody>
+                        <tbody>
                         <#list listBook as book>
                         <tr>
                             <td>${book.code}</td>
@@ -437,36 +422,29 @@
                             <td>${book.link}</td>
                         </tr>
                         </#list>
-                                                </tbody>
-                                            </table>
+                        </tbody>
+                    </table>
 
-                                        </div>
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                </div><#--div id table responsive-->
 
+        </div> <#--div id book-->
 
-                </div> <#--div panel-group-->
-            </div> <#--div id material-->
+        <div id="studyCourse" class="tab-pane fade">
+            <div class="tab-content">
 
-            <div id="studyCourse" class="tab-pane fade">
-                <div class="tab-content">
+                <div class="table-responsive">
+                    <table id="Scourse_table" class="table table-hover table-bordered table-striped">
+                        <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
 
-                    <div class="table-responsive">
-                        <table id="Scourse_table" class="table table-hover table-bordered table-striped">
-                            <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
+                        <thead>
+                        <tr>
+                            <th>Codice</th>
+                            <th>Nome </th>
+                            <th> - </th>
+                        </tr>
+                        </thead>
 
-                            <thead>
-                            <tr>
-                                <th>Codice</th>
-                                <th>Nome </th>
-                                <th> - </th>
-                            </tr>
-                            </thead>
-
-                            <tbody>
+                        <tbody>
                                 <#list listStudyCourse as course>
                                 <tr>
                                     <td>${course.code}</td>
@@ -476,23 +454,31 @@
                                     </td>
                                 </tr>
                                 </#list>
-                            </tbody>
-                        </table>
+                        </tbody>
+                    </table>
 
-                    </div>
-                </div><#--div tabcontent-->
-            </div> <#--div id studyCourse-->
-
-
-        </div> <#--div tab-content-->
+                </div>
+            </div><#--div tabcontent-->
+        </div> <#--div id studyCourse-->
 
 
-    </div>  <#--div container-->
+    </div> <#--div tab-content-->
+
+
+</div>  <#--div container-->
 </div> <#--div row-->
 
 <#include "tail.ftl">
 <script src="/templates/js/jquery.dataTables.js" type="text/javascript"></script>
 <script src="/templates/js/dataTables.bootstrap.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function() {
+        $("#book_table").dataTable({
+            "iDisplayLength": 10,
+            "aLengthMenu": [[10, 25, 50, 100,  -1], [10, 25, 50, 100, "All"]]
+        });
+    });
+</script>
 <script type="text/javascript">
     $(function() {
         $("#Scourse_table").dataTable({
@@ -503,12 +489,3 @@
 </script>
 </body>
 </html>
-
-
-
-
-
-
-<#list listBook as book>
-                                        <a href="getListBook?id=${course.idCourse}&lng=IT" class="btn btn-link my-text center-block m-b-5" role="button">Vai al materiale esterno</a>
-</#list>
