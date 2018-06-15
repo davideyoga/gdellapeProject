@@ -173,6 +173,8 @@ public class AdmModUser extends BaseController {
                                     //effettuo l'update
                                     userDao.storeUser(userDaForm);
 
+                                    datamodel.put("message", "Utente aggiornato con successo");
+
                                     logManager.addLog(sessionManager.getUser(request), "USER " + userPrimaDelleModifiche + " IT'S CHANGE: " + userDaForm, ds);
 
                                 }

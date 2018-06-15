@@ -296,7 +296,7 @@ public class ModCourseRelation extends BaseController {
                          */
 
                         //estraggo tutti i corsi di quest'anno
-                        List<Course> allCourses = courseDao.getCourseByYear(courseById.getYear());
+                        List<Course> allCourses = courseDao.getCourses();
 
                         //estraggo i corsi della modalita' selezionata
                         List<Course> oldCourseRelated = new ArrayList <>();

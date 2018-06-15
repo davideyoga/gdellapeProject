@@ -2,6 +2,14 @@
 REV1 FRONT SIDE------------------------------------------------------------------------------------------------------------------------------------------------
 
 - corsi mutiati/propedeutici/ecc.. aggiungere anno
+- AdmModUser: tolgiere placeolder orario ricevimento
+- modAssociationCourseWithUser aggiungere nella tabella voce email
+- spazi vuoti nell'input modifica corso cfu
+- modAssociationCourseWithUser: formattare nome corso scelto
+- modCourse (servelt per modiifcare un corso da parte dei docenti) farla come ModAdmCourse
+- HomeBackOfficeBody per docente aggiungereer controllo su permesso updateCourse
+- course_list_an_en farla in inglese
+
 
 REV1 BACK SIDE------------------------------------------------------------------------------------------------------------------------------------------------
 - Aggiungere selettore anni nella pagina ListCourse (come fatto in ListCourseAn) FATTO MA PERMETTERE DI NON INVIARE NULLA
