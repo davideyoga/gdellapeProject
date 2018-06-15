@@ -135,7 +135,7 @@
                                         </div>
                                         <div class="col-md-9 col-xs-9 col-sm-9">
                                             <#list listDocent as docent>
-                                                <p class="personal1"><a class="btn btn-warning custom" href="UserProfile?email=${docent.email}&lng=EN">${docent.name} ${docent.surname}</a></p>
+                                                <p class="personal1"><a class="btn btn-warning custom" href="UserProfile?email=${docent.email}&lng=EN">Prof. ${docent.name} ${docent.surname}</a></p>
                                             </#list>
                                         </div>
                                     </div>

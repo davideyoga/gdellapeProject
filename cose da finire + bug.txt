@@ -3,8 +3,6 @@ REV1 FRONT SIDE-----------------------------------------------------------------
 
 - ListStudyCourses: replicare ricerca per anno come in ListCourseAn
 
------- UpdateCourse: finire pagina
-
 
 REV1 BACK SIDE------------------------------------------------------------------------------------------------------------------------------------------------
 - Aggiungere selettore anni nella pagina ListCourse (come fatto in ListCourseAn) FATTO MA PERMETTERE DI NON INVIARE NULLA
@@ -17,10 +15,16 @@ PARTE SERVER:
 LOG:
     ricontrollare i log e scriverli meglio, con spazi ecc..
 
--- SERVER controllare controlli doGet UpdateCourse
+-- SERVER controllare controlli doGet UpdateCourse, mandare anche l'anno attuale
 
---  UpdateCourse mandare anno in cui ci troviamo: fatto actualYear
+--  UpdateCourse mandare anno in cui ci troviamo
 
+
+
+----------------------------------------------------------------------------------------------------------
+Collegamenti con corsi modulati, corsi propedeutici,ect....
+AddCourseRelation
+----------------------------------------------------------------------------------------------------------
 
 
 |------OPZIONALE DA VALUTARE-------------------------------------------------------------------
@@ -33,3 +37,6 @@ LOG:
 
 |-  controllare utenti che l'admin può cancellare
     (es. l'admin non può cancellare se stesso)
+
+ -  Prendere dati tutti della stessa formattazione, ad esempio tutti minuscoli ecc...
+|----------------------------------------------------------------------------------------------|

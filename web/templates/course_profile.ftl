@@ -52,6 +52,7 @@
             <li class="active"><a data-toggle="tab" href="#basic">Dati di base</a></li>
             <li><a data-toggle="tab" href="#dublin">Descrittori di Dublino</a></li>
             <li><a data-toggle="tab" href="#material">Materiale</a></li>
+            <li><a data-toggle="tab" href="#book">Libri associati</a></li>
             <li><a data-toggle="tab" href="#studyCourse">Lauree associate</a></li>
         </ul>
 
@@ -136,10 +137,12 @@
                                         </div>
                                         <div class="col-md-9 col-xs-9 col-sm-9 ">
                                             <#list listDocent as docent>
-                                                <p class="personal1"><a class="btn btn-warning custom" href="UserProfile?email=${docent.email}&lng=IT">${docent.name} ${docent.surname}</a></p>
+                                                <p class="personal1"><a class="btn btn-warning custom" href="UserProfile?email=${docent.email}&lng=IT">Prof.  ${docent.name} ${docent.surname}</a></p>
                                             </#list>
                                         </div>
                                     </div>
+
+
 
                                     <div class="col-md-12 col-xs-12 col-sm-12">
                                         <div class="col-md-3 col-xs-3 col-sm-3">
@@ -391,6 +394,63 @@
                 </div> <#--div panel-group-->
             </div> <#--div id material-->
 
+
+            <div id="book" class="tab-pane fade">
+                <div class="panel-group">
+
+                <#--libri it-->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <p>Libri: </p>
+                            </h4>
+                        </div>
+                        <div id="mat" class="panel-collapse">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12 col-sm-12">
+
+
+                                        <div class="table-responsive">
+                                            <table id="course_table" class="table table-hover table-bordered table-striped">
+                                                <!--Come un for-each, cicla sulla lista di corso di studi estraendo ogni volta il corso corrente della lista-->
+
+                                                <thead>
+                                                <tr>
+                                                    <th>Codice</th>
+                                                    <th>Titolo</th>
+                                                    <th>Volume</th>
+                                                    <th>Anno</th>
+                                                    <th>editore</th>
+                                                    <th>Link</th>
+                                                </tr>
+                                                </thead>
+
+                                                <tbody>
+                        <#list listBook as book>
+                        <tr>
+                            <td>${book.code}</td>
+                            <td>${book.title}</td>
+                            <td>${book.volume}</td>
+                            <td>${book.age}</td>
+                            <td>${book.editor}</td>
+                            <td>${book.link}</td>
+                        </tr>
+                        </#list>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div> <#--div panel-group-->
+            </div> <#--div id material-->
+
             <div id="studyCourse" class="tab-pane fade">
                 <div class="tab-content">
 
@@ -443,3 +503,12 @@
 </script>
 </body>
 </html>
+
+
+
+
+
+
+<#list listBook as book>
+                                        <a href="getListBook?id=${course.idCourse}&lng=IT" class="btn btn-link my-text center-block m-b-5" role="button">Vai al materiale esterno</a>
+</#list>
