@@ -15,6 +15,9 @@ REV1 BACK SIDE------------------------------------------------------------------
 - Aggiungere selettore anni nella pagina ListCourse (come fatto in ListCourseAn) FATTO MA PERMETTERE DI NON INVIARE NULLA
 - - ListStudyCourses: replicare ricerca per anno come in ListCourseAn
 
+- AdmGetListStudyCourse nella tabella compare due volte la voce Associa corsi
+- Sistemare grafica GetListBook (Chiedere a davide  )
+
 
 PARTE SERVER:
 LOG:
