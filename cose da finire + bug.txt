@@ -15,8 +15,10 @@ REV1 BACK SIDE------------------------------------------------------------------
 - Aggiungere selettore anni nella pagina ListCourse (come fatto in ListCourseAn) FATTO MA PERMETTERE DI NON INVIARE NULLA
 - - ListStudyCourses: replicare ricerca per anno come in ListCourseAn
 
+//SCRITTI IL 16/06/18
 - AdmGetListStudyCourse nella tabella compare due volte la voce Associa corsi
-- Sistemare grafica GetListBook (Chiedere a davide  )
+- Sistemare grafica GetListBook (Chiedere a davide)
+- ModAdmCourse manca la possibilita' di visualizzare la lista del materiale, c'e' solo la possbilita di aggiungerne di nuova
 
 
 PARTE SERVER:
