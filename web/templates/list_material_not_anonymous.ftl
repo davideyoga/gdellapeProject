@@ -51,58 +51,59 @@
     </div>
 </div>
 
-
 <div class="row">
     <div class="col-md-2 col-xs-2 my-menu">
-        <div class="text-center"><a href="/modAdmCourse?id=${course.idCourse}&<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>" class="btn btn-warning my-text center-block" role="button">torna a ${course.name}</a></div>
+        <ul class="nav nav-pills nav-stacked">
+            <li class="active text-center"><a data-toggle="pill" href="#">Lista materiale</a></li>
+        </ul>
+        <div class="w3ls-heading page-header">
+        </div>
+        <div class="text-center">
+            <a href="AddMaterial?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">Aggiugni nuovo materiale</a>
+            <a href="/ModAdmCourse?id=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">torna a ${course.name}</a>
+        </div>
     </div>
 
 
     <div class="container">
         <div class="col-md-12 col-xs-12">
 
-            <div class="container">
 
-                <div class="table-responsive">
-                    <table id="course_table" class="table table-hover table-bordered table-striped">
+            <div class="table-responsive">
+                <table id="course_table" class="table table-hover table-bordered table-striped">
 
 
-                        <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>Descrizione</th>
-                            <th>Data di creazione</th>
-                            <th>Dimensione</th>
-                            <th>Tipo</th>
-                            <th>-</th>
-                        </tr>
-                        </thead>
+                    <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Descrizione</th>
+                        <th>Data di creazione</th>
+                        <th>Dimensione</th>
+                        <th>Tipo</th>
+                        <th>-</th>
+                    </tr>
+                    </thead>
 
-                        <tbody>
+                    <tbody>
                             <#list material as material>
-                                <tr>
-                                    <td>${material.name}</td>
-                                    <td>${material.description_ita}</td>
-                                    <td>${material.data}</td>
-                                    <td>${material.size} kb</td>
-                                    <td>${material.type}</td>
-                                    <td><button type="button" id="${material.id}" name="${material.id}" value="${material.id}" class="btn btn-info delete">elimina</button></td>
-                                </tr>
+                            <tr>
+                                <td>${material.name}</td>
+                                <td>${material.description_ita}</td>
+                                <td>${material.data}</td>
+                                <td>${material.size} kb</td>
+                                <td>${material.type}</td>
+                                <td><button type="button" id="${material.id}" name="${material.id}" value="${material.id}" class="btn btn-info delete">elimina</button></td>
+                            </tr>
                             </#list>
-                        </tbody>
-                    </table>
-                    <div>
-                    </div>
-                </div>
+                    </tbody>
+                </table>
             </div>
-        <#--end container-->
+        <#--end table responsive-->
         </div>
-    <#--end col md 12-->
+    <#--end col-->
     </div>
 <#--end container-->
 </div>
-<#--end row-->
-
 
 <#--tutti questi div sono inutili ma ci devono stare-->
 

@@ -74,10 +74,11 @@
                     </#if>
                 </#list>
                 <#if addMaterial>
-                    <a href="AddMaterial?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">Aggiugni materiale esterno</a>
+                    <a href="ListMaterialNotAnonymous?id=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">gestione materiale esterno</a>
+                    <#--<a href="AddMaterial?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">gestione materiale esterno</a>-->
                 </#if>
                 <#if addBook>
-                    <a href="GetListBook?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">Aggiungi libri</a>
+                    <a href="GetListBook?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">gestione libri</a>
                 </#if>
                 <#if mod>
                     <a href="/modCourseRelation?idCourse=${course.idCourse}&mode=module" class="btn btn-warning my-text center-block m-b-5" role="button">associa moduli</a>
