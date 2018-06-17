@@ -50,8 +50,7 @@
 
                     <nav>
                         <ul class="nav navbar-nav">
-                            <li class="active">
-                                <a href="/home?<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=EN</#if>">Home</a></li>
+                            <li><a href="/home?<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=EN</#if>">Home</a></li>
                             <li><a href="/ListStudyCourses?<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=EN</#if>" class="hvr-rectangle-out">Degree</a></li>
                             <li><a href="/listCourseAn?<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=EN</#if>" class="hvr-rectangle-out">Courses</a></li>
                             <li><a href="/listUser?<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=EN</#if>" class="hvr-rectangle-out">Teachers</a></li>

@@ -75,7 +75,7 @@
                         <tbody>
                             <#list courses as course>
                                 <tr>
-                                    <td>${course.name}</td>
+                                    <td>${course.name?lower_case}</td>
                                     <td>${course.code}</td>
                                     <td>
                                         <a href="ModCourse?id=${course.idCourse}">modifica corso</a>
