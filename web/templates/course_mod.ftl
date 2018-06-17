@@ -19,21 +19,23 @@
 </div>
 
 <div class="container">
-    <div>
-        <#if message??>
-            <div class="jumbotron">
-                ${message}
+    <#if message??>
+        <div class="title">
+            <h2>ATTENZIONE</h2>
+            <div class="modalContent">
+                <p>${message}</p>
             </div>
-        <#else>
-        </#if>
-    </div>
+        </div>
+    <#else>
+    </#if>
 </div>
 
+
 <form action="ModCourse" method="POST" id="mod" class="my-form" >
-<#--<div class="row" style="border: #00d21f 5px solid">-->
+
     <div class="row">
         <div class="col-md-2 col-xs-2 my-menu">
-            <ul class="nav nav-pills nav-stacked">
+            <ul class="nav nav-pills nav-stacked text-center">
                 <li class="active"><a data-toggle="pill" href="#basic">Informazioni di base</a></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Informazioni aggiuntive
@@ -72,10 +74,10 @@
                     </#if>
                 </#list>
                 <#if addMaterial>
-                    <a href="AddMaterial?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">Aggiugni materiale esterno</a>
+                    <a href="ListMaterialNotAnonymous?id=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">gestione materiale esterno</a>
                 </#if>
                 <#if addBook>
-                    <a href="GetListBook?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">Aggiungi libri</a>
+                    <a href="GetListBook?idCourse=${course.idCourse}" class="btn btn-warning my-text center-block m-b-5" role="button">gestione libri</a>
                 </#if>
                 <#--<#if mod>-->
                     <#--<a href="/modCourseRelation?idCourse=${course.idCourse}&mode=module" class="btn btn-warning my-text center-block m-b-5" role="button">associa moduli</a>-->
@@ -101,7 +103,6 @@
                         <div class="form-group">
                             <label for="codice">Codice:</label>
                             <input type="text" class="form-control" id="codice" name="code" value="<#if course.code??>${course.code}<#else></#if>" disabled>
-                        <#--<p class="form-control-static"><#if course.code??>${course.code}<#else></#if></p>-->
                             <span class="help-block">Solo un amministratore può modificare il codice</span>
                         </div>
 
