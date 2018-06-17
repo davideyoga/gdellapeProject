@@ -1,8 +1,6 @@
 
 REV1 FRONT SIDE------------------------------------------------------------------------------------------------------------------------------------------------
 
-
-- modAssociationCourseWithUser aggiungere nella tabella voce email
 - spazi vuoti nell'input modifica corso cfu
 - modAssociationCourseWithUser: formattare nome corso scelto ??
 

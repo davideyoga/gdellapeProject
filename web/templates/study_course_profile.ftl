@@ -211,7 +211,6 @@
                             </thead>
                             <#items as  course>
                             <tr>
-                                <td>Nome corso</td>
                                 <td >${course.name}</td>
                                 <td ><a href="CourseProfile?id=${course.idCourse}&<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>">Leggi di piu'</a></td>
                             </tr>
