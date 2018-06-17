@@ -14,7 +14,7 @@ REV1 BACK SIDE------------------------------------------------------------------
 
 
 PARTE SERVER:
-LOG:
+LOG:g
     ricontrollare i log e scriverli meglio, con spazi ecc..
 
 -- SERVER controllare controlli doGet UpdateCourse

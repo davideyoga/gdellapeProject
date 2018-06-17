@@ -84,19 +84,19 @@
                     <#list courses as course>
                     <tr>
                         <td>${course.code}</td>
-                        <td>${course.name}</td>
-                        <td>${course.sector}</td>
-                        <td>${course.semester}</td>
-                        <td>${course.language}</td>
-                        <td>${course.year}</td>
+                        <td>${course.name?lower_case}</td>
+                        <td>${course.sector?lower_case}</td>
+                        <td>${course.semester?lower_case}</td>
+                        <td>${course.language?lower_case}</td>
+                        <td>${course.year?lower_case}</td>
                         <td>
-                            <a href="ModAdmCourse?id=${course.idCourse}">modifica corso</a>
+                            <a class="btn btn-primary btn-sm" href="ModAdmCourse?id=${course.idCourse}">modifica corso</a>
                         </td>
                         <td>
-                            <a href="DeleteCourse?id=${course.idCourse}" onclick="return ConfirmDeleteCourse(${course.code},${course.name})">Cancella Corso</a>
+                            <a class="btn btn-danger btn-sm" href="DeleteCourse?id=${course.idCourse}" onclick="return ConfirmDeleteCourse(${course.code},${course.name})">Cancella Corso</a>
                         </td>
                         <td>
-                            <a href="modAssociationCourseWithUser?id=${course.idCourse}">associa docente</a>
+                            <a class="btn btn-success btn-sm" href="modAssociationCourseWithUser?id=${course.idCourse}">associa docente</a>
                         </td>
 
                     </tr>

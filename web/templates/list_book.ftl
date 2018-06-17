@@ -71,7 +71,7 @@
 <div class="container">
     <div class="center-block">
         <div class="w3ls-heading page-header">
-            <h3>Lista libri</h3>
+            <h3>Lista libri associati a ${course.name}</h3>
         </div>
     </div>
 </div>
@@ -137,8 +137,8 @@
                         <td>${book.link}</td>
                         <#--<td><input type="checkbox" class="associate" id="${book.id}" name="${book.id}" value="${book.id}" <#if booksByCourse?seq_contains(book) >checked<#else></#if>> ${course.name}, ${book.id}</td>-->
                         <#--<td><input type="checkbox" class="delete" id="${book.id}" name="idBook" value="${book.id}" > elimina</td>-->
-                        <td><button type="button" id="${book.id}" name="${book.id}" value="${book.id}" class="btn btn-info associate">${course.name}, ${book.id}</button></td>
-                        <td><button type="button" id="${book.id}" name="${book.id}" value="${book.id}" class="btn btn-info delete">${course.name}, ${book.id}</button></td>
+                        <td><button type="button" id="${book.id}" name="${book.id}" value="${book.id}" class="btn btn-primary associate">Associa</button></td>
+                        <td><button type="button" id="${book.id}" name="${book.id}" value="${book.id}" class="btn btn-danger delete">Elimina</button></td>
                         <td><#if booksByCourse?seq_contains(book) >associato <#else>non associato</#if></td>
                     </tr>
                     </#list>
