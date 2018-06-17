@@ -159,25 +159,6 @@
 
                     </div> <#--end panel default-->
 
-                <#--note-->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" href="#note">Note</a>
-                            </h4>
-                        </div>
-                        <div id="note" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-md-12 col-xs-12">
-                                        <p>${course.note_ita}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <#--div note-->
-
                 </div> <#--div panel-group-->
             </div> <#--div id basic-->
 
