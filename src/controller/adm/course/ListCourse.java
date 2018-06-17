@@ -2,9 +2,11 @@ package controller.adm.course;
 
 import controller.BaseController;
 import controller.utility.AccademicYear;
+import controller.utility.AccademicYearException;
 import dao.exception.DaoException;
 import dao.implementation.CourseDaoImpl;
 import dao.interfaces.CourseDao;
+import model.Course;
 import model.Service;
 import view.TemplateController;
 
@@ -12,7 +14,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -126,7 +130,7 @@ public class ListCourse extends BaseController {
                         CourseDao courseDao = new CourseDaoImpl(ds);
                         courseDao.init();
 
-                        //se e' stato inserito l'anno accademic
+                        //se e' stato inserito l'anno accademico
                         if(accademicYear !=null) {
 
                             //estraggo i corsi collegati all'utente in sessione e li inserisco i corsi nel datamodel
@@ -136,8 +140,26 @@ public class ListCourse extends BaseController {
                             //se non e' presente l'anno accademico
                         }else{
 
-                            //estraggo tutti gli anni collegati al docente e li inersco nel datamodel
-                            datamodel.put("courses", courseDao.getCoursesByUser(sessionManager.getUser(request)));
+                            //inizilizzo l'anno accademico attuale
+                            AccademicYear thisYear = new AccademicYear(Calendar.getInstance());
+
+                            //estraggo la lista dei corsi dell'utente
+                            List<Course> listaCorsi = courseDao.getCoursesByUser(sessionManager.getUser(request));
+
+                            List<Course> corsiDaTornare = new ArrayList <>();
+
+                            for (Course c : listaCorsi){
+
+                                if (new AccademicYear(c.getYear()).getFirstYear() >= thisYear.getFirstYear()){
+
+                                    corsiDaTornare.add(c);
+                                }
+                            }
+
+                            listaCorsi = null;
+
+                            //estraggo tutti gli anni collegati al docente e li insersco nel datamodel
+                            datamodel.put("courses", corsiDaTornare);
                         }
 
 
@@ -166,7 +188,7 @@ public class ListCourse extends BaseController {
 
             }
 
-        } catch (DaoException e) {
+        } catch (DaoException | AccademicYearException e) {
             e.printStackTrace();
 
             //in caso di dao exception ecc. lancio il template di errore
