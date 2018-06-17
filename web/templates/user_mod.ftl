@@ -4,6 +4,11 @@
     <title>Modifica Utente</title>
 
 <#include "import.ftl">
+    <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById('pwd').value="";
+        }
+    </script>
 
 </head>
 <body>
