@@ -4,22 +4,15 @@ REV1 FRONT SIDE-----------------------------------------------------------------
 
 - modAssociationCourseWithUser aggiungere nella tabella voce email
 - spazi vuoti nell'input modifica corso cfu
-- modAssociationCourseWithUser: formattare nome corso scelto
-- modCourse (servelt per modiifcare un corso da parte dei docenti) farla come ModAdmCourse
-- course_list_an_en farla in inglese
+- modAssociationCourseWithUser: formattare nome corso scelto ??
 
 
 REV1 BACK SIDE------------------------------------------------------------------------------------------------------------------------------------------------
-- Aggiungere selettore anni nella pagina ListCourse (come fatto in ListCourseAn) FATTO MA PERMETTERE DI NON INVIARE NULLA
+- selettore anni nella pagina ListCourse PERMETTERE DI NON INVIARE NULLA
 - - ListStudyCourses: replicare ricerca per anno come in ListCourseAn
 
 //SCRITTI IL 16/06/18
-- AdmGetListStudyCourse nella tabella compare due volte la voce Associa corsi
 - Sistemare grafica GetListBook (Chiedere a davide)
-
-
-
-ELIMINARE I RIFERIMENTI NULLI DA FREEMARKER!!! GENERANO ERRORI NELLA CONSOLE
 
 
 PARTE SERVER:

@@ -60,7 +60,8 @@
 
                                 <thead>
                                 <tr>
-                                    <th>Nome Docente</th>
+                                    <th>Email Docente</th>
+                                    <th>Nome</th>
                                     <th>-</th>
                                 </tr>
                                 </thead>
@@ -68,6 +69,7 @@
                                 <tbody>
                                     <#list allUser as user>
                                     <tr>
+                                        <td>${user.email}</td>
                                         <td>${user.surname} ${user.name}</td>
                                         <td><input type="checkbox" name="${user.email}" value="${user.email}" <#if userMatch?seq_contains(user) >checked<#else></#if> > associa</td>
                                     </tr>
