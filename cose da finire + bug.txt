@@ -21,6 +21,10 @@ REV1 BACK SIDE------------------------------------------------------------------
 - ModAdmCourse manca la possibilita' di visualizzare la lista del materiale, c'e' solo la possbilita di aggiungerne di nuova
 
 
+
+ELIMINARE I RIFERIMENTI NULLI DA FREEMARKER!!! GENERANO ERRORI NELLA CONSOLE
+
+
 PARTE SERVER:
 LOG:
     ricontrollare i log e scriverli meglio, con spazi ecc..
