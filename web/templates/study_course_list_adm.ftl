@@ -71,9 +71,6 @@
                                 <td>
                                     <a href="DeleteStudyCourse?id=${studyCourse.id}" onclick="return ConfirmDeleteStudyCourse(${studyCourse.code},${studyCourse.name})">Cancella</a>
                                 </td>
-                                <td>
-                                    <a href="modAssociationStudyCourseWithCourse?idStudyCourse=${studyCourse.id}">Associa corsi</a>
-                                </td>
                             </tr>
                             </#list>
                         </tbody>
