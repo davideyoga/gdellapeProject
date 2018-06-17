@@ -53,7 +53,7 @@
         </#if>
     </#list>
 
-    <#if createUser && viewUser>
+    <#if createUser?? || viewUser??>
     <div class="row">
         <div class="col-md-12 col-xs-12  well">
             <#--<div class="w3ls-heading personal2">-->
@@ -84,7 +84,7 @@
 
     <div class="clearfix"> </div>
 
-    <#if createStudyCourse && viewStudyCourse>
+    <#if createStudyCourse?? || viewStudyCourse??>
     <div class="row">
         <div class="col-md-12 col-xs-12 well">
             <div class="page-header text-center">
@@ -113,7 +113,7 @@
 
     <div class="clearfix"> </div>
 
-    <#if createCourse && modCourse && updateCourse>
+    <#if createCourse?? || modCourse?? || updateCourse??>
     <div class="row">
         <div class="col-md-12 col-xs-12 well">
             <div class="page-header text-center">
@@ -149,7 +149,7 @@
     </div>
     </#if>
 
-    <#if createGroup && modGroups>
+    <#if createGroup?? || modGroups??>
     <div class="row">
         <div class="col-md-12 col-xs-12 well">
             <div class="page-header text-center">
@@ -178,7 +178,7 @@
     </#if>
 
 
-    <#if logView>
+    <#if logView??>
         <div class="row">
             <div class="col-md-12 col-xs-12 well">
                 <div class="page-header text-center">
