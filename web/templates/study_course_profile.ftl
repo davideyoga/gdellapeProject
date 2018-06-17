@@ -207,6 +207,7 @@
                             <thead>
                             <tr>
                                 <th colspan="3">Insegnamenti associati a ${studyCourse.name}</th>
+                                <#--<th colspan="3">Insegnamenti associati a ${studyCourse.name}</th>-->
                             </tr>
                             </thead>
                             <#items as  course>
