@@ -247,7 +247,7 @@ public class StudyCourse {
     }
 
     public String toStringForLog() {
-        return  "NAME=" + name +
-                ", CODE=" + code ;
+        return  "name=" + name +
+                ", code=" + code ;
     }
 }

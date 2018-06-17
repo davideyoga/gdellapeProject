@@ -15,8 +15,7 @@ public class Groups{
     }
 
     public String toStringForLog() {
-        return "NAME='" + name +
-                ", DESCRIPTION='" + description;
+        return "name='" + name;
     }
 
     @Override

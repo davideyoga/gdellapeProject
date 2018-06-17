@@ -472,7 +472,7 @@ public class Course {
      */
     public String toStringForLog(){
 
-        String logDescriptor = "ID: " + idCourse + ", NAME: " + name + ", CODE: " + code;
+        String logDescriptor = "name: " + name + ", code: " + code;
 
         return logDescriptor;
 

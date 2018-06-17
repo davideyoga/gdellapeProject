@@ -168,7 +168,7 @@ public class User{
 
     public String toStringForLog(){
 
-        return "SURNAME: " + surname + ", NAME: " + name + ", EMAIL: " + email  ;
+        return "surname: " + surname + ", name: " + name + ", email: " + email  ;
 
     }
 }
