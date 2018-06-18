@@ -83,7 +83,7 @@
                             <td>${course.language}</td>
                             <td>${course.year}</td>
                             <td>
-                                <a href="CourseProfile?id=${course.idCourse}&<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>">Leggi di piu'</a>
+                                <a class="btn btn-default" href="CourseProfile?id=${course.idCourse}&<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>">Leggi di piu'</a>
                             </td>
                         </tr>
                         </#list>

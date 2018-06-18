@@ -53,7 +53,6 @@
                             <th> - </th>
                             <th> - </th>
                             <th> - </th>
-                            <th> - </th>
                         </tr>
                         </thead>
 
@@ -63,13 +62,13 @@
                                 <td>${studyCourse.code}</td>
                                 <td>${studyCourse.name}</td>
                                 <td>
-                                    <a href="AdmModStudyCourse?id=${studyCourse.id}">Modifica</a>
+                                    <a class="btn btn-default" href="AdmModStudyCourse?id=${studyCourse.id}">Modifica</a>
                                 </td>
                                 <td>
-                                    <a href="modAssociationStudyCourseWithCourse?idStudyCourse=${studyCourse.id}">Associa corsi</a>
+                                    <a class="btn btn-primary" href="modAssociationStudyCourseWithCourse?idStudyCourse=${studyCourse.id}">Associa corsi</a>
                                 </td>
                                 <td>
-                                    <a href="DeleteStudyCourse?id=${studyCourse.id}" onclick="return ConfirmDeleteStudyCourse(${studyCourse.code},${studyCourse.name})">Cancella</a>
+                                    <a class="btn btn-danger" href="DeleteStudyCourse?id=${studyCourse.id}" onclick="return ConfirmDeleteStudyCourse(${studyCourse.code},${studyCourse.name})">Cancella</a>
                                 </td>
                             </tr>
                             </#list>

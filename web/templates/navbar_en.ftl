@@ -2,6 +2,8 @@
 
 <div class="header-w3ls-agileinfo">
 
+    <#assign lng="EN">
+
     <div class="wthree_agile_top_header">
         <div class="logo-agileits">
             <h1><a href="/home?<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=EN</#if>"><span>U</span>niversit&agrave <i class="fa fa-graduation-cap" aria-hidden="true"></i></a></h1>

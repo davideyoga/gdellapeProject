@@ -61,7 +61,7 @@
                         <td>${material.data}</td>
                         <td>${material.size} kb</td>
                         <td>${material.type}</td>
-                        <td><a href="downloadMaterial?id=${material.id}">scarica</a></td>
+                        <td><a class="btn btn-default" href="downloadMaterial?id=${material.id}">scarica</a></td>
                     </tr>
                     </#list>
                         </tbody>

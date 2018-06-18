@@ -78,7 +78,7 @@
                                     <td>${course.name?lower_case}</td>
                                     <td>${course.code}</td>
                                     <td>
-                                        <a href="ModCourse?id=${course.idCourse}">modifica corso</a>
+                                        <a class="btn btn-default" href="ModCourse?id=${course.idCourse}">modifica corso</a>
                                     </td>
                                 </tr>
                             </#list>
