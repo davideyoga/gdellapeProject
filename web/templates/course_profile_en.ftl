@@ -167,7 +167,7 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-md-12 col-xs-12">
-                                            <p><#if course.prerequisite_eng??>${course.prerequisite_eng}<#else>${course.prerequisite_ita}</#if></p>
+                                            <p><#if course.prerequisite_eng??>${course.prerequisite_eng}<#else>non coi sono dati</#if></p>
                                         </div>
                                     </div>
                                 </div>
