@@ -73,6 +73,8 @@ public class Login extends BaseController {
                 //estraggo l'utente con email e password
                 User user = userDao.getUserByEmailPassword(email, utilityManager.sha1Encrypt(password));
 
+                userDao.destroy();
+
                 //se l'utente e' nel database con tali email e password
                 if( user != null && user.getId() > 0){
 
