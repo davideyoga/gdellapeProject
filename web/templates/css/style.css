@@ -63,11 +63,21 @@ section.flat button {
     text-shadow: -1px 1px #417cb8;
     border:none;
     float: left;
+    width: 340px;
+    height: 80px;
+    margin: 10px 0 0 27px;
+}
+/*section.flat button {
+    color: #fff;
+    background-color: #6496c8;
+    text-shadow: -1px 1px #417cb8;
+    border:none;
+    float: left;
     width: 365px;
     height: 80px;
     margin: 10px 0 0 15px;
 }
-
+*/
 section.flat button:hover,
 section.flat button.hover {
     background-color: #346392;
