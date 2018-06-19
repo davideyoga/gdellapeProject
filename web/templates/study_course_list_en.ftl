@@ -58,7 +58,7 @@
                         <td>${studyCourse.code}</td>
                         <td>${studyCourse.name}</td>
                         <td>
-                            <a href="StudyCourseProfile?code=${studyCourse.code}&<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=EN</#if>">Read more</a>
+                            <a class="btn btn-default" href="StudyCourseProfile?code=${studyCourse.code}&<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=EN</#if>">Read more</a>
                         </td>
                     </tr>
                     </#list>

@@ -68,6 +68,7 @@
                             <th>Sector</th>
                             <th>Semester</th>
                             <th>Language</th>
+                            <td>Year</td>
                             <th> - </th>
                         </tr>
                         </thead>
@@ -80,8 +81,9 @@
                             <td>${course.sector}</td>
                             <td>${course.semester}</td>
                             <td>${course.language}</td>
+                            <td>${course.year}</td>
                             <td>
-                                <a href="CourseProfile?id=${course.idCourse}&<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>">Read More</a>
+                                <a class="btn btn-default" href="CourseProfile?id=${course.idCourse}&<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=IT</#if>">Read More</a>
                             </td>
                         </tr>
                         </#list>

@@ -56,7 +56,7 @@
                     <td>${user.name} ${user.surname}</td>
                     <td>${user.email}</td>
                     <td>
-                        <a href="UserProfile?email=${user.email}&<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=EN</#if>">Read more</a>
+                        <a class="btn btn-default" href="UserProfile?email=${user.email}&<#if lng == 'IT'>lng=IT<#elseif lng == 'EN'>lng=EN<#else>lng=EN</#if>">Read more</a>
                     </td>
                 </tr>
                 </#list>

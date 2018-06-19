@@ -58,10 +58,10 @@
                     <td>${group.name}</td>
                     <td>${group.description}</td>
                     <td>
-                        <a href="AdmModGroups?id=${group.id}">modifica</a>
+                        <a class="btn btn-default" href="AdmModGroups?id=${group.id}">modifica</a>
                     </td>
                     <td>
-                        <a href="DeleteGroups?id=${group.id}">elimina</a>
+                        <a class="btn btn-danger" href="DeleteGroups?id=${group.id}">elimina</a>
                     </td>
                 </tr>
                 </#list>
